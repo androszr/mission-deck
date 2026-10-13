@@ -1,0 +1,25 @@
+FRONTEND -- Mira  |  MISSION DECK  |  Phase 6b  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | MIRA // interface studio           [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  view: #view-<id>                                 |
+  |                                                   |
+  |  [x] DS classes only                              |
+  |  [x] skeleton first, then data                    |
+  |  [x] every exit paints the slot                   |
+  |                                                   |
+  |  > clean screens, honest states.                  |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Mira - Frontend
+    {{MODEL}}

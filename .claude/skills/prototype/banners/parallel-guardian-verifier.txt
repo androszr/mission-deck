@@ -1,0 +1,25 @@
+PARALLEL -- Quiet + Ledger  |  PROTOTYPE  |  Phase 6e+6f
+
+  .---------------------------------------------------.      .---------------------------------------------------.
+  | QUIET // design system gate        [_][=][X]      |      | LEDGER // prototype audit          [_][=][X]      |
+  |...................................................|      |...................................................|
+  |                                                   |      |                                                   |
+  |  $ node scripts/check-proto-ds.js <dir>           |      |  ACCEPTANCE CRITERIA:                             |
+  |                                                   |      |  AC1 ........ verified on disk                    |
+  |  [STATUS]  no hardcoded colour.                   |      |  AC2 ........ verified on disk                    |
+  |  [STATUS]  known tokens and icons.                |      |                                                   |
+  |                                                   |      |  > blind check. proof only.                       |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  '---------------------------------------------------'      '---------------------------------------------------'
+                        |||                                                        |||
+               _________|_|_________                                      _________|_|_________
+  Agent Quiet - DS Guardian                                  Agent Ledger - Verification
+    {{MODEL_LEFT}}                                             {{MODEL_RIGHT}}

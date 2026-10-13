@@ -1,0 +1,29 @@
+# Normalize line endings - LF in the repo, native on checkout where it matters.
+# Without this a Windows clone rewrites every file to CRLF, which shows up as a
+# whole-file diff on the first commit and breaks the bash-based git hooks.
+* text=auto eol=lf
+
+*.js   text eol=lf
+*.mjs  text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.css  text eol=lf
+*.md   text eol=lf
+*.yml  text eol=lf
+*.txt  text eol=lf
+*.sh   text eol=lf
+
+# Binary - never touch
+*.png  binary
+*.jpg  binary
+*.gif  binary
+*.pdf  binary
+*.ttf  binary
+*.woff binary
+*.woff2 binary
+*.zip  binary
+
+# Stamped by `git archive` (GitLab "Download source") with the commit hash the
+# archive was cut from; a clone keeps the literal. Read by scripts/_app-repo-adopt.js.
+SOURCE_COMMIT export-subst
+SOURCE_COMMIT text eol=lf

@@ -1,0 +1,236 @@
+/* demo/chapters-css/sync.css - layout for chapter `sync` mocks; DS tokens only.
+   The sync center modal uses the real styles.css classes as-is; this file
+   carries the encryption diagram and the "other computer" cut card. */
+
+#demo-screen .synchronizacja-diagram {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-24);
+  /* The bottom keeps clear of the caption pill, so the picture sits in the
+     middle of what the audience actually sees. */
+  padding: var(--space-32) var(--space-32) 120px;
+  background: var(--body-secondary-bg);
+}
+
+#demo-screen .synchronizacja-diagram-head {
+  text-align: center;
+  margin-bottom: var(--space-24);
+}
+
+#demo-screen .synchronizacja-diagram-title {
+  margin: 0 0 var(--space-8);
+  font-size: var(--text-xl);
+  color: var(--body-primary-text);
+}
+
+#demo-screen .synchronizacja-diagram-lead {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+}
+
+/* "Komputer Jana": whose machine the top bar belongs to after the cut. */
+#demo-cockpit .synchronizacja-machine {
+  margin-right: var(--space-8);
+}
+
+#demo-screen .synchronizacja-diagram-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr) 24px minmax(0, 1fr) 64px minmax(0, 1fr) 64px minmax(0, 1fr);
+  align-items: center;
+}
+
+#demo-screen .synchronizacja-node {
+  opacity: 0.18;
+  transform: scale(0.96);
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+  font-size: var(--text-sm);
+}
+
+#demo-screen .synchronizacja-node--on {
+  opacity: 1;
+  transform: none;
+}
+
+#demo-screen .synchronizacja-node--fresh {
+  box-shadow: 0 0 0 2px var(--body-brand-text), var(--shadow-l);
+  animation: synchronizacja-pop 0.6s ease-out;
+}
+
+@keyframes synchronizacja-pop {
+  from { opacity: 0.18; transform: translateY(12px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+#demo-screen .synchronizacja-node-title {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-base);
+  margin-bottom: var(--space-4);
+}
+
+#demo-screen .synchronizacja-node-sub {
+  color: var(--body-secondary-text);
+  font-size: var(--text-xs);
+  margin-bottom: var(--space-12);
+}
+
+#demo-screen .synchronizacja-files,
+#demo-screen .synchronizacja-points {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  font-size: var(--text-xs);
+}
+
+#demo-screen .synchronizacja-points {
+  padding-left: var(--space-16);
+  list-style: disc;
+}
+
+#demo-screen .synchronizacja-files code {
+  display: block;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-s);
+  background: var(--body-secondary-bg);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#demo-screen .synchronizacja-files--sealed code {
+  background: var(--state-success-bg);
+  color: var(--state-success-text);
+}
+
+#demo-screen .synchronizacja-key {
+  margin-top: var(--space-8);
+  font-size: var(--text-xs);
+}
+
+/* Arrows: a line with three "packets" travelling along it while fresh. */
+#demo-screen .synchronizacja-arrow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  opacity: 0.15;
+  transition: opacity 0.5s ease;
+}
+
+#demo-screen .synchronizacja-arrow--on {
+  opacity: 1;
+}
+
+#demo-screen .synchronizacja-arrow-line {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: var(--body-brand-text);
+  overflow: visible;
+}
+
+#demo-screen .synchronizacja-arrow-line::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: -4px;
+  border-left: 8px solid var(--body-brand-text);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+#demo-screen .synchronizacja-arrow-line i {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-s);
+  background: var(--body-brand-text);
+  opacity: 0;
+}
+
+#demo-screen .synchronizacja-arrow--fresh .synchronizacja-arrow-line i {
+  animation: synchronizacja-packet 1.4s linear infinite;
+}
+
+#demo-screen .synchronizacja-arrow--fresh .synchronizacja-arrow-line i:nth-child(2) { animation-delay: 0.45s; }
+#demo-screen .synchronizacja-arrow--fresh .synchronizacja-arrow-line i:nth-child(3) { animation-delay: 0.9s; }
+
+@keyframes synchronizacja-packet {
+  0% { left: 0; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { left: calc(100% - 10px); opacity: 0; }
+}
+
+#demo-screen .synchronizacja-arrow-label {
+  font-size: var(--text-2xs);
+  color: var(--body-secondary-text);
+  white-space: nowrap;
+}
+
+#demo-screen .synchronizacja-diagram-note {
+  margin: 0;
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #demo-screen .synchronizacja-node--fresh,
+  #demo-screen .synchronizacja-arrow--fresh .synchronizacja-arrow-line i {
+    animation: none;
+  }
+}
+
+/* The cut to the colleague's computer. */
+#demo-screen .synchronizacja-switch {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--body-secondary-bg);
+}
+
+#demo-screen .synchronizacja-switch-card .ds-card-body {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  padding: var(--space-24) var(--space-32);
+}
+
+#demo-screen .synchronizacja-switch-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-max);
+  background: var(--body-brand-bg);
+  color: var(--body-primary-bg);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-lg);
+}
+
+#demo-screen .synchronizacja-switch-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+#demo-screen .synchronizacja-switch-sub {
+  color: var(--body-secondary-text);
+  font-size: var(--text-sm);
+}
+
+/* "Komputer Jana" next to the window title: whose machine this is (demo note). */
+#demo-cockpit .synchronizacja-machine-tag {
+  margin-left: var(--space-12);
+  margin-right: auto;
+}

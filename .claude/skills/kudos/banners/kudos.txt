@@ -1,0 +1,24 @@
+KUDOS  |  MISSION DECK  |  contribution summary
+
+  .---------------------------------------------------.
+  | MISSION DECK // CELEBRATION        [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ git diff --stat main...<branch>                |
+  |  $ git log main..<branch> --oneline               |
+  |                                                   |
+  |  files ....... ############  counted              |
+  |  commits ..... ############  read                 |
+  |  plan ........ ############  matched              |
+  |                                                   |
+  |  > someone did good work today.                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  /kudos - Contribution summary

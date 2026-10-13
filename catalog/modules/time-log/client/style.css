@@ -1,0 +1,369 @@
+/* modules/time-log/client/style.css
+   Time Log heatmap styles (.tlc-*). DS tokens only: no hex literal, no legacy translucent-black
+   function call, no var with a fallback literal after the comma - the four
+   old fallbacks and the tooltip's old translucent-black shadow are replaced
+   with var(--shadow-md) and the bare token. Radius tokens are --fds-radius-*
+   (this repo has no --radius-md/sm). */
+
+.tlc-header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  min-height: 20px;
+}
+
+.tlc-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.tlc-search-wrap {
+  flex: 1;
+  min-width: 200px;
+  max-width: 280px;
+  margin: 0;
+}
+
+.tlc-team-seg {
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.tlc-toolbar-actions {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.tlc-count {
+  font-size: 12px;
+  color: var(--body-tertiary-text);
+}
+
+/* ── Legend ─────────────────────────────────────────────────────────────── */
+
+.tlc-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 12px;
+  color: var(--body-secondary-text);
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+.tlc-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tlc-legend-note {
+  color: var(--body-tertiary-text);
+  font-size: 12px;
+}
+
+.tlc-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tlc-legend-dot--logged   { background: var(--brand-accent); }
+.tlc-legend-dot--miss     { background: var(--state-danger-bg); }
+.tlc-legend-dot--vacation { background: var(--body-tertiary-bg); opacity: 0.5; }
+.tlc-legend-dot--weekend  { background: var(--body-tertiary-bg); opacity: 0.4; }
+.tlc-legend-dot--holiday  { background: var(--body-tertiary-bg); opacity: 0.35; }
+
+/* ── Skeleton (first paint, before GET /data answers) ─────────────────────
+   .ds-skeleton paints --body-quaternary-bg (the page background), so a bar
+   sitting directly on the page rather than inside a white card needs the
+   --body-secondary-bg override - see CLAUDE.md "Loading skeletons". */
+
+.tlc-skel-toolbar {
+  height: 36px;
+  margin-bottom: 12px;
+  border-radius: var(--fds-radius-input);
+  background: var(--body-secondary-bg);
+}
+
+.tlc-skel-row {
+  height: 26px;
+  margin-bottom: 2px;
+  border-radius: var(--fds-radius-input);
+  background: var(--body-secondary-bg);
+}
+
+/* ── Heatmap grid ──────────────────────────────────────────────────────── */
+
+.tlc-grid-wrap {
+  overflow-y: auto;
+  max-height: 480px;
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: var(--fds-radius-card);
+  margin-bottom: 12px;
+}
+
+.tlc-grid {
+  display: grid;
+  gap: 2px;
+  padding: 4px;
+  min-width: max-content;
+}
+
+.tlc-cell {
+  height: 26px;
+  min-width: 28px;
+  border-radius: var(--fds-radius-input);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  transition: opacity 0.1s;
+}
+
+.tlc-cell[role="button"] {
+  cursor: pointer;
+}
+
+.tlc-cell[role="button"]:hover,
+.tlc-cell[role="button"]:focus-visible {
+  opacity: 0.8;
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 1px;
+}
+
+.tlc-cell--header {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--body-secondary-text);
+  align-items: flex-end;
+  padding-bottom: 3px;
+  height: 28px;
+  position: sticky;
+  top: 0;
+  background: var(--body-primary-bg);
+  z-index: 1;
+}
+
+.tlc-cell--logged { background: var(--brand-accent); }
+/* Logged cells carry an hours fraction: intensity ramp via --tlc-frac (0..1).
+   color-mix() is supported Chrome 111+, Firefox 113+, Safari 16.2+. */
+.tlc-cell--logged[style] {
+  background: color-mix(in srgb, var(--brand-accent) calc((0.25 + var(--tlc-frac, 1) * 0.75) * 100%), transparent);
+  color: var(--body-primary-text);
+}
+/* High-intensity cells (frac >= 0.5): dark background - switch to white text. */
+.tlc-cell--logged.tlc-cell--hi {
+  color: var(--surface-primary);
+}
+.tlc-cell--miss { background: var(--state-danger-bg); }
+/* MUST come after .tlc-cell--miss - cascade order decides when both classes are active. */
+.tlc-cell--vacation { background: var(--body-tertiary-bg); opacity: 0.5; position: relative; }
+.tlc-cell--vacation::after {
+  content: '🌴';
+  font-size: 11px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.tlc-cell--weekend { background: var(--body-tertiary-bg); opacity: 0.4; }
+.tlc-cell--holiday { background: var(--body-tertiary-bg); opacity: 0.35; position: relative; }
+.tlc-cell--holiday::after {
+  content: '✦';
+  font-size: 8px;
+  opacity: 0.5;
+  position: absolute;
+}
+
+.tlc-cell--summary {
+  background: transparent;
+  font-weight: 600;
+  font-size: 11px;
+  color: var(--body-secondary-text);
+  border-top: 1px solid var(--body-tertiary-border);
+}
+
+.tlc-sum--full { color: var(--brand-accent); }
+.tlc-sum--ok   { color: var(--body-secondary-text); }
+.tlc-sum--warn { color: var(--state-danger-text); }
+
+.tlc-name-cell {
+  font-size: 12px;
+  padding: 0 10px 0 4px;
+  color: var(--body-secondary-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: sticky;
+  left: 0;
+  background: var(--body-primary-bg);
+  z-index: 2;
+}
+
+.tlc-name-cell.tlc-cell--header {
+  font-size: 11px;
+  /* Corner cell: sticky on both axes - sits above the row and column sticky layers. */
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.tlc-name-cell.tlc-cell--summary {
+  font-size: 11px;
+  font-weight: 600;
+  border-top: 1px solid var(--body-tertiary-border);
+  background: var(--body-primary-bg);
+}
+
+.tlc-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.tlc-avatar--initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--body-tertiary-bg);
+  color: var(--body-primary-text);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.tlc-name-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tlc-teams-btn {
+  margin-left: auto;
+  flex-shrink: 0;
+  padding: 2px 4px !important;
+  min-width: 0 !important;
+  height: auto !important;
+}
+
+.tlc-cell--row-sum {
+  font-size: 11px;
+  font-weight: 600;
+  background: transparent;
+  padding: 0 4px;
+  min-width: 36px;
+}
+
+/* ── Tooltip ───────────────────────────────────────────────────────────── */
+
+.tlc-tooltip {
+  position: fixed;
+  z-index: 9999;
+  background: var(--surface-primary);
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: var(--fds-radius-tooltip);
+  box-shadow: var(--shadow-md);
+  padding: 8px 10px;
+  max-width: 520px;
+  min-width: 260px;
+  pointer-events: auto;
+  font-size: 12px;
+}
+
+.tlc-tt-hours {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--brand-accent);
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--body-tertiary-border);
+}
+
+.tlc-tt-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 4px 0;
+  line-height: 1.4;
+}
+
+.tlc-tt-row + .tlc-tt-row {
+  border-top: 1px solid var(--body-tertiary-border);
+}
+
+.tlc-tt-main {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.tlc-tt-key {
+  font-weight: 600;
+  color: var(--brand-accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.tlc-tt-key:hover {
+  text-decoration: underline;
+}
+
+.tlc-tt-sum {
+  color: var(--body-primary-text);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tlc-tt-h {
+  font-size: 10px;
+  color: var(--body-tertiary-text);
+  flex-shrink: 0;
+  margin-left: auto;
+  padding-left: 8px;
+}
+
+.tlc-tt-logged {
+  font-size: 10px;
+  color: var(--body-tertiary-text);
+  padding-left: 1px;
+}
+
+.tlc-cell-h {
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* ── Progress modal log lines ──────────────────────────────────────────── */
+
+.tlc-log-list {
+  max-height: 160px;
+  overflow-y: auto;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--body-secondary-text);
+}
+
+.tlc-log {
+  padding: 2px 0;
+}

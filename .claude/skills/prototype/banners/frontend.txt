@@ -1,0 +1,25 @@
+FRONTEND -- Mira  |  PROTOTYPE  |  Phase 6  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | MIRA // prototype studio           [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  index.tsx + styles.css + spec.json               |
+  |                                                   |
+  |  [x] tokens from the design system                |
+  |  [x] container queries                            |
+  |  [x] every demo state drawn                       |
+  |                                                   |
+  |  > make it look real.                             |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Mira - Frontend
+    {{MODEL}}

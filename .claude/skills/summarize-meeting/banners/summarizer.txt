@@ -1,0 +1,25 @@
+SUMMARIZER -- Canon  |  MISSION DECK  |  meeting notes  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | CANON // meeting notes             [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ node scripts/extract-transcript.js             |
+  |                                                   |
+  |  [x] pick the best template                       |
+  |  [x] decisions and owners                         |
+  |  [x] action items with dates                      |
+  |                                                   |
+  |  > what was said, what was decided.               |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Canon - Summarizer
+    {{MODEL}}

@@ -1,0 +1,253 @@
+/* modules/sprint-stats/client/style.css
+   Every rule is .sprint-stats-* so it cannot collide with the core or
+   another module. Colours are exclusively css/ds-tokens.css var(...) tokens
+   - never a hex - and both themes need no rule of their own here: the
+   tokens flip under css/ds-tokens-dark.css on their own. */
+
+.sprint-stats-root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+/* An empty banner slot must not cost a gap of its own. */
+.sprint-stats-banner:empty { display: none; }
+/* Everything the tabs switch. Its blocks own their rhythm through
+   .ds-section-head (32px above each block after the first). */
+.sprint-stats-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.sprint-stats-meta {
+  color: var(--body-tertiary-text);
+  font-size: var(--text-sm);
+}
+
+/* ── Tabs: a bare .ds-tabs-list is the full-width page strip, own row ── */
+.sprint-stats-tabs {
+  margin-bottom: var(--space-8);
+}
+/* Eighteen offsets have to fit one 1300px strip, so the DS 120px minimum
+   gives way to the label's own width plus padding. */
+.sprint-stats-tabs .ds-tab { min-width: 0; padding: 0 var(--space-16); }
+
+/* ── Date / goal card ── */
+.sprint-stats-dates-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin-bottom: var(--space-12);
+}
+.sprint-stats-dates-label {
+  font-weight: 600;
+}
+.sprint-stats-dates-range {
+  color: var(--body-tertiary-text);
+  font-size: var(--text-sm);
+}
+.sprint-stats-goals-title {
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-8);
+}
+/* Team | goal as a two-column grid, so a linked label (a.ds-btn--sm) and a
+   plain one start the goal text at the same x (conventions section 2c). */
+.sprint-stats-goals-grid {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  column-gap: var(--space-16);
+  row-gap: var(--space-4);
+  align-items: center;
+}
+.sprint-stats-goal-team-cell {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+}
+.sprint-stats-goal-team { margin-left: calc(-1 * var(--space-16)); }
+.sprint-stats-goal-team-plain {
+  font-weight: 600;
+}
+.sprint-stats-goal-text {
+  color: var(--body-secondary-text);
+  line-height: 1.4;
+}
+.sprint-stats-goal-empty {
+  color: var(--body-tertiary-text);
+  font-style: italic;
+}
+
+/* ── Tile bar: one .ds-stat-row per team (DS grid, full width) ── */
+.sprint-stats-tiles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+.sprint-stats-tiles .ds-stat-row + .ds-stat-row { margin-top: 0; }
+
+/* ── Trend + burndown charts: four panels per row, like the source view ── */
+.sprint-stats-chart-grid,
+.sprint-stats-burndown-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-16);
+}
+@media (max-width: 1200px) {
+  .sprint-stats-chart-grid,
+  .sprint-stats-burndown-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .sprint-stats-chart-grid,
+  .sprint-stats-burndown-row { grid-template-columns: minmax(0, 1fr); }
+}
+.sprint-stats-chart-panel { min-width: 0; }
+.sprint-stats-trend-section .sprint-stats-legend {
+  margin-top: 0;
+  margin-bottom: var(--space-12);
+}
+.sprint-stats-panel-title {
+  font-weight: 600;
+  margin-bottom: var(--space-8);
+}
+.sprint-stats-chart-svg {
+  width: 100%;
+  height: auto;
+  color: var(--body-tertiary-text);
+}
+.sprint-stats-axis-text {
+  fill: currentColor;
+  font-size: 9px;
+  opacity: 0.85;
+}
+.sprint-stats-axis-label {
+  opacity: 0.6;
+}
+.sprint-stats-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+  margin-top: var(--space-8);
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+}
+.sprint-stats-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.sprint-stats-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-s);
+  display: inline-block;
+}
+.sprint-stats-legend-line {
+  width: 16px;
+  height: 0;
+  border-top: 2px solid var(--body-tertiary-border);
+  display: inline-block;
+}
+.sprint-stats-legend-line--dashed {
+  border-top-style: dashed;
+}
+.sprint-stats-legend-line--ideal {
+  border-top-style: dashed;
+  border-top-color: var(--body-tertiary-text);
+}
+
+/* ── Team table ── */
+.sprint-stats-issue-count {
+  color: var(--body-tertiary-text);
+  font-size: var(--text-xs);
+  font-weight: 400;
+}
+.sprint-stats-sub-cell { padding: 0 !important; }
+.sprint-stats-sub-cell .ds-table td:first-child,
+.sprint-stats-sub-cell .ds-table th:first-child { padding-left: var(--space-40); }
+.sprint-stats-issue-cell { max-width: 0; width: 46%; }
+.sprint-stats-issue-line {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-8);
+  min-width: 0;
+}
+.sprint-stats-issue-line .ds-link { white-space: nowrap; flex: none; }
+.sprint-stats-issue-summary {
+  color: var(--body-secondary-text);
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sprint-stats-status-tone--success { color: var(--state-success-text); }
+.sprint-stats-status-tone--warning { color: var(--state-warning-text); }
+.sprint-stats-status-tone--danger  { color: var(--state-danger-text); }
+
+.sprint-stats-person-actions {
+  margin-top: var(--space-16);
+}
+
+/* -- Refresh modal (client/refresh-modal.js) --------------------------------
+   `ds-modal--md`, because the confirm footer carries three buttons (~495px
+   together) and the base 560px modal leaves 480px of content width: the
+   overflow ran left under `justify-content: flex-end` and `.ds-modal`'s
+   `overflow: hidden` cut the primary button off. `flex-wrap` is the second
+   belt for a narrow window. */
+.sprint-stats-refresh-modal .ds-modal-footer { flex-wrap: wrap; }
+.sprint-stats-refresh-freshness {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  background: var(--body-secondary-bg);
+  border-radius: var(--radius-m);
+  color: var(--body-primary-text);
+}
+.sprint-stats-refresh-stages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin-bottom: var(--space-16);
+}
+.sprint-stats-refresh-stage {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-12);
+  color: var(--body-primary-text);
+}
+.sprint-stats-refresh-stage-state {
+  color: var(--body-tertiary-text);
+  font-size: var(--text-xs);
+}
+.sprint-stats-refresh-log {
+  margin-top: var(--space-16);
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--body-secondary-bg);
+  border-radius: var(--radius-m);
+  padding: var(--space-8) var(--space-12);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+}
+.sprint-stats-refresh-log-line {
+  padding: 2px 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── Spillover page ── */
+.sprint-stats-page-switch { margin-bottom: var(--space-12); }
+.sprint-stats-spillover-chart { min-width: 0; }
+/* Narrow widths: the team filter wraps under the title instead of pushing the
+   page sideways, and the 7-column table scrolls inside its own frame. */
+.sprint-stats-spillover-head { flex-wrap: wrap; }
+.sprint-stats-spillover-head .ds-section-head-actions,
+.sprint-stats-spillover-head .ds-segmented { flex-wrap: wrap; max-width: 100%; }
+.sprint-stats-spillover-table { overflow-x: auto; }
+.sprint-stats-spillover-bar { rx: 2px; }

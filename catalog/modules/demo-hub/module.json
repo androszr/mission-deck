@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "demo-hub",
+  "name": "Sync Test Hub",
+  "version": "0.5.0",
+  "description": "A module for testing how sync works: a note saved here lands as a file in the team data repository (ds-data) and reaches the team through the encrypted mirror on the next sync.",
+  "icon": "24-ic-reports",
+  "author": "androszr",
+  "tags": [
+    "demo",
+    "test",
+    "sync",
+    "ds-data"
+  ],
+  "sidebar": {
+    "label": "Sync Test Hub",
+    "kind": "page",
+    "hub": "support"
+  },
+  "views": [
+    {
+      "id": "demo-hub-note",
+      "label": "Test - Note",
+      "title": "Test note",
+      "subtitle": "A text field whose content syncs with the team data repository"
+    },
+    {
+      "id": "demo-hub-history",
+      "label": "Test - History",
+      "title": "Sync Test Hub history",
+      "subtitle": "Every change to the note that went through a sync - with its author"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "server": {
+    "entry": "server/index.js"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Team data - reads and writes the demo-hub/ directory",
+      "paths": ["demo-hub/"]
+    }
+  ],
+  "envKeys": []
+}

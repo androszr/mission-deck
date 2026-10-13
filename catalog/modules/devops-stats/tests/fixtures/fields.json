@@ -1,0 +1,7 @@
+[
+  { "id": "summary", "name": "Summary", "schema": { "type": "string", "system": "summary" } },
+  { "id": "customfield_10100", "name": "Epic Link", "schema": { "type": "any", "custom": "com.pyxis.greenhopper.jira:gh-epic-link" } },
+  { "id": "customfield_10101", "name": "Epic Name", "schema": { "type": "string", "custom": "com.pyxis.greenhopper.jira:gh-epic-label" } },
+  { "id": "customfield_10200", "name": "Flagged", "schema": { "type": "array", "custom": "com.atlassian.jira.plugin.system.customfieldtypes:multicheckboxes" } },
+  { "id": "customfield_10300", "name": "Other", "schema": { "type": "string", "custom": "x:y" } }
+]

@@ -1,0 +1,25 @@
+QA AUDIT -- Watch  |  WHOLE REPO  |  Phase 2  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | WATCH // test suite audit          [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ ls tests/                                      |
+  |                                                   |
+  |  [x] inventory every suite                        |
+  |  [x] gaps ranked by risk                          |
+  |  [x] flaky and dead tests named                   |
+  |                                                   |
+  |  > a prioritised report, not a list.              |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Watch - Qa audit
+    {{MODEL}}

@@ -1,0 +1,195 @@
+/* modules/devops-stats/client/style.css
+   Every rule is .devops-stats-* so it cannot collide with the core or another
+   module. Colours are css/ds-tokens.css var(...) tokens only - never a hex;
+   both themes follow from the tokens. */
+
+.devops-stats-root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.devops-stats-banners {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.devops-stats-filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+/* One row: label cell + five tiles. */
+.devops-stats-tiles { --ds-stat-cols: 6; }
+
+.devops-stats-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-16);
+}
+@media (max-width: 900px) {
+  .devops-stats-panels { grid-template-columns: minmax(0, 1fr); }
+}
+.devops-stats-panel { min-width: 0; }
+.devops-stats-panel-title {
+  font-weight: 600;
+  margin-bottom: var(--space-8);
+}
+
+.devops-stats-chart-svg {
+  width: 100%;
+  height: auto;
+  color: var(--body-tertiary-text);
+}
+.devops-stats-axis-text {
+  fill: currentColor;
+  font-size: 9px;
+  opacity: 0.85;
+}
+.devops-stats-chart-empty {
+  color: var(--body-tertiary-text);
+  padding: var(--space-24) 0;
+  text-align: center;
+}
+
+.devops-stats-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+  margin-top: var(--space-8);
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+}
+.devops-stats-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.devops-stats-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-s);
+  display: inline-block;
+}
+.devops-stats-legend-line {
+  width: 16px;
+  height: 0;
+  border-top: 2px dashed var(--body-tertiary-border);
+  display: inline-block;
+}
+
+.devops-stats-summary {
+  color: var(--body-secondary-text);
+  display: inline-block;
+  max-width: 420px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.devops-stats-meta {
+  color: var(--body-tertiary-text);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-8);
+}
+.devops-stats-modal-hint {
+  color: var(--body-tertiary-text);
+  font-size: var(--text-sm);
+}
+
+/* Refresh window */
+.devops-stats-refresh-hint {
+  color: var(--body-tertiary-text);
+  font-size: var(--text-sm);
+  margin-top: var(--space-8);
+}
+.devops-stats-refresh-log {
+  max-height: 160px;
+  overflow-y: auto;
+  margin-top: var(--space-12);
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+}
+
+/* Metric definitions. The trigger is a plain icon button next to a label;
+   .ds-tooltip-wrap/.ds-tooltip-content (css/ds.css) give the position and the
+   surface but no show/hide rule, so only that and the wrapping width live here. */
+.devops-stats-tip {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-left: var(--space-4);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: help;
+  line-height: 0;
+  border-radius: var(--radius-s);
+}
+.devops-stats-tip:focus-visible { outline: 2px solid var(--body-brand-border); outline-offset: 2px; }
+/* .ds-card clips its content (overflow: hidden); a tile or panel that holds a
+   definition lets it out, or the tooltip is cut at the card edge. */
+.devops-stats-tiles .ds-stat,
+.devops-stats-panel { overflow: visible; }
+/* Start-aligned by default so it never leaves the page on the left; the view
+   flips it to end-aligned (--end) when it would leave on the right. */
+.devops-stats-tip .devops-stats-tip-content {
+  display: none;
+  left: calc(-1 * var(--space-8));
+  right: auto;
+  transform: none;
+  width: max-content;
+  max-width: 300px;
+  white-space: normal;
+  text-align: left;
+  font-weight: 400;
+  line-height: 1.4;
+  text-transform: none;
+  letter-spacing: normal;
+}
+.devops-stats-tip:hover .devops-stats-tip-content,
+.devops-stats-tip:focus-visible .devops-stats-tip-content { display: block; }
+.devops-stats-tip--end .devops-stats-tip-content {
+  left: auto;
+  right: calc(-1 * var(--space-8));
+}
+.devops-stats-modal-subtitle {
+  font-size: var(--text-md, 16px);
+  font-weight: 600;
+  margin: var(--space-16) 0 var(--space-4);
+}
+.devops-stats-modal-subtitle:first-child { margin-top: 0; }
+.devops-stats-tabs { margin-bottom: var(--space-16); }
+.devops-stats-th-note { font-weight: 400; color: var(--body-tertiary-text); }
+.devops-stats-zero { color: var(--body-tertiary-text); }
+.devops-stats-person-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin-bottom: var(--space-16);
+}
+.devops-stats-person-label { font-weight: 600; }
+/* The core turns select.ds-input into the DS custom select (.ds-sel-wrap,
+   width: 100%); size the wrapper, not the hidden native element. */
+.devops-stats-person-bar .ds-sel-wrap { flex: 0 0 300px; width: 300px; }
+.devops-stats-person-bar .devops-stats-filters { margin-left: auto; }
+/* Name over the week label: the DS subject cell is a centred flex row. */
+.ds-card.ds-stat-subject.devops-stats-person-subject {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-4);
+}
+.devops-stats-person-tiles { --ds-stat-cols: 5; margin-bottom: var(--space-24); }
+.devops-stats-range {
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+  margin: var(--space-8) 0 var(--space-16);
+}
+.devops-stats-tile-note {
+  display: block;
+  margin-top: var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+}

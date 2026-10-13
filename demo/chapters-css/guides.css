@@ -1,0 +1,181 @@
+/* demo/chapters-css/guides.css - layout for chapter `guides` mocks; DS tokens only. */
+
+/* Both documents scroll inside #demo-screen: the frame starts at the top
+   instead of being centred, so `scroll` actions can reach every section. */
+.instrukcje-screen {
+  align-items: flex-start;
+  padding: var(--space-24) var(--space-32) var(--space-96);
+}
+
+.instrukcje-window { width: min(960px, 100%); }
+
+.instrukcje-doc { background: var(--body-secondary-bg); }
+
+/* The guide's green header, drawn with the brand tokens. */
+.instrukcje-hero {
+  padding: var(--space-40) var(--space-32) var(--space-32);
+  text-align: center;
+  background: var(--clickable-primary-default-bg);
+  color: var(--clickable-primary-default-text);
+}
+
+.instrukcje-hero-badge {
+  display: inline-block;
+  margin-bottom: var(--space-12);
+  padding: var(--space-4) var(--space-16);
+  border: 1px solid currentColor;
+  border-radius: var(--radius-max);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.instrukcje-hero-title {
+  margin: 0 0 var(--space-8);
+  font-size: var(--text-3xl);
+  line-height: var(--lh-3xl);
+}
+
+.instrukcje-hero-lead {
+  margin: 0 auto;
+  max-width: 620px;
+  font-size: var(--text-base);
+}
+
+.instrukcje-doc-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-24) var(--space-32) var(--space-32);
+}
+
+.instrukcje-step .ds-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.instrukcje-step-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.instrukcje-step-num {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-max);
+  background: var(--clickable-primary-default-bg);
+  color: var(--clickable-primary-default-text);
+  font-weight: var(--font-weight-bold);
+}
+
+.instrukcje-step-title,
+.instrukcje-done-title {
+  margin: 0;
+  font-size: var(--text-lg);
+  color: var(--body-primary-text);
+}
+
+.instrukcje-step-lead {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+}
+
+.instrukcje-list {
+  margin: 0;
+  padding-left: var(--space-24);
+  font-size: var(--text-sm);
+  color: var(--body-primary-text);
+}
+
+.instrukcje-list li { margin-bottom: var(--space-4); }
+
+.instrukcje-cmds {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.instrukcje-cmd {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-8) var(--space-12);
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: var(--radius-s);
+  background: var(--body-secondary-bg);
+  font-size: var(--text-sm);
+}
+
+.instrukcje-cmd code { color: var(--body-primary-text); }
+
+.instrukcje-cmd-os { flex: none; min-width: 64px; justify-content: center; }
+
+.instrukcje-done { border-color: var(--state-success-border); }
+
+/* ONBOARDING.md preview */
+.instrukcje-md { background: var(--body-primary-bg); }
+
+.instrukcje-md h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin-top: var(--space-16);
+}
+
+.instrukcje-md-title {
+  margin: 0;
+  font-size: var(--text-2xl);
+  color: var(--body-primary-text);
+}
+
+.instrukcje-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin-bottom: var(--space-8);
+}
+
+.instrukcje-check {
+  padding: var(--space-8) var(--space-12);
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: var(--radius-s);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.instrukcje-check--done {
+  border-color: var(--state-success-border);
+  background: var(--state-success-bg);
+}
+
+.instrukcje-check-note { color: var(--body-secondary-text); }
+
+.instrukcje-pits {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin-bottom: var(--space-8);
+}
+
+.instrukcje-pit:not([hidden]) { animation: instrukcje-pop 0.35s ease-out; }
+
+@keyframes instrukcje-pop {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instrukcje-pit:not([hidden]) { animation: none; }
+}
+
+/* The cursor points at a block of commands or a list it reads from: a ring,
+   since the page has no hover of its own there. */
+.instrukcje-cmds.demo-hover .instrukcje-cmd { border-color: var(--body-brand-border); }
+.instrukcje-cmds.demo-hover { border-radius: var(--radius-s); box-shadow: 0 0 0 2px var(--body-brand-border); }
+#instrukcje-next.demo-hover { border-radius: var(--radius-s); box-shadow: 0 0 0 2px var(--body-brand-border); }

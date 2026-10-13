@@ -1,0 +1,418 @@
+/* locations/client/style.css
+   Locations directory. Prefixed .loc- so it cannot collide with
+   the core or another module. Colours come exclusively from
+   css/ds-tokens.css / css/ds-tokens-dark.css as var(--...) - a hardcoded hex
+   is a convention violation (AC_VIS1 greps this file for one). */
+
+/* ── Header ───────────────────────────────────────────────────────────── */
+
+.loc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.loc-header-meta {
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+}
+
+/* Sits directly on the page background (not inside a white .ds-card), so it
+   needs the darker skeleton shade - .ds-skeleton paints --body-quaternary-bg,
+   which IS the page background (same override rollout-waves uses). */
+.loc-skel-header {
+  display: block;
+  height: 20px;
+  width: 420px;
+  background: var(--body-secondary-bg);
+}
+
+/* ── Summary tiles ────────────────────────────────────────────────────── */
+
+.loc-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 900px) {
+  .loc-tiles { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .loc-tiles { grid-template-columns: 1fr; }
+}
+
+/* Measured in a live browser against the real, populated "Results (filtered)" tile (its two-line sub caption is the longest of the four and
+   CSS grid stretches every cell in the row to match it): 167px, both with
+   the skeleton and with real data - getBoundingClientRect().height on
+   http://localhost:3001/#loc-main. Not derived from css/ds.css
+   arithmetic - a prior guess (108px, the app's own kpi-card shape) was
+   59px short of the real tile and the skeleton it sized under-reserved. */
+.loc-tile { min-height: 167px; }
+
+.loc-tile-value {
+  font-size: 28px;
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+}
+
+.loc-tile-sub {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  margin-top: 4px;
+}
+
+.loc-tile .ds-skeleton {
+  background: var(--body-secondary-bg);
+}
+
+.loc-skel-tile-title {
+  display: block;
+  height: 18px;
+  width: 110px;
+}
+
+.loc-skel-tile-value {
+  display: block;
+  height: 42px;
+  width: 64px;
+  margin-bottom: 8px;
+}
+
+/* Two of these render per tile: the "Results (filtered)" caption is the
+   longest of the four and wraps onto two lines at the grid's column width,
+   and CSS grid stretches every cell in the row to that tile's height - so
+   every skeleton tile reserves the two-line shape too, not just the tallest
+   real one. */
+.loc-skel-tile-sub {
+  display: block;
+  height: 14px;
+  width: 140px;
+}
+
+.loc-skel-tile-sub + .loc-skel-tile-sub {
+  width: 90px;
+  margin-top: 4px;
+}
+
+/* ── Filter bar ───────────────────────────────────────────────────────── */
+
+.loc-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.loc-filter-search {
+  flex: 1 1 300px;
+  min-width: 260px;
+  max-width: 480px;
+}
+
+.loc-filter-select {
+  width: fit-content;
+  min-width: 160px;
+}
+
+/* js/ds-select.js hides the native <select> and wraps it in .ds-sel-wrap,
+   which css/ds.css sets to display:block; width:100% - a full-width flex
+   item that would otherwise force the whole row to wrap onto its own line.
+   Scoped to this view only; css/ds.css itself stays untouched. */
+.loc-filters .ds-sel-wrap {
+  flex: 0 0 200px;
+  width: 200px;
+}
+
+@media (max-width: 640px) {
+  .loc-filters .ds-sel-wrap {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+}
+
+.loc-filter-seg {
+  flex-wrap: wrap;
+}
+
+/* .ds-input is 48px tall (css/ds.css); the search field and the three select
+   skeletons reserve that exact height. .ds-segment is 32px and
+   .ds-segmented has no padding. All of them sit directly on the page
+   background, so they take the darker skeleton override too. */
+.loc-skel-search,
+.loc-skel-select,
+.loc-skel-seg {
+  background: var(--body-secondary-bg);
+}
+
+.loc-skel-search {
+  display: block;
+  height: 48px;
+  width: 360px;
+  border-radius: var(--radius-s);
+}
+
+.loc-skel-select {
+  display: block;
+  height: 48px;
+  width: 180px;
+  border-radius: var(--radius-s);
+}
+
+.loc-skel-seg {
+  display: block;
+  height: 32px;
+  width: 220px;
+  border-radius: var(--radius-max);
+}
+
+/* ── Card grid ────────────────────────────────────────────────────────── */
+
+.loc-count {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  margin-bottom: 8px;
+}
+
+.loc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+/* Reserved for: head row (badge 24px), address line (text-sm ~18px), sub
+   line (text-xs ~16px), up to three contact rows (~18px each) and an
+   optional Stacja badge, inside 12px/16px card padding - see .loc-card
+   below for the exact stack. Declared ONCE and shared with
+   .loc-skel-card so the skeleton reserves precisely the box the real card
+   fills, not an independently-guessed number (this session had no browser
+   tool to confirm it against a live render - see the implementer's report). */
+.loc-card,
+.loc-skel-card {
+  min-height: 200px;
+}
+
+.loc-card {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.loc-card:hover,
+.loc-card:focus-visible {
+  border-color: var(--body-brand-border);
+}
+
+.loc-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.loc-card-address {
+  font-size: var(--text-sm);
+  color: var(--body-primary-text);
+}
+
+.loc-card-sub {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  margin-bottom: 4px;
+}
+
+.loc-card-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: var(--text-sm);
+}
+
+.loc-card-k {
+  color: var(--body-secondary-text);
+  flex-shrink: 0;
+}
+
+.loc-card-v {
+  text-align: right;
+  color: var(--body-primary-text);
+  overflow-wrap: anywhere;
+}
+
+.loc-card-stacja {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.loc-skel-card {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loc-skel-card .ds-skeleton { background: var(--body-secondary-bg); }
+
+.loc-skel-card-head {
+  display: block;
+  height: 24px;
+  width: 70%;
+}
+
+.loc-skel-card-line {
+  display: block;
+  height: 16px;
+  width: 90%;
+}
+
+.loc-load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+/* ── Location modal (full card) ─────────────────────────────────────────── */
+
+.loc-modal-section {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+  margin: 16px 0 8px;
+}
+
+.loc-modal-section:first-child { margin-top: 0; }
+
+.loc-modal-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.loc-modal-table tr + tr td {
+  border-top: 1px solid var(--body-tertiary-border);
+}
+
+.loc-modal-k {
+  padding: 6px 8px 6px 0;
+  color: var(--body-secondary-text);
+  white-space: nowrap;
+  width: 40%;
+}
+
+.loc-modal-v {
+  padding: 6px 0;
+  color: var(--body-primary-text);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.loc-modal-section-skel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.loc-skel-modal-line {
+  display: block;
+  height: 14px;
+  width: 100%;
+}
+
+/* ── Import modal ────────────────────────────────────────── */
+
+/* The overlay centres without `overflow`, so a modal taller than the
+   window is clipped at both ends with no way to scroll to the rest (the
+   same case styles.css solves for .day-cycle-modal). A long import result
+   can reach that height on an ordinary laptop, so only the body
+   scrolls; the header with its close button stays put. Scoped to this
+   modal - css/ds.css is never touched from a module. */
+.loc-import-modal .ds-modal-body {
+  max-height: min(70vh, 640px);
+  overflow-y: auto;
+}
+
+/* One row = one line: title + meta stacked on the LEFT (1fr), the two
+   buttons in a fixed column on the RIGHT (auto), so every row's buttons
+   sit at the same x and the eye has one column to rest on. A callout
+   (the katalog gate, the import result) spans both columns underneath. */
+.loc-import-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--body-tertiary-border);
+}
+
+.loc-import-row:last-child { border-bottom: none; }
+
+.loc-import-row-head {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.loc-import-row-title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.loc-import-row-meta {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+}
+
+.loc-import-row-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* The chosen file's name is a third line under the meta, never next to
+   the buttons - a long name there would push the button column around. */
+.loc-import-row-filename {
+  font-size: var(--text-xs);
+  color: var(--body-primary-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.loc-import-row-callout,
+.loc-import-row-result-callout {
+  grid-column: 1 / -1;
+}
+
+.loc-import-missing {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* Measured 2026-09-13: a populated one-line row is 64.58px including its
+   10px paddings and the 1px border, so the bar inside reserves the
+   remaining 43.58px, rounded up. */
+.loc-skel-import-row {
+  display: block;
+  height: 44px;
+  width: 100%;
+}

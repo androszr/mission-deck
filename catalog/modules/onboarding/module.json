@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "onboarding",
+  "name": "Onboarding",
+  "version": "0.2.0",
+  "status": "beta",
+  "description": "Helpful links and individual onboarding plans for new team members - copies of a template, Teams sessions, plan export to a file.",
+  "icon": "24-ic-e-learning",
+  "author": "androszr",
+  "tags": ["onboarding", "team", "knowledge"],
+  "sidebar": {
+    "label": "Onboarding",
+    "kind": "page",
+    "hub": "knowledge"
+  },
+  "views": [
+    {
+      "id": "onboarding-main",
+      "label": "Onboarding",
+      "title": "Onboarding",
+      "subtitle": "Links and onboarding plans for new team members"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Team data: links, the template and per-person plans in the onboarding/ directory",
+      "paths": ["onboarding/"]
+    }
+  ],
+  "envKeys": [],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

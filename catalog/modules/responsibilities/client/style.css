@@ -1,0 +1,86 @@
+/* modules/responsibilities/client/style.css - DS tokens only. */
+
+.odp-readonly { margin-bottom: var(--space-16); }
+
+.odp-tabs { margin-bottom: var(--space-16); }
+
+.odp-meta {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  margin-bottom: var(--space-12);
+}
+
+.odp-intro {
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+  margin: 0 0 var(--space-8);
+  max-width: 880px;
+}
+
+.odp-month-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin: var(--space-16) 0;
+  min-height: 44px;
+}
+.odp-month-label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--body-secondary-text);
+}
+
+.odp-groups { display: flex; flex-direction: column; gap: var(--space-16); }
+
+.odp-group-head { margin: 0 0 var(--space-12); }
+.odp-group-count { font-weight: 400; color: var(--body-secondary-text); font-size: var(--text-xs); }
+.odp-group-head .ds-section-head-actions { display: flex; align-items: center; gap: var(--space-8); }
+
+.odp-table { table-layout: fixed; width: 100%; }
+.odp-col-area { width: 45%; }
+.odp-col-owner { width: 25%; }
+.odp-col-status { width: 15%; }
+.odp-col-trend { width: 15%; }
+
+.odp-area-cell { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-8); }
+.odp-area-text { min-width: 0; flex: 1; }
+.odp-area-name { font-weight: var(--font-weight-medium); color: var(--body-primary-text); }
+.odp-area-desc {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.odp-row-actions { display: flex; gap: var(--space-8); flex-shrink: 0; }
+.odp-owner { color: var(--body-primary-text); }
+
+/* R / A / G segments: fill only when pressed */
+.odp-rag .ds-segment { min-width: 36px; }
+.odp-rag-red { color: var(--state-danger-text); border-color: var(--state-danger-icon); }
+.odp-rag-amber { color: var(--state-warning-text); border-color: var(--state-warning-icon); }
+.odp-rag-green { color: var(--state-success-text); border-color: var(--state-success-icon); }
+.odp-rag-red[aria-pressed="true"] { background: var(--state-danger-bg); font-weight: var(--font-weight-medium); }
+.odp-rag-amber[aria-pressed="true"] { background: var(--state-warning-bg); font-weight: var(--font-weight-medium); }
+.odp-rag-green[aria-pressed="true"] { background: var(--state-success-bg); font-weight: var(--font-weight-medium); }
+
+.odp-trend { display: flex; gap: 3px; align-items: center; }
+.odp-trend-cell { width: 16px; height: 16px; border-radius: var(--radius-s); display: inline-block; }
+.odp-trend-red { background: var(--state-danger-icon); }
+.odp-trend-amber { background: var(--state-warning-icon); }
+.odp-trend-green { background: var(--state-success-icon); }
+.odp-trend-unset { background: var(--state-inactive-bg); }
+
+.odp-action-row td { background: transparent; }
+.odp-action-wrap { display: flex; flex-direction: column; gap: var(--space-8); width: 100%; }
+
+.odp-empty-cta { display: flex; justify-content: center; padding-bottom: var(--space-16); }
+
+.odp-form { display: flex; flex-direction: column; gap: var(--space-16); }
+.odp-form-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-16); }
+
+/* skeletons: heights measured off the finished blocks */
+.odp-skel-tabs { height: 48px; margin-bottom: var(--space-16); }
+.odp-skel-months { height: 60px; margin-bottom: var(--space-16); }
+.odp-skel-card { height: 220px; margin-bottom: var(--space-16); }
+.odp-skel-actions { width: 320px; height: 48px; }

@@ -1,0 +1,25 @@
+CODE QUALITY -- Canon  |  PRE-SHIP AUDIT  |  Phase 2  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | CANON // code quality              [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  REVIEW SCOPE:                                    |
+  |  [x] duplication and dead code                    |
+  |  [x] naming, cohesion, error paths                |
+  |  [x] convention drift in the diff                 |
+  |                                                   |
+  |  findings: BLOCK / WARN / NOTE                    |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Canon - Code quality
+    {{MODEL}}

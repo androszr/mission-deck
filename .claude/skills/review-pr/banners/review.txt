@@ -1,0 +1,25 @@
+REVIEW-PR -- Overwatch  |  MISSION DECK  |  branch review  |  session model
+
+  .---------------------------------------------------.
+  | OVERWATCH // code review           [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ git diff main...<branch> --stat                |
+  |  $ gitnexus impact --direction upstream           |
+  |                                                   |
+  |    callers      ##################  18            |
+  |    flows hit    ########            7             |
+  |    no test      ###                 3             |
+  |                                                   |
+  |  > every commit hides something. we find it.      |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Overwatch - PR Review
+    session model (general-purpose inherits)

@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "vendor-settlements",
+  "name": "Vendor settlements",
+  "version": "1.0.0",
+  "status": "beta",
+  "area": "Finance",
+  "description": "Vendor settlements and acceptance protocols per area: a costs vs accepted chart, the settlement form against a purchase order pool, a filtered list and a protocol generator (.docx / print).",
+  "icon": "24-ic-money",
+  "author": "androszr",
+  "tags": [
+    "finance",
+    "settlements",
+    "protocols",
+    "vendors"
+  ],
+  "sidebar": {
+    "label": "Vendor settlements",
+    "kind": "page",
+    "hub": "finance"
+  },
+  "views": [
+    {
+      "id": "vendor-settlements-main",
+      "label": "Vendor settlements",
+      "title": "Vendor settlements",
+      "subtitle": "File a settlement: vendor -> purchase order"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Settlements (summary.json), acceptance protocols per area (protocols-*.json), vendor details (vendor-info.json), the purchase order pool (purchase-orders.json, kept by hand) and the exported worklog costs (costs/) in vendor-settlements/",
+      "paths": [
+        "vendor-settlements/"
+      ]
+    },
+    {
+      "name": "data-tier-0",
+      "access": "read",
+      "description": "Team directory (team/) - people's names for the protocol",
+      "paths": [
+        "team/"
+      ]
+    }
+  ],
+  "envKeys": [
+    {
+      "name": "SETTLEMENTS_CUSTOMER_NAME",
+      "description": "Customer name printed on the acceptance protocol"
+    },
+    {
+      "name": "SETTLEMENTS_CUSTOMER_ADDRESS",
+      "description": "Customer address on the protocol, lines separated by |"
+    },
+    {
+      "name": "SETTLEMENTS_CUSTOMER_TAX_ID",
+      "description": "Customer tax ID on the protocol"
+    },
+    {
+      "name": "JIRA_BASE_URL",
+      "description": "Optional issue tracker base URL (e.g. https://jira.example.com) to link epics"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

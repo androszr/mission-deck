@@ -1,0 +1,167 @@
+/* modules/meeting-transcripts/client/style.css
+   Every rule is prefixed .meeting-transcripts- ; colours, spacing and radii
+   only from DS tokens (css/ds-tokens.css). Components are DS classes from
+   css/ds.css - this file only lays them out. */
+
+.meeting-transcripts-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.meeting-transcripts-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+  max-width: 720px;
+}
+
+/* DS icon inside a ds-btn / ds-icon-btn: the 16px catalog size. */
+.meeting-transcripts-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* DS "uni / file-picker", size small (figma-components-web/file-picker.json):
+   the name button and the remove icon button are ONE pill - left half
+   rounded on the left, right half on the right, sharing the 1px border. */
+.meeting-transcripts-file-picker {
+  display: inline-flex;
+  align-items: stretch;
+  max-width: 100%;
+}
+.meeting-transcripts-file-picker > .ds-btn {
+  min-width: 0;
+  border-radius: var(--radius-max) 0 0 var(--radius-max);
+}
+.meeting-transcripts-file-picker > .ds-icon-btn {
+  margin-left: -1px;
+  border-radius: 0 var(--radius-max) var(--radius-max) 0;
+}
+.meeting-transcripts-file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 420px;
+}
+.meeting-transcripts-file-size {
+  color: var(--body-tertiary-text);
+  white-space: nowrap;
+}
+
+.meeting-transcripts-job {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.meeting-transcripts-log {
+  max-height: 180px;
+  overflow-y: auto;
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-m);
+  background: var(--body-secondary-bg);
+  color: var(--body-secondary-text);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.meeting-transcripts-sub,
+.meeting-transcripts-meta {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+}
+
+.meeting-transcripts-skel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.meeting-transcripts-illustration {
+  width: 120px;
+  height: auto;
+  display: block;
+}
+
+.meeting-transcripts-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+/* A scrolling flex column shrinks its children to fit - the tab strip and
+   the brief callout collapsed under the summary. Children keep their height. */
+.meeting-transcripts-detail > * {
+  flex-shrink: 0;
+}
+
+.meeting-transcripts-pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: var(--font-main);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--body-primary-text);
+}
+
+/* Row actions: the layout goes on an inner div, never on the <td>. */
+.meeting-transcripts-row-actions {
+  display: inline-flex;
+  gap: var(--space-8);
+  justify-content: flex-end;
+  white-space: nowrap;
+}
+
+/* -- queue, OneDrive settings (0.2.0) -- */
+.meeting-transcripts-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+.meeting-transcripts-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+}
+.meeting-transcripts-error {
+  color: var(--state-danger-text);
+}
+.meeting-transcripts-settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+.meeting-transcripts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-12) var(--space-16);
+  align-items: end;
+}
+.meeting-transcripts-session {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-16);
+}
+.meeting-transcripts-h {
+  margin: var(--space-8) 0 0;
+  font-size: var(--text-sm);
+}
+.meeting-transcripts-add {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+  align-items: center;
+}
+.meeting-transcripts-add .ds-input:first-child { flex: 3 1 320px; }
+.meeting-transcripts-add .ds-input:nth-child(2) { flex: 1 1 160px; }
+.meeting-transcripts-badge-link { text-decoration: none; }
+
+.meeting-transcripts-log--modal { max-height: 60vh; }

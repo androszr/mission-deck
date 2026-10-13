@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission Deck</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="/assets/favicon.png">
+  <!-- Blocking on purpose: sets data-theme on <html> before any stylesheet
+       loads, so a dark-theme reload never flashes the light palette. -->
+  <script src="js/theme-boot.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/ds-tokens.css">
+  <link rel="stylesheet" href="css/ds-tokens-dark.css">
+  <link rel="stylesheet" href="css/ds.css">
+  <!-- Vendored Amplitude browser SDK (IIFE build, defines window.amplitude).
+       `defer` keeps it out of the critical path yet still runs it before the
+       module entry point, so js/analytics.js finds the global on first try.
+       See vendor/amplitude/README.md. -->
+  <script defer src="/vendor/amplitude/amplitude-min.js"></script>
+</head>
+<body>
+
+<header class="app-top-bar" role="banner">
+  <div class="app-top-bar__logo">
+    <span class="app-top-bar__logo-mark" aria-hidden="true">
+      <img class="app-top-bar__logo-img" src="/assets/logo.svg" alt="" width="28" height="28">
+    </span>
+    <span class="app-top-bar__logo-text">Mission Deck</span>
+  </div>
+  <button type="button" class="app-top-bar__rail-toggle" id="topbar-rail-toggle" aria-label="Expand/collapse navigation" title="Expand/collapse navigation">
+    <img class="nav-icon" id="topbar-rail-toggle-icon" src="/assets/icons/ds/24-ic-chevron-right.svg" alt="" aria-hidden="true">
+  </button>
+  <div class="app-top-bar__spacer" aria-hidden="true"></div>
+  <!-- Every slot below is painted by js/topbar.js once its endpoint answers, so
+       each ships a skeleton sized to the pill it stands in for. Empty flex
+       slots would collapse to zero width and slide the whole bar sideways as
+       the four answers land. The painters that can end on "nothing to show"
+       (the Bitwarden pill with no CLI installed, the activity chip with no
+       token) clear the skeleton through clearSkeleton() on those paths too -
+       see js/skeleton.js. -->
+  <!-- Help/feedback: the one top-bar slot that ships NO data-skel and no
+       skeleton bar. The button is unconditional and fixed-width from the
+       first frame, unlike the Stash pill (absent unless there is something
+       to show) and unlike every other slot below (painted only once its own
+       endpoint answers) - there is nothing here to wait for, so reserving a
+       pulsing placeholder for it would be reserving nothing. -->
+  <div id="topbar-help-root" class="app-top-bar__help">
+    <button type="button" class="ds-icon-btn" id="topbar-help-btn" aria-label="Send feedback" title="Send feedback">
+      <img class="nav-icon" src="/assets/icons/ds/24-ic-question.svg" alt="" aria-hidden="true">
+    </button>
+  </div>
+  <div id="topbar-mr-root" class="app-top-bar__mr">
+    <span class="ds-skeleton tb-skel tb-skel--label tb-skel--label-mr" data-skel="1" aria-hidden="true"></span>
+    <span class="ds-skeleton tb-skel tb-skel--chip tb-skel--chip-mr" data-skel="1" aria-hidden="true"></span>
+  </div>
+  <div id="topbar-active-badge-root" class="app-top-bar__active-badge">
+    <span class="ds-skeleton tb-skel tb-skel--dot" data-skel="1" aria-hidden="true"></span>
+    <span class="ds-skeleton tb-skel tb-skel--label" data-skel="1" aria-hidden="true"></span>
+    <span class="ds-skeleton tb-skel tb-skel--chip" data-skel="1" aria-hidden="true"></span>
+  </div>
+  <div id="topbar-terminal-root" class="app-top-bar__terminal">
+    <span class="ds-skeleton tb-skel tb-skel--pill tb-skel--pill-term" data-skel="1" aria-hidden="true"></span>
+  </div>
+  <!-- Stash: the one top-bar slot that ships NO skeleton and stays empty by
+       default. The pill appears only when `git stash list` has something, which
+       on most machines is never, so reserving width for it would flash a bar on
+       every load for everybody - see js/stash-helpers.mjs shouldShowStashPill. -->
+  <div id="topbar-stash-root" class="app-top-bar__stash"></div>
+  <div id="topbar-daycycle-root" class="app-top-bar__daycycle">
+    <span class="ds-skeleton tb-skel tb-skel--pill tb-skel--pill-daycycle" data-skel="1" aria-hidden="true"></span>
+  </div>
+  <div id="topbar-sync-root" class="app-top-bar__sync">
+    <span class="ds-skeleton tb-skel tb-skel--pill tb-skel--pill-sync" data-skel="1" aria-hidden="true"></span>
+  </div>
+  <div id="topbar-bw-root" class="app-top-bar__bw">
+    <span class="ds-skeleton tb-skel tb-skel--pill tb-skel--pill-bw" data-skel="1" aria-hidden="true"></span>
+  </div>
+  <div id="topbar-user-root" class="app-top-bar__user">
+    <span class="ds-skeleton tb-skel tb-skel--avatar" data-skel="1" aria-hidden="true"></span>
+  </div>
+</header>
+
+<div class="app">
+
+  <!-- Sidebar — icon rail, collapsed by default (js/topbar.js _initRailToggle).
+       Module items are injected dynamically by js/module-host.js at boot. -->
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+      <a class="sidebar-item" data-view="dashboard" href="#dashboard">
+        <span class="icon"><img class="nav-icon" src="/assets/icons/ds/24-ic-dashboard.svg" alt="" aria-hidden="true"></span><span class="nav-label"> Dashboard</span>
+      </a>
+      <!-- The eight core hubs. Order, label and icon come from js/core-hubs.mjs;
+           tests/test_core_hubs.mjs is the gate that keeps this markup and that
+           file identical. Each one is a FLYOUT OPENER with no #view-<id>
+           section of its own, and each must be bound synchronously, which is
+           why these rows are static markup and not injected: js/app.js reads
+           HUB_FLYOUT as it evaluates. Module pages are appended into a hub's
+           flyout at boot by js/module-host.js - a module never adds a row
+           here. -->
+      <a class="sidebar-item sidebar-item--hub" data-view="team" href="#team">
+        <span class="icon"><img class="nav-icon" src="/assets/icons/ds/24-ic-user.svg" alt="" aria-hidden="true"></span><span class="nav-label"> Team</span>
+      </a>
+      <a class="sidebar-item sidebar-item--hub" data-view="activity" href="#activity">
+        <span class="icon"><img class="nav-icon" src="/assets/icons/ds/24-ic-sales-report.svg" alt="" aria-hidden="true"></span><span class="nav-label"> Activity</span>
+      </a>
+      <a class="sidebar-item sidebar-item--hub" data-view="finance" href="#finance">
+        <span class="icon"><img class="nav-icon" src="/assets/icons/ds/24-ic-calendar-with-money.svg" alt="" aria-hidden="true"></span><span class="nav-label"> Finance</span>
+      </a>
+      <a class="sidebar-item sidebar-item--hub" data-view="initiatives" href="#initiatives">
+        <span class="icon"><img class="nav-icon" src="/assets/icons/ds/24-ic-flag.svg" alt="" aria-hidden="true"></span><span class="nav-label"> Initiatives</span>
+      </a>
+      <a class="sidebar-item sidebar-item--hub" data-view="support" href="#support">
+        <span class="icon"><img class="nav-icon" src="/assets/icons/ds/24-ic-help.svg" alt="" aria-hidden="true"></span><span class="nav-label"> Support</span>
+      </a>
+      <a class="sidebar-item sidebar-item--hub" data-view="knowledge" href="#knowledge">
+        <span class="icon"><img class="nav-icon" src="/assets/icons/ds/24-ic-e-learning.svg" alt="" aria-hidden="true"></span><span class="nav-label"> Knowledge</span>
+      </a>
+      <a class="sidebar-item sidebar-item--hub" data-view="assets" href="#assets">
+        <span class="icon"><img class="nav-icon" src="/assets/icons/ds/24-ic-star-simple.svg" alt="" aria-hidden="true"></span><span class="nav-label"> Design</span>
+      </a>
+      <a class="sidebar-item sidebar-item--hub" data-view="apps" href="#apps">
+        <span class="icon"><img class="nav-icon" src="/assets/icons/ds/24-ic-phone.svg" alt="" aria-hidden="true"></span><span class="nav-label"> Apps</span>
+      </a>
+      <div class="sidebar-spacer" aria-hidden="true"></div>
+      <a class="sidebar-item sidebar-item--start" data-view="onboarding-wizard" href="#onboarding-wizard">
+        <span class="icon"><img class="nav-icon" src="/assets/icons/ds/24-ic-play.svg" alt="" aria-hidden="true"></span><span class="nav-label"> Start here</span>
+      </a>
+      <!-- Academy (training) - a CORE VIEW pinned next to the wizard,
+           because the training is what a new person reaches for in the first
+           days and hunting for the dashboard card cost that. Static markup for
+           the same reason the row above it is: a HUB_FLYOUT key would make
+           js/app.js treat the id as a hub and redirect #academy to the
+           dashboard. -->
+      <a class="sidebar-item sidebar-item--training" data-view="academy" href="#academy">
+        <span class="icon"><img class="nav-icon" src="/assets/icons/ds/24-ic-lightbulb.svg" alt="" aria-hidden="true"></span><span class="nav-label"> Academy</span>
+      </a>
+      <a class="sidebar-item sidebar-item--settings" data-view="settings" href="#settings">
+        <span class="icon"><img class="nav-icon" src="/assets/icons/ds/24-ic-settings.svg" alt="" aria-hidden="true"></span><span class="nav-label"> Settings</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Infrastructure strip — shown by js/infra-banner.js while the server holds no
+       token at all (locked vault, empty collection, no CLI). Same reservation trick
+       as the update banner below: html[data-infra-banner="reserved"] (js/theme-boot.js,
+       from the last answer) keeps this box on screen with only its skeleton, so
+       .main already pads for it. Placed BEFORE the update banner on purpose: when
+       both show, the update banner's expandable list must paint over this strip. -->
+  <div id="infra-banner" class="app-update-banner app-update-banner--infra app-update-banner--hidden" role="status" aria-live="polite">
+    <span class="ds-skeleton aub-skel" data-skel="1" aria-hidden="true"></span>
+  </div>
+
+  <!-- App update banner — shown by js/update-banner.js when a new version is available.
+       The bar inside is the reservation: while html[data-update-banner="reserved"]
+       is set (js/theme-boot.js, from the last answer) the banner is visible with
+       just this skeleton in it, so .main already pads for it and no view drops
+       40px when the real banner lands. showBanner() empties the container, which
+       is what drops the skeleton. -->
+  <div id="app-update-banner" class="app-update-banner app-update-banner--hidden" role="status" aria-live="polite">
+    <span class="ds-skeleton aub-skel" data-skel="1" aria-hidden="true"></span>
+  </div>
+
+  <!-- Shared document modal - agent briefs (Agents) and skill instructions (Skills).
+       Filled by js/doc-modal.js from GET /api/agents/read and GET /api/skills/read. -->
+  <div class="ds-modal-overlay" id="doc-modal-overlay" hidden>
+    <div class="ds-modal ds-modal--xl doc-modal" role="dialog" aria-modal="true" aria-labelledby="doc-modal-title">
+      <div class="ds-modal-header">
+        <div class="doc-modal-heading">
+          <h2 class="ds-modal-title" id="doc-modal-title">Document</h2>
+          <code class="doc-modal-path" id="doc-modal-path"></code>
+        </div>
+        <button type="button" class="ds-modal-close" id="doc-modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="doc-modal-tabs" id="doc-modal-tabs" hidden></div>
+      <div class="ds-modal-body doc-modal-body" id="doc-modal-body"></div>
+      <div class="ds-modal-footer">
+        <button type="button" class="ds-btn ds-btn--secondary" id="doc-modal-close-footer">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update notification modal — shown by js/update-modal.js when a new version is available -->
+  <div class="ds-modal-overlay" id="update-modal-overlay" hidden>
+    <div class="ds-modal" role="dialog" aria-modal="true" aria-labelledby="update-modal-title">
+      <div class="ds-modal-header">
+        <h2 class="ds-modal-title" id="update-modal-title">Update available</h2>
+        <button type="button" class="ds-modal-close" id="update-modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="ds-modal-body">
+        <div class="update-modal-illustration" id="update-modal-anim"></div>
+        <!-- A div, not a p: a dirty-tree answer paints the shared .upd-dirty
+             block from js/app-update-stash.mjs, and the parser breaks a div out
+             of a p, which would drop the stash button outside the modal body. -->
+        <div id="update-modal-versions"></div>
+      </div>
+      <div class="ds-modal-footer">
+        <button type="button" class="ds-btn ds-btn--secondary" id="update-modal-later">Remind me later</button>
+        <button type="button" class="ds-btn ds-btn--primary" id="update-modal-update">Update</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Up-to-date modal — shown by js/update-modal.js when no update is available -->
+  <div class="ds-modal-overlay" id="uptodate-modal-overlay" hidden>
+    <div class="ds-modal" role="dialog" aria-modal="true" aria-labelledby="uptodate-modal-title">
+      <div class="ds-modal-header">
+        <h2 class="ds-modal-title" id="uptodate-modal-title">Up to date</h2>
+        <button type="button" class="ds-modal-close" id="uptodate-modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="ds-modal-body">
+        <div class="update-modal-illustration" id="uptodate-modal-anim"></div>
+        <p id="uptodate-modal-info"></p>
+      </div>
+      <div class="ds-modal-footer">
+        <button type="button" class="ds-btn ds-btn--secondary" id="uptodate-modal-ok">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <main class="main">
+
+    <!-- ── Dashboard ─────────────────────────────────────────────────── -->
+    <div class="view-section active" id="view-dashboard">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1>Mission Deck</h1>
+            <div class="subtitle">Starting point - pick where to begin.</div>
+          </div>
+          <div class="page-header-actions" id="dashboard-actions"></div>
+        </div>
+      </div>
+      <div class="view-data" id="dashboard-cards">
+        <!-- Rendered by js/dashboard.js renderDashboardView(), which calls
+             replaceChildren() and so drops this skeleton on its own. The cards
+             below reuse .placeholder-hub-card, so the reserved box is the real
+             one (180x148) rather than an approximation of it. The Windows card
+             is deliberately NOT reserved: it appears only on Windows and only
+             after /api/app/version answers. -->
+        <div class="placeholder-hub-grid" data-skel="1" aria-hidden="true">
+          <div class="placeholder-hub-card placeholder-hub-card--skel">
+            <span class="ds-skeleton dash-skel-icon"></span>
+            <span class="ds-skeleton dash-skel-bar dash-skel-bar--title"></span>
+            <span class="ds-skeleton dash-skel-bar dash-skel-bar--desc"></span>
+            <span class="ds-skeleton dash-skel-bar dash-skel-bar--desc-short"></span>
+          </div>
+          <div class="placeholder-hub-card placeholder-hub-card--skel">
+            <span class="ds-skeleton dash-skel-icon"></span>
+            <span class="ds-skeleton dash-skel-bar dash-skel-bar--title"></span>
+            <span class="ds-skeleton dash-skel-bar dash-skel-bar--desc"></span>
+            <span class="ds-skeleton dash-skel-bar dash-skel-bar--desc-short"></span>
+          </div>
+          <div class="placeholder-hub-card placeholder-hub-card--skel">
+            <span class="ds-skeleton dash-skel-icon"></span>
+            <span class="ds-skeleton dash-skel-bar dash-skel-bar--title"></span>
+            <span class="ds-skeleton dash-skel-bar dash-skel-bar--desc"></span>
+            <span class="ds-skeleton dash-skel-bar dash-skel-bar--desc-short"></span>
+          </div>
+        </div>
+      </div>
+      <!-- Module widgets: painted by js/dashboard-widgets.js only when at least one
+           module is loaded; stays hidden (and empty) otherwise. -->
+      <div class="view-data dash-widgets" id="dashboard-widgets" hidden></div>
+    </div>
+
+    <!-- ── Onboarding wizard ─────────────────────────────────────────── -->
+    <!-- No page-header here: js/onboarding-wizard.js renders its own hero +
+         header into the root below, so a static one would print twice. -->
+    <div class="view-section" id="view-onboarding-wizard" data-back-view="dashboard">
+      <div class="view-data">
+        <div id="onboarding-wizard-root"></div>
+      </div>
+    </div>
+
+    <!-- ── Academy — training ──────────────────────────────────── -->
+    <div class="view-section" id="view-academy" data-back-view="dashboard">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1>Academy</h1>
+            <div class="subtitle">Training: how to grow your own Mission Deck with Claude Code.</div>
+          </div>
+        </div>
+      </div>
+      <div class="view-data">
+        <!-- initAcademy() awaits the team directory plus three
+             /api/cocreate/* reads, and js/app.js does NOT await runInit before
+             calling the renderer - so renderAcademyView() runs first with
+             no progress loaded. It checks hasSkeleton() and leaves this box
+             standing rather than painting a hollow view over it. -->
+        <div id="academy-root">
+          <div data-skel="1" aria-hidden="true">
+            <div class="ds-card tc-skel-hero">
+              <span class="ds-skeleton tc-skel-avatar"></span>
+              <div class="tc-skel-hero-lines">
+                <span class="ds-skeleton tc-skel-bar tc-skel-bar--greeting"></span>
+                <span class="ds-skeleton tc-skel-bar tc-skel-bar--sub"></span>
+              </div>
+            </div>
+            <div class="tc-skel-tabs">
+              <span class="ds-skeleton tc-skel-tab"></span>
+              <span class="ds-skeleton tc-skel-tab"></span>
+              <span class="ds-skeleton tc-skel-tab"></span>
+              <span class="ds-skeleton tc-skel-tab"></span>
+              <span class="ds-skeleton tc-skel-tab"></span>
+              <span class="ds-skeleton tc-skel-tab"></span>
+            </div>
+            <div class="ds-card tc-skel-stage">
+              <span class="ds-skeleton tc-skel-bar tc-skel-bar--stage-title"></span>
+              <div class="tc-skel-steps">
+                <span class="ds-skeleton tc-skel-step"></span>
+                <span class="ds-skeleton tc-skel-step"></span>
+                <span class="ds-skeleton tc-skel-step"></span>
+                <span class="ds-skeleton tc-skel-step"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Settings ──────────────────────────────────────────────────── -->
+    <div class="view-section" id="view-settings">
+      <div class="page-header">
+        <div class="page-header-row">
+          <h1>Settings</h1>
+          <div class="sett-header-actions">
+            <button type="button" class="page-refresh sett-header-action" id="settings-header-help-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Get help</button>
+            <button type="button" class="page-refresh sett-header-action" id="settings-header-update-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> Check for updates</button>
+            <button type="button" class="page-refresh sett-header-action sett-header-action--danger" id="settings-header-restart-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/></svg> Restart server</button>
+          </div>
+        </div>
+      </div>
+      <p class="view-intro">
+        <strong>Keys</strong> are tokens fetched from the Bitwarden vault - you never type them in by hand.
+        Every other setting is changed in the <code>.env</code> file.
+      </p>
+      <div class="view-data">
+        <nav class="ds-tabs-list ds-framed-tabs sett-tabs" role="tablist" id="settings-tabs">
+          <button type="button" class="ds-tab active" role="tab" aria-selected="true" data-sett-tab="system">System</button>
+          <button type="button" class="ds-tab" role="tab" aria-selected="false" data-sett-tab="keys">Keys</button>
+          <button type="button" class="ds-tab" role="tab" aria-selected="false" data-sett-tab="agents">Agents</button>
+          <button type="button" class="ds-tab" role="tab" aria-selected="false" data-sett-tab="skills">Skills</button>
+          <button type="button" class="ds-tab" role="tab" aria-selected="false" data-sett-tab="modules">Modules</button>
+          <button type="button" class="ds-tab" role="tab" aria-selected="false" data-sett-tab="users">Users</button>
+          <button type="button" class="ds-tab" role="tab" aria-selected="false" data-sett-tab="tools">Tools</button>
+          <button type="button" class="ds-tab" role="tab" aria-selected="false" data-sett-tab="demo">Demo</button>
+        </nav>
+        <div class="ds-tab-panel sett-tab-panel" data-sett-panel="system" role="tabpanel">
+          <p class="sett-tab-desc">App version, server restart, data sync and theme.</p>
+          <div id="settings-app-version">
+            <!-- Rendered by js/settings.js renderAppVersionBlock() -->
+            <div class="ds-card sett-hero-card sett-skel" aria-hidden="true">
+              <div class="ds-card-header">
+                <span class="sett-hero-card__icon"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+              </div>
+              <div class="ds-card-body">
+                <div class="sett-skel-lines">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sett-system-grid">
+            <div class="ds-card sett-sys-card" id="settings-restart-bar">
+              <div class="ds-card-header">
+                <span class="sett-sys-card__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/></svg></span>
+                <span class="ds-card-title">Restart server</span>
+              </div>
+              <div class="ds-card-body">
+                <div>Changes need a server restart. A restart interrupts any data sync in progress.</div>
+                <button type="button" class="ds-btn ds-btn--danger ds-btn--sm" id="settings-restart-btn">Restart server</button>
+              </div>
+            </div>
+            <div id="settings-sync-section" class="settings-sync-section">
+              <!-- Rendered by js/settings.js renderSyncSection() -->
+              <div class="ds-card sett-sys-card sett-skel" aria-hidden="true">
+                <div class="ds-card-header">
+                  <span class="sett-section-card__icon"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+                </div>
+                <div class="ds-card-body">
+                  <div class="sett-skel-lines">
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="settings-theme-section" class="settings-theme-section">
+              <!-- Rendered by js/settings.js renderThemeSection() -->
+              <div class="ds-card sett-sys-card sett-skel" aria-hidden="true">
+                <div class="ds-card-header">
+                  <span class="sett-section-card__icon"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+                </div>
+                <div class="ds-card-body">
+                  <div class="sett-skel-lines">
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ds-tab-panel sett-tab-panel" data-sett-panel="keys" role="tabpanel" hidden>
+          <p class="sett-tab-desc">Server tokens and your identity. Read-only - change the values in Bitwarden.</p>
+          <!-- Every block below is filled by a fetch, so each ships a skeleton
+               that the render function overwrites. Without them the tab is a
+               stack of empty divs on load and the layout jumps once per
+               request. See the "Settings: loading skeletons" block in
+               styles.css. -->
+          <div class="settings-secret-grid">
+            <div id="settings-profile-card">
+              <!-- Rendered by js/settings.js _renderProfileCard() -->
+              <div class="ds-card sett-secret-card sett-skel" aria-hidden="true">
+                <div class="sett-secret-card__head">
+                  <span class="sett-section-card__icon"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+                </div>
+                <div class="sett-skel-lines">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                </div>
+                <div class="sett-skel-rows">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span>
+                </div>
+              </div>
+            </div>
+            <div id="settings-activity-link-card">
+              <!-- Rendered by js/settings.js _renderActivityLinkCard() -->
+              <div class="ds-card sett-secret-card sett-skel" aria-hidden="true">
+                <div class="sett-secret-card__head">
+                  <span class="sett-section-card__icon"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+                </div>
+                <div class="sett-skel-lines">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="settings-bitwarden-card" class="settings-secret-grid">
+            <!-- Rendered by js/settings.js _refreshBitwardenCard() -->
+            <div class="ds-card settings-section-card settings-section-card--hero sett-skel" aria-hidden="true">
+              <span class="sett-section-card__icon"></span>
+              <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+              <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+              <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+              <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+            </div>
+          </div>
+          <!-- Mirrors the real section split (3 + 1 + 4 cards, then the wide
+               Amplitude card) so the reserved height matches what arrives. -->
+          <div id="settings-section-grid" class="settings-secret-grid">
+            <!-- Rendered by js/settings.js _renderSecretCards() -->
+            <span class="ds-skeleton sett-skel-heading"></span>
+            <div class="ds-card settings-section-card sett-secret-card sett-skel" aria-hidden="true">
+              <span class="sett-section-card__icon"></span>
+              <div class="sett-section-card__content">
+                <div class="sett-section-card__top-row"><span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span></div>
+                <div class="sett-section-card__tokens">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span>
+                </div>
+              </div>
+            </div>
+            <div class="ds-card settings-section-card sett-secret-card sett-skel" aria-hidden="true">
+              <span class="sett-section-card__icon"></span>
+              <div class="sett-section-card__content">
+                <div class="sett-section-card__top-row"><span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span></div>
+                <div class="sett-section-card__tokens">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span>
+                </div>
+              </div>
+            </div>
+            <div class="ds-card settings-section-card sett-secret-card sett-skel" aria-hidden="true">
+              <span class="sett-section-card__icon"></span>
+              <div class="sett-section-card__content">
+                <div class="sett-section-card__top-row"><span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span></div>
+                <div class="sett-section-card__tokens"><span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span></div>
+              </div>
+            </div>
+            <span class="ds-skeleton sett-skel-heading"></span>
+            <div class="ds-card settings-section-card sett-secret-card sett-skel" aria-hidden="true">
+              <span class="sett-section-card__icon"></span>
+              <div class="sett-section-card__content">
+                <div class="sett-section-card__top-row"><span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span></div>
+                <div class="sett-section-card__tokens"><span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span></div>
+              </div>
+            </div>
+            <span class="ds-skeleton sett-skel-heading"></span>
+            <div class="ds-card settings-section-card sett-secret-card sett-skel" aria-hidden="true">
+              <span class="sett-section-card__icon"></span>
+              <div class="sett-section-card__content">
+                <div class="sett-section-card__top-row"><span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span></div>
+                <div class="sett-section-card__tokens"><span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span></div>
+              </div>
+            </div>
+            <div class="ds-card settings-section-card sett-secret-card sett-skel" aria-hidden="true">
+              <span class="sett-section-card__icon"></span>
+              <div class="sett-section-card__content">
+                <div class="sett-section-card__top-row"><span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span></div>
+                <div class="sett-section-card__tokens"><span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span></div>
+              </div>
+            </div>
+            <div class="ds-card settings-section-card sett-secret-card sett-skel" aria-hidden="true">
+              <span class="sett-section-card__icon"></span>
+              <div class="sett-section-card__content">
+                <div class="sett-section-card__top-row"><span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span></div>
+                <div class="sett-section-card__tokens"><span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span></div>
+              </div>
+            </div>
+            <div class="ds-card settings-section-card sett-secret-card sett-skel" aria-hidden="true">
+              <span class="sett-section-card__icon"></span>
+              <div class="sett-section-card__content">
+                <div class="sett-section-card__top-row"><span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span></div>
+                <div class="sett-section-card__tokens"><span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span></div>
+              </div>
+            </div>
+            <span class="ds-skeleton sett-skel-heading"></span>
+            <div class="ds-card settings-section-card sett-secret-card sett-secret-card--wide sett-skel" aria-hidden="true">
+              <span class="sett-section-card__icon"></span>
+              <div class="sett-section-card__content">
+                <div class="sett-section-card__top-row"><span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span></div>
+                <div class="sett-section-card__tokens">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--wide-chip"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--wide-chip"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--wide-chip"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--wide-chip"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--wide-chip"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--wide-chip"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--wide-chip"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--wide-chip"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--wide-chip"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--wide-chip"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="settings-secret-legend" class="sett-legend-row">
+            <!-- Rendered by js/settings.js _renderSecretCards() -->
+            <span class="ds-skeleton sett-skel-bar sett-skel-bar--legend" aria-hidden="true"></span>
+            <span class="ds-skeleton sett-skel-bar sett-skel-bar--legend" aria-hidden="true"></span>
+            <span class="ds-skeleton sett-skel-bar sett-skel-bar--legend" aria-hidden="true"></span>
+          </div>
+          <!-- Token creation closes the tab: it is the one action here, and it
+               only makes sense once you have seen which tokens are missing. -->
+          <div id="settings-gitlab-token-card" class="settings-secret-grid">
+            <!-- Rendered by js/settings.js _renderGitlabTokenCard() -->
+            <div class="ds-card sett-secret-card sett-skel" aria-hidden="true">
+              <div class="sett-secret-card__head">
+                <span class="sett-section-card__icon"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+              </div>
+              <div class="sett-skel-lines">
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+              </div>
+              <span class="ds-skeleton sett-skel-bar sett-skel-bar--title-2nd"></span>
+              <div class="sett-skel-rows sett-skel-rows--tall">
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span>
+              </div>
+              <span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span>
+            </div>
+            <div class="ds-card sett-secret-card sett-skel" aria-hidden="true">
+              <div class="sett-secret-card__head">
+                <span class="sett-section-card__icon"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+              </div>
+              <div class="sett-skel-lines">
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+              </div>
+              <span class="ds-skeleton sett-skel-bar sett-skel-bar--title-2nd"></span>
+              <div class="sett-skel-rows sett-skel-rows--tall">
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span>
+              </div>
+              <span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span>
+            </div>
+          </div>
+        </div>
+        <div class="ds-tab-panel sett-tab-panel" data-sett-panel="agents" role="tabpanel" hidden>
+          <p class="sett-tab-desc">The Claude Code agent crew - who does what in which skill, which model drives it and how to read its brief. Picking a model overrides the default model in the agent frontmatter.</p>
+          <div id="settings-agenci-section">
+            <!-- Rendered by js/settings-agenci.js renderAgenciSection(), which
+                 replaces this whole slot. Until it does, the skeleton below
+                 reserves the height of the first group so the tab does not
+                 jump when the roster lands. -->
+            <section class="sett-agent-group" aria-hidden="true">
+              <h3 class="sett-agent-group-heading"><span class="ds-skeleton sett-skel-heading"></span></h3>
+              <div class="sett-agent-grid">
+              <article class="ds-card sett-agent-card sett-skel" aria-hidden="true">
+                <div class="sett-agent-head">
+                  <span class="sett-skel-avatar"></span>
+                  <div class="sett-agent-id"><span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span></div>
+                </div>
+                <div class="sett-skel-lines">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                </div>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--field"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span>
+              </article>
+              <article class="ds-card sett-agent-card sett-skel" aria-hidden="true">
+                <div class="sett-agent-head">
+                  <span class="sett-skel-avatar"></span>
+                  <div class="sett-agent-id"><span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span></div>
+                </div>
+                <div class="sett-skel-lines">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                </div>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--field"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span>
+              </article>
+              <article class="ds-card sett-agent-card sett-skel" aria-hidden="true">
+                <div class="sett-agent-head">
+                  <span class="sett-skel-avatar"></span>
+                  <div class="sett-agent-id"><span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span></div>
+                </div>
+                <div class="sett-skel-lines">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                </div>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--field"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span>
+              </article>
+              <article class="ds-card sett-agent-card sett-skel" aria-hidden="true">
+                <div class="sett-agent-head">
+                  <span class="sett-skel-avatar"></span>
+                  <div class="sett-agent-id"><span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span></div>
+                </div>
+                <div class="sett-skel-lines">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                </div>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--field"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span>
+              </article>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div class="ds-tab-panel sett-tab-panel" data-sett-panel="skills" role="tabpanel" hidden>
+          <p class="sett-tab-desc">Skills are how Mission Deck works. Each card says how to invoke the skill, what it does and what it leaves behind; the instructions open in a preview. The description, phases, agents and commands are read straight from the files in <code>.claude/skills/</code>, so a card cannot drift from its skill.</p>
+          <div id="settings-skille-section">
+            <!-- Rendered by js/settings-skille.js renderSkilleSection(). Same
+                 rule as the Agents slot above: a first-group skeleton holds the
+                 height until the derived card list arrives. -->
+            <section class="sett-skill-group" aria-hidden="true">
+              <h3 class="sett-skill-group-heading"><span class="ds-skeleton sett-skel-heading"></span></h3>
+              <div class="sett-skill-grid">
+              <article class="ds-card sett-skill-card sett-skel" aria-hidden="true">
+                <div class="sett-skill-head">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span>
+                </div>
+                <div class="sett-skel-lines">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                </div>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span>
+              </article>
+              <article class="ds-card sett-skill-card sett-skel" aria-hidden="true">
+                <div class="sett-skill-head">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span>
+                </div>
+                <div class="sett-skel-lines">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                </div>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span>
+              </article>
+              <article class="ds-card sett-skill-card sett-skel" aria-hidden="true">
+                <div class="sett-skill-head">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip-short"></span>
+                </div>
+                <div class="sett-skel-lines">
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                  <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                </div>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span>
+              </article>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div class="ds-tab-panel sett-tab-panel" data-sett-panel="users" role="tabpanel" hidden>
+          <p class="sett-tab-desc">Team directory: first name, last name, role, team, e-mail and photo. Saved to the data repository and shared with the team on sync.</p>
+          <div id="settings-uzytkownicy-section" class="sett-uzytkownicy">
+            <div class="uzy-toolbar">
+              <input type="search" class="ds-input uzy-search" id="settings-uzytkownicy-search" placeholder="Search for a person, role or team..." aria-label="Search the team directory" autocomplete="off">
+              <span class="uzy-count" id="settings-uzytkownicy-count"></span>
+              <button type="button" class="ds-btn ds-btn--primary ds-btn--sm" id="settings-uzytkownicy-add">Add person</button>
+            </div>
+            <div class="uzy-grid" id="settings-uzytkownicy-grid">
+              <!-- Rendered by js/settings-uzytkownicy.js renderUzytkownicySection() -->
+              <div class="ds-card uzy-card sett-skel" aria-hidden="true">
+                <div class="uzy-card__top">
+                  <span class="sett-skel-avatar sett-skel-avatar--lg"></span>
+                  <div class="uzy-card__body">
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="ds-card uzy-card sett-skel" aria-hidden="true">
+                <div class="uzy-card__top">
+                  <span class="sett-skel-avatar sett-skel-avatar--lg"></span>
+                  <div class="uzy-card__body">
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="ds-card uzy-card sett-skel" aria-hidden="true">
+                <div class="uzy-card__top">
+                  <span class="sett-skel-avatar sett-skel-avatar--lg"></span>
+                  <div class="uzy-card__body">
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="ds-card uzy-card sett-skel" aria-hidden="true">
+                <div class="uzy-card__top">
+                  <span class="sett-skel-avatar sett-skel-avatar--lg"></span>
+                  <div class="uzy-card__body">
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="ds-card uzy-card sett-skel" aria-hidden="true">
+                <div class="uzy-card__top">
+                  <span class="sett-skel-avatar sett-skel-avatar--lg"></span>
+                  <div class="uzy-card__body">
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="ds-card uzy-card sett-skel" aria-hidden="true">
+                <div class="uzy-card__top">
+                  <span class="sett-skel-avatar sett-skel-avatar--lg"></span>
+                  <div class="uzy-card__body">
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--chip"></span>
+                    <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ds-tab-panel sett-tab-panel" data-sett-panel="modules" role="tabpanel" hidden>
+          <p class="sett-tab-desc">Add-ons installed locally from the <code>modules/</code> folder: enable, disable, remove or hand one to a colleague as a zip file. Every change takes effect only after a server restart.</p>
+          <div id="settings-moduly-installed">
+            <!-- Rendered by js/settings-moduly.js renderModulySection(). The
+                 skeleton below holds the toolbar and the first rows of the
+                 table, in the same six columns the real one has. -->
+            <div class="moduly-inner" aria-hidden="true">
+              <div class="moduly-section-head">
+                <h3 class="moduly-section-title">Installed</h3>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span>
+              </div>
+              <div class="moduly-search-row">
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--search"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--btn moduly-area-select"></span>
+              </div>
+              <div class="ds-table-wrap moduly-table-wrap">
+                <table class="ds-table moduly-table">
+                  <thead>
+                    <tr>
+                      <th>Module</th>
+                      <th>Version</th>
+                      <th>Status</th>
+                      <th>Area</th>
+                      <th>Menu location</th>
+                      <th class="right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="moduly-row sett-skel" aria-hidden="true">
+                      <td>
+                        <span class="moduly-row-name">
+                          <span class="moduly-row-icon"></span>
+                          <span class="moduly-row-name-text">
+                            <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+                            <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                          </span>
+                        </span>
+                      </td>
+                      <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span></td>
+                      <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span></td>
+                      <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span></td>
+                      <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span></td>
+                      <td class="right"><span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span></td>
+                    </tr>
+                    <tr class="moduly-row sett-skel" aria-hidden="true">
+                      <td>
+                        <span class="moduly-row-name">
+                          <span class="moduly-row-icon"></span>
+                          <span class="moduly-row-name-text">
+                            <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+                            <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                          </span>
+                        </span>
+                      </td>
+                      <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span></td>
+                      <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span></td>
+                      <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span></td>
+                      <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span></td>
+                      <td class="right"><span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span></td>
+                    </tr>
+                    <tr class="moduly-row sett-skel" aria-hidden="true">
+                      <td>
+                        <span class="moduly-row-name">
+                          <span class="moduly-row-icon"></span>
+                          <span class="moduly-row-name-text">
+                            <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+                            <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                          </span>
+                        </span>
+                      </td>
+                      <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span></td>
+                      <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span></td>
+                      <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span></td>
+                      <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span></td>
+                      <td class="right"><span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="settings-moduly-catalog">
+            <!-- Rendered by js/settings-moduly-katalog.js renderModulesCatalogSection().
+                 The header is real markup in that module too, so only the table
+                 below is a placeholder. -->
+            <div class="modules-catalog-head" aria-hidden="true">
+              <div class="modules-catalog-header">
+                <h3 class="modules-catalog-title">Catalog</h3>
+              </div>
+              <div class="moduly-search-row">
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--search"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--btn moduly-area-select"></span>
+              </div>
+            </div>
+            <div class="ds-table-wrap moduly-table-wrap" aria-hidden="true">
+              <table class="ds-table moduly-table">
+                <thead>
+                  <tr>
+                    <th>Module</th>
+                    <th>Version</th>
+                    <th>Status</th>
+                    <th>Area</th>
+                    <th>Menu location</th>
+                    <th class="right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="moduly-row sett-skel" aria-hidden="true">
+                    <td>
+                      <span class="moduly-row-name">
+                        <span class="moduly-row-icon"></span>
+                        <span class="moduly-row-name-text">
+                          <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+                          <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                        </span>
+                      </span>
+                    </td>
+                    <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span></td>
+                    <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span></td>
+                    <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span></td>
+                    <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span></td>
+                    <td class="right"><span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span></td>
+                  </tr>
+                  <tr class="moduly-row sett-skel" aria-hidden="true">
+                    <td>
+                      <span class="moduly-row-name">
+                        <span class="moduly-row-icon"></span>
+                        <span class="moduly-row-name-text">
+                          <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+                          <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                        </span>
+                      </span>
+                    </td>
+                    <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span></td>
+                    <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span></td>
+                    <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span></td>
+                    <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span></td>
+                    <td class="right"><span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span></td>
+                  </tr>
+                  <tr class="moduly-row sett-skel" aria-hidden="true">
+                    <td>
+                      <span class="moduly-row-name">
+                        <span class="moduly-row-icon"></span>
+                        <span class="moduly-row-name-text">
+                          <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+                          <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+                        </span>
+                      </span>
+                    </td>
+                    <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span></td>
+                    <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span></td>
+                    <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span></td>
+                    <td><span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span></td>
+                    <td class="right"><span class="ds-skeleton sett-skel-bar sett-skel-bar--btn"></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="ds-tab-panel sett-tab-panel" data-sett-panel="tools" role="tabpanel" hidden>
+          <p class="sett-tab-desc">The programs Mission Deck relies on are invisible until they fail. This tab asks each of them directly: is it there, which version, and does it work. A card with a problem shows a command to copy, and where Mission Deck can do it itself - a button that runs it.</p>
+          <div id="settings-narzedzia-section">
+            <!-- Rendered by js/settings-narzedzia.js renderNarzedziaSection() -->
+            <div class="ds-card sett-tool-card sett-skel" aria-hidden="true">
+              <div class="sett-tool-card__head">
+                <span class="sett-section-card__icon"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--title"></span>
+              </div>
+              <div class="sett-skel-lines">
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--text"></span>
+                <span class="ds-skeleton sett-skel-bar sett-skel-bar--text-short"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Demo: static on purpose - no renderer, no skeleton, no fetch. The page
+             it opens lives under demo/ and loads the real shell from /index.html;
+             links must name /demo/index.html because /demo/ alone answers 404. -->
+        <div class="ds-tab-panel sett-tab-panel" data-sett-panel="demo" role="tabpanel" hidden>
+          <p class="sett-tab-desc">A walkthrough of Mission Deck in a separate tab: startup, setup, training, your own module, team data and everyday work. The demo needs no vault, no team data and no network, and saves nothing - drive it with Enter, Space and the arrow keys.</p>
+          <div class="ds-card">
+            <div class="ds-card-header">
+              <span class="ds-card-title">Demo "How we work with Mission Deck"</span>
+            </div>
+            <div class="ds-card-body">
+              <div class="ds-actions">
+                <a class="ds-btn ds-btn--primary" href="/demo/index.html#short" target="_blank" rel="noopener noreferrer"><img class="nav-icon" src="/assets/icons/ds/16-ic-external-link.svg" alt="" aria-hidden="true"> Open the Short version</a>
+                <a class="ds-btn ds-btn--secondary" href="/demo/index.html#full" target="_blank" rel="noopener noreferrer"><img class="nav-icon" src="/assets/icons/ds/16-ic-external-link.svg" alt="" aria-hidden="true"> Open the Full version</a>
+              </div>
+              <p class="sett-tab-desc" data-demo-durations style="margin-top: var(--space-8);">Running time with commentary: Short approx. 16 min · Full approx. 59 min</p>
+              <p class="sett-tab-desc" style="margin-top: var(--space-24);">The Short version is a selection of chapters and steps from the Full version - the same content, shorter. Chapters of the Full version - each opens the demo at the start of the chapter:</p>
+              <ol style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-4) var(--space-16);">
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#guides/0" target="_blank" rel="noopener noreferrer">1. Before you start</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#start/0" target="_blank" rel="noopener noreferrer">2. Startup</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#onboarding/0" target="_blank" rel="noopener noreferrer">3. First steps</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#settings/0" target="_blank" rel="noopener noreferrer">4. Setup</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#team-keys/0" target="_blank" rel="noopener noreferrer">5. Keys for the team</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#academy/0" target="_blank" rel="noopener noreferrer">6. Academy</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#new-module/0" target="_blank" rel="noopener noreferrer">7. Your own module via /new-idea</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#publishing/0" target="_blank" rel="noopener noreferrer">8. Publishing a module</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#catalog/0" target="_blank" rel="noopener noreferrer">9. Installing from the catalog</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#using-a-module/0" target="_blank" rel="noopener noreferrer">10. Everyday work with a module</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#design/0" target="_blank" rel="noopener noreferrer">11. Design: tokens, icons and Pip</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#sync/0" target="_blank" rel="noopener noreferrer">12. Encryption and data exchange</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#meetings/0" target="_blank" rel="noopener noreferrer">13. Meeting summary</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#time-tracking/0" target="_blank" rel="noopener noreferrer">14. Time logging</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#on-call-and-time-off/0" target="_blank" rel="noopener noreferrer">15. On-call and time off</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#roadmap/0" target="_blank" rel="noopener noreferrer">16. Roadmap review</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#team/0" target="_blank" rel="noopener noreferrer">17. Team and users</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#sprints/0" target="_blank" rel="noopener noreferrer">18. Sprints</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#jira-confluence/0" target="_blank" rel="noopener noreferrer">19. Jira and Confluence day to day</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#skills-and-agents/0" target="_blank" rel="noopener noreferrer">20. Skills and agents</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#updates/0" target="_blank" rel="noopener noreferrer">21. Updates and upkeep</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#feedback/0" target="_blank" rel="noopener noreferrer">22. Send feedback</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#day-cycle/0" target="_blank" rel="noopener noreferrer">23. End of day and good morning</a></li>
+                <li><a class="ds-btn ds-btn--tertiary ds-btn--sm" href="/demo/index.html#summary/0" target="_blank" rel="noopener noreferrer">24. Summary</a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── GitLab activity (project access tokens) ─────────────────────── -->
+    <section class="view-section" id="view-gitlab-activity" data-back-view="settings">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1>GitLab activity</h1>
+            <div class="subtitle">Recent activity per person, by GitLab access token, in the Mission Deck repositories</div>
+          </div>
+        </div>
+      </div>
+      <!-- JS-rendered body (js/gitlab-activity.js injects into #gitlab-activity-root).
+           The refresh takes ~16 s when GitLab is unreachable, so this box holds
+           the toolbar, the repo tab strip and the person table until the answer
+           lands; the renderer's no-data branch leaves it alone rather than
+           writing a one-line "Loading..." over a taller skeleton. -->
+      <div class="view-data" id="gitlab-activity-root">
+        <div data-skel="1" aria-hidden="true">
+          <div class="ga-skel-toolbar"><span class="ds-skeleton ga-skel-btn"></span></div>
+          <div class="ga-skel-tabs">
+            <span class="ds-skeleton ga-skel-tab"></span>
+            <span class="ds-skeleton ga-skel-tab"></span>
+            <span class="ds-skeleton ga-skel-tab"></span>
+          </div>
+          <div class="ga-skel-table">
+            <span class="ds-skeleton ga-skel-row ga-skel-row--head"></span>
+            <span class="ds-skeleton ga-skel-row"></span>
+            <span class="ds-skeleton ga-skel-row"></span>
+            <span class="ds-skeleton ga-skel-row"></span>
+            <span class="ds-skeleton ga-skel-row"></span>
+            <span class="ds-skeleton ga-skel-row"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Assets: Design System - tokens read from css/ds-tokens.css plus live DS components ── -->
+    <div class="view-section" id="view-assets-design-system" data-back-view="dashboard">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1>Design System</h1>
+            <div class="subtitle">The design tokens behind every screen (read live from css/ds-tokens.css) and the core components drawn with them.</div>
+          </div>
+        </div>
+      </div>
+      <div class="view-data" id="assets-design-system-root">
+        <div data-skel="1" aria-hidden="true">
+          <div class="asv-skel-toolbar">
+            <span class="ds-skeleton asv-skel-seg"></span>
+            <span class="ds-skeleton asv-skel-search"></span>
+            <span class="ds-skeleton asv-skel-count"></span>
+          </div>
+          <span class="ds-skeleton asv-skel-heading"></span>
+          <div class="asv-skel-grid asv-skel-grid--ds">
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ds"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ds"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ds"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ds"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ds"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ds"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ds"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ds"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Assets: Icons - assets/icons/ds/manifest.json ── -->
+    <div class="view-section" id="view-assets-icons" data-back-view="dashboard">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1>Icons</h1>
+            <div class="subtitle">Every icon the app ships (Lucide, ISC licence) - preview, search and copy the SVG source.</div>
+          </div>
+        </div>
+      </div>
+      <div class="view-data" id="assets-icons-root">
+        <div data-skel="1" aria-hidden="true">
+          <div class="asv-skel-toolbar">
+            <span class="ds-skeleton asv-skel-search"></span>
+            <span class="ds-skeleton asv-skel-count"></span>
+          </div>
+          <div class="asv-skel-grid">
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--icon"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Assets: Illustrations - the mascot set, assets/mascot/manifest.json ── -->
+    <div class="view-section" id="view-assets-illustrations" data-back-view="dashboard">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1>Illustrations</h1>
+            <div class="subtitle">Illustrations for empty states, modals and onboarding - preview, search and copy the SVG source.</div>
+          </div>
+        </div>
+      </div>
+      <div class="view-data" id="assets-illustrations-root">
+        <div data-skel="1" aria-hidden="true">
+          <div class="asv-skel-toolbar">
+            <span class="ds-skeleton asv-skel-search"></span>
+            <span class="ds-skeleton asv-skel-count"></span>
+          </div>
+          <div class="asv-skel-grid">
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ill"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ill"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ill"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ill"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ill"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ill"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ill"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ill"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ill"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ill"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ill"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--ill"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Assets: mascot gallery — assets/mascot/, listed by GET /api/assets/mascot ── -->
+    <div class="view-section" id="view-assets-mascot" data-back-view="dashboard">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1>Mascot</h1>
+            <div class="subtitle">Pip, the Mission Deck mascot - every pose, animated, with the name an empty state uses and an SVG download.</div>
+          </div>
+        </div>
+      </div>
+      <div class="view-data" id="assets-mascot-root">
+        <div data-skel="1" aria-hidden="true">
+          <div class="asv-skel-toolbar">
+            <span class="ds-skeleton asv-skel-search"></span>
+            <span class="ds-skeleton asv-skel-count"></span>
+          </div>
+          <div class="asv-skel-grid">
+            <span class="ds-skeleton asv-skel-card asv-skel-card--mascot"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--mascot"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--mascot"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--mascot"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--mascot"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--mascot"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--mascot"></span>
+            <span class="ds-skeleton asv-skel-card asv-skel-card--mascot"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Prototypes: registry, GET /api/prototypes (read-only) ── -->
+    <div class="view-section" id="view-prototypy">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <h1>Prototypes</h1>
+            <div class="subtitle">Registry of finished screen prototypes - name, owners and date of the last change.</div>
+          </div>
+        </div>
+      </div>
+      <div class="view-data" id="prototypy-root">
+        <div data-skel="1" aria-hidden="true">
+          <div class="proto-skel-toolbar">
+            <span class="ds-skeleton proto-skel-search"></span>
+            <span class="ds-skeleton proto-skel-count"></span>
+          </div>
+          <div class="proto-skel-grid">
+            <span class="ds-skeleton proto-skel-card"></span>
+            <span class="ds-skeleton proto-skel-card"></span>
+            <span class="ds-skeleton proto-skel-card"></span>
+            <span class="ds-skeleton proto-skel-card"></span>
+            <span class="ds-skeleton proto-skel-card"></span>
+            <span class="ds-skeleton proto-skel-card"></span>
+            <span class="ds-skeleton proto-skel-card"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prototypes: details of one prototype, reached only from a registry
+         card - no entry in pages/HUB_FLYOUT (precedent: academy). -->
+    <div class="view-section" id="view-proto-detail">
+      <div class="view-data" id="proto-detail-root">
+        <div data-skel="1" aria-hidden="true">
+          <div class="proto-skel-header">
+            <span class="ds-skeleton proto-skel-back"></span>
+            <span class="ds-skeleton proto-skel-title"></span>
+            <span class="ds-skeleton proto-skel-actions"></span>
+          </div>
+          <span class="ds-skeleton proto-skel-tabs"></span>
+          <span class="ds-skeleton proto-skel-body"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prototypes: embedded preview - the section is deliberately empty,
+         with no entry in pages/HUB_FLYOUT. -->
+    <div class="view-section" id="view-proto-standalone">
+      <div class="view-data" id="proto-standalone-root"></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Sync log modal — populated by js/sync-log-modal.js (openSyncLogModal /
+     renderSyncLogSteps). Static markup, as the module looks the overlay up by id. -->
+<div class="ds-modal-overlay sync-log-modal" id="sync-log-modal" hidden>
+  <div class="ds-modal" role="dialog" aria-modal="true" aria-labelledby="slm-title">
+    <div class="ds-modal-header">
+      <span class="ds-modal-title" id="slm-title">Sync</span>
+      <button type="button" class="ds-modal-close" id="slm-x" aria-label="Close">&times;</button>
+    </div>
+    <div class="ds-modal-body">
+      <div id="slm-spinner" class="sync-log-modal__spinner-wrap" hidden>
+        <span class="sync-log-modal__spinner" aria-hidden="true"></span>
+        <span class="sync-log-modal__spinner-label">Sync in progress...</span>
+      </div>
+      <div id="slm-banner" class="sync-log-modal__banner-wrap"></div>
+      <div id="slm-log" class="sync-log-modal__log" aria-live="polite"></div>
+      <div id="slm-extra" class="sync-log-modal__extra" hidden></div>
+    </div>
+    <div id="slm-actions" class="sync-log-modal__actions" hidden></div>
+    <div class="ds-modal-footer">
+      <button type="button" class="ds-btn ds-btn--secondary" id="slm-copy" hidden>Copy log</button>
+      <button type="button" class="ds-btn ds-btn--tertiary" id="slm-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="ds-toast-region" aria-live="polite" aria-atomic="false"></div>
+
+<div id="claude-terminal-panel" hidden aria-label="Claude Code terminal">
+  <div id="claude-terminal-resize-handle" aria-hidden="true"></div>
+  <header class="claude-terminal-panel__header">
+    <span class="claude-terminal-label" id="claude-terminal-label">
+      <img class="claude-terminal-label__icon" src="assets/claudecode-icon.png" alt="" aria-hidden="true">
+      <span id="claude-terminal-label-text">Open terminal</span>
+    </span>
+    <nav id="claude-terminal-tabs" class="claude-terminal-tabs" role="tablist" aria-label="Terminals"></nav>
+    <div class="claude-terminal-panel__actions">
+      <button id="claude-terminal-add-claude" class="claude-terminal-add-btn" type="button" aria-label="New Claude Code terminal">+ Claude</button>
+      <button id="claude-terminal-minimize" class="ds-icon-btn ds-icon-btn--sm" type="button" aria-label="Collapse terminal">&#x25BC;</button>
+      <button id="claude-terminal-close" class="ds-icon-btn ds-icon-btn--sm" type="button" aria-label="Close panel">&#x2715;</button>
+    </div>
+  </header>
+  <div id="claude-terminal-hosts"></div>
+</div>
+
+<script type="module" src="js/app.js"></script>
+<script type="module" src="js/ds-select.js"></script>
+</body>
+</html>

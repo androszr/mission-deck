@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "id": "rollout-waves",
+  "name": "Rollout waves",
+  "version": "1.0.0",
+  "status": "beta",
+  "area": "Operations",
+  "description": "A rollout planned in weekly waves across the locations directory: locations assigned to waves by their managers, training and webinar progress, and code-list imports from Excel",
+  "icon": "24-ic-truck",
+  "author": "androszr",
+  "tags": [
+    "rollout",
+    "waves",
+    "locations",
+    "initiatives",
+    "xlsx"
+  ],
+  "sidebar": {
+    "label": "Rollout waves",
+    "kind": "page",
+    "hub": "initiatives"
+  },
+  "views": [
+    {
+      "id": "rollout-waves-main",
+      "label": "Rollout waves",
+      "title": "Rollout waves",
+      "subtitle": "Rollout in weekly waves - locations, training, webinars"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Wave configuration and training/webinar confirmations in rollout-waves/",
+      "paths": [
+        "rollout-waves/"
+      ]
+    },
+    {
+      "name": "data-tier-0",
+      "access": "read",
+      "description": "The locations directory owned by the locations module (read only)",
+      "paths": [
+        "locations/"
+      ]
+    }
+  ],
+  "envKeys": [],
+  "widgets": [
+    {
+      "id": "rollout-progress",
+      "label": "Rollout progress",
+      "description": "How many locations are live, how many are still to go and how many have no wave yet; completed training and webinars and the next wave start.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        { "id": "s", "label": "Small", "cols": 2, "rows": 1 },
+        { "id": "s2", "label": "Small, tall", "cols": 2, "rows": 2 },
+        { "id": "m", "label": "Medium", "cols": 3, "rows": 1 },
+        { "id": "m2", "label": "Medium, tall", "cols": 3, "rows": 2 },
+        { "id": "l", "label": "Wide", "cols": 6, "rows": 1 }
+      ],
+      "defaultVariant": "m"
+    },
+    {
+      "id": "rollout-next-waves",
+      "label": "Next waves",
+      "description": "Upcoming rollout waves: start and webinar dates and training progress in each wave.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        { "id": "m", "label": "Medium", "cols": 3, "rows": 1 },
+        { "id": "m2", "label": "Medium, tall", "cols": 3, "rows": 2 },
+        { "id": "l", "label": "Wide", "cols": 6, "rows": 1 },
+        { "id": "xl", "label": "Wide, tall", "cols": 6, "rows": 2 }
+      ],
+      "defaultVariant": "m2"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

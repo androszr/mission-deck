@@ -1,0 +1,144 @@
+/* demo/chapters-css/roadmap.css - "Product roadmap" and "Gantt roadmap"
+   mock layout. Ports of modules/roadmap/client/style.css
+   (.crm-* / .crk-*) and modules/gantt-roadmap/client/style.css (.ar-gantt-*),
+   renamed .roadmapa-*, DS tokens only. */
+
+.roadmapa-tabs { margin-bottom: var(--space-16); }
+.roadmapa-pane { display: flex; flex-direction: column; gap: var(--space-12); animation: roadmapa-in 0.3s ease-out; }
+
+.roadmapa-avatar {
+  display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%;
+  background: var(--body-tertiary-bg); color: var(--body-primary-text); font-size: 10px; font-weight: 600; flex-shrink: 0;
+  border: 2px solid var(--surface-primary);
+}
+.roadmapa-people { display: flex; gap: 2px; }
+.roadmapa-empty { color: var(--body-tertiary-text); }
+
+/* Calendar strip with the role filter */
+.roadmapa-strip-filter { display: flex; }
+.roadmapa-cal-card { padding: var(--space-12) var(--space-16) var(--space-16); }
+/* Real strip: flex cells with a 96px floor and horizontal scroll. The demo
+   keeps the rail expanded (300px), so the floor is 64px to keep all twelve
+   days - including "Dzisiaj" and "Jutro" at the end - on screen. */
+.roadmapa-cal-strip { display: flex; gap: var(--space-8); }
+.roadmapa-cal-cell {
+  flex: 1 1 0; min-width: 64px; min-height: 120px; padding: var(--space-8);
+  border: 1px solid var(--body-tertiary-border); border-radius: var(--radius-s); background: var(--body-secondary-bg); overflow: hidden;
+}
+.roadmapa-cal-cell--past { opacity: 0.85; }
+.roadmapa-cal-cell--today { border: 2px solid var(--brand-accent); background: var(--state-brand-bg); opacity: 1; }
+.roadmapa-cal-cell--tomorrow { border: 1px dashed var(--state-info-border); background: var(--state-info-bg); }
+.roadmapa-cal-day-label {
+  display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-4); margin-bottom: var(--space-8);
+  font-size: var(--text-xs); font-weight: 600; color: var(--body-secondary-text); white-space: nowrap;
+}
+.roadmapa-cal-cell--today .roadmapa-cal-day-label { color: var(--state-brand-text); font-weight: 700; }
+.roadmapa-cal-zone { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
+.roadmapa-cal-cell--tomorrow .roadmapa-cal-zone { color: var(--state-info-text); }
+.roadmapa-cal-people { display: flex; flex-wrap: wrap; gap: var(--space-4); align-content: flex-start; animation: roadmapa-in 0.3s ease-out; }
+.roadmapa-cal-people .roadmapa-avatar { width: 28px; height: 28px; box-shadow: var(--shadow-sm); }
+
+.roadmapa-toolbar, .roadmapa-kanban-toolbar, .roadmapa-gantt-toolbar { display: flex; align-items: center; gap: var(--space-8); flex-wrap: wrap; }
+.roadmapa-search-wrap { min-width: 220px; max-width: 320px; flex: 1; margin: 0; }
+.roadmapa-count { margin-left: auto; font-size: var(--text-xs); color: var(--body-tertiary-text); }
+
+.roadmapa-person-btn { display: inline-flex; align-items: center; gap: var(--space-8); }
+.roadmapa-table td { vertical-align: middle; }
+.roadmapa-table th, .roadmapa-table td { padding-left: var(--space-8); padding-right: var(--space-8); }
+.roadmapa-rank { white-space: nowrap; }
+.roadmapa-rank-inner { display: inline-flex; align-items: center; gap: var(--space-4); }
+.roadmapa-drag-handle { display: inline-flex; color: var(--body-tertiary-text); }
+.roadmapa-rank-num { font-weight: 600; font-size: var(--text-sm); color: var(--body-secondary-text); min-width: 12px; text-align: center; }
+.roadmapa-move-btns { display: inline-flex; flex-direction: column; color: var(--body-secondary-text); }
+.roadmapa-move-btn { display: inline-flex; width: 20px; height: 14px; align-items: center; justify-content: center; }
+.roadmapa-title-cell { font-weight: 600; font-size: var(--text-sm); color: var(--body-primary-text); max-width: 190px; }
+.roadmapa-date-cell { white-space: nowrap; font-size: var(--text-sm); color: var(--body-secondary-text); }
+.roadmapa-days-left { color: var(--body-tertiary-text); font-size: 12px; }
+.roadmapa-md { font-size: var(--text-xs); font-weight: 700; color: var(--body-primary-text); white-space: nowrap; }
+.roadmapa-rag-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.roadmapa-rag-dot--green { background: var(--state-success-icon); }
+.roadmapa-rag-dot--amber { background: var(--state-warning-icon); }
+.roadmapa-rag-dot--red { background: var(--state-danger-icon); }
+.roadmapa-stage-dots { display: inline-flex; gap: 2px; }
+.roadmapa-stage-dot { font-size: 9px; font-weight: 600; line-height: 1; padding: 2px 3px; border-radius: var(--radius-s); background: var(--body-tertiary-border); color: var(--body-tertiary-text); white-space: nowrap; }
+.roadmapa-stage-dot--on { background: var(--state-success-bg); color: var(--state-success-text); }
+
+/* Roadmap tab - year timeline */
+.roadmapa-rm-toolbar { display: flex; align-items: center; gap: var(--space-12); }
+.roadmapa-rm-year { width: 110px; }
+.roadmapa-rm-hint { font-size: var(--text-xs); color: var(--body-tertiary-text); }
+.roadmapa-rm-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-12); }
+.roadmapa-rm-stat-num { font-size: var(--text-xl); font-weight: 700; color: var(--body-primary-text); }
+.roadmapa-rm-stat-disc { color: var(--state-info-icon); }
+.roadmapa-rm-stat-del { color: var(--clickable-primary-default-bg); }
+.roadmapa-rm-stat-lbl { font-size: var(--text-xs); color: var(--body-secondary-text); }
+.roadmapa-rm-legend { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-8); font-size: var(--text-xs); color: var(--body-secondary-text); }
+.roadmapa-rm-sw { display: inline-block; width: 14px; height: 10px; border-radius: var(--radius-s); margin-left: var(--space-8); }
+.roadmapa-rm-sw--disc { background: var(--state-info-icon); }
+.roadmapa-rm-sw--del { background: var(--clickable-primary-default-bg); }
+.roadmapa-rm-sw--go { width: 10px; transform: rotate(45deg); background: var(--state-success-icon); }
+.roadmapa-rm-sw--today { width: 2px; background: var(--state-danger-icon); }
+.roadmapa-rm-grid { position: relative; border: 1px solid var(--body-secondary-border); border-radius: var(--radius-m); background: var(--surface-primary); overflow: hidden; }
+.roadmapa-rm-header { display: grid; grid-template-columns: 260px minmax(0, 1fr); border-bottom: 1px solid var(--body-secondary-border); }
+.roadmapa-rm-hrow { position: relative; height: 26px; }
+.roadmapa-rm-hcell { position: absolute; top: 0; height: 26px; display: flex; align-items: center; justify-content: center; font-size: var(--text-xs); font-weight: 600; color: var(--body-secondary-text); border-left: 1px solid var(--body-secondary-border); }
+.roadmapa-rm-hcell--m { font-weight: 400; font-size: var(--text-2xs); }
+.roadmapa-rm-today-pill { position: absolute; top: 4px; transform: translateX(-50%); padding: 0 var(--space-8); font-size: var(--text-xs); font-weight: 600; line-height: 16px; border-radius: var(--radius-s); background: var(--state-danger-icon); color: var(--body-primary-bg); }
+.roadmapa-rm-rows { position: relative; }
+.roadmapa-rm-row { display: grid; grid-template-columns: 260px minmax(0, 1fr); align-items: center; height: 34px; border-bottom: 1px solid var(--body-quaternary-bg); }
+.roadmapa-rm-name-col { display: flex; align-items: center; gap: var(--space-8); padding: 0 var(--space-12); overflow: hidden; font-size: var(--text-sm); }
+.roadmapa-rm-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--body-primary-text); }
+.roadmapa-rm-track { position: relative; height: 26px; }
+.roadmapa-rm-line { position: absolute; top: -4px; bottom: -4px; width: 1px; background: var(--body-quaternary-bg); }
+.roadmapa-rm-seg { position: absolute; top: 3px; height: 20px; opacity: 0.85; animation: roadmapa-grow 0.6s ease-out; transform-origin: left; }
+.roadmapa-rm-seg--disc { background: var(--state-info-icon); border-radius: var(--radius-s) 0 0 var(--radius-s); }
+.roadmapa-rm-seg--del { background: var(--clickable-primary-default-bg); border-radius: 0 var(--radius-s) var(--radius-s) 0; }
+.roadmapa-rm-go { position: absolute; top: 5px; width: 14px; height: 14px; margin-left: -7px; transform: rotate(45deg); background: var(--state-success-icon); border: 2px solid var(--body-primary-bg); box-sizing: border-box; z-index: 1; }
+.roadmapa-rm-overlay { position: absolute; inset: 0 0 0 260px; pointer-events: none; }
+.roadmapa-rm-today { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--state-danger-icon); }
+.roadmapa-rm-q4 { position: absolute; top: 0; bottom: 0; left: calc(260px + (100% - 260px) * 0.75); right: 0; pointer-events: none; background: color-mix(in srgb, var(--clickable-primary-default-bg) 6%, transparent); }
+
+/* Kanban tab */
+.roadmapa-board { display: flex; flex-direction: column; border: 1px solid var(--body-secondary-border); border-radius: var(--radius-m); overflow: hidden; background: var(--surface-primary); }
+.roadmapa-board-head, .roadmapa-lane-body { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.roadmapa-col-header { display: flex; align-items: center; gap: var(--space-8); padding: var(--space-8) var(--space-12); font-weight: 600; font-size: var(--text-sm); color: var(--body-primary-text); border-bottom: 2px solid var(--body-secondary-border); border-left: 1px solid var(--body-secondary-border); }
+.roadmapa-lane-header { display: flex; align-items: center; gap: var(--space-8); padding: var(--space-8) var(--space-12); background: var(--body-secondary-bg); border-bottom: 1px solid var(--body-secondary-border); }
+.roadmapa-lane-title { font-weight: 600; font-size: var(--text-sm); color: var(--body-primary-text); }
+.roadmapa-cell { padding: var(--space-8); border-left: 1px solid var(--body-secondary-border); display: flex; flex-direction: column; gap: var(--space-8); min-height: 40px; }
+.roadmapa-card { background: var(--surface-primary); border: 1px solid var(--body-secondary-border); border-radius: var(--radius-m); padding: var(--space-8) var(--space-12); box-shadow: var(--shadow-sm); animation: roadmapa-in 0.35s ease-out; }
+.roadmapa-card.demo-hover { box-shadow: var(--shadow-md); }
+.roadmapa-card-header { display: flex; align-items: center; justify-content: space-between; }
+.roadmapa-card-key { font-size: var(--text-xs); font-weight: 600; color: var(--clickable-primary-default-bg); }
+.roadmapa-priority-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--state-warning-icon); }
+.roadmapa-card-summary { margin: var(--space-4) 0 var(--space-8); font-size: var(--text-xs); color: var(--body-primary-text); }
+.roadmapa-card-footer { display: flex; align-items: center; justify-content: space-between; }
+
+/* Gantt roadmap - weekly Gantt */
+.roadmapa-gantt-person { width: 200px; }
+.roadmapa-gantt { padding: 0; overflow: hidden; }
+.roadmapa-gantt-head { border-bottom: 2px solid var(--body-secondary-border); background: var(--body-primary-bg); }
+.roadmapa-gantt-row { display: grid; grid-template-columns: 240px minmax(0, 1fr); align-items: stretch; }
+.roadmapa-gantt-label { display: flex; align-items: center; gap: var(--space-8); padding: 0 var(--space-8); border-right: 1px solid var(--body-secondary-border); font-size: var(--text-xs); color: var(--body-secondary-text); white-space: nowrap; overflow: hidden; min-height: 28px; }
+.roadmapa-gantt-task { padding-left: var(--space-24); color: var(--body-primary-text); }
+.roadmapa-gantt-weeks { display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); align-items: center; }
+.roadmapa-gantt-month { padding: var(--space-4); font-size: var(--text-xs); font-weight: 600; color: var(--body-secondary-text); border-right: 1px solid var(--body-secondary-border); height: 24px; display: flex; align-items: center; }
+.roadmapa-gantt-sprint { font-size: var(--text-2xs); font-weight: 600; color: var(--body-secondary-text); background: var(--body-quaternary-bg); border-left: 2px solid var(--body-secondary-border); height: 20px; display: flex; align-items: center; justify-content: center; }
+.roadmapa-gantt-week { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 32px; border-right: 1px solid var(--body-quaternary-bg); font-size: var(--text-2xs); line-height: 1.2; }
+.roadmapa-gantt-week--today { background: color-mix(in srgb, var(--body-brand-bg) 10%, transparent); }
+.roadmapa-gantt-week--xmas { background: color-mix(in srgb, var(--state-danger-bg) 60%, transparent); }
+.roadmapa-week-no { font-weight: 600; color: var(--body-primary-text); }
+.roadmapa-week-date { font-size: 9px; color: var(--body-tertiary-text); }
+.roadmapa-gantt-lane-head .roadmapa-gantt-label { color: var(--body-primary-text); background: var(--body-secondary-bg); }
+.roadmapa-gantt-lane-head .roadmapa-gantt-grid { background: var(--body-secondary-bg); }
+.roadmapa-ganttea-chip { width: 10px; height: 10px; border-radius: 3px; }
+.roadmapa-gantt-grid { min-height: 28px; background-image: linear-gradient(to right, var(--body-quaternary-bg) 1px, transparent 1px); background-size: calc(100% / 14) 100%; }
+.roadmapa-gantt-bar {
+  height: 20px; border-radius: var(--radius-s); color: var(--surface-primary); font-size: var(--text-2xs); font-weight: 600;
+  padding: 0 var(--space-8); display: flex; align-items: center; overflow: hidden; white-space: nowrap; margin: 0 2px;
+  animation: roadmapa-grow 0.6s ease-out; transform-origin: left;
+}
+.roadmapa-gantt-milestone { width: 12px; height: 12px; transform: rotate(45deg); background: var(--state-danger-icon); justify-self: center; }
+
+@keyframes roadmapa-in { from { opacity: 0.3; } to { opacity: 1; } }
+@keyframes roadmapa-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { .roadmapa-pane, .roadmapa-cal-people, .roadmapa-card, .roadmapa-rm-seg, .roadmapa-gantt-bar { animation: none; } }

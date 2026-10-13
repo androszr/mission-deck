@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mission Deck"><title>Mission Deck</title><defs><linearGradient id="md-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb867"/><stop offset="1" stop-color="#e8772c"/></linearGradient></defs>
+<rect width="64" height="64" rx="15" fill="url(#md-g)"/>
+<rect x="21" y="11" width="26" height="34" rx="5" transform="rotate(16 34 28)" fill="#fff" opacity=".35"/>
+<rect x="19" y="14" width="27" height="35" rx="5.5" transform="rotate(6 32 31)" fill="#fff" opacity=".62"/>
+<rect x="16" y="17" width="28" height="36" rx="6" transform="rotate(-5 30 35)" fill="#fff"/>
+<path d="M0 -10Q0 0 10 0Q0 0 0 10Q0 0 -10 0Q0 0 0 -10Z" transform="translate(30 35) scale(.95)" fill="#b04f14"/>
+<circle cx="38.5" cy="25.5" r="2.4" fill="#4fb478"/>
+</svg>

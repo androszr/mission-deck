@@ -1,0 +1,25 @@
+GUARDIAN -- Quiet  |  PRE-SHIP AUDIT  |  Phase 2  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | QUIET // conventions audit         [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ node scripts/check-conventions.js --staged     |
+  |                                                   |
+  |  [x] house rules                                  |
+  |  [x] design tokens                                |
+  |  [x] ASCII identifiers                            |
+  |                                                   |
+  |  > findings: BLOCK / WARN / NOTE                  |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Quiet - Guardian
+    {{MODEL}}

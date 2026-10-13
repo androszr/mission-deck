@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "id": "sprint-planning",
+  "name": "Sprint planning",
+  "version": "0.1.1",
+  "status": "beta",
+  "area": "Delivery",
+  "description": "Sprint planning per team instead of loose pages: on-call, capacity and holidays, absences from time off and Teams, a velocity proposal from Sprint Stats, refinements and cross-refinements, the sprint goal and a jump to Jira.",
+  "icon": "24-ic-calendar-edit",
+  "author": "androszr",
+  "tags": [
+    "sprint",
+    "planning",
+    "capacity",
+    "velocity",
+    "refinement"
+  ],
+  "sidebar": {
+    "label": "Sprint planning",
+    "kind": "page",
+    "hub": "activity"
+  },
+  "views": [
+    {
+      "id": "sprint-planning-main",
+      "label": "Sprint planning",
+      "title": "Sprint planning",
+      "subtitle": "Planning steps for a team: on-call, capacity, absences, velocity, refinements and the sprint goal"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Sprint plans - one file per team and sprint in sprint-planning/plans/, team settings in sprint-planning/settings.json",
+      "paths": [
+        "sprint-planning/"
+      ]
+    },
+    {
+      "name": "data-tier-0",
+      "access": "read",
+      "description": "On-call schedule, time off, team roster and sprint history - read only",
+      "paths": [
+        "on-call/",
+        "time-off/",
+        "team/",
+        "sprint-stats/"
+      ]
+    }
+  ],
+  "envKeys": [],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

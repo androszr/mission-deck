@@ -1,0 +1,12 @@
+{
+  "id": "441589397",
+  "title": "07.09.2026 Sprint 17 Review",
+  "version": {
+    "number": 6
+  },
+  "body": {
+    "storage": {
+      "value": "<ac:structured-macro ac:name=\"panel\"><ac:parameter ac:name=\"title\">Facilitator</ac:parameter><ac:rich-text-body><p><ac:link><ri:user ri:userkey=\"uk-po\"/></ac:link></p></ac:rich-text-body></ac:structured-macro><h2>Atlas</h2><p>Sprint Goal: \u201cCheckout ready for release\u201d</p><p><ac:structured-macro ac:name=\"status\"><ac:parameter ac:name=\"colour\">green</ac:parameter></ac:structured-macro></p><ul><li><p>Topic: New checkout \ud83d\uddbc <ac:link><ri:user ri:userkey=\"uk-presenter1\"/></ac:link></p></li><li><p>Topic: Process retrospective \ud83d\udde3 <ac:link><ri:user ri:userkey=\"uk-presenter2\"/></ac:link></p></li><li><p>Topic: ...</p></li></ul><h2>Borealis</h2><p>Sprint Goal: \u201cSupplier list with XLSX export\u201d</p><p><ac:structured-macro ac:name=\"status\"><ac:parameter ac:name=\"colour\">yellow</ac:parameter></ac:structured-macro></p><ul><li><p>Topic: Item list export <ac:link><ri:user ri:userkey=\"uk-presenter3\"/></ac:link></p></li></ul><h2>Echo</h2><h3>Problem Space</h3><ul><li><p>Topic: Slow queries in the stock service</p></li></ul><h3>Solution Space</h3><ul><li><p>Topic: Index on the stock table</p></li><li><p>Topic: Read layer cache</p></li></ul><h2>Delta</h2><p>Sprint Goal: \u201cERP integration stabilisation\u201d</p><p><ac:structured-macro ac:name=\"status\"><ac:parameter ac:name=\"colour\">red</ac:parameter></ac:structured-macro></p><ul><li><p>Topic: ERP event queue <ac:link><ri:user ri:userkey=\"uk-presenter4\"/></ac:link></p></li></ul>"
+    }
+  }
+}

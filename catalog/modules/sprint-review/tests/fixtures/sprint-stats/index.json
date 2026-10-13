@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "boards": {
+    "main": {
+      "board_id": "1",
+      "project": "APP",
+      "teams": ["Atlas", "Borealis", "Comet"],
+      "active_sprint_n": 18,
+      "generated_at": "2026-09-13T19:56:14"
+    },
+    "platform": {
+      "board_id": "2",
+      "project": "PLAT",
+      "active_sprint_id": 9024,
+      "year_filter": 2026,
+      "generated_at": "2026-09-13T19:56:20"
+    }
+  },
+  "sprints": [
+    {
+      "src": "main",
+      "sprint_n": 17,
+      "phase": "END",
+      "teams": [
+        { "src": "main", "team": "Atlas", "sprint_n": 17, "sprint_id": 9001, "sprint_name": "Atlas Sprint 17", "state": "closed", "goal": "Old Atlas goal" }
+      ]
+    },
+    {
+      "src": "main",
+      "sprint_n": 18,
+      "phase": "ACTIVE",
+      "teams": [
+        { "src": "main", "team": "Atlas", "sprint_n": 18, "sprint_id": 9010, "sprint_name": "Atlas Sprint 18", "state": "active", "goal": "Checkout ready for release" },
+        { "src": "main", "team": "Borealis", "sprint_n": 18, "sprint_id": 9011, "sprint_name": "Borealis Sprint 18", "state": "active", "goal": "Item list export to XLSX" },
+        { "src": "main", "team": "Comet", "sprint_n": 18, "sprint_id": 9012, "sprint_name": "Comet Sprint 18", "state": "active", "goal": "Comet goal" }
+      ]
+    },
+    {
+      "src": "platform",
+      "sprint_n": 9,
+      "phase": "ACTIVE",
+      "teams": [
+        { "src": "platform", "team": "Delta", "sprint_id": 9024, "sprint_name": "Delta Sprint 9", "state": "active", "goal": "ERP integration stabilisation" }
+      ]
+    }
+  ]
+}

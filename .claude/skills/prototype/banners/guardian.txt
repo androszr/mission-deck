@@ -1,0 +1,25 @@
+PROTO-DS-GUARDIAN -- Quiet  |  PROTOTYPE  |  Phase 6e  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | QUIET // design system gate        [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ node scripts/check-proto-ds.js <dir>           |
+  |                                                   |
+  |  [x] no hardcoded colour                          |
+  |  [x] known tokens and icons                       |
+  |  [x] no host imports                              |
+  |                                                   |
+  |  > the design system, kept.                       |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Quiet - Proto-ds-guardian
+    {{MODEL}}

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "id": "devops-stats",
+  "name": "DEVOPS Stats",
+  "version": "0.1.0",
+  "status": "beta",
+  "area": "DevOps",
+  "description": "Flow metrics of the DevOps team from Jira (the DEVOPS project): work in progress, throughput, lead and cycle time (median, 85th percentile), epic cycle time, ageing issues and blocked work - weekly and monthly, refreshed from Jira.",
+  "icon": "24-ic-reports",
+  "author": "androszr",
+  "tags": [
+    "devops",
+    "jira",
+    "kanban",
+    "wip",
+    "lead-time",
+    "cycle-time",
+    "flow"
+  ],
+  "sidebar": {
+    "label": "DEVOPS Stats",
+    "kind": "page",
+    "hub": "activity"
+  },
+  "views": [
+    {
+      "id": "devops-stats-main",
+      "label": "DEVOPS Stats",
+      "title": "DEVOPS Stats",
+      "subtitle": "DevOps team flow: WIP, throughput, lead and cycle time, epics, blocked work"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "DEVOPS project flow metrics in jira/devops/ (the module's own directory)",
+      "paths": [
+        "jira/devops/"
+      ]
+    },
+    {
+      "name": "data-tier-0",
+      "access": "read",
+      "description": "Team directory (team/team-members.json) - team members for the People tab, read only",
+      "paths": [
+        "team/"
+      ]
+    }
+  ],
+  "envKeys": [
+    {
+      "name": "JIRA_TOKEN",
+      "description": "Personal Jira token (preferred)"
+    },
+    {
+      "name": "JIRA_TECH_TOKEN",
+      "description": "Technical Jira token (fallback)"
+    },
+    {
+      "name": "JIRA_URL",
+      "description": "Optional Jira address (default https://jira.example.com)"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

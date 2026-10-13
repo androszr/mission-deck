@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "id": "time-log",
+  "name": "Time Log",
+  "version": "0.1.6",
+  "status": "beta",
+  "description": "Who on the team logged time in Tempo over the last 14 days - a person x day heatmap with Jira issues, time off and a Teams message draft.",
+  "icon": "24-ic-clock",
+  "author": "androszr",
+  "tags": [
+    "working time",
+    "jira",
+    "tempo",
+    "team"
+  ],
+  "sidebar": {
+    "label": "Time Log",
+    "kind": "page",
+    "hub": "team"
+  },
+  "views": [
+    {
+      "id": "time-log-main",
+      "label": "Time Log",
+      "title": "Time Log",
+      "subtitle": "Who logged time in Tempo over the last 14 days"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Time logs per person in the time-log/ directory (index.json + people/<slug>.json)",
+      "paths": [
+        "time-log/"
+      ]
+    },
+    {
+      "name": "data-tier-0",
+      "access": "read",
+      "description": "Team directory (team/team-members.json) - the roster used to build the index, read-only",
+      "paths": [
+        "team/"
+      ]
+    }
+  ],
+  "envKeys": [
+    {
+      "name": "JIRA_TOKEN",
+      "description": "Personal Jira token from the Bitwarden vault - fetches worklogs from Tempo (takes precedence)"
+    },
+    {
+      "name": "JIRA_TECH_TOKEN",
+      "description": "Technical Jira token (fallback when there is no personal one)"
+    }
+  ],
+  "widgets": [
+    {
+      "id": "days-without-entry",
+      "label": "Days without a time entry",
+      "description": "How many people have working days without a Tempo entry in the last 14 days (time off is not subtracted) - no ranking of people.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        {
+          "id": "s",
+          "label": "Small",
+          "cols": 2,
+          "rows": 1
+        },
+        {
+          "id": "m",
+          "label": "Medium",
+          "cols": 3,
+          "rows": 1
+        },
+        {
+          "id": "l",
+          "label": "Wide",
+          "cols": 6,
+          "rows": 1
+        },
+        {
+          "id": "s2",
+          "label": "Small, tall",
+          "cols": 2,
+          "rows": 2
+        },
+        {
+          "id": "m2",
+          "label": "Medium, tall",
+          "cols": 3,
+          "rows": 2
+        },
+        {
+          "id": "xl",
+          "label": "Wide, tall",
+          "cols": 6,
+          "rows": 2
+        }
+      ],
+      "defaultVariant": "m2"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

@@ -1,0 +1,271 @@
+:root {
+  font-family: var(--font-main);
+  line-height: var(--lh-base);
+  color: var(--body-primary-text);
+  background: var(--body-primary-bg);
+}
+
+html, body, #root {
+  margin: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.shell {
+  width: min(720px, calc(100% - var(--space-32)));
+  margin: 0 auto;
+  padding: var(--space-16) 0 var(--space-24);
+}
+
+/* ── Topbar strip ─────────────────────────────────────────── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+  padding: var(--space-8) 0;
+  margin-bottom: var(--space-16);
+  border-bottom: 1px solid var(--body-tertiary-border);
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.topbar-logo {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.topbar-brand-name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+}
+
+.topbar-user-email {
+  display: none;
+}
+
+.topbar-user--muted {
+  font-style: italic;
+}
+
+.topbar-user-name {
+  font-weight: var(--font-weight-medium);
+  color: var(--body-primary-text);
+}
+
+.topbar-logout {
+  color: var(--body-brand-text);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.topbar-logout:hover,
+.topbar-logout:focus-visible {
+  text-decoration: underline;
+}
+
+/* ── Welcome card ─────────────────────────────────────────── */
+.welcome-card {
+  background: var(--body-primary-bg);
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-s);
+  padding: var(--space-24);
+  text-align: center;
+}
+
+.welcome-illustration {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-16);
+}
+
+.welcome-illustration img {
+  width: 100px;
+  height: 100px;
+}
+
+.welcome-card h1 {
+  margin: 0 0 var(--space-8);
+  font-size: var(--text-lg);
+  line-height: var(--lh-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.welcome-card p {
+  margin: 0 0 var(--space-16);
+  color: var(--body-secondary-text);
+  font-size: var(--text-sm);
+  line-height: var(--lh-base);
+}
+
+/* ── Code entry form ──────────────────────────────────────── */
+.code-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+  text-align: left;
+}
+
+.code-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  width: 100%;
+  max-width: 400px;
+}
+
+.code-form-label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--body-primary-text);
+}
+
+.code-input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 48px;
+  padding: 0 var(--space-16);
+  border: 1px solid var(--form-primary-default-border);
+  border-radius: var(--radius-s);
+  background: var(--form-primary-default-bg);
+  color: var(--form-primary-filled-text);
+  font-size: var(--text-sm);
+  outline: none;
+  transition: border-color 0.2s, outline 0.1s;
+}
+
+.code-input::placeholder {
+  color: var(--form-primary-default-text);
+}
+
+.code-input:hover {
+  border-color: var(--form-primary-hover-border);
+}
+
+.code-input:focus-visible {
+  border-color: var(--form-primary-focused-border);
+  outline: 2px solid var(--body-brand-text);
+  outline-offset: -1px;
+  color: var(--form-primary-focused-text);
+}
+
+.code-input.is-error {
+  border-color: var(--form-primary-error-border);
+}
+
+.code-submit {
+  width: 100%;
+  max-width: 400px;
+  height: 48px;
+  padding: 0 var(--space-24);
+  border: 1px solid transparent;
+  border-radius: var(--radius-max);
+  background: var(--body-brand-text);
+  color: var(--body-invert-text);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.code-submit:hover:not(:disabled),
+.code-submit:focus-visible:not(:disabled) {
+  background: var(--clickable-primary-hover-bg);
+}
+
+.code-submit:disabled {
+  background: var(--clickable-primary-disable-bg);
+  color: var(--clickable-primary-disable-text);
+  border-color: var(--clickable-primary-disable-border);
+  cursor: not-allowed;
+}
+
+.code-error {
+  margin: var(--space-12) 0 0;
+  color: var(--state-danger-text);
+  font-size: var(--text-sm);
+}
+
+/* ── Prototype placeholder ────────────────────────────────── */
+.placeholder-code {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+}
+
+.placeholder-back {
+  display: inline-block;
+  margin-top: var(--space-16);
+  color: var(--body-brand-text);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.placeholder-back:hover {
+  text-decoration: underline;
+}
+
+/* ── Desktop breakpoint ───────────────────────────────────── */
+@media (min-width: 768px) {
+  .shell {
+    padding: var(--space-48) 0;
+  }
+
+  .topbar {
+    gap: var(--space-16);
+    padding: var(--space-12) 0;
+    margin-bottom: var(--space-32);
+  }
+
+  .topbar-user-email {
+    display: inline;
+  }
+
+  .welcome-illustration img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .welcome-card {
+    padding: var(--space-32);
+  }
+
+  .welcome-card h1 {
+    font-size: var(--text-3xl);
+    line-height: var(--lh-3xl);
+  }
+
+  .welcome-card p {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-24);
+  }
+}

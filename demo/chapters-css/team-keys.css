@@ -1,0 +1,23 @@
+/* demo/chapters-css/team-keys.css - layout for chapter `team-keys` mocks; DS tokens only. */
+
+/* The decrypt stream under the wizard's progress bar. */
+.klucze-dla-zespolu-stream {
+  margin-top: var(--space-8);
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-s);
+  background: var(--body-secondary-bg);
+  border: 1px solid var(--body-tertiary-border);
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  max-height: 140px;
+  overflow: auto;
+}
+
+
+.klucze-dla-zespolu-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  width: 100%;
+  justify-content: flex-end;
+}

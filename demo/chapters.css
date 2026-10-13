@@ -1,0 +1,25 @@
+/* demo/chapters.css - per-chapter mock layout, one file each. */
+@import url('./chapters-css/settings.css');
+@import url('./chapters-css/academy.css');
+@import url('./chapters-css/new-module.css');
+@import url('./chapters-css/publishing.css');
+@import url('./chapters-css/catalog.css');
+@import url('./chapters-css/using-a-module.css');
+@import url('./chapters-css/design.css');
+@import url('./chapters-css/sync.css');
+@import url('./chapters-css/meetings.css');
+@import url('./chapters-css/time-tracking.css');
+@import url('./chapters-css/roadmap.css');
+@import url('./chapters-css/team.css');
+@import url('./chapters-css/sprints.css');
+@import url('./chapters-css/skills-and-agents.css');
+@import url('./chapters-css/updates.css');
+@import url('./chapters-css/summary.css');
+@import url('./chapters-css/team-keys.css');
+@import url('./chapters-css/day-cycle.css');
+@import url('./chapters-css/on-call-and-time-off.css');
+@import url('./chapters-css/onboarding.css');
+@import url('./chapters-css/start.css');
+@import url('./chapters-css/jira-confluence.css');
+@import url('./chapters-css/guides.css');
+@import url('./chapters-css/feedback.css');

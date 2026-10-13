@@ -1,0 +1,25 @@
+GUARDIAN -- Quiet  |  MISSION DECK  |  Phase 6e  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | QUIET // conventions watch         [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ node scripts/check-conventions.js              |
+  |                                                   |
+  |  [x] tokens, not hex colours                      |
+  |  [x] ASCII identifiers                            |
+  |  [x] the house rules, kept                        |
+  |                                                   |
+  |  > quiet when it is right.                        |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Quiet - Guardian
+    {{MODEL}}

@@ -1,0 +1,86 @@
+/* demo/chapters-css/time-tracking.css - "Time logging" mock layout.
+   Port of modules/time-log/client/style.css (.tlc-* -> .czas-pracy-*),
+   DS tokens only. */
+
+.czas-pracy-header-row { display: flex; align-items: center; gap: var(--space-8); margin-bottom: var(--space-12); min-height: 20px; }
+.czas-pracy-toolbar { display: flex; gap: var(--space-12); align-items: center; flex-wrap: wrap; margin-bottom: var(--space-12); }
+.czas-pracy-search-wrap { flex: 1; min-width: 200px; max-width: 280px; margin: 0; }
+.czas-pracy-team-seg { flex-shrink: 0; }
+.czas-pracy-toolbar-actions { display: inline-flex; gap: var(--space-8); align-items: center; margin-left: auto; }
+.czas-pracy-count { font-size: var(--text-xs); color: var(--body-tertiary-text); }
+
+.czas-pracy-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: var(--text-xs); color: var(--body-secondary-text); margin: 0 0 10px; padding: 0; }
+.czas-pracy-legend li { display: flex; align-items: center; gap: var(--space-8); }
+.czas-pracy-legend-note { color: var(--body-tertiary-text); }
+.czas-pracy-legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.czas-pracy-legend-dot--logged { background: var(--brand-accent); }
+.czas-pracy-legend-dot--miss { background: var(--state-danger-bg); }
+.czas-pracy-legend-dot--vacation { background: var(--body-tertiary-bg); opacity: 0.5; }
+.czas-pracy-legend-dot--weekend { background: var(--body-tertiary-bg); opacity: 0.4; }
+.czas-pracy-legend-dot--holiday { background: var(--body-tertiary-bg); opacity: 0.35; }
+
+.czas-pracy-grid-wrap { border: 1px solid var(--body-tertiary-border); border-radius: var(--fds-radius-card); margin-bottom: var(--space-12); }
+.czas-pracy-grid { display: grid; gap: 2px; padding: 4px; }
+.czas-pracy-cell {
+  position: relative; height: 26px; min-width: 28px; border-radius: var(--fds-radius-input);
+  display: flex; align-items: center; justify-content: center; font-size: 11px;
+  transition: background-color 0.5s ease;
+}
+.czas-pracy-cell--header { font-size: 10px; font-weight: 600; color: var(--body-secondary-text); align-items: flex-end; padding-bottom: 3px; height: 28px; }
+.czas-pracy-cell--logged {
+  background: color-mix(in srgb, var(--brand-accent) calc((0.25 + var(--czas-pracy-frac, 1) * 0.75) * 100%), transparent);
+  color: var(--body-primary-text);
+  cursor: pointer;
+}
+.czas-pracy-cell--logged.czas-pracy-cell--hi { color: var(--surface-primary); }
+.czas-pracy-cell--logged.demo-hover { outline: 2px solid var(--brand-accent); outline-offset: 1px; }
+.czas-pracy-cell--miss { background: var(--state-danger-bg); }
+.czas-pracy-cell--weekend { background: var(--body-tertiary-bg); opacity: 0.4; }
+.czas-pracy-cell--summary { background: transparent; font-weight: 600; color: var(--body-secondary-text); border-top: 1px solid var(--body-tertiary-border); }
+.czas-pracy-cell--row-sum { font-weight: 600; background: transparent; padding: 0 4px; min-width: 36px; }
+.czas-pracy-cell-h { font-size: 9px; font-weight: 700; line-height: 1; pointer-events: none; }
+.czas-pracy-sum--full { color: var(--brand-accent); }
+.czas-pracy-sum--ok { color: var(--body-secondary-text); }
+.czas-pracy-sum--warn { color: var(--state-danger-text); }
+
+.czas-pracy-name-cell {
+  font-size: var(--text-xs); padding: 0 10px 0 4px; color: var(--body-secondary-text); white-space: nowrap;
+  overflow: hidden; display: flex; align-items: center; gap: 6px;
+}
+.czas-pracy-name-cell.czas-pracy-cell--summary { font-weight: 600; border-top: 1px solid var(--body-tertiary-border); }
+.czas-pracy-avatar {
+  width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--body-tertiary-bg); color: var(--body-primary-text); font-size: 9px; font-weight: 600;
+}
+.czas-pracy-name-text { overflow: hidden; text-overflow: ellipsis; }
+.ds-btn.czas-pracy-teams-btn { margin-left: auto; flex-shrink: 0; padding: 2px 4px; min-width: 0; height: auto; }
+
+.czas-pracy-tooltip {
+  position: absolute; top: calc(100% + 6px); left: 0; z-index: 20; text-align: left;
+  background: var(--surface-primary); border: 1px solid var(--body-tertiary-border); border-radius: var(--fds-radius-tooltip);
+  box-shadow: var(--shadow-md); padding: 8px 10px; min-width: 300px; font-size: var(--text-xs); color: var(--body-primary-text);
+  animation: czas-pracy-pop 0.2s ease-out;
+}
+.czas-pracy-tt-hours { font-size: 11px; font-weight: 600; color: var(--brand-accent); margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid var(--body-tertiary-border); }
+.czas-pracy-tt-row { display: flex; flex-direction: column; gap: 1px; padding: 4px 0; line-height: 1.4; }
+.czas-pracy-tt-row + .czas-pracy-tt-row { border-top: 1px solid var(--body-tertiary-border); }
+.czas-pracy-tt-main { display: flex; gap: 6px; align-items: baseline; white-space: nowrap; }
+.czas-pracy-tt-key { font-weight: 600; color: var(--brand-accent); font-size: 11px; }
+.czas-pracy-tt-sum { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+.czas-pracy-tt-h { font-size: 10px; color: var(--body-tertiary-text); margin-left: auto; padding-left: 8px; }
+.czas-pracy-tt-logged { font-size: 10px; color: var(--body-tertiary-text); }
+
+.czas-pracy-fill { width: var(--ips-pct, 0%); transition: width 0.4s ease; }
+.czas-pracy-log-list { max-height: 160px; overflow-y: auto; margin: var(--space-8) 0; font-size: var(--text-xs); color: var(--body-secondary-text); }
+
+@keyframes czas-pracy-pop { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .czas-pracy-tooltip { animation: none; } .czas-pracy-cell, .czas-pracy-fill { transition: none; } }
+/* The module prints plain lines, not a console. */
+#czas-pracy-log .demo-log-line { font-family: inherit; font-size: var(--text-xs); line-height: 1.6; padding: 2px 0; }
+/* "Who has not logged time": the row and the empty day the presenter points at. */
+.czas-pracy-name-cell--spot { color: var(--state-danger-text); font-weight: 600; }
+.czas-pracy-cell--spot { outline: 2px solid var(--state-danger-icon); outline-offset: 1px; animation: czas-pracy-pulse 1.2s ease-in-out 2; }
+@keyframes czas-pracy-pulse { 50% { outline-offset: 4px; } }
+@media (prefers-reduced-motion: reduce) { .czas-pracy-cell--spot { animation: none; } }
+
+.czas-pracy-cell.demo-hover { filter: brightness(0.94); }

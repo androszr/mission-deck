@@ -1,0 +1,25 @@
+IMPLEMENTER -- Cipher  |  MISSION DECK  |  Phase 6  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | CIPHER // build terminal           [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ git status --short                             |
+  |  $ node scripts/gates.js --unit                   |
+  |                                                   |
+  |  write the code the plan asked for.               |
+  |  nothing more. nothing less.                      |
+  |                                                   |
+  |  > every line earns its place.                    |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Cipher - Implementer
+    {{MODEL}}

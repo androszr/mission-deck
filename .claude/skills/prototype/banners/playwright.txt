@@ -1,0 +1,25 @@
+PLAYWRIGHT -- Proxy  |  PROTOTYPE  |  Phase 6g  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | PROXY // screenshots               [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ open /#proto-detail                            |
+  |                                                   |
+  |  [x] every breakpoint                             |
+  |  [x] every demo state                             |
+  |  [x] console stays empty                          |
+  |                                                   |
+  |  > pictures or it did not happen.                 |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Proxy - Playwright
+    {{MODEL}}

@@ -1,0 +1,66 @@
+<!--
+  on-call/tests/fixtures/oncall-schedule.html
+  Hand-written, fully synthetic export_view fragment reproducing every
+  irregularity the parser has to survive: mixed <th>/<td><strong> headers, a
+  section row that names the next system, hours split across two <p> blocks
+  and glued with none, a colspan="4" weekend duty, a two-block cell with
+  scope suffixes that override the physical column, a " / " cell carrying a
+  typo, a <br>-separated cell, both weekday spellings, leading-zero and bare
+  dates, &nbsp;/&eacute; entities, and a roster row with two e-mails split
+  by "/". Every person, e-mail, phone and company here is made up.
+-->
+<h1>On-call schedule</h1>
+
+<h2>On-call roster</h2>
+<table class="confluenceTable">
+  <tr><td></td><td><strong>Inventory</strong></td><td><strong>Orders</strong></td><td><strong>Platform</strong></td><td><strong>Email</strong></td><td><strong>Phone</strong></td><td><strong>Company</strong></td><td></td></tr>
+  <tr><td>Alex Morgan</td><td><img class="emoticon" src="/images/icons/emoticons/72/2705.png" alt="check mark button" width="16"/> </td><td><img class="emoticon" src="/images/icons/emoticons/72/2705.png" alt="check mark button" width="16"/> </td><td><img class="emoticon" src="/images/icons/emoticons/72/274c.png" alt="cross mark" width="16"/> </td><td>alex.morgan@example.com</td><td>+48 600 000 001</td><td>Acme Ltd</td><td>DEVOPS</td></tr>
+  <tr><td>Sam Rivera</td><td><img class="emoticon" src="/images/icons/emoticons/72/2705.png" alt="check mark button" width="16"/> </td><td><img class="emoticon" src="/images/icons/emoticons/72/2705.png" alt="check mark button" width="16"/> </td><td><img class="emoticon" src="/images/icons/emoticons/72/274c.png" alt="cross mark" width="16"/> </td><td>sam.rivera@example.com</td><td>+48 600 000 002</td><td>Globex</td><td>DEVOPS</td></tr>
+  <tr><td>Jordan Lee</td><td></td><td></td><td></td><td>jordan.lee@example.com</td><td>+48 600 000 003</td><td>Globex</td><td>DEVOPS</td></tr>
+  <tr><td>Taylor Kim</td><td></td><td></td><td></td><td>taylor.kim@example.com</td><td>+48 600 000 004</td><td>Acme Ltd</td><td>DEVOPS</td></tr>
+  <tr><td>Casey Novak</td><td></td><td></td><td></td><td>casey.novak@example.com/ c.novak@example.org</td><td>+48 600 000 005</td><td>Acme Ltd</td><td>BE</td></tr>
+  <tr><td>Riley Chen</td><td></td><td></td><td></td><td>riley.chen@example.com</td><td>+48 600 000 006</td><td>Initech</td><td>BE</td></tr>
+  <tr><td>Morgan Blake</td><td></td><td></td><td></td><td>morgan.blake@example.com</td><td>+48 600 000 007</td><td>Globex</td><td>BE</td></tr>
+  <tr><td>Jamie Ortiz</td><td></td><td></td><td></td><td>jamie.ortiz@example.com</td><td>+48 600 000 008</td><td>Initech&nbsp;Labs</td><td>BE</td></tr>
+  <tr><td>Drew Patel</td><td></td><td></td><td></td><td>drew.patel@example.com</td><td>+48 600 000 009</td><td>Initech Labs</td><td>BE</td></tr>
+  <tr><td>Avery Brooks</td><td></td><td></td><td></td><td>avery.brooks@example.com</td><td>+48 600 000 010</td><td>Acme Ltd</td><td>BE</td></tr>
+  <tr><td>Quinn Harper-Ellis</td><td></td><td></td><td></td><td>quinn.harper-ellis@example.com</td><td>+48 600 000 011</td><td>Acme Ltd</td><td>BE</td></tr>
+  <tr><td>Rowan Fischer</td><td></td><td></td><td></td><td>rowan.fischer@example.com</td><td>+48 600 000 012</td><td>Globex</td><td>BE</td></tr>
+</table>
+
+<h2>Coordination</h2>
+<table class="confluenceTable">
+  <tr><th>Person</th><th>Email</th><th>Phone</th></tr>
+  <tr><td>Robin Hayes</td><td>robin.hayes@example.com</td><td>+48 600 000 021</td></tr>
+  <tr><td>Skyler Grant</td><td>skyler.grant@example.com</td><td>+48 600 000 022</td></tr>
+  <tr><td>Ren&eacute;e Parker</td><td>renee.parker@example.com</td><td>+48 600 000 023 or Teams (on-call chat)</td></tr>
+</table>
+
+<h2>On-call hours</h2>
+<table class="confluenceTable">
+  <tr><th>Inventory</th><th>Days of week</th><th>Hours</th><th>Scope</th></tr>
+  <tr><td><br/></td><td>Monday - Friday</td><td>5:30-17:0020:00-23:00</td><td>Backend</td></tr>
+  <tr><td><br/></td><td>Saturday - Sunday</td><td>20:00-23:00</td><td>Backend</td></tr>
+  <tr><td><br/></td><td>Monday - Friday</td><td>5:30-12:00</td><td>DevOps</td></tr>
+  <tr><td>Orders</td><td><br/></td><td><br/></td><td><br/></td></tr>
+  <tr><td><br/></td><td>Monday - Friday</td><td><p>5:30-12:00</p><p>20:00-23:00</p></td><td>Backend and DevOps</td></tr>
+  <tr><td><br/></td><td>Saturday</td><td>20:00-23:00</td><td>Backend and DevOps</td></tr>
+  <tr><td><br/></td><td>Sunday</td><td>6:00-12:00<br>20:00-23:00</td><td>Backend and DevOps</td></tr>
+  <tr><td>Platform</td><td>Days of week</td><td>Hours</td><td>Scope</td></tr>
+  <tr><td><br/></td><td>Monday - Friday</td><td>17:00-9:00</td><td>Backend</td></tr>
+  <tr><td><br/></td><td>Saturday</td><td>all day</td><td>Backend</td></tr>
+  <tr><td><br/></td><td>Monday - Friday</td><td>business 9:00-17:00</td><td>standard support from the Backend and DevOps teams</td></tr>
+</table>
+
+<h2>Schedule</h2>
+<table class="confluenceTable">
+  <tr><th>Date</th><th>Day</th><th>Backend Inventory</th><th>Backend Orders</th><th>Backend Platform</th><th>DevOps</th></tr>
+  <tr><td>1.08</td><td>Sat</td><td>Drew Patel</td><td>Avery Brooks</td><td>Rowan Fischer</td><td>Lee Jordan</td></tr>
+  <tr><td>2.08</td><td>Sun</td><td colspan="4">Rivera Sam</td></tr>
+  <tr><td>3.08</td><td>Mon</td><td>Quinn Harper-Ellis</td><td></td><td><strong title="">Rivera Sam </strong>- Orders<br title=""/><strong title="">Dana Whitfield </strong>- Inventory</td><td></td></tr>
+  <tr><td>5.08</td><td>Wednesday</td></tr>
+  <tr><td>8.08</td><td>Sat</td><td>Patel Drew / Drew Patle</td><td>Jamie Ortiz</td></tr>
+  <tr><td>17.08</td><td>Mon</td><td>Jamie Ortiz<br>Morgan Blake</td></tr>
+  <tr><td>01.09</td><td>Tue</td><td>Novak Casey</td><td></td><td></td><td>Alex Morgan</td></tr>
+  <tr><td>30.09</td><td>Wed</td></tr>
+</table>

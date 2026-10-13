@@ -1,0 +1,276 @@
+/* modules/qa-tests/client/style.css
+   QA Tests module styles.
+   Prefix: .qa-tests-*
+   Colors: var(--token) only, zero hex literals.
+   Status-bar custom properties mapped to DS semantic tokens.
+   Conventions 2c: no display:flex/grid on td/th, no flex-wrap on tile rows. */
+
+/* -- Status bar colors (mapped to DS tokens) ------------------------------ */
+/* Mapping rationale (hue match to the Jira status colors):
+   New               => assistive-plum (violet)
+   Open              => state-warning  (amber)
+   In progress       => state-info     (blue)
+   Blocked           => state-danger   (red)
+   Manual test       => assistive-cranberry (magenta/red)
+   Automated         => state-success  (green)              */
+:root {
+  --qa-bar-new:               var(--assistive-plum-icon);
+  --qa-bar-open:              var(--state-warning-icon);
+  --qa-bar-in-progress:       var(--state-info-icon);
+  --qa-bar-blocked:           var(--state-danger-icon);
+  --qa-bar-test:              var(--assistive-cranberry-icon);
+  --qa-bar-automated:         var(--state-success-icon);
+}
+
+/* -- KPI groups ----------------------------------------------------------- */
+.qa-tests-kpi-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16, 16px);
+  margin-bottom: var(--space-24, 24px);
+}
+
+.qa-tests-kpi-subject {
+  font-size: var(--text-sm);
+}
+
+.qa-tests-kpi-sub {
+  font-weight: var(--font-weight-normal, 400);
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  display: block;
+}
+
+/* -- Savings section ------------------------------------------------------ */
+.qa-tests-savings-section {
+  margin-bottom: var(--space-24, 24px);
+}
+
+/* -- Filter bar: input + collapse button in section-head-actions ---------- */
+.qa-tests-filter-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8, 8px);
+}
+
+.qa-tests-search {
+  height: 36px;
+  padding: 0 var(--space-12, 12px);
+  min-width: 220px;
+}
+
+/* -- Stacked bar ---------------------------------------------------------- */
+.qa-tests-stacked-bar {
+  display: flex;
+  height: 12px;
+  border-radius: var(--radius-s);
+  overflow: hidden;
+  background: var(--body-secondary-bg);
+  flex: 1;
+  min-width: 60px;
+}
+
+.qa-tests-bar-seg {
+  height: 100%;
+  min-width: 2px;
+}
+
+.qa-tests-bar-empty {
+  color: var(--body-tertiary-text);
+}
+
+/* -- Table bars cell ------------------------------------------------------ */
+.qa-tests-bars-cell {
+  min-width: 180px;
+}
+
+.qa-tests-bars-dual {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.qa-tests-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qa-tests-bar-lbl {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  width: 26px;
+  flex-shrink: 0;
+}
+
+.qa-tests-bar-pct {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  width: 44px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+/* -- Module parent row ---------------------------------------------------- */
+.qa-tests-mod-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.qa-tests-runs-line {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  padding-left: 24px; /* indent under the toggle chevron */
+}
+
+.qa-tests-runs-zero {
+  color: var(--body-tertiary-text);
+}
+
+/* -- Aggregate row -------------------------------------------------------- */
+.qa-tests-aggregate-row td {
+  border-top: 2px solid var(--body-tertiary-border);
+}
+
+/* -- Test rows ------------------------------------------------------------ */
+.qa-tests-test-row.hidden {
+  display: none;
+}
+
+.qa-tests-test-name {
+  padding-left: var(--space-32, 32px) !important;
+}
+
+.qa-tests-test-key {
+  font-size: var(--text-xs);
+  margin-right: var(--space-8, 8px);
+}
+
+.qa-tests-test-summary {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+}
+
+.qa-tests-test-est {
+  font-size: var(--text-xs);
+}
+
+/* -- Runs badge ----------------------------------------------------------- */
+.qa-tests-runs-badge {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--state-info-text);
+  background: var(--state-info-bg);
+  border-radius: var(--radius-max);
+  padding: 2px 8px;
+  cursor: default;
+}
+
+.qa-tests-runs-zero {
+  color: var(--body-tertiary-text);
+}
+
+/* -- Legend --------------------------------------------------------------- */
+.qa-tests-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8, 8px) var(--space-16, 16px);
+  margin-bottom: var(--space-24, 24px);
+}
+
+.qa-tests-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6, 6px);
+  font-size: var(--text-sm);
+}
+
+.qa-tests-legend-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* -- Footer --------------------------------------------------------------- */
+.qa-tests-footer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-16, 16px);
+  margin-bottom: var(--space-24, 24px);
+}
+
+@media (max-width: 768px) {
+  .qa-tests-footer {
+    grid-template-columns: 1fr;
+  }
+}
+
+.qa-tests-footer-card {
+  /* ds-card provides the card chrome */
+}
+
+.qa-tests-footer-h3 {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold, 600);
+  margin: 0 0 var(--space-8, 8px) 0;
+  color: var(--body-primary-text);
+}
+
+.qa-tests-footer-hint {
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+}
+
+/* -- Min hint (small secondary number under stat label) ------------------- */
+.qa-tests-min-hint {
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+}
+
+/* -- Skeleton -------------------------------------------------------------- */
+.qa-tests-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16, 16px);
+}
+
+/* -- Refresh modal -------------------------------------------------------- */
+.qa-tests-refresh-freshness {
+  margin-bottom: var(--space-8, 8px);
+  font-size: var(--text-sm);
+}
+
+.qa-tests-refresh-log {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: var(--space-12, 12px);
+  padding: var(--space-8, 8px);
+  background: var(--body-secondary-bg);
+  border-radius: var(--radius-s);
+  font-size: var(--text-xs);
+  font-family: var(--font-mono, monospace);
+  color: var(--body-secondary-text);
+}
+
+.qa-tests-refresh-log-line {
+  line-height: 1.6;
+}
+
+.qa-tests-refresh-step[hidden] {
+  display: none;
+}
+
+/* -- Table section head with filter --------------------------------------- */
+.qa-tests-table-head .ds-section-head-actions {
+  flex-wrap: wrap;
+}
+
+/* Spacing between KPI section and section head */
+.qa-tests-kpi-section + .qa-tests-savings-section,
+.qa-tests-savings-section + .ds-section-head {
+  margin-top: var(--space-8, 8px);
+}

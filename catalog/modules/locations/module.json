@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "locations",
+  "name": "Locations",
+  "version": "1.0.0",
+  "status": "stable",
+  "area": "Operations",
+  "description": "A searchable directory of locations (sites, branches, stores) with a full card per location and a one-file import from Excel or CSV",
+  "icon": "24-ic-shop",
+  "author": "androszr",
+  "tags": [
+    "locations",
+    "directory",
+    "knowledge",
+    "xlsx",
+    "csv"
+  ],
+  "sidebar": {
+    "label": "Locations",
+    "kind": "page",
+    "hub": "knowledge"
+  },
+  "views": [
+    {
+      "id": "locations-main",
+      "label": "Locations",
+      "title": "Locations",
+      "subtitle": "Directory of locations - search, full card and data import"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Locations directory and its light index in locations/",
+      "paths": [
+        "locations/"
+      ]
+    }
+  ],
+  "envKeys": [],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

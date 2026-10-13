@@ -1,0 +1,25 @@
+RESEARCH -- Vex  |  MISSION DECK  |  evidence  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | VEX // research desk               [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  > claims need sources.                           |
+  |                                                   |
+  |  [x] read the code, not the docs                  |
+  |  [x] cite every path                              |
+  |  [x] say what is unknown                          |
+  |                                                   |
+  |  > evidence first, opinion last.                  |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Vex - Research
+    {{MODEL}}

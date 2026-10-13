@@ -1,0 +1,126 @@
+{
+  "sprint": 12,
+  "sprintName": "Sprint 12",
+  "dateRange": {
+    "startDate": "2026-06-16",
+    "endDate": "2026-06-30"
+  },
+  "dateRangeDisplay": "16.06-30.06",
+  "fetchedAt": "2026-07-22T13:44:48",
+  "areas": {
+    "orders": {
+      "bugs": 1,
+      "bugFixTime": null,
+      "resolvedCount": 0,
+      "createdCount": 1,
+      "openBugs": [
+        {
+          "key": "APP-4510",
+          "summary": "[FE] Toast notifications sometimes stay open",
+          "status": "Open",
+          "priority": "Medium",
+          "created": "2026-06-17"
+        }
+      ],
+      "resolvedBugs": []
+    },
+    "otherModules": {
+      "bugs": 5,
+      "bugFixTime": 154.0,
+      "resolvedCount": 1,
+      "createdCount": 0,
+      "openBugs": [
+        {
+          "key": "APP-96",
+          "summary": "[FE] Refreshing stock levels does not update audit products",
+          "status": "Blocked",
+          "priority": "Medium",
+          "created": "2025-12-05"
+        },
+        {
+          "key": "APP-2823",
+          "summary": "Audit table flags rows that are not errors",
+          "status": "Open",
+          "priority": "Medium",
+          "created": "2026-03-28"
+        },
+        {
+          "key": "APP-3623",
+          "summary": "Rounding difference of 0.01 in daily totals",
+          "status": "Closed",
+          "priority": "High",
+          "created": "2026-05-05"
+        }
+      ],
+      "resolvedBugs": [
+        {
+          "key": "APP-1481",
+          "summary": "Catalogue: navigation to a product group scrolls to the wrong row while sorting",
+          "status": "Closed",
+          "priority": "Low",
+          "created": "2026-01-21",
+          "resolved": "2026-06-24",
+          "fixDays": 154
+        }
+      ]
+    },
+    "platform": {
+      "bugs": 58,
+      "bugFixTime": 18.0,
+      "resolvedCount": 11,
+      "createdCount": 10,
+      "openBugs": [
+        {
+          "key": "WEB-15233",
+          "summary": "Wrong quantities of linked products",
+          "status": "In Progress",
+          "priority": "Low",
+          "created": "2024-09-04"
+        },
+        {
+          "key": "WEB-16486",
+          "summary": "Document from the previous day is missing from the total",
+          "status": "New",
+          "priority": "Medium",
+          "created": "2024-12-18"
+        },
+        {
+          "key": "WEB-17038",
+          "summary": "Missing documents for a resent order",
+          "status": "Done",
+          "priority": "Low",
+          "created": "2025-01-17"
+        }
+      ],
+      "resolvedBugs": [
+        {
+          "key": "WEB-23906",
+          "summary": "[BE] Harden the sync of recommendations with the ERP",
+          "status": "Done",
+          "priority": "Low",
+          "created": "2026-04-30",
+          "resolved": "2026-06-24",
+          "fixDays": 55
+        },
+        {
+          "key": "WEB-23907",
+          "summary": "[BE] Errors when deleting notification tokens",
+          "status": "Done",
+          "priority": "Low",
+          "created": "2026-04-30",
+          "resolved": "2026-06-24",
+          "fixDays": 55
+        },
+        {
+          "key": "WEB-24086",
+          "summary": "[BE] Rejected orders are not returned for read-only roles",
+          "status": "Done",
+          "priority": "Medium",
+          "created": "2026-05-20",
+          "resolved": "2026-06-16",
+          "fixDays": 27
+        }
+      ]
+    }
+  }
+}

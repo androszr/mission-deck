@@ -1,0 +1,25 @@
+LEAD -- Nyx  |  MISSION DECK  |  Phase 6c  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | NYX // lead review                 [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  > the whole change, one view.                    |
+  |                                                   |
+  |  [x] backend and frontend agree                   |
+  |  [x] contracts hold end to end                    |
+  |  [x] nothing half done                            |
+  |                                                   |
+  |  > time is the one resource we lack.              |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Nyx - Lead
+    {{MODEL}}

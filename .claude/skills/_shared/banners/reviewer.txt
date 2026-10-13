@@ -1,0 +1,25 @@
+REVIEW -- Nyx  |  MISSION DECK  |  adversarial  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | NYX // the interrogation           [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  > "show me."                                     |
+  |                                                   |
+  |  CHECKS:                                          |
+  |  [x] claim vs source alignment                    |
+  |  [x] confidence that is not earned                |
+  |  [x] coverage gaps nobody named                   |
+  |  [x] every cited path exists on disk              |
+  |                                                   |
+  |  > annotations, inline, no mercy.                 |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Nyx - Review
+    {{MODEL}}

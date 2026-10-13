@@ -1,0 +1,25 @@
+VERIFIER -- Ledger  |  MINI  |  Phase 6f  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | LEDGER // mini audit               [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  ACCEPTANCE CRITERIA:                             |
+  |  AC1 ........ verified                            |
+  |  AC2 ........ verified                            |
+  |                                                   |
+  |  > blind check against the plan.                  |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Ledger - Verifier
+    {{MODEL}}

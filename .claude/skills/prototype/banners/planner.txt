@@ -1,0 +1,25 @@
+PLANNER -- Overwatch  |  PROTOTYPE  |  Phase 4  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | OVERWATCH // prototype plan        [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  > one screen, every state.                       |
+  |                                                   |
+  |  [x] breakpoints                                  |
+  |  [x] demo states                                  |
+  |  [x] design system only                           |
+  |                                                   |
+  |  > plan the mock, not the backend.                |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Overwatch - Planner
+    {{MODEL}}

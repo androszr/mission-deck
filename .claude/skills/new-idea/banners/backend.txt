@@ -1,0 +1,25 @@
+BACKEND -- Vex  |  MISSION DECK  |  Phase 6a  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | VEX // server room                 [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ grep -n "// -- " server.js                     |
+  |                                                   |
+  |  [x] handler in its section                       |
+  |  [x] dispatch arm, chain lock                     |
+  |  [x] jsonResponse on every exit                   |
+  |                                                   |
+  |  > the API answers before you ask.                |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Vex - Backend
+    {{MODEL}}

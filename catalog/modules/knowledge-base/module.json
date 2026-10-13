@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "knowledge-base",
+  "name": "Knowledge base",
+  "version": "0.2.0",
+  "status": "beta",
+  "description": "A read-only browser of discovery documents in the team data repository (interviews, research, requirements, UX briefs). Documents are added as Markdown files under knowledge-base/ and travel with the team data sync.",
+  "icon": "24-ic-lightbulb",
+  "author": "androszr",
+  "tags": [
+    "knowledge",
+    "documents",
+    "research",
+    "confluence"
+  ],
+  "sidebar": {
+    "label": "Knowledge base",
+    "kind": "page",
+    "hub": "knowledge"
+  },
+  "views": [
+    {
+      "id": "knowledge-base-list",
+      "label": "Knowledge base",
+      "title": "Knowledge base",
+      "subtitle": "Discovery documents from the team data repository - interviews, research, requirements, UX briefs (read only)"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Team data: .md articles with optional .html reports in area directories under knowledge-base/ - read only",
+      "paths": [
+        "knowledge-base/"
+      ]
+    }
+  ],
+  "envKeys": [
+    {
+      "name": "CONFLUENCE_TOKEN",
+      "description": "Optional: \"Check for updates\" in the Confluence tab (from the vault)"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  },
+  "widgets": [
+    {
+      "id": "knowledge-new",
+      "label": "New in the knowledge base",
+      "description": "Number of documents in the knowledge base, split by type, the five newest articles and new documents per month.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        { "id": "s", "label": "Small", "cols": 2, "rows": 1 },
+        { "id": "s2", "label": "Small, tall", "cols": 2, "rows": 2 },
+        { "id": "m", "label": "Medium", "cols": 3, "rows": 1 },
+        { "id": "m2", "label": "Medium, tall", "cols": 3, "rows": 2 },
+        { "id": "l", "label": "Wide", "cols": 6, "rows": 1 }
+      ],
+      "defaultVariant": "m"
+    }
+  ]
+}

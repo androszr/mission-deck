@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "prod-bugs",
+  "name": "Prod Bugs",
+  "version": "0.1.2",
+  "status": "beta",
+  "description": "Open production bugs and mean fix time per sprint for three product areas (Orders, Other modules, Platform), fetched from Jira and refreshed from the app",
+  "icon": "24-ic-notification-error",
+  "author": "androszr",
+  "tags": [
+    "jira",
+    "bugs",
+    "production",
+    "platform",
+    "support"
+  ],
+  "sidebar": {
+    "label": "Prod Bugs",
+    "kind": "page",
+    "hub": "support"
+  },
+  "views": [
+    {
+      "id": "prod-bugs-main",
+      "label": "Prod Bugs",
+      "title": "Prod Bugs",
+      "subtitle": "Open production bugs and mean fix time per sprint: Orders, Other modules, Platform"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Per-sprint production bug shards (prod-bugs/prod-bugs-sprint-N.json), the manifest (a refresh only writes its availableProdBugsSprints key) and optional sprint bounds (prod-bugs/sprint-N.json)",
+      "paths": [
+        "prod-bugs/"
+      ]
+    }
+  ],
+  "envKeys": [
+    {
+      "name": "JIRA_TOKEN",
+      "description": "Personal Jira token (preferred)"
+    },
+    {
+      "name": "JIRA_TECH_TOKEN",
+      "description": "Technical Jira token (fallback)"
+    },
+    {
+      "name": "JIRA_URL",
+      "description": "Jira base URL (default https://jira.example.com)"
+    }
+  ],
+  "widgets": [
+    {
+      "id": "open-bugs",
+      "label": "Production bugs",
+      "description": "Open production bugs of the current sprint: count, resolved and created, trend and the split by area.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        {
+          "id": "s",
+          "label": "Small",
+          "cols": 2,
+          "rows": 1
+        },
+        {
+          "id": "s2",
+          "label": "Small, tall",
+          "cols": 2,
+          "rows": 2
+        },
+        {
+          "id": "m",
+          "label": "Medium",
+          "cols": 3,
+          "rows": 1
+        },
+        {
+          "id": "m2",
+          "label": "Medium, tall",
+          "cols": 3,
+          "rows": 2
+        },
+        {
+          "id": "l",
+          "label": "Wide",
+          "cols": 6,
+          "rows": 1
+        }
+      ],
+      "defaultVariant": "m2"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

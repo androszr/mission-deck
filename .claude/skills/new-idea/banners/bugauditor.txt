@@ -1,0 +1,25 @@
+BUG AUDITOR -- Hex  |  MISSION DECK  |  Phase 6.7  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | HEX // bug sweep                   [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ node scripts/diff-digest.js                    |
+  |                                                   |
+  |  null paths ..... checked                         |
+  |  races .......... checked                         |
+  |  error exits .... checked                         |
+  |                                                   |
+  |  > find it before a user does.                    |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Hex - Bug auditor
+    {{MODEL}}

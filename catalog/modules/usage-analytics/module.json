@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "id": "usage-analytics",
+  "name": "Usage Analytics",
+  "version": "0.1.1",
+  "status": "beta",
+  "description": "Mission Deck traffic from Amplitude: active people, sessions, page views and time - per module and per user, refreshed without scripts",
+  "icon": "24-ic-reports",
+  "author": "androszr",
+  "tags": [
+    "amplitude",
+    "analytics",
+    "usage",
+    "users",
+    "modules"
+  ],
+  "sidebar": {
+    "label": "Usage Analytics",
+    "kind": "page",
+    "hub": "activity"
+  },
+  "views": [
+    {
+      "id": "usage-analytics-main",
+      "label": "Usage Analytics",
+      "title": "Usage Analytics",
+      "subtitle": "Who uses Mission Deck and how - modules, people, time"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Mission Deck traffic summary (aggregated.json) computed from Amplitude",
+      "paths": [
+        "usage-analytics/"
+      ]
+    }
+  ],
+  "envKeys": [
+    {
+      "name": "AMPLITUDE_COCKPIT_API_KEY",
+      "description": "Amplitude - Mission Deck project, API key (from the vault)"
+    },
+    {
+      "name": "AMPLITUDE_COCKPIT_SECRET_KEY",
+      "description": "Amplitude - Mission Deck project, secret key (from the vault)"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  },
+  "widgets": [
+    {
+      "id": "usage-traffic",
+      "label": "Mission Deck traffic",
+      "description": "Mission Deck traffic over the last 7 days: active people, sessions and page views with change, a daily trend and the most used modules.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        {
+          "id": "s",
+          "label": "Small",
+          "cols": 2,
+          "rows": 1
+        },
+        {
+          "id": "m",
+          "label": "Medium",
+          "cols": 3,
+          "rows": 1
+        },
+        {
+          "id": "s2",
+          "label": "Small, tall",
+          "cols": 2,
+          "rows": 2
+        },
+        {
+          "id": "m2",
+          "label": "Medium, tall",
+          "cols": 3,
+          "rows": 2
+        },
+        {
+          "id": "l",
+          "label": "Wide",
+          "cols": 6,
+          "rows": 1
+        },
+        {
+          "id": "xl",
+          "label": "Wide, tall",
+          "cols": 6,
+          "rows": 2
+        }
+      ],
+      "defaultVariant": "m2"
+    }
+  ]
+}

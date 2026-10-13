@@ -1,0 +1,19 @@
+# Icon set (SVG, no code)
+assets/icons/ds/
+# Installation / onboarding docs
+docs/guides/
+# Vendor libs (minified, no useful graph edges)
+vendor/
+# Image assets and fonts (zero code)
+assets/
+fonts/
+# Claude Code agent/skill instructions (md/txt)
+.claude/
+# Plans (markdown + rendered html)
+plans/
+# User data and local caches
+user-data/
+data/
+data-sub-repositories/
+# Document templates (content, not code)
+templates/

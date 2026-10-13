@@ -1,0 +1,552 @@
+/* ============================================================
+   Mission Deck Design System - dark theme overrides
+   Applied via :root[data-theme="dark"] — see js/theme.js.
+   Every value below is a var() reference into the palette scales
+   already defined in css/ds-tokens.css (--ds-*), or an rgba()
+   literal for shadows/transparents. No new raw hex colors here.
+   ============================================================ */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Icons ship as <img> with a fixed mid-grey stroke (an <img> cannot inherit
+     currentColor); on a dark surface lift them to a light grey. */
+  --nav-icon-filter:      brightness(0) invert(88%);
+  --nav-icon-active-filter: brightness(0) invert(83%) sepia(70%) saturate(4734%) hue-rotate(310deg) brightness(103%) contrast(101%);
+
+  /* ── Semantic tokens — body ── */
+  --body-primary-bg:      var(--ds-gray-15);
+  --body-primary-border:  var(--ds-gray-45);
+  --body-primary-text:    var(--ds-gray-95);
+  --body-primary-icon:    var(--ds-gray-95);
+
+  --body-secondary-bg:    var(--ds-gray-25);
+  --body-secondary-border: var(--ds-gray-40);
+  --body-secondary-text:  var(--ds-gray-75);
+  --body-secondary-icon:  var(--ds-gray-75);
+
+  --body-tertiary-bg:     var(--ds-gray-35);
+  --body-tertiary-border: var(--ds-gray-30);
+  --body-tertiary-text:   var(--ds-gray-60);
+  --body-tertiary-icon:   var(--ds-gray-60);
+
+  --body-quaternary-bg:   var(--ds-gray-20);
+  --body-quaternary-icon: var(--ds-gray-60);
+
+  --body-invert-bg:       var(--ds-gray-15);
+  --body-invert-border:   var(--ds-gray-15);
+  --body-invert-text:     var(--ds-gray-15);
+  --body-invert-icon:     var(--ds-gray-15);
+
+  /* Brand steps here sit 20 above the light theme's (40 -> 60, 35 -> 55):
+     the indigo ramp is dark at its middle steps, so the dark theme reads
+     the lighter half to keep text and icons legible on gray-15. */
+  --body-brand-bg:        var(--ds-brand-60);
+  --body-brand-border:    var(--ds-brand-60);
+  --body-brand-text:      var(--ds-brand-60);
+  --body-brand-icon:      var(--ds-brand-60);
+
+  /* ── Semantic tokens — clickable ── */
+
+  /* primary (filled brand button) */
+  --clickable-primary-default-bg:     var(--ds-brand-55);
+  --clickable-primary-default-border: transparent;
+  --clickable-primary-default-text:   var(--ds-gray-15);
+  --clickable-primary-default-icon:   var(--ds-gray-15);
+  --clickable-primary-hover-bg:       var(--ds-brand-50);
+  --clickable-primary-hover-border:   transparent;
+  --clickable-primary-hover-text:     var(--ds-gray-15);
+  --clickable-primary-hover-icon:     var(--ds-gray-15);
+  --clickable-primary-pressed-bg:     var(--ds-brand-45);
+  --clickable-primary-pressed-border: transparent;
+  --clickable-primary-pressed-text:   var(--ds-gray-20);
+  --clickable-primary-pressed-icon:   var(--ds-gray-20);
+  --clickable-primary-disable-bg:     var(--ds-gray-25);
+  --clickable-primary-disable-border: var(--ds-gray-35);
+  --clickable-primary-disable-text:   var(--ds-gray-50);
+  --clickable-primary-disable-icon:   var(--ds-gray-50);
+
+  /* secondary (outlined brand button) */
+  --clickable-secondary-default-bg:     var(--ds-gray-15);
+  --clickable-secondary-default-border: var(--ds-gray-35);
+  --clickable-secondary-default-text:   var(--ds-brand-60);
+  --clickable-secondary-default-icon:   var(--ds-brand-60);
+  --clickable-secondary-hover-bg:       var(--ds-gray-25);
+  --clickable-secondary-hover-border:   transparent;
+  --clickable-secondary-hover-text:     var(--ds-brand-60);
+  --clickable-secondary-hover-icon:     var(--ds-brand-60);
+  --clickable-secondary-pressed-bg:     var(--ds-gray-25);
+  --clickable-secondary-pressed-border: transparent;
+  --clickable-secondary-pressed-text:   var(--ds-brand-50);
+  --clickable-secondary-pressed-icon:   var(--ds-brand-50);
+  --clickable-secondary-disable-bg:     var(--ds-gray-15);
+  --clickable-secondary-disable-border: var(--ds-gray-35);
+  --clickable-secondary-disable-text:   var(--ds-gray-50);
+  --clickable-secondary-disable-icon:   var(--ds-gray-50);
+
+  /* secondary — tab states */
+  --clickable-secondary-inactive-bg:     var(--ds-gray-15);
+  --clickable-secondary-inactive-border: var(--ds-gray-35);
+  --clickable-secondary-inactive-text:   var(--ds-gray-75);
+  --clickable-secondary-inactive-icon:   var(--ds-gray-60);
+  --clickable-secondary-active-bg:       var(--ds-gray-15);
+  --clickable-secondary-active-border:   var(--ds-brand-60);
+  --clickable-secondary-active-text:     var(--ds-brand-60);
+  --clickable-secondary-active-icon:     var(--ds-brand-60);
+
+  /* tertiary (ghost button) */
+  --clickable-tertiary-default-bg:     transparent;
+  --clickable-tertiary-default-border: transparent;
+  --clickable-tertiary-default-text:   var(--ds-brand-60);
+  --clickable-tertiary-default-icon:   var(--ds-brand-60);
+  --clickable-tertiary-hover-bg:       var(--ds-gray-25);
+  --clickable-tertiary-hover-border:   transparent;
+  --clickable-tertiary-hover-text:     var(--ds-brand-60);
+  --clickable-tertiary-hover-icon:     var(--ds-brand-60);
+  --clickable-tertiary-pressed-bg:     var(--ds-gray-25);
+  --clickable-tertiary-pressed-border: transparent;
+  --clickable-tertiary-pressed-text:   var(--ds-brand-50);
+  --clickable-tertiary-pressed-icon:   var(--ds-brand-50);
+  --clickable-tertiary-disable-bg:     transparent;
+  --clickable-tertiary-disable-border: transparent;
+  --clickable-tertiary-disable-text:   var(--ds-gray-50);
+  --clickable-tertiary-disable-icon:   var(--ds-gray-50);
+
+  /* ── Semantic tokens — state ── */
+  /* One palette step off --body-primary-bg (gray-15), the same distance the
+     light theme keeps (#ffffff -> #f2f2f2). It used to be gray-25, which is
+     ALSO --state-inactive-bg, --body-secondary-bg and
+     --clickable-primary-disable-bg: on a hovered table row the gray badge,
+     the module icon tile and the disabled "Zainstalowany" button lost their
+     shape entirely. Every surface this token is painted on is gray-15.
+     Known divergence from the catalog, on purpose: the production package
+     (the reference dark theme this palette was modelled on) sets --state-hover-bg to
+     `transparent` - no hover highlight in dark at all - while light.css
+     keeps a visible one. This cockpit's tables and rail rely on the hover
+     to show what is under the cursor in both themes, so dark keeps a
+     visible step rather than none; the old gray-25 was never a catalog
+     value either. */
+  --state-hover-bg:    var(--ds-gray-20);
+  --state-hover-text:  var(--ds-brand-60);
+  --state-hover-icon:  var(--ds-brand-60);
+
+  --state-success-bg:     var(--ds-green-15);
+  --state-success-border: transparent;
+  --state-success-text:   var(--ds-green-70);
+  --state-success-icon:   var(--ds-green-70);
+
+  --state-warning-bg:     var(--ds-yellow-15);
+  --state-warning-border: transparent;
+  --state-warning-text:   var(--ds-yellow-70);
+  --state-warning-icon:   var(--ds-yellow-60);
+
+  --state-danger-bg:     var(--ds-red-15);
+  --state-danger-border: transparent;
+  --state-danger-text:   var(--ds-red-70);
+  --state-danger-icon:   var(--ds-red-70);
+
+  --state-info-bg:     var(--ds-blue-15);
+  --state-info-border: transparent;
+  --state-info-text:   var(--ds-blue-70);
+  --state-info-icon:   var(--ds-blue-70);
+
+  --state-inactive-bg:     var(--ds-gray-25);
+  --state-inactive-border: transparent;
+  --state-inactive-text:   var(--ds-gray-75);
+  --state-inactive-icon:   var(--ds-gray-75);
+
+  --state-brand-bg:     var(--ds-gray-25);
+  --state-brand-border: transparent;
+  --state-brand-text:   var(--ds-brand-60);
+  --state-brand-icon:   var(--ds-brand-60);
+
+  /* ── Semantic tokens — assistive (badge variants) ── */
+  --assistive-wedgewood-bg:     var(--ds-cyan-25);
+  --assistive-wedgewood-border: transparent;
+  --assistive-wedgewood-text:   var(--ds-cyan-90);
+  --assistive-wedgewood-icon:   var(--ds-cyan-90);
+
+  --assistive-plum-bg:     var(--ds-violet-40);
+  --assistive-plum-border: transparent;
+  --assistive-plum-text:   var(--ds-violet-90);
+  --assistive-plum-icon:   var(--ds-violet-90);
+
+  --assistive-cranberry-bg:     var(--ds-magenta-40);
+  --assistive-cranberry-border: transparent;
+  --assistive-cranberry-text:   var(--ds-magenta-90);
+  --assistive-cranberry-icon:   var(--ds-magenta-90);
+
+  --assistive-mandarine-bg:     var(--ds-orange-40);
+  --assistive-mandarine-border: transparent;
+  --assistive-mandarine-text:   var(--ds-orange-90);
+  --assistive-mandarine-icon:   var(--ds-orange-90);
+
+  --assistive-amber-bg:     var(--ds-yellow-15);
+  --assistive-amber-border: var(--ds-yellow-60);
+  --assistive-amber-text:   var(--ds-yellow-70);
+  --assistive-amber-icon:   var(--ds-yellow-60);
+
+  /* ── Semantic tokens — table ── */
+  --table-primary-default-bg:     var(--ds-gray-25);
+  --table-primary-default-border: var(--ds-gray-35);
+  --table-primary-default-text:   var(--ds-gray-75);
+  --table-primary-default-icon:   var(--ds-brand-60);
+  --table-primary-hover-bg:       transparent;
+  --table-primary-hover-border:   var(--ds-gray-45);
+  --table-primary-active-bg:      transparent;
+  --table-primary-active-border:  var(--ds-brand-60);
+
+  --table-secondary-default-bg:     var(--ds-gray-15);
+  --table-secondary-default-border: transparent;
+  --table-secondary-default-text:   var(--ds-gray-75);
+  --table-secondary-default-icon:   var(--ds-gray-60);
+  --table-secondary-hover-bg:       var(--ds-gray-15);
+  --table-secondary-hover-text:     var(--ds-brand-60);
+  --table-secondary-hover-icon:     var(--ds-brand-60);
+
+  --table-tertiary-default-bg:     var(--ds-yellow-15);
+  --table-tertiary-default-border: transparent;
+  --table-tertiary-default-text:   var(--ds-gray-50);
+  --table-tertiary-default-icon:   var(--ds-yellow-60);
+
+  --table-quaternary-default-bg:     var(--ds-green-15);
+  --table-quaternary-default-border: var(--ds-gray-35);
+  --table-quaternary-default-text:   var(--ds-gray-75);
+  --table-quaternary-default-icon:   var(--ds-brand-60);
+
+  /* ── Semantic tokens — form ── */
+  --form-primary-default-bg:      var(--ds-gray-20);
+  --form-primary-default-border:  var(--ds-gray-45);
+  --form-primary-default-text:    var(--ds-gray-60);
+  --form-primary-default-icon:    var(--ds-gray-60);
+  --form-primary-hover-bg:        var(--ds-gray-20);
+  --form-primary-hover-border:    var(--ds-gray-55);
+  --form-primary-hover-text:      var(--ds-gray-75);
+  --form-primary-hover-icon:      var(--ds-gray-60);
+  --form-primary-focused-bg:      var(--ds-gray-20);
+  --form-primary-focused-border:  var(--ds-gray-55);
+  --form-primary-focused-text:    var(--ds-gray-75);
+  --form-primary-focused-icon:    var(--ds-brand-60);
+  --form-primary-filled-bg:       var(--ds-gray-20);
+  --form-primary-filled-border:   var(--ds-gray-45);
+  --form-primary-filled-text:     var(--ds-gray-75);
+  --form-primary-filled-icon:     var(--ds-gray-60);
+  --form-primary-disable-bg:      var(--ds-gray-25);
+  --form-primary-disable-border:  var(--ds-gray-40);
+  --form-primary-disable-text:    var(--ds-gray-55);
+  --form-primary-disable-icon:    var(--ds-gray-50);
+  --form-primary-error-bg:        var(--ds-gray-20);
+  --form-primary-error-border:    var(--ds-red-60);
+  --form-primary-error-text:      var(--ds-gray-75);
+  --form-primary-error-icon:      var(--ds-red-60);
+  --form-primary-success-bg:      var(--ds-gray-20);
+  --form-primary-success-border:  var(--ds-brand-60);
+  --form-primary-success-text:    var(--ds-gray-75);
+  --form-primary-success-icon:    var(--ds-brand-60);
+  --form-primary-warning-bg:      var(--ds-gray-20);
+  --form-primary-warning-border:  var(--ds-yellow-60);
+  --form-primary-warning-text:    var(--ds-gray-75);
+  --form-primary-warning-icon:    var(--ds-yellow-60);
+
+  /* ── Semantic tokens — legend (wykresy) ── */
+  --legend-1st-primary: var(--ds-green-60);  --legend-1st-secondary: var(--ds-brand-60); --legend-1st-tertiary: var(--ds-green-25);
+  --legend-2nd-primary: var(--ds-cyan-50);   --legend-2nd-secondary: var(--ds-cyan-25);  --legend-2nd-tertiary: var(--ds-cyan-25);
+  --legend-3rd-primary: var(--ds-blue-65);   --legend-3rd-secondary: var(--ds-blue-40);  --legend-3rd-tertiary: var(--ds-blue-25);
+  --legend-4th-primary: var(--ds-violet-40); --legend-4th-secondary: var(--ds-violet-40); --legend-4th-tertiary: var(--ds-violet-40);
+  --legend-5th-primary: var(--ds-red-65);    --legend-5th-secondary: var(--ds-red-40);   --legend-5th-tertiary: var(--ds-red-25);
+  --legend-6th-primary: var(--ds-magenta-40); --legend-6th-secondary: var(--ds-magenta-40); --legend-6th-tertiary: var(--ds-magenta-40);
+  --legend-7th-primary: var(--ds-yellow-65); --legend-7th-secondary: var(--ds-yellow-40); --legend-7th-tertiary: var(--ds-yellow-25);
+  --legend-8th-primary: var(--ds-gray-70);   --legend-8th-secondary: var(--ds-gray-45);  --legend-8th-tertiary: var(--ds-gray-30);
+  --legend-9th-primary: var(--ds-orange-40); --legend-9th-secondary: var(--ds-orange-40); --legend-9th-tertiary: var(--ds-orange-40);
+
+  /* ── Transparents ── */
+  --transparents-dark:      rgba(0,0,0,0.72);
+  --transparents-dark-grey: rgba(20,20,20,0.72);
+  --transparents-light:     rgba(255,255,255,0.16);
+
+  /* ── Shadows (raise alpha slightly so they read on dark surfaces) ── */
+  --shadow-s: 0px 1px 2px 0px rgba(0,0,0,0.32);
+  --shadow-m: 0px 4px 8px 0px rgba(0,0,0,0.32);
+  --shadow-l: 0px 16px 32px 0px rgba(0,0,0,0.40);
+  --shadow-none: none;
+
+  /* ── Legacy aliases (belt-and-suspenders — see css/ds-tokens.css) ── */
+  --brand-accent:       var(--ds-brand-60);
+  --brand-accent-light: var(--state-brand-bg);
+  --brand-accent-dark:  var(--ds-brand-50);
+  --bg-primary:        var(--body-primary-bg);
+  --bg-secondary:      var(--body-quaternary-bg);
+  --bg-sidebar:        var(--body-quaternary-bg);
+  --text-primary:      var(--body-primary-text);
+  --text-secondary:    var(--body-secondary-text);
+  --text-tertiary:     var(--body-tertiary-text);
+  --border:            var(--ds-gray-35);
+  --border-light:      var(--body-tertiary-border);
+  --border-primary:    var(--body-secondary-border);
+  --surface-2:         var(--body-quaternary-bg);
+  --surface-primary:   var(--body-primary-bg);
+  --red:               var(--state-danger-icon);
+  --red-light:         var(--state-danger-bg);
+  --yellow:            var(--state-warning-icon);
+  --yellow-light:      var(--state-warning-bg);
+  --shadow-sm:         var(--shadow-s);
+  --shadow-md:         var(--shadow-m);
+  --green-bg:          var(--state-success-bg);
+  --amber-bg:          var(--state-warning-bg);
+  --red-bg:            var(--state-danger-bg);
+}
+
+/* ============================================================
+   Prototype canvas — always light mode.
+   Prototypes render inline (not in an iframe), so dark-mode
+   tokens from :root cascade into them. This block re-declares
+   every semantic token to its light-mode value on the prototype
+   canvas element, cutting the dark cascade for all descendants.
+   Only activates when the app is in dark mode.
+   ============================================================ */
+:root[data-theme="dark"] .proto-viewport-canvas,
+:root[data-theme="dark"] .proto-standalone-shell {
+  color-scheme: light;
+
+  /* body */
+  --body-primary-bg:      #ffffff;
+  --body-primary-border:  #8c8c8c;
+  --body-primary-text:    #262626;
+  --body-primary-icon:    #262626;
+  --body-secondary-bg:    #e5e5e5;
+  --body-secondary-border: #bfbfbf;
+  --body-secondary-text:  #595959;
+  --body-secondary-icon:  #595959;
+  --body-tertiary-bg:     #bfbfbf;
+  --body-tertiary-border: #e5e5e5;
+  --body-tertiary-text:   #8c8c8c;
+  --body-tertiary-icon:   #8c8c8c;
+  --body-quaternary-bg:   #f2f2f2;
+  --body-quaternary-icon: #8c8c8c;
+  --body-invert-bg:       #ffffff;
+  --body-invert-border:   #ffffff;
+  --body-invert-text:     #ffffff;
+  --body-invert-icon:     #ffffff;
+  --body-brand-bg:        #b04f14;
+  --body-brand-border:    #b04f14;
+  --body-brand-text:      #b04f14;
+  --body-brand-icon:      #b04f14;
+
+  /* clickable — primary */
+  --clickable-primary-default-bg:     #b04f14;
+  --clickable-primary-default-border: transparent;
+  --clickable-primary-default-text:   #ffffff;
+  --clickable-primary-default-icon:   #ffffff;
+  --clickable-primary-hover-bg:       #6e3410;
+  --clickable-primary-hover-border:   transparent;
+  --clickable-primary-hover-text:     #ffffff;
+  --clickable-primary-hover-icon:     #ffffff;
+  --clickable-primary-pressed-bg:     #6e3410;
+  --clickable-primary-pressed-border: transparent;
+  --clickable-primary-pressed-text:   #e5e5e5;
+  --clickable-primary-pressed-icon:   #e5e5e5;
+  --clickable-primary-disable-bg:     #f2f2f2;
+  --clickable-primary-disable-border: #e5e5e5;
+  --clickable-primary-disable-text:   #bfbfbf;
+  --clickable-primary-disable-icon:   #bfbfbf;
+
+  /* clickable — secondary */
+  --clickable-secondary-default-bg:     #ffffff;
+  --clickable-secondary-default-border: #e5e5e5;
+  --clickable-secondary-default-text:   #b04f14;
+  --clickable-secondary-default-icon:   #b04f14;
+  --clickable-secondary-hover-bg:       #f2f2f2;
+  --clickable-secondary-hover-border:   transparent;
+  --clickable-secondary-hover-text:     #b04f14;
+  --clickable-secondary-hover-icon:     #b04f14;
+  --clickable-secondary-pressed-bg:     #f2f2f2;
+  --clickable-secondary-pressed-border: transparent;
+  --clickable-secondary-pressed-text:   #6e3410;
+  --clickable-secondary-pressed-icon:   #6e3410;
+  --clickable-secondary-disable-bg:     #ffffff;
+  --clickable-secondary-disable-border: #e5e5e5;
+  --clickable-secondary-disable-text:   #bfbfbf;
+  --clickable-secondary-disable-icon:   #bfbfbf;
+  --clickable-secondary-inactive-bg:     #ffffff;
+  --clickable-secondary-inactive-border: #e5e5e5;
+  --clickable-secondary-inactive-text:   #595959;
+  --clickable-secondary-inactive-icon:   #8c8c8c;
+  --clickable-secondary-active-bg:       #ffffff;
+  --clickable-secondary-active-border:   #b04f14;
+  --clickable-secondary-active-text:     #b04f14;
+  --clickable-secondary-active-icon:     #b04f14;
+
+  /* clickable — tertiary */
+  --clickable-tertiary-default-bg:     transparent;
+  --clickable-tertiary-default-border: transparent;
+  --clickable-tertiary-default-text:   #b04f14;
+  --clickable-tertiary-default-icon:   #b04f14;
+  --clickable-tertiary-hover-bg:       #f2f2f2;
+  --clickable-tertiary-hover-border:   transparent;
+  --clickable-tertiary-hover-text:     #b04f14;
+  --clickable-tertiary-hover-icon:     #b04f14;
+  --clickable-tertiary-pressed-bg:     #f2f2f2;
+  --clickable-tertiary-pressed-border: transparent;
+  --clickable-tertiary-pressed-text:   #6e3410;
+  --clickable-tertiary-pressed-icon:   #6e3410;
+  --clickable-tertiary-disable-bg:     transparent;
+  --clickable-tertiary-disable-border: transparent;
+  --clickable-tertiary-disable-text:   #bfbfbf;
+  --clickable-tertiary-disable-icon:   #bfbfbf;
+
+  /* state */
+  --state-hover-bg:    #f2f2f2;
+  --state-hover-text:  #b04f14;
+  --state-hover-icon:  #b04f14;
+  --state-success-bg:     #d1fadf;
+  --state-success-border: transparent;
+  --state-success-text:   #0d732f;
+  --state-success-icon:   #0d732f;
+  --state-warning-bg:     #fff2cc;
+  --state-warning-border: transparent;
+  --state-warning-text:   #806000;
+  --state-warning-icon:   #cc9900;
+  --state-danger-bg:     #fce8e8;
+  --state-danger-border: transparent;
+  --state-danger-text:   #b81414;
+  --state-danger-icon:   #b81414;
+  --state-info-bg:     #e8effc;
+  --state-info-border: transparent;
+  --state-info-text:   #144bb8;
+  --state-info-icon:   #144bb8;
+  --state-inactive-bg:     #f2f2f2;
+  --state-inactive-border: transparent;
+  --state-inactive-text:   #595959;
+  --state-inactive-icon:   #595959;
+  --state-brand-bg:     #f2f2f2;
+  --state-brand-border: transparent;
+  --state-brand-text:   #b04f14;
+  --state-brand-icon:   #b04f14;
+
+  /* assistive */
+  --assistive-wedgewood-bg:     #d1f7fa;
+  --assistive-wedgewood-border: transparent;
+  --assistive-wedgewood-text:   #0d6b73;
+  --assistive-wedgewood-icon:   #0d6b73;
+  --assistive-plum-bg:     #ede8fc;
+  --assistive-plum-border: transparent;
+  --assistive-plum-text:   #3d14b8;
+  --assistive-plum-icon:   #3d14b8;
+  --assistive-cranberry-bg:     #fce8fc;
+  --assistive-cranberry-border: transparent;
+  --assistive-cranberry-text:   #b814b8;
+  --assistive-cranberry-icon:   #b814b8;
+  --assistive-mandarine-bg:     #ffe5cc;
+  --assistive-mandarine-border: transparent;
+  --assistive-mandarine-text:   #804000;
+  --assistive-mandarine-icon:   #804000;
+  --assistive-amber-bg:     #fff2cc;
+  --assistive-amber-border: #cc9900;
+  --assistive-amber-text:   #806000;
+  --assistive-amber-icon:   #cc9900;
+
+  /* table */
+  --table-primary-default-bg:     #f2f2f2;
+  --table-primary-default-border: #e5e5e5;
+  --table-primary-default-text:   #595959;
+  --table-primary-default-icon:   #b04f14;
+  --table-primary-hover-bg:       transparent;
+  --table-primary-hover-border:   #8c8c8c;
+  --table-primary-active-bg:      transparent;
+  --table-primary-active-border:  #b04f14;
+  --table-secondary-default-bg:     #ffffff;
+  --table-secondary-default-border: transparent;
+  --table-secondary-default-text:   #595959;
+  --table-secondary-default-icon:   #8c8c8c;
+  --table-secondary-hover-bg:       #ffffff;
+  --table-secondary-hover-text:     #b04f14;
+  --table-secondary-hover-icon:     #b04f14;
+  --table-tertiary-default-bg:     #fff9e5;
+  --table-tertiary-default-border: transparent;
+  --table-tertiary-default-text:   #bfbfbf;
+  --table-tertiary-default-icon:   #cc9900;
+  --table-quaternary-default-bg:     #d1fadf;
+  --table-quaternary-default-border: #e5e5e5;
+  --table-quaternary-default-text:   #595959;
+  --table-quaternary-default-icon:   #b04f14;
+
+  /* form */
+  --form-primary-default-bg:      #ffffff;
+  --form-primary-default-border:  #bfbfbf;
+  --form-primary-default-text:    #8c8c8c;
+  --form-primary-default-icon:    #8c8c8c;
+  --form-primary-hover-bg:        #ffffff;
+  --form-primary-hover-border:    #8c8c8c;
+  --form-primary-hover-text:      #595959;
+  --form-primary-hover-icon:      #8c8c8c;
+  --form-primary-focused-bg:      #ffffff;
+  --form-primary-focused-border:  #8c8c8c;
+  --form-primary-focused-text:    #595959;
+  --form-primary-focused-icon:    #b04f14;
+  --form-primary-filled-bg:       #ffffff;
+  --form-primary-filled-border:   #bfbfbf;
+  --form-primary-filled-text:     #595959;
+  --form-primary-filled-icon:     #8c8c8c;
+  --form-primary-disable-bg:      #f2f2f2;
+  --form-primary-disable-border:  #bfbfbf;
+  --form-primary-disable-text:    #8c8c8c;
+  --form-primary-disable-icon:    #bfbfbf;
+  --form-primary-error-bg:        #ffffff;
+  --form-primary-error-border:    #b81414;
+  --form-primary-error-text:      #595959;
+  --form-primary-error-icon:      #b81414;
+  --form-primary-success-bg:      #ffffff;
+  --form-primary-success-border:  #b04f14;
+  --form-primary-success-text:    #595959;
+  --form-primary-success-icon:    #b04f14;
+  --form-primary-warning-bg:      #ffffff;
+  --form-primary-warning-border:  #cc9900;
+  --form-primary-warning-text:    #595959;
+  --form-primary-warning-icon:    #cc9900;
+
+  /* legend */
+  --legend-1st-primary: #0d732f;   --legend-1st-secondary: #b04f14;  --legend-1st-tertiary: #a3f5be;
+  --legend-2nd-primary: #0d6b73;   --legend-2nd-secondary: #19d3e5;  --legend-2nd-tertiary: #a3eef5;
+  --legend-3rd-primary: #144bb8;   --legend-3rd-secondary: #759ef0;  --legend-3rd-tertiary: #d1dffa;
+  --legend-4th-primary: #3d14b8;   --legend-4th-secondary: #9475f0;  --legend-4th-tertiary: #dbd1fa;
+  --legend-5th-primary: #b81414;   --legend-5th-secondary: #eb4747;  --legend-5th-tertiary: #fad1d1;
+  --legend-6th-primary: #720d72;   --legend-6th-secondary: #eb47eb;  --legend-6th-tertiary: #fad1fa;
+  --legend-7th-primary: #806000;   --legend-7th-secondary: #ffbf00;  --legend-7th-tertiary: #ffe599;
+  --legend-8th-primary: #404040;   --legend-8th-secondary: #bfbfbf;  --legend-8th-tertiary: #e5e5e5;
+  --legend-9th-primary: #804000;   --legend-9th-secondary: #ff8000;  --legend-9th-tertiary: #ffe5cc;
+
+  /* transparents */
+  --transparents-dark:      rgba(0,0,0,0.64);
+  --transparents-dark-grey: rgba(80,80,80,0.64);
+  --transparents-light:     rgba(255,255,255,0.80);
+
+  /* shadows */
+  --shadow-s: 0px 1px 2px 0px rgba(0,0,0,0.08);
+  --shadow-m: 0px 4px 8px 0px rgba(0,0,0,0.08);
+  --shadow-l: 0px 16px 32px 0px rgba(0,0,0,0.08);
+  --shadow-none: none;
+
+  /* legacy aliases */
+  --brand-accent:       var(--ds-brand-35);
+  --brand-accent-light: var(--state-brand-bg);
+  --brand-accent-dark:  var(--ds-brand-25);
+  --bg-primary:        var(--body-primary-bg);
+  --bg-secondary:      var(--body-quaternary-bg);
+  --bg-sidebar:        var(--body-quaternary-bg);
+  --text-primary:      var(--body-primary-text);
+  --text-secondary:    var(--body-secondary-text);
+  --text-tertiary:     var(--body-tertiary-text);
+  --border:            var(--ds-gray-90);
+  --border-light:      var(--body-tertiary-border);
+  --border-primary:    var(--body-secondary-border);
+  --surface-2:         var(--body-quaternary-bg);
+  --surface-primary:   var(--body-primary-bg);
+  --red:               var(--state-danger-icon);
+  --red-light:         var(--state-danger-bg);
+  --yellow:            var(--state-warning-icon);
+  --yellow-light:      var(--state-warning-bg);
+  --shadow-sm:         var(--shadow-s);
+  --shadow-md:         var(--shadow-m);
+  --green-bg:          var(--state-success-bg);
+  --amber-bg:          var(--state-warning-bg);
+  --red-bg:            var(--state-danger-bg);
+}

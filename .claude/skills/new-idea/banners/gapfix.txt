@@ -1,0 +1,25 @@
+GAP-FIX -- Relay  |  MISSION DECK  |  retry cycles  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | RELAY // gap fix                   [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  > one finding in, one fix out.                   |
+  |                                                   |
+  |  [x] reproduce the gap                            |
+  |  [x] smallest change that closes it               |
+  |  [x] hand back for re-verify                      |
+  |                                                   |
+  |  > pass it on, clean.                             |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Relay - Gap-fix
+    {{MODEL}}

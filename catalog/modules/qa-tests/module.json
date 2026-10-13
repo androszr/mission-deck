@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "qa-tests",
+  "name": "QA Tests",
+  "version": "0.2.0",
+  "status": "beta",
+  "description": "Test automation coverage: test case statuses per product area, regression runs and time saved by automation, fetched from Jira",
+  "icon": "24-ic-reports",
+  "author": "androszr",
+  "tags": ["qa", "tests", "automation", "jira"],
+  "sidebar": {
+    "label": "QA Tests",
+    "kind": "page",
+    "hub": "activity"
+  },
+  "views": [
+    {
+      "id": "qa-tests-main",
+      "label": "QA Tests",
+      "title": "QA Tests",
+      "subtitle": "Test automation coverage - test case statuses per product area"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "QA data in jira/qa-automation/ (index plus one shard per product area)",
+      "paths": ["jira/qa-automation/"]
+    }
+  ],
+  "envKeys": [
+    { "name": "JIRA_TOKEN", "description": "Personal Jira token (preferred)" },
+    { "name": "JIRA_TECH_TOKEN", "description": "Technical Jira token (fallback)" },
+    { "name": "JIRA_URL", "description": "Jira base URL (default https://jira.example.com)" },
+    { "name": "QA_JIRA_PROJECT", "description": "Jira project key that holds the test cases and test runs (default QA)" }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

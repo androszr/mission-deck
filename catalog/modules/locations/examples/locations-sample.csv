@@ -1,0 +1,5 @@
+Code,Name,Status,Street,Postal code,City,Region,Area,District,Operator,Manager,Partner,Groups,Phone,Email,Opened,Sales area,Latitude,Longitude
+LOC-001,Riverside,Open,1 River Road,00-001,Springfield,North,1,1.1,Acme Ltd,Alex Morgan,Sam Rivera,Pilot;Flagship,+48 600 000 001,riverside@example.com,2021-03-15,120,52.2297,21.0122
+LOC-002,Old Town,Open,12 Market Square,00-002,Springfield,North,1,1.2,Globex,Jordan Lee,Sam Rivera,Pilot,+48 600 000 002,oldtown@example.com,2019-06-01,95,52.2319,21.0067
+LOC-003,Harbour,Closed,7 Dock Street,00-003,Shelbyville,South,2,2.1,Initech,,Taylor Kim,,+48 600 000 003,harbour@example.com,2018-01-10,80,,
+LOC-004,Hillside,Under construction,3 Hill Lane,00-004,Capital City,East,3,3.1,Acme Ltd,Casey Novak,Taylor Kim,Flagship,,,,,,

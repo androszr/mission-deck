@@ -1,0 +1,25 @@
+PLANNER -- Overwatch  |  MISSION DECK  |  Phase 4  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | OVERWATCH // mission planning      [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  > read the brief. map the terrain.               |
+  |                                                   |
+  |  PLAN:                                            |
+  |  [x] acceptance criteria, numbered                |
+  |  [x] files to touch, files to leave               |
+  |  [x] risks named before they bite                 |
+  |                                                   |
+  |  > a plan nobody can misread.                     |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Overwatch - Planner
+    {{MODEL}}

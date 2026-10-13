@@ -1,0 +1,5 @@
+{
+  "_comment": "Banners for agents spawned by hand, outside any skill. The directory starts with _ so GET /api/skills/list skips it - it is a banner shelf, not a skill.",
+  "researcher": "researcher",
+  "reviewer": "reviewer"
+}

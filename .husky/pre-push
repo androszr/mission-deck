@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+# set -e for the same reason as in pre-commit: git runs this file directly via
+# the shebang (core.hooksPath), not through husky's old `sh -e` shim, so a
+# second command added later must not mask a failing one above it.
+set -e
+# Core suite only. modules/ is gitignored and is never part of this push,
+# so a test inside somebody else's downloaded module must not decide
+# whether this repo may be pushed. `npm test` still runs everything.
+npm run test:core

@@ -1,0 +1,25 @@
+MISSION DECK  |  Phase 6e+6f parallel -- Quiet (left) + Ledger (right)  |  {{MODEL_LEFT}} + {{MODEL_RIGHT}}
+
+  .---------------------------------------------------.      .---------------------------------------------------.
+  | QUIET // conventions watch         [_][=][X]      |      | LEDGER // acceptance audit         [_][=][X]      |
+  |...................................................|      |...................................................|
+  |                                                   |      |                                                   |
+  |  $ node scripts/check-conventions.js              |      |  ACCEPTANCE CRITERIA:                             |
+  |                                                   |      |  tests passed  ####################  100%         |
+  |  [STATUS]  tokens, not hex colours.               |      |  AC verified   ####################  100%         |
+  |  [STATUS]  ASCII identifiers.                     |      |                                                   |
+  |  [STATUS]  house rules kept.                      |      |  > blind check. no trust, only proof.             |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  |                                                   |      |                                                   |
+  '---------------------------------------------------'      '---------------------------------------------------'
+                        |||                                                        |||
+               _________|_|_________                                      _________|_|_________
+  Agent Quiet - Guardian                                     Agent Ledger - Verification
+    {{MODEL_LEFT}}                                             {{MODEL_RIGHT}}

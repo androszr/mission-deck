@@ -1,0 +1,1746 @@
+/* ── Inter (SIL Open Font License 1.1, see /fonts/OFL.txt) ── */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  src: url('/fonts/inter-latin-400-normal.woff2') format('woff2');
+  font-weight: 400; font-style: normal;
+}
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  src: url('/fonts/inter-latin-500-normal.woff2') format('woff2');
+  font-weight: 500; font-style: normal;
+}
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  src: url('/fonts/inter-latin-600-normal.woff2') format('woff2');
+  font-weight: 600; font-style: normal;
+}
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  src: url('/fonts/inter-latin-700-normal.woff2') format('woff2');
+  font-weight: 700; font-style: normal;
+}
+
+/* ── Sidebar nav ─────────────────────────────────────────── */
+.ds-nav {
+  width: 220px;
+  min-height: 100vh;
+  background: var(--body-primary-bg);
+  border-right: 1px solid var(--body-tertiary-border);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  flex-shrink: 0;
+  padding-bottom: 32px;
+}
+.ds-nav-header {
+  padding: 20px 16px 12px;
+  border-bottom: 1px solid var(--body-tertiary-border);
+  margin-bottom: 8px;
+}
+.ds-nav-header h1 {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+  line-height: 1.3;
+}
+.ds-nav-header p {
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+  margin-top: 2px;
+}
+.ds-nav-section {
+  padding: 12px 16px 4px;
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--body-tertiary-text);
+}
+.ds-nav a {
+  display: block;
+  padding: 6px 16px;
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+.ds-nav a:hover {
+  color: var(--body-primary-text);
+  background: var(--body-quaternary-bg);
+}
+.ds-nav a.active {
+  color: var(--body-brand-text);
+  border-left-color: var(--body-brand-text);
+  background: var(--state-brand-bg);
+}
+.ds-nav-storybook {
+  margin: 12px 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+  text-decoration: none;
+  padding: 6px 0;
+  border-top: 1px solid var(--body-tertiary-border);
+}
+.ds-nav-storybook:hover { color: var(--body-brand-text); }
+
+/* ── Main ───────────────────────────────────────────────── */
+.ds-main {
+  flex: 1;
+  min-width: 0;
+  padding: 32px 40px 80px;
+  max-width: 1100px;
+}
+
+/* ── Section ─────────────────────────────────────────────── */
+.ds-section {
+  margin-bottom: 64px;
+}
+.ds-section-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+  margin-bottom: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--body-tertiary-border);
+}
+.ds-section-desc {
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+.ds-subsection {
+  margin-bottom: 32px;
+}
+.ds-subsection-title {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--body-tertiary-text);
+  margin-bottom: 12px;
+}
+
+/* ── Preview box ─────────────────────────────────────────── */
+.ds-preview {
+  background: var(--body-primary-bg);
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: var(--radius-m);
+  padding: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.ds-preview--column { flex-direction: column; align-items: flex-start; }
+.ds-preview--dark { background: #262626; }
+.ds-preview--gray { background: var(--body-quaternary-bg); }
+
+/* ── Code block ──────────────────────────────────────────── */
+.ds-code {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: var(--radius-m);
+  padding: 16px 20px;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  overflow-x: auto;
+  margin-top: 8px;
+  line-height: 1.7;
+}
+.ds-code .kw  { color: #89b4fa; }
+.ds-code .cl  { color: #a6e3a1; }
+.ds-code .at  { color: #f38ba8; }
+.ds-code .vl  { color: #fab387; }
+.ds-code .cm  { color: #6c7086; }
+
+/* ── Color swatches ──────────────────────────────────────── */
+.ds-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+}
+.ds-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ds-swatch-color {
+  height: 40px;
+  border-radius: var(--radius-s);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.ds-swatch-label {
+  font-size: 10px;
+  color: var(--body-tertiary-text);
+  text-align: center;
+  line-height: 1.3;
+}
+.ds-token-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--body-tertiary-border);
+  font-size: var(--text-xs);
+}
+.ds-token-row:last-child { border-bottom: none; }
+.ds-token-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-s);
+  border: 1px solid rgba(0,0,0,0.08);
+  flex-shrink: 0;
+}
+.ds-token-name { color: var(--body-primary-text); font-weight: var(--font-weight-medium); flex: 1; }
+.ds-token-value { color: var(--body-tertiary-text); font-family: monospace; font-size: 11px; }
+
+/* ── Typography specimens ────────────────────────────────── */
+.ds-type-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--body-tertiary-border);
+}
+.ds-type-row:last-child { border-bottom: none; }
+.ds-type-meta { min-width: 160px; font-size: 11px; color: var(--body-tertiary-text); font-family: monospace; }
+
+/* ── Spacing scale ───────────────────────────────────────── */
+.ds-space-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+}
+.ds-space-bar {
+  height: 16px;
+  background: var(--body-brand-bg);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.ds-space-meta { font-size: 11px; color: var(--body-tertiary-text); font-family: monospace; }
+
+/* ── Radius ──────────────────────────────────────────────── */
+.ds-radius-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.ds-radius-box {
+  width: 64px;
+  height: 64px;
+  background: var(--body-quaternary-bg);
+  border: 2px solid var(--body-brand-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--body-tertiary-text);
+}
+
+/* ── Shadows ─────────────────────────────────────────────── */
+.ds-shadow-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ds-shadow-box {
+  width: 100px;
+  height: 60px;
+  background: var(--body-primary-bg);
+  border-radius: var(--radius-m);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--body-tertiary-text);
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: var(--radius-max);
+  border: 1px solid transparent;
+  font-family: var(--font-main);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+.ds-btn--sm { height: 32px; padding: 0 16px; font-size: var(--text-sm); }
+
+.ds-btn--primary {
+  background: var(--clickable-primary-default-bg);
+  color: var(--clickable-primary-default-text);
+  border-color: var(--clickable-primary-default-border);
+}
+.ds-btn--primary:hover {
+  background: var(--clickable-primary-hover-bg);
+  border-color: var(--clickable-primary-hover-border);
+}
+.ds-btn--primary:disabled, .ds-btn--primary.disabled {
+  background: var(--clickable-primary-disable-bg);
+  color: var(--clickable-primary-disable-text);
+  border-color: var(--clickable-primary-disable-border);
+  cursor: not-allowed;
+}
+
+.ds-btn--secondary {
+  background: var(--clickable-secondary-default-bg);
+  color: var(--clickable-secondary-default-text);
+  border-color: var(--clickable-secondary-default-border);
+}
+.ds-btn--secondary:hover {
+  background: var(--clickable-secondary-hover-bg);
+  border-color: var(--clickable-secondary-hover-border);
+}
+.ds-btn--secondary:disabled, .ds-btn--secondary.disabled {
+  color: var(--clickable-secondary-disable-text);
+  border-color: var(--clickable-secondary-disable-border);
+  cursor: not-allowed;
+}
+
+.ds-btn--tertiary {
+  background: var(--clickable-tertiary-default-bg);
+  color: var(--clickable-tertiary-default-text);
+  border-color: var(--clickable-tertiary-default-border);
+}
+.ds-btn--tertiary:hover { background: var(--clickable-tertiary-hover-bg); }
+.ds-btn--tertiary:disabled, .ds-btn--tertiary.disabled {
+  color: var(--clickable-tertiary-disable-text);
+  cursor: not-allowed;
+}
+
+.ds-btn--warning {
+  background: #e67e22;
+  color: #fff;
+  border-color: #e67e22;
+}
+.ds-btn--warning:hover { background: #cf6d17; border-color: #cf6d17; }
+.ds-btn--warning:disabled, .ds-btn--warning.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ds-btn--danger {
+  background: var(--state-danger-icon);
+  color: #fff;
+  border-color: var(--state-danger-icon);
+}
+.ds-btn--danger:hover { background: #9e1212; border-color: #9e1212; }
+.ds-btn--danger:disabled, .ds-btn--danger.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* In-flight state: the label stays in the document (transparent) so the button
+   keeps its width, a spinner replaces it, and the button stops accepting
+   clicks - the async-work half of "one action, one visible state" that
+   swapping the label text for "Zapisywanie..." never gave for free. */
+.ds-btn[aria-busy="true"] {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+  cursor: default;
+}
+.ds-btn--primary[aria-busy="true"] {
+  background: var(--clickable-primary-disable-bg);
+  border-color: var(--clickable-primary-disable-border);
+}
+.ds-btn--secondary[aria-busy="true"] {
+  border-color: var(--clickable-secondary-disable-border);
+}
+.ds-btn[aria-busy="true"]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border: 2px solid var(--clickable-primary-disable-icon);
+  border-top-color: var(--clickable-primary-default-bg);
+  border-radius: 50%;
+  animation: ds-btn-busy 0.9s linear infinite;
+}
+.ds-btn--sm[aria-busy="true"]::after {
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-width: 1.5px;
+}
+@keyframes ds-btn-busy {
+  to { transform: rotate(360deg); }
+}
+
+.ds-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-max);
+  border: 1px solid transparent;
+  background: var(--clickable-tertiary-default-bg);
+  color: var(--clickable-tertiary-default-icon);
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: var(--font-main);
+}
+.ds-icon-btn--sm { width: 32px; height: 32px; }
+.ds-icon-btn:hover { background: var(--clickable-tertiary-hover-bg); }
+.ds-icon-btn--secondary {
+  background: var(--clickable-secondary-default-bg);
+  border-color: var(--clickable-secondary-default-border);
+  color: var(--clickable-secondary-default-icon);
+}
+.ds-icon-btn--secondary:hover { background: var(--clickable-secondary-hover-bg); }
+
+/* Row of secondary actions inside a card or a form - the `--sm` size lives
+   in content, never in the header slot (see `.page-header-actions` in
+   styles.css) or a modal footer (`.ds-modal-footer`, untouched here). */
+.ds-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-16, 16px);
+}
+.ds-actions--end { justify-content: flex-end; }
+
+/* ── Badge ───────────────────────────────────────────────── */
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 0 12px;
+  border-radius: var(--radius-max);
+  border: 1px solid transparent;
+  font-family: var(--font-main);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  line-height: 1;
+}
+.ds-badge--md { height: 20px; padding: 0 8px; }
+.ds-badge--sm { height: 18px; padding: 0 8px; border-radius: var(--radius-s); font-size: 10px; }
+
+.ds-badge--brand     { background: var(--state-brand-bg);    color: var(--state-brand-text); }
+.ds-badge--green     { background: var(--state-success-bg);  color: var(--state-success-text); }
+.ds-badge--yellow    { background: var(--state-warning-bg);  color: var(--state-warning-text); }
+.ds-badge--red       { background: var(--state-danger-bg);   color: var(--state-danger-text); }
+.ds-badge--blue      { background: var(--state-info-bg);     color: var(--state-info-text); }
+.ds-badge--gray      { background: var(--state-inactive-bg); color: var(--state-inactive-text); }
+.ds-badge--cyan      { background: var(--assistive-wedgewood-bg); color: var(--assistive-wedgewood-text); }
+.ds-badge--sky       { background: var(--assistive-sky-bg);       color: var(--assistive-sky-text); }
+.ds-badge--violet    { background: var(--assistive-plum-bg);       color: var(--assistive-plum-text); }
+.ds-badge--magenta   { background: var(--assistive-cranberry-bg);  color: var(--assistive-cranberry-text); }
+.ds-badge--mandarine { background: var(--assistive-mandarine-bg);  color: var(--assistive-mandarine-text); }
+.ds-badge--amber    { background: var(--assistive-amber-bg);      color: var(--assistive-amber-text); }
+.ds-badge--transparent {
+  background: transparent;
+  color: var(--state-inactive-text);
+  border-color: var(--body-secondary-border);
+}
+
+/* ── Chip ────────────────────────────────────────────────── */
+.ds-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: var(--radius-max);
+  border: 1px solid var(--body-secondary-border);
+  background: var(--surface-primary, #fff);
+  color: var(--body-primary-text);
+  font-family: var(--font-main);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  line-height: 1;
+  cursor: default;
+}
+.ds-chip--clickable {
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.ds-chip--clickable:hover {
+  background: var(--body-secondary-bg);
+  border-color: var(--body-tertiary-border);
+}
+.ds-chip--clickable:focus-visible {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 1px;
+}
+
+/* ── Keyboard focus ─────────────────────────────────────── */
+/* ONE ring for every interactive DS control. Until 2026-09-13 only the chip
+   above drew one, so a person tabbing through buttons, tabs, segments or
+   table-row toggles saw nothing move - the Sprint Stats port was the view
+   that made it visible. :focus-visible, never :focus, so a mouse click
+   leaves no ring behind; -2px inside a filled control, +2px outside a
+   borderless one, both read on the dark theme because --body-brand-border
+   flips with it. */
+.ds-btn:focus-visible,
+.ds-icon-btn:focus-visible,
+.ds-tab:focus-visible,
+.ds-segment:focus-visible,
+.ds-row-toggle:focus-visible,
+.ds-link:focus-visible {
+  outline: 2px solid var(--body-brand-border);
+  outline-offset: 2px;
+}
+.ds-tab:focus-visible,
+.ds-segment:focus-visible {
+  outline-offset: -2px;
+}
+.ds-chip--success {
+  background: var(--state-success-bg);
+  border-color: transparent;
+  color: var(--state-success-text);
+}
+.ds-chip--warning {
+  background: var(--state-warning-bg);
+  border-color: transparent;
+  color: var(--state-warning-text);
+}
+
+/* ── Link ────────────────────────────────────────────────── */
+.ds-link {
+  color: var(--brand-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-size: inherit;
+  cursor: pointer;
+}
+.ds-link:hover { color: var(--state-success-text); }
+
+/* ── Callout ─────────────────────────────────────────────── */
+.ds-callout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-s);
+  border: 1px solid transparent;
+  min-height: 40px;
+  font-size: var(--text-sm);
+}
+.ds-callout--success { background: var(--state-success-bg); color: var(--state-success-text); }
+.ds-callout--warning { background: var(--state-warning-bg); color: var(--state-warning-text); }
+.ds-callout--danger  { background: var(--state-danger-bg);  color: var(--state-danger-text); }
+.ds-callout--info    { background: var(--state-info-bg);    color: var(--state-info-text); }
+.ds-callout--neutral { background: var(--state-inactive-bg); color: var(--state-inactive-text); }
+.ds-callout-icon { font-size: 16px; flex-shrink: 0; }
+
+/* ── Input / Form ─────────────────────────────────────────── */
+.ds-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ds-label {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--body-secondary-text);
+}
+.ds-input {
+  height: 48px;
+  padding: 0 16px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--form-primary-default-border);
+  background: var(--form-primary-default-bg);
+  color: var(--form-primary-filled-text);
+  font-family: var(--font-main);
+  font-size: var(--text-sm);
+  transition: border-color 0.2s, outline 0.1s;
+  outline: none;
+  width: 100%;
+}
+.ds-input::placeholder { color: var(--form-primary-default-text); }
+.ds-input:hover { border-color: var(--form-primary-hover-border); }
+.ds-input:focus {
+  border-color: var(--form-primary-focused-border);
+  outline: 2px solid var(--clickable-primary-default-bg);
+  outline-offset: 0;
+}
+.ds-input:disabled {
+  background: var(--form-primary-disable-bg);
+  border-color: var(--form-primary-disable-border);
+  color: var(--form-primary-disable-text);
+  cursor: not-allowed;
+}
+.ds-input--error  { border-color: var(--form-primary-error-border); }
+.ds-input--success{ border-color: var(--form-primary-success-border); }
+.ds-hint {
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+  margin-top: 2px;
+}
+.ds-hint--error   { color: var(--state-danger-text); }
+.ds-hint--success { color: var(--state-success-text); }
+
+/* ── Checkbox group ──────────────────────────────────────── */
+.ds-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ds-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8, 8px);
+  cursor: pointer;
+  user-select: none;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--body-primary-text);
+  line-height: 1.4;
+}
+.ds-checkbox-label input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--clickable-primary-default-bg);
+}
+.ds-checkbox-label:hover { color: var(--body-primary-text); }
+.ds-checkbox-label input[type="checkbox"]:disabled { cursor: not-allowed; }
+.ds-checkbox-label:has(input:disabled) {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ds-textarea {
+  padding: 12px 16px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--form-primary-default-border);
+  background: var(--form-primary-default-bg);
+  color: var(--form-primary-filled-text);
+  font-family: var(--font-main);
+  font-size: var(--text-sm);
+  resize: vertical;
+  width: 100%;
+  outline: none;
+  min-height: 96px;
+}
+.ds-textarea:focus {
+  border-color: var(--form-primary-focused-border);
+  outline: 2px solid var(--clickable-primary-default-bg);
+  outline-offset: 0;
+}
+
+select.ds-input {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='%23595959' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+select.ds-input:disabled {
+  cursor: not-allowed;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='%23bfbfbf' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* ── Progress Bar ────────────────────────────────────────── */
+.ds-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.ds-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+}
+.ds-progress-track {
+  height: 8px;
+  border-radius: var(--radius-max);
+  background: var(--body-secondary-bg);
+  overflow: hidden;
+  position: relative;
+}
+.ds-progress-fill {
+  height: 100%;
+  border-radius: var(--radius-max);
+  transition: width 0.3s ease;
+}
+.ds-progress-fill--brand   { background: var(--body-brand-icon); }
+.ds-progress-fill--green   { background: var(--state-success-icon); }
+.ds-progress-fill--yellow  { background: var(--state-warning-icon); }
+.ds-progress-fill--red     { background: var(--state-danger-icon); }
+.ds-progress-fill--blue    { background: var(--state-info-icon); }
+.ds-progress-fill--gray    { background: var(--state-inactive-icon); }
+
+/* ── Tabs ────────────────────────────────────────────────── */
+/* Two variants, and picking the wrong one shows. Bare .ds-tabs-list is the
+   FULL-WIDTH page strip: the border-bottom below is the rule that runs under
+   the content the tabs switch, so it wants a ROW OF ITS OWN. Tabs that sit
+   inside something - a toolbar, a card, a modal header - add .ds-framed-tabs
+   (further down), which closes them into a self-contained box. A .ds-tab is
+   48px tall either way, so neither variant sits well beside a 32px segmented
+   pill in the same row. scripts/check-conventions.js warns on the bare form so
+   the choice is made on purpose. */
+.ds-tabs-list {
+  display: flex;
+  border-bottom: 1px solid var(--clickable-secondary-inactive-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.ds-tabs-list::-webkit-scrollbar { display: none; }
+.ds-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  min-width: 120px;
+  padding: 0 16px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: var(--clickable-secondary-inactive-bg);
+  color: var(--clickable-secondary-inactive-text);
+  font-family: var(--font-main);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.ds-tab:hover:not(.active) {
+  background: var(--clickable-secondary-hover-bg);
+  color: var(--clickable-secondary-hover-text);
+}
+.ds-tab.active {
+  color: var(--clickable-secondary-active-text);
+  border-bottom-color: var(--clickable-secondary-active-border);
+}
+.ds-tab-panel {
+  padding: 20px 0;
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+}
+/* Framed tabs — wraps ds-tabs-list with a visible bordered box, auto-sized to
+   content. This is the variant for tabs that sit INSIDE something (a toolbar,
+   a card, a modal header) rather than spanning the page. */
+.ds-framed-tabs {
+  border: 1px solid var(--body-secondary-border, #888);
+  border-radius: 8px;
+  overflow: hidden;
+  width: fit-content;
+}
+.ds-framed-tabs .ds-tab:not(.active) {
+  border-bottom-color: var(--body-secondary-border, #888);
+}
+
+/* ── Table ───────────────────────────────────────────────── */
+.ds-table-wrap { border-radius: var(--radius-m); overflow: hidden; border: 1px solid var(--body-tertiary-border); }
+.ds-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+.ds-table thead tr { background: var(--table-primary-default-bg); }
+.ds-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--table-primary-default-text);
+  border-bottom: 1px solid var(--table-primary-default-border);
+  white-space: nowrap;
+}
+.ds-table th.right { text-align: right; }
+.ds-table td {
+  padding: 12px 16px;
+  color: var(--table-secondary-default-text);
+  border-bottom: 1px solid var(--body-tertiary-border);
+  background: var(--table-secondary-default-bg);
+}
+.ds-table td.right { text-align: right; }
+.ds-table tbody tr:last-child td { border-bottom: none; }
+/* An expandable row is opened by a real BUTTON in its first cell, never by
+   a click handler on the <tr>: a row is not focusable, so a keyboard or a
+   screen reader could not open it, and `cursor: pointer` on a <tr> is the
+   tell scripts/check-conventions.js (clickable-non-control) warns on. The
+   button carries aria-expanded and aria-controls; the chevron is
+   aria-hidden and turns on [aria-expanded="true"]. */
+.ds-row-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8, 8px);
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border-radius: var(--radius-s);
+}
+.ds-row-toggle-chevron {
+  display: inline-block;
+  font-size: 10px;
+  transition: transform 0.15s ease;
+}
+.ds-row-toggle[aria-expanded="true"] .ds-row-toggle-chevron { transform: rotate(90deg); }
+.ds-table tbody tr:hover td { background: var(--state-hover-bg); }
+/* A nested table (issues under a team row) sits on a NEUTRAL surface. Until
+   2026-09-13 this alias pointed at --table-tertiary-*, which in the design
+   catalog is the PRIORITY row (pale yellow, #bfbfbf text - 1.5:1 contrast in
+   light, amber in dark); the Sprint Stats port was its first real consumer.
+   The priority row keeps its own class below. */
+.ds-table .ds-table-sub td { background: var(--body-secondary-bg); color: var(--table-secondary-default-text); }
+.ds-table .ds-table-sub .ds-table th { background: var(--body-secondary-bg); }
+.ds-table .ds-table-priority td { background: var(--table-tertiary-default-bg); color: var(--table-tertiary-default-text); }
+.ds-table .ds-table-highlight td { background: var(--table-quaternary-default-bg); }
+
+/* ── Divider ─────────────────────────────────────────────── */
+.ds-divider { height: 1px; background: var(--body-tertiary-border); width: 100%; }
+.ds-divider--vertical { width: 1px; height: 100%; min-height: 40px; background: var(--body-tertiary-border); display: inline-block; }
+
+/* ── Skeleton ────────────────────────────────────────────── */
+@keyframes ds-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+.ds-skeleton {
+  display: block;
+  background: var(--body-quaternary-bg);
+  border-radius: var(--radius-s);
+  animation: ds-pulse 1.5s ease-in-out infinite;
+}
+.ds-skeleton--circle { border-radius: var(--radius-max); }
+.ds-skeleton--text { height: 14px; }
+
+/* ── Tooltip ─────────────────────────────────────────────── */
+.ds-tooltip-wrap { position: relative; display: inline-block; }
+.ds-tooltip-content {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--body-primary-bg);
+  border: 1px solid var(--body-secondary-border);
+  box-shadow: var(--shadow-m);
+  border-radius: var(--radius-s);
+  padding: 12px 16px;
+  font-size: var(--text-sm);
+  color: var(--body-primary-text);
+  white-space: nowrap;
+  z-index: 30;
+  pointer-events: none;
+}
+
+/* ── Loader ──────────────────────────────────────────────── */
+@keyframes ds-spin {
+  0%   { transform: rotate(-342deg); }
+  50%  { stroke-dasharray: 34; }
+  100% { transform: rotate(18deg); }
+}
+.ds-loader { display: inline-block; }
+.ds-loader svg { animation: ds-spin 2.1s cubic-bezier(0.21, 0, 0.34, 1) infinite; transform-origin: center; }
+
+/* ── Modal ───────────────────────────────────────────────── */
+.ds-modal-overlay {
+  position: fixed; inset: 0;
+  background: var(--transparents-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.ds-modal-overlay.open { opacity: 1; pointer-events: all; }
+.ds-modal {
+  background: var(--body-primary-bg);
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-l);
+  padding: 40px;
+  width: min(560px, calc(100vw - 32px));
+  position: relative;
+}
+/* Width modifiers. The base modal is 560px; these give a caller a named size
+   instead of an inline max-width, which is what every modal used to do. */
+.ds-modal--md { width: min(680px, calc(100vw - 32px)); }
+.ds-modal--lg { width: min(820px, calc(100vw - 32px)); }
+.ds-modal--xl { width: min(1040px, calc(100vw - 48px)); }
+.ds-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--body-tertiary-border);
+}
+.ds-modal-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+}
+.ds-modal-close {
+  width: 32px; height: 32px;
+  border-radius: var(--radius-max);
+  border: none;
+  background: transparent;
+  color: var(--body-tertiary-icon);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  transition: background 0.15s;
+}
+.ds-modal-close:hover { background: var(--clickable-tertiary-hover-bg); }
+.ds-modal-body { font-size: var(--text-sm); color: var(--body-secondary-text); line-height: 1.6; }
+.ds-modal-footer {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+/* ── Section head ────────────────────────────────────────── */
+/* A content section INSIDE a view (a chart block, a table block): title on
+   the left, its own controls on the right, one row, and a fixed breathing
+   space above it. `.ds-section-title` further up is the DS catalog's 24px
+   chapter heading with a rule under it - not this. Every view that stacks
+   several blocks used to invent its own heading + 8px, so the blocks read as
+   one run of content; this is the shared rhythm. */
+.ds-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16, 16px);
+  margin-top: var(--space-32, 32px);
+  margin-bottom: var(--space-12, 12px);
+}
+.ds-section-head:first-child { margin-top: 0; }
+.ds-section-head-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+  margin: 0;
+}
+.ds-section-head-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8, 8px);
+}
+
+/* ── Metric tiles ────────────────────────────────────────── */
+/* One row per subject (a team, a store, a period): a label cell and N equal
+   tiles filling the WHOLE row - a grid, never flex-wrap, so the tiles of
+   one row line up with the tiles of the next and the row is as wide as the
+   page whatever N is. `--ds-stat-cols` is the tile count (default 5).
+   The value is the big number, the label sits under it; a tone colours the
+   value only. */
+.ds-stat-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) repeat(var(--ds-stat-cols, 5), minmax(0, 1fr));
+  gap: var(--space-16, 16px);
+}
+.ds-stat-row + .ds-stat-row { margin-top: var(--space-16, 16px); }
+/* `.ds-card.ds-stat-subject`, not `.ds-stat-subject`: the tile is a card,
+   and `.ds-card { border: 1px solid }` lower in this file would otherwise
+   win over the accent stripe on source order. */
+.ds-card.ds-stat-subject,
+.ds-stat-subject {
+  display: flex;
+  align-items: center;
+  padding: var(--space-16, 16px) var(--space-20, 20px);
+  border-left: 4px solid var(--body-brand-border);
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+}
+.ds-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-4, 4px);
+  padding: var(--space-16, 16px) var(--space-20, 20px);
+  min-height: 80px;
+}
+.ds-card.ds-stat--highlight,
+.ds-stat--highlight { border-left: 4px solid var(--body-brand-border); }
+.ds-stat-value {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  color: var(--body-primary-text);
+  font-variant-numeric: tabular-nums;
+}
+.ds-stat-value--success { color: var(--state-success-text); }
+.ds-stat-value--warning { color: var(--state-warning-text); }
+.ds-stat-value--danger  { color: var(--state-danger-text); }
+.ds-stat-label {
+  font-size: var(--text-sm);
+  color: var(--body-tertiary-text);
+}
+@media (max-width: 900px) {
+  .ds-stat-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ds-stat-subject { grid-column: 1 / -1; padding-block: var(--space-8, 8px); }
+}
+
+/* ── Card ────────────────────────────────────────────────── */
+.ds-card {
+  background: var(--body-primary-bg);
+  border-radius: var(--radius-m);
+  border: 1px solid var(--body-tertiary-border);
+  box-shadow: var(--shadow-s);
+  overflow: hidden;
+}
+.ds-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--body-tertiary-border);
+}
+.ds-card-title {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--body-secondary-text);
+}
+.ds-card-body { padding: 16px 20px 20px; }
+
+/* ── Empty State ─────────────────────────────────────────── */
+.ds-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 32px;
+}
+.ds-empty-icon {
+  font-size: 40px;
+  margin-bottom: 16px;
+  color: var(--body-tertiary-text);
+}
+.ds-empty-title {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--body-secondary-text);
+  margin-bottom: 8px;
+}
+.ds-empty-desc {
+  font-size: var(--text-sm);
+  color: var(--body-tertiary-text);
+  margin-bottom: 20px;
+}
+
+/* ── Segmented Controls ──────────────────────────────────── */
+/* Segmented controls: JOINED outlined elements sharing one 1px border,
+   32px tall, only the outer ends rounded - not an iOS track with a floating
+   pill, which is what this block drew before 2026-09-13. Default: primary bg,
+   secondary text; active: quaternary bg, brand text; hover: brand text;
+   pressed: darker brand; disabled: disable text. The `--icon` variant is the
+   chevron element (16px icon, 12/16px padding) the catalog uses for a
+   previous/next stepper. */
+.ds-segmented {
+  display: inline-flex;
+  align-items: stretch;
+}
+.ds-segment {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 32px;
+  margin-left: -1px;
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: 0;
+  background: var(--body-primary-bg);
+  color: var(--body-secondary-text);
+  font-family: var(--font-main);
+  font-size: var(--text-sm);
+  line-height: 20px;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.ds-segment:first-child { margin-left: 0; border-radius: var(--radius-max) 0 0 var(--radius-max); }
+.ds-segment:last-child { border-radius: 0 var(--radius-max) var(--radius-max) 0; }
+.ds-segment:only-child { border-radius: var(--radius-max); }
+.ds-segment.active {
+  position: relative;
+  z-index: 1;
+  background: var(--body-quaternary-bg);
+  color: var(--body-brand-text);
+}
+.ds-segment:hover:not(.active):not(:disabled) { color: var(--body-brand-text); }
+.ds-segment:active:not(:disabled) {
+  background: var(--body-quaternary-bg);
+  color: var(--clickable-secondary-pressed-text);
+}
+.ds-segment:disabled { color: var(--clickable-primary-disable-text); cursor: not-allowed; }
+.ds-segment--icon { padding: 0 12px 0 16px; }
+.ds-segment--icon:last-child { padding: 0 16px 0 12px; }
+.ds-segment--icon:only-child { padding: 0 16px; }
+.ds-segment .nav-icon,
+.ds-segment > img { width: 16px; height: 16px; opacity: 1; }
+.ds-segment:disabled > img { opacity: 0.4; }
+
+/* ── Dos & Don'ts ────────────────────────────────────────── */
+.ds-rules { display: flex; flex-direction: column; gap: 8px; }
+.ds-rule-do   { background: var(--state-success-bg); border-radius: var(--radius-s); padding: 10px 14px; font-size: var(--text-sm); color: var(--state-success-text); }
+.ds-rule-dont { background: var(--state-danger-bg);  border-radius: var(--radius-s); padding: 10px 14px; font-size: var(--text-sm); color: var(--state-danger-text); }
+.ds-rule-do strong::before   { content: "✓  "; }
+.ds-rule-dont strong::before { content: "✕  "; }
+
+/* ── Toast / Notification ────────────────────────────────── */
+.ds-toast-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ds-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px 12px 14px;
+  background: var(--body-primary-bg);
+  border: 1px solid var(--body-tertiary-border);
+  border-left-width: 3px;
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-m);
+  min-width: 280px;
+  max-width: 400px;
+}
+.ds-toast--success { border-left-color: var(--state-success-icon); }
+.ds-toast--warning { border-left-color: var(--state-warning-icon); }
+.ds-toast--danger  { border-left-color: var(--state-danger-icon); }
+.ds-toast--info    { border-left-color: var(--state-info-icon); }
+.ds-toast--neutral { border-left-color: var(--body-tertiary-border); }
+
+.ds-toast-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.ds-toast--success .ds-toast-icon { color: var(--state-success-icon); }
+.ds-toast--warning .ds-toast-icon { color: var(--state-warning-icon); }
+.ds-toast--danger  .ds-toast-icon { color: var(--state-danger-icon); }
+.ds-toast--info    .ds-toast-icon { color: var(--state-info-icon); }
+.ds-toast--neutral .ds-toast-icon { color: var(--body-tertiary-icon); }
+
+.ds-toast-body { flex: 1; min-width: 0; }
+.ds-toast-title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--body-primary-text);
+  line-height: 1.4;
+}
+.ds-toast-desc {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.ds-toast-action {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  height: 26px;
+  padding: 0 10px;
+  font-family: var(--font-main);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  border: 1px solid var(--clickable-secondary-default-border);
+  border-radius: var(--radius-max);
+  background: var(--clickable-secondary-default-bg);
+  color: var(--clickable-secondary-default-text);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s;
+}
+.ds-toast-action:hover {
+  background: var(--clickable-secondary-hover-bg);
+  border-color: var(--clickable-secondary-hover-border);
+}
+.ds-toast-close {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: var(--body-tertiary-icon);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-s);
+  padding: 0;
+  font-size: 14px;
+  transition: background 0.15s, color 0.15s;
+  margin-top: -1px;
+}
+.ds-toast-close:hover {
+  background: var(--body-quaternary-bg);
+  color: var(--body-primary-text);
+}
+
+/* ── Toast region (global, bottom-right) ─────────────────────────────────── */
+#ds-toast-region {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+#ds-toast-region .ds-toast {
+  pointer-events: all;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+#ds-toast-region .ds-toast.ds-toast--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Meeting Summaries === */
+
+.ms-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-12);
+  margin-bottom: var(--space-12);
+}
+
+.ms-model-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.ms-model-wrap .ds-label {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.ms-model-select {
+  width: 250px;
+}
+
+select.sf-ai-model-select {
+  width: auto;
+}
+
+.ms-offline-callout {
+  margin-bottom: var(--space-12);
+}
+
+.ms-offline-hint { color: var(--body-secondary-text); }
+
+.ms-offline-link {
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ms-templates-section {
+  margin-bottom: var(--space-16);
+}
+
+.ms-templates-hint {
+  display: block;
+  margin-bottom: var(--space-8);
+}
+
+.ms-chip-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6, 6px);
+}
+
+.ms-template-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border: 1px solid var(--body-secondary-border);
+  border-radius: var(--radius-s);
+  background: var(--body-secondary-bg);
+  color: var(--body-secondary-text);
+  font-size: var(--text-xs, 0.75rem);
+  cursor: pointer;
+  transition: border-color 0.12s ease, background 0.12s ease, color 0.12s ease;
+  white-space: nowrap;
+  max-width: 160px;
+}
+
+.ms-template-chip:hover,
+.ms-template-chip:focus-visible {
+  border-color: var(--ds-brand-40, var(--form-primary-focus-border));
+  background: var(--body-primary-bg);
+  outline: none;
+}
+
+.ms-template-chip:focus-visible {
+  box-shadow: 0 0 0 2px var(--ds-brand-20, rgba(0,0,0,.15));
+}
+
+.ms-template-chip-icon {
+  flex-shrink: 0;
+  opacity: 0.55;
+}
+
+.ms-template-chip-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ms-template-chip-eye {
+  flex-shrink: 0;
+  opacity: 0.4;
+}
+
+.ms-template-active {
+  font-weight: 600;
+}
+
+.ms-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  margin-top: var(--space-16);
+  padding: var(--space-32) var(--space-24);
+  border: 2px dashed var(--body-secondary-border);
+  border-radius: var(--radius-m);
+  background: var(--body-secondary-bg, var(--body-primary-bg));
+  color: var(--body-secondary-text);
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: var(--space-16);
+  transition: border-color 0.15s ease, background 0.15s ease;
+  font-size: var(--text-sm, 0.875rem);
+}
+
+.ms-dropzone:hover,
+.ms-dropzone:focus-visible {
+  border-color: var(--ds-brand-40, var(--body-secondary-border));
+  background: var(--body-primary-bg);
+  color: var(--body-primary-text);
+  outline: none;
+}
+
+.ms-dropzone--over {
+  border-color: var(--ds-brand-40, var(--body-secondary-border));
+  background: var(--body-primary-bg);
+  color: var(--body-primary-text);
+}
+
+.ms-file-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-4) var(--space-12);
+  background: var(--body-secondary-bg);
+  border-radius: var(--radius-max);
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--body-primary-text);
+}
+
+.ms-file-chip-name {
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ms-filename-wrap {
+  max-width: 420px;
+}
+
+.ms-preview {
+  margin-top: var(--space-16);
+}
+
+.ms-preview-md {
+  background: #fff;
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: var(--radius-m);
+  padding: var(--space-16) var(--space-20);
+  max-height: 480px;
+  overflow-y: auto;
+  margin-bottom: var(--space-12);
+}
+
+.ms-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+/* Success callout */
+.ms-success-callout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  margin-top: var(--space-20, 20px);
+}
+
+/* Progress bar with animated dots loader */
+.ms-progress-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10, 10px);
+  padding: var(--space-10, 10px) var(--space-16);
+  background: var(--callout-info-bg, #e8f4fd);
+  border: 1px solid var(--callout-info-border, #b3d9f7);
+  border-radius: var(--radius-m);
+  color: var(--callout-info-text, var(--body-primary-text));
+  font-size: var(--text-sm, 0.875rem);
+  margin-top: var(--space-20, 20px);
+  margin-bottom: var(--space-12);
+}
+
+.ms-progress-text {
+  flex: 1;
+}
+
+@keyframes ms-dot-pulse {
+  0%, 80%, 100% { transform: scale(0.55); opacity: 0.35; }
+  40%            { transform: scale(1);    opacity: 1; }
+}
+
+.ms-dots-loader {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ms-dots-loader span {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: ms-dot-pulse 1.4s infinite ease-in-out both;
+}
+
+.ms-dots-loader span:nth-child(1) { animation-delay: -0.32s; }
+.ms-dots-loader span:nth-child(2) { animation-delay: -0.16s; }
+.ms-dots-loader span:nth-child(3) { animation-delay: 0s; }
+
+/* All-templates matching block */
+.ms-all-templates-block {
+  border: 1px solid var(--body-secondary-border);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  margin-top: var(--space-20, 20px);
+  margin-bottom: var(--space-10, 10px);
+}
+
+.ms-all-templates-header {
+  padding: var(--space-8) var(--space-12);
+  background: var(--body-secondary-bg);
+  font-size: var(--text-xs, 0.75rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--body-secondary-text);
+  border-bottom: 1px solid var(--body-secondary-border);
+}
+
+.ms-all-templates-list {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-8) var(--space-12);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4, 4px) var(--space-16);
+  font-size: var(--text-xs, 0.75rem);
+}
+
+.ms-all-templates-list li {
+  line-height: 1.5;
+  color: var(--body-secondary-text);
+}
+
+.ms-all-templates-list li.ms-template-active {
+  color: var(--body-primary-text);
+}
+
+/* Chosen-template info block */
+.ms-chosen-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-6, 6px);
+  padding: var(--space-10, 10px) var(--space-12);
+  background: var(--callout-info-bg, #e8f4fd);
+  border: 1px solid var(--callout-info-border, #b3d9f7);
+  border-radius: var(--radius-m);
+  margin-top: var(--space-20, 20px);
+  margin-bottom: var(--space-12);
+  font-size: var(--text-sm, 0.875rem);
+}
+
+.ms-chosen-label {
+  color: var(--body-secondary-text);
+  white-space: nowrap;
+}
+
+.ms-chosen-name {
+  color: var(--body-primary-text);
+  font-weight: 600;
+}
+
+.ms-chosen-reasoning {
+  width: 100%;
+  margin: var(--space-4) 0 0;
+  color: var(--body-secondary-text);
+  font-size: var(--text-sm, 0.875rem);
+  line-height: 1.5;
+}
+
+/* Regenerate-with-notes modal */
+.ms-regen-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.ms-regen-dialog {
+  background: var(--body-primary-bg);
+  border: 1px solid var(--body-secondary-border);
+  border-radius: var(--radius-l, 12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  width: min(480px, calc(100vw - 32px));
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+
+.ms-regen-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-14, 14px) var(--space-16);
+  border-bottom: 1px solid var(--body-secondary-border);
+  font-weight: 600;
+  font-size: var(--text-base, 0.9375rem);
+}
+
+.ms-regen-dialog-body {
+  padding: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.ms-regen-textarea {
+  width: 100%;
+  min-height: 100px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: var(--text-sm, 0.875rem);
+  line-height: 1.55;
+  box-sizing: border-box;
+}
+
+.ms-regen-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  border-top: 1px solid var(--body-secondary-border);
+}
+
+/* ── Custom DS Select ────────────────────────────────────── */
+.ds-sel-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.ds-sel-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  height: 48px;
+  padding: 0 12px 0 16px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--form-primary-default-border);
+  background: var(--form-primary-default-bg);
+  color: var(--form-primary-filled-text);
+  font-family: var(--font-main);
+  font-size: var(--text-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, outline 0.1s;
+  outline: none;
+}
+.ds-sel-trigger:hover { border-color: var(--form-primary-hover-border); }
+.ds-sel-trigger:focus {
+  border-color: var(--form-primary-focused-border);
+  outline: 2px solid var(--clickable-primary-default-bg);
+  outline-offset: 0;
+}
+.ds-sel--disabled .ds-sel-trigger {
+  background: var(--form-primary-disable-bg);
+  border-color: var(--form-primary-disable-border);
+  color: var(--form-primary-disable-text);
+  cursor: not-allowed;
+}
+
+.ds-sel-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-sel-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  color: var(--body-secondary-text);
+  transition: transform 0.15s;
+}
+.ds-sel--open .ds-sel-icon { transform: rotate(180deg); }
+.ds-sel--disabled .ds-sel-icon { color: var(--form-primary-disable-text); }
+
+/* ── Dropdown panel ─────────────────────────────────────── */
+.ds-sel-drop {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  min-width: 180px;
+  background: var(--body-primary-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-s);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  z-index: 9900;
+  overflow: hidden;
+}
+
+/* ── Search ─────────────────────────────────────────────── */
+.ds-sel-search-wrap {
+  padding: 8px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.ds-sel-search {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 0 10px 0 34px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--form-primary-default-border);
+  background: var(--form-primary-default-bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238c8c8c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  color: var(--form-primary-filled-text);
+  font-family: var(--font-main);
+  font-size: var(--text-sm);
+  outline: none;
+  box-sizing: border-box;
+}
+.ds-sel-search:focus { border-color: var(--form-primary-focused-border); }
+.ds-sel-search::placeholder { color: var(--form-primary-default-text); }
+
+/* ── Option list ────────────────────────────────────────── */
+.ds-sel-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.ds-sel-opt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  font-size: var(--text-sm);
+  color: var(--body-primary-text);
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+.ds-sel-opt:hover,
+.ds-sel-opt:focus {
+  background: var(--surface-2);
+}
+.ds-sel-opt--sel {
+  color: var(--brand-accent);
+  font-weight: var(--font-weight-medium);
+}
+.ds-sel-opt--dis {
+  color: var(--form-primary-disable-text);
+  cursor: not-allowed;
+}
+.ds-sel-opt--dis:hover { background: none; }
+
+/* Checkmark column — always present, visible only when selected */
+.ds-sel-check {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-sel-opt--sel .ds-sel-check::after {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 9px;
+  border: 2px solid var(--brand-accent);
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg) translateY(-1px);
+}

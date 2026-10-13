@@ -1,0 +1,368 @@
+/* modules/team-directory/client/style.css
+   Read-only team roster - toolbar, one card per team with a logo column and
+   a grid of people, plus the person modal. Tokens only, never a hardcoded
+   colour - see css/ds-tokens.css and css/ds-tokens-dark.css.
+
+   Prefix every rule with .team-directory- so it cannot collide with the core
+   or another module. */
+
+.team-directory-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.team-directory-search {
+  max-width: 420px;
+  flex: 1 1 auto;
+}
+
+.team-directory-count {
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+  white-space: nowrap;
+}
+
+/* Multi-column card grid, as in the original app. That one hardcoded
+   `repeat(3, 1fr)`; this shell has a rail that is 72px collapsed and 300px
+   expanded, so a fixed three would squeeze the cards on the narrow state.
+   auto-fill over a 360px floor gives three on a wide window and degrades to
+   two and one on its own. */
+/* No align-items here on purpose: the default `stretch` is what makes every
+   card in a row the height of the tallest one, which is what "even" means
+   here and what the original app got for free by not setting it either.
+   `align-items: start` sizes each card to its own content, so a row of an
+   11-person, a 3-person and a 9-person team came out 509 / 183 / 400 px and
+   read as ragged. */
+/* Exactly three columns, as in the original app - not `auto-fill`. auto-fill
+   picks the count from the available width, and this shell leaves far less of
+   it than the old one did (its rail is 52px, this one is 300px expanded), so
+   at a 1440px window the grid measured 1076px and fell to TWO columns while
+   the old view still showed three. The count is part of the layout, so it is
+   stated rather than derived. */
+.team-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Full-width rule between TEAM_ORDER blocks - it has to span every column,
+   so it is a grid item, not a border on the card above it. */
+.team-directory-divider {
+  grid-column: 1 / -1;
+  height: 1px;
+  background: var(--body-tertiary-border);
+  margin: 8px 0;
+}
+
+.team-directory-empty {
+  margin: 0;
+}
+
+/* ── team card ─────────────────────────────────────────────────────────── */
+
+/* overflow must stay visible: the person tooltip is absolutely positioned
+   above its tile and would be clipped by the card otherwise. */
+.team-directory-team-card {
+  display: flex;
+  padding: 0;
+  overflow: visible;
+}
+
+/* A team with no logo column (Guests) lets the people fill the card. */
+.team-directory-team-card--no-logo-col .team-directory-team-body {
+  width: 100%;
+}
+
+/* Fixed width and height: the source PNGs are 860x1024, so a column sized
+   from the image would jump the whole grid the moment the files land. */
+.team-directory-logo-col {
+  flex: 0 0 100px;
+  width: 100px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-right: 1px solid var(--body-tertiary-border);
+}
+
+.team-directory-logo-imgs {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* An author `display` rule beats the UA stylesheet's `[hidden] { display:
+   none }`, so _onRootError setting the `hidden` attribute alone would not
+   hide this pair - the broken-image icons would stay next to the initials
+   the same listener reveals. */
+.team-directory-logo-imgs[hidden] { display: none; }
+
+.team-directory-team-logo {
+  max-width: 100%;
+  max-height: 96px;
+  object-fit: contain;
+}
+
+/* Light/dark pair, switched purely in CSS - no JS theme listener needed. */
+.team-directory-team-logo--dark { display: none; }
+:root[data-theme="dark"] .team-directory-team-logo--light { display: none; }
+:root[data-theme="dark"] .team-directory-team-logo--dark { display: block; }
+
+/* Solid tile rather than bare text, as in the original app - it holds the
+   column width so a logo-less card lines up with its neighbours. That one
+   forced --brand-accent with !important; these two tokens are the DS way to
+   say the same thing and already dress the person-initials avatar. */
+.team-directory-team-logo-initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-m);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-bold);
+  background: var(--clickable-primary-default-bg);
+  color: var(--clickable-primary-default-text);
+}
+
+.team-directory-team-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 16px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.team-directory-team-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.team-directory-team-name {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+}
+
+.team-directory-team-badge {
+  background: var(--body-quaternary-bg);
+  color: var(--body-secondary-text);
+}
+
+/* Wrapping flex row, not a grid: a grid stretches its columns, so a team of
+   three spread their tiles across the whole card while a team of eleven sat
+   tight. Fixed-width tiles that wrap keep every card reading the same. */
+.team-directory-people-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 4px 0;
+  overflow: visible;
+}
+
+/* ── person tile ───────────────────────────────────────────────────────── */
+
+/* .ds-tooltip-wrap supplies the positioning context (and is inline-block);
+   the column layout of the tile itself is this module's, so display is
+   overridden here on purpose. */
+.team-directory-person-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: var(--radius-m);
+  padding: 4px;
+  width: 72px;
+}
+
+.team-directory-person-tile:hover,
+.team-directory-person-tile:focus-visible {
+  background: var(--body-secondary-bg);
+  outline: none;
+}
+
+.team-directory-person-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-max);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.team-directory-person-avatar--initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--clickable-primary-default-bg);
+  color: var(--clickable-primary-default-text);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Both lines clamp to the tile width and up to TWO lines - a long name or
+   role must not widen the tile and reflow the wrapping row, but a single
+   truncated line was too little room for a two-word surname or role. The
+   full text is still in the hover tooltip. */
+.team-directory-person-caption,
+.team-directory-person-role {
+  max-width: 72px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.2;
+  max-height: calc(1.2em * 2);
+  word-break: break-word;
+}
+
+.team-directory-person-caption {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--body-primary-text);
+}
+
+.team-directory-person-role {
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+}
+
+/* ── person hover tooltip ──────────────────────────────────────────────── */
+/* .ds-tooltip-content paints the surface and kills pointer events; the DS
+   ships no show/hide rule for it, so that - and only that - is added here.
+   Three rows: name, role, e-mail (the original app had a fourth, company,
+   which this roster has no field for). */
+
+.team-directory-person-tile .ds-tooltip-content {
+  display: none;
+  text-align: left;
+}
+
+.team-directory-person-tile:hover .ds-tooltip-content,
+.team-directory-person-tile:focus-visible .ds-tooltip-content {
+  display: block;
+}
+
+.team-directory-tip-name,
+.team-directory-tip-role,
+.team-directory-tip-email {
+  display: block;
+  white-space: nowrap;
+}
+
+.team-directory-tip-name {
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+}
+
+.team-directory-tip-role {
+  color: var(--body-secondary-text);
+}
+
+.team-directory-tip-email {
+  color: var(--body-tertiary-text);
+}
+
+/* ── loading skeleton ──────────────────────────────────────────────────── */
+/* .ds-skeleton paints --body-quaternary-bg, which IS the page background -
+   invisible for a bar sitting directly on it. Every bar here sits inside a
+   white .ds-card body (or the logo column, already --body-secondary-bg), so
+   no override is needed; a bar painted straight on the page would need one. */
+
+.team-directory-skeleton-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-m);
+}
+
+.team-directory-skeleton-line {
+  height: 14px;
+  border-radius: var(--radius-s);
+}
+
+.team-directory-skeleton-line--title {
+  width: 160px;
+}
+
+.team-directory-skeleton-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-max);
+}
+
+/* ── person modal ──────────────────────────────────────────────────────── */
+
+.team-directory-modal-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.team-directory-modal-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-max);
+  object-fit: cover;
+}
+
+.team-directory-modal-avatar--initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--clickable-primary-default-bg);
+  color: var(--clickable-primary-default-text);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-bold);
+}
+
+.team-directory-modal-name {
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--body-primary-text);
+}
+
+.team-directory-modal-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.team-directory-modal-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.team-directory-modal-label {
+  color: var(--body-tertiary-text);
+}
+
+.team-directory-modal-value {
+  color: var(--body-primary-text);
+  text-align: right;
+}
+
+.team-directory-modal-email,
+.team-directory-modal-email-empty {
+  word-break: break-all;
+}
+
+.team-directory-external-icon {
+  margin-left: 6px;
+  vertical-align: -1px;
+}
+
+.team-directory-modal-callout {
+  margin: 0;
+}

@@ -1,0 +1,163 @@
+/* ============================================================
+   Design tokens of the prototype build shell (React prototypes).
+
+   Self-contained and neutral: every token the shell's own CSS and the
+   prototype starter use is defined here, so a prototype builds with no
+   design-system package installed. A team that has its own design system
+   can replace the values here (names stay, components are untouched).
+   ============================================================ */
+:root {
+
+  /* ═══════════════════════════════════════════════════════
+     Semantic tokens — body
+     ══════════════════════════════════════════════════════ */
+  --body-primary-bg:        #ffffff;
+  --body-secondary-bg:      #f6f7f9;
+  --body-tertiary-bg:       #eef0f4;
+  --body-quaternary-bg:     #e3e6ec;
+  --body-primary-text:      #1d2230;
+  --body-secondary-text:    #545b6b;
+  --body-tertiary-text:     #868d9c;
+  --body-invert-text:       #ffffff;
+  --body-primary-border:    #c9ced8;
+  --body-secondary-border:  #dde1e8;
+  --body-tertiary-border:   #e8ebf0;
+  --body-brand-bg:          #b04f14;
+  --body-brand-border:      #b04f14;
+  --body-brand-text:        #8c4213;
+  --body-brand-icon:        #b04f14;
+
+  /* ═══════════════════════════════════════════════════════
+     Semantic tokens — clickable
+     ══════════════════════════════════════════════════════ */
+  --clickable-primary-default-bg:     #b04f14;
+  --clickable-primary-default-text:   #ffffff;
+  --clickable-primary-default-border: #b04f14;
+  --clickable-primary-hover-bg:       #8c4213;
+  --clickable-primary-hover-text:     #ffffff;
+  --clickable-primary-hover-border:   #8c4213;
+  --clickable-primary-disable-bg:     #e3e6ec;
+  --clickable-primary-disable-text:   #868d9c;
+  --clickable-primary-disable-border: #e3e6ec;
+  --clickable-secondary-default-bg:     #ffffff;
+  --clickable-secondary-default-text:   #8c4213;
+  --clickable-secondary-default-border: #b04f14;
+  --clickable-secondary-hover-bg:       #fff4e9;
+
+  /* ═══════════════════════════════════════════════════════
+     Semantic tokens — state
+     ══════════════════════════════════════════════════════ */
+  --state-info-bg:      #eaf1fd;
+  --state-info-text:    #1f4a9e;
+  --state-info-icon:    #2f6fe0;
+  --state-success-bg:   #e8f6ee;
+  --state-success-text: #1d6b3f;
+  --state-success-icon: #2a9a5a;
+  --state-warning-bg:   #fff6e0;
+  --state-warning-text: #7a5300;
+  --state-warning-icon: #d99a00;
+  --state-danger-bg:    #fdecec;
+  --state-danger-text:  #a3221f;
+  --state-danger-icon:  #d93a35;
+
+  /* ═══════════════════════════════════════════════════════
+     Semantic tokens — form
+     ══════════════════════════════════════════════════════ */
+  --form-primary-default-bg:     #ffffff;
+  --form-primary-default-text:   #1d2230;
+  --form-primary-default-border: #c9ced8;
+  --form-primary-hover-border:   #868d9c;
+  --form-primary-focused-text:   #1d2230;
+  --form-primary-focused-border: #b04f14;
+  --form-primary-filled-text:    #1d2230;
+  --form-primary-error-border:   #d93a35;
+
+  /* ═══════════════════════════════════════════════════════
+     Semantic tokens — legend (chart colors)
+     ══════════════════════════════════════════════════════ */
+  --legend-1st-primary: #0d732f;   --legend-1st-secondary: #b04f14;  --legend-1st-tertiary: #a3f5be;
+  --legend-2nd-primary: #0d6b73;   --legend-2nd-secondary: #19d3e5;  --legend-2nd-tertiary: #a3eef5;
+  --legend-3rd-primary: #144bb8;   --legend-3rd-secondary: #759ef0;  --legend-3rd-tertiary: #d1dffa;
+  --legend-4th-primary: #3d14b8;   --legend-4th-secondary: #9475f0;  --legend-4th-tertiary: #dbd1fa;
+  --legend-5th-primary: #b81414;   --legend-5th-secondary: #eb4747;  --legend-5th-tertiary: #fad1d1;
+  --legend-6th-primary: #720d72;   --legend-6th-secondary: #eb47eb;  --legend-6th-tertiary: #fad1fa;
+  --legend-7th-primary: #806000;   --legend-7th-secondary: #ffbf00;  --legend-7th-tertiary: #ffe599;
+  --legend-8th-primary: #404040;   --legend-8th-secondary: #bfbfbf;  --legend-8th-tertiary: #e5e5e5;
+  --legend-9th-primary: #804000;   --legend-9th-secondary: #ff8000;  --legend-9th-tertiary: #ffe5cc;
+
+  /* ═══════════════════════════════════════════════════════
+     Transparents
+     ══════════════════════════════════════════════════════ */
+  --transparents-dark:      rgba(0,0,0,0.64);
+  --transparents-dark-grey: rgba(80,80,80,0.64);
+  --transparents-light:     rgba(255,255,255,0.80);
+
+  /* ═══════════════════════════════════════════════════════
+     Shadows
+     ══════════════════════════════════════════════════════ */
+  --shadow-s: 0px 1px 2px 0px rgba(0,0,0,0.08);
+  --shadow-m: 0px 4px 8px 0px rgba(0,0,0,0.08);
+  --shadow-l: 0px 16px 32px 0px rgba(0,0,0,0.08);
+  --shadow-none: none;
+
+  /* ═══════════════════════════════════════════════════════
+     Border radius
+     ══════════════════════════════════════════════════════ */
+  --radius-none: 0;
+  --radius-s:    4px;
+  --radius-m:    8px;
+  --radius-l:    16px;
+  --radius-max:  9999px;
+
+  /* ═══════════════════════════════════════════════════════
+     Spacing (DS grid)
+     ══════════════════════════════════════════════════════ */
+  --space-0:   0;
+  --space-2:   2px;
+  --space-4:   4px;
+  --space-8:   8px;
+  --space-12:  12px;
+  --space-16:  16px;
+  --space-20:  20px;
+  --space-24:  24px;
+  --space-32:  32px;
+  --space-40:  40px;
+  --space-48:  48px;
+  --space-56:  56px;
+  --space-64:  64px;
+  --space-72:  72px;
+  --space-80:  80px;
+  --space-96:  96px;
+  --space-112: 112px;
+  --space-128: 128px;
+  --space-160: 160px;
+  --space-320: 320px;
+
+  /* ═══════════════════════════════════════════════════════
+     Typography
+     ══════════════════════════════════════════════════════ */
+  --font-main: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold:   600;
+
+  --text-2xs:  0.625rem;   /* 10px */
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.375rem;   /* 22px */
+  --text-2xl:  1.5rem;     /* 24px */
+  --text-3xl:  2rem;       /* 32px */
+  --text-4xl:  2.5rem;     /* 40px */
+
+  --lh-2xs:  1rem;
+  --lh-xs:   1.125rem;
+  --lh-sm:   1.25rem;
+  --lh-base: 1.5rem;
+  --lh-lg:   1.5rem;
+  --lh-xl:   1.75rem;
+  --lh-2xl:  2rem;
+  --lh-3xl:  2.5rem;
+  --lh-4xl:  3.125rem;
+}

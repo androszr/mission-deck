@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "team-directory",
+  "name": "Team directory",
+  "version": "0.1.4",
+  "status": "beta",
+  "area": "Team",
+  "description": "Team roster and contact details: team cards with logos, member photos, search by person, role and contact via e-mail or Teams.",
+  "icon": "24-ic-user",
+  "author": "androszr",
+  "tags": [
+    "team",
+    "contacts",
+    "people directory"
+  ],
+  "sidebar": {
+    "label": "Team directory",
+    "kind": "page",
+    "hub": "team"
+  },
+  "views": [
+    {
+      "id": "team-directory-main",
+      "label": "Team directory",
+      "title": "Team directory",
+      "subtitle": "Who belongs to which team and how to reach them"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "access": "read",
+      "description": "Team directory (team/) - read only; written by Settings > Users",
+      "paths": [
+        "team/"
+      ]
+    }
+  ],
+  "envKeys": [],
+  "widgets": [
+    {
+      "id": "teams",
+      "label": "Our teams",
+      "description": "Teams from the team directory: member photos, head count per team and team share.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        {
+          "id": "s",
+          "label": "Small",
+          "cols": 2,
+          "rows": 1
+        },
+        {
+          "id": "s2",
+          "label": "Small, tall",
+          "cols": 2,
+          "rows": 2
+        },
+        {
+          "id": "m",
+          "label": "Medium",
+          "cols": 3,
+          "rows": 1
+        },
+        {
+          "id": "m2",
+          "label": "Medium, tall",
+          "cols": 3,
+          "rows": 2
+        },
+        {
+          "id": "l",
+          "label": "Wide",
+          "cols": 6,
+          "rows": 1
+        },
+        {
+          "id": "xl",
+          "label": "Wide, tall",
+          "cols": 6,
+          "rows": 2
+        }
+      ],
+      "defaultVariant": "m2"
+    }
+  ]
+}

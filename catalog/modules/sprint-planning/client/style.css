@@ -1,0 +1,130 @@
+/* modules/sprint-planning/client/style.css
+   Layout only. Every rule is prefixed .sprint-planning- ; colours and
+   spacing come from the DS tokens (css/ds-tokens.css). */
+
+.sprint-planning-root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16, 16px);
+}
+
+#sprint-planning-main-root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16, 16px);
+}
+
+.sprint-planning-filters {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-16, 16px);
+}
+
+.sprint-planning-filters .ds-input-wrap {
+  min-width: 200px;
+}
+
+.sprint-planning-planhead {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-12, 12px);
+}
+
+.sprint-planning-title {
+  margin: 0;
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+}
+
+.sprint-planning-subtitle {
+  margin: var(--space-16, 16px) 0 var(--space-8, 8px);
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+}
+
+.sprint-planning-cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-16, 16px);
+}
+
+.sprint-planning-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-16, 16px);
+  margin-top: var(--space-16, 16px);
+}
+
+.sprint-planning-form--dates {
+  grid-template-columns: repeat(2, minmax(0, 240px)) max-content;
+  align-items: end;
+  margin-top: 0;
+}
+
+.sprint-planning-form > .ds-input-wrap:only-child,
+.sprint-planning-form > .ds-input-wrap:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.sprint-planning-form--settings {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-top: var(--space-8, 8px);
+}
+
+.sprint-planning-form--settings > .ds-input-wrap:last-child:nth-child(odd) {
+  grid-column: auto;
+}
+
+.sprint-planning-settings-team {
+  border: 0;
+  margin: var(--space-16, 16px) 0 0;
+  padding: 0;
+}
+
+.sprint-planning-list {
+  margin-top: var(--space-8, 8px);
+}
+
+.sprint-planning-listrow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  align-items: center;
+  gap: var(--space-8, 8px);
+  margin-bottom: var(--space-8, 8px);
+}
+
+.sprint-planning-listrow--manual {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr) max-content;
+}
+
+.sprint-planning-listrow--items {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 2fr) max-content;
+}
+
+.sprint-planning-listrow--cross {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 2fr) max-content;
+}
+
+.sprint-planning-listrow > a.ds-btn {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+.sprint-planning-checks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 4px);
+}
+
+.sprint-planning-sum {
+  margin: var(--space-8, 8px) 0 0;
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+}
+
+.sprint-planning-muted td {
+  color: var(--body-tertiary-text);
+}

@@ -1,0 +1,692 @@
+{
+  "set": "Mission Deck icons",
+  "license": "ISC (Lucide, https://lucide.dev) - see LICENSE-lucide.txt",
+  "icons": [
+    {
+      "slug": "16-ic-add",
+      "name": "16 / Add",
+      "size": 16,
+      "file": "16-ic-add.svg",
+      "source": "lucide:plus"
+    },
+    {
+      "slug": "16-ic-attachment",
+      "name": "16 / Attachment",
+      "size": 16,
+      "file": "16-ic-attachment.svg",
+      "source": "lucide:paperclip"
+    },
+    {
+      "slug": "16-ic-chatbubbles",
+      "name": "16 / Chatbubbles",
+      "size": 16,
+      "file": "16-ic-chatbubbles.svg",
+      "source": "lucide:messages-square"
+    },
+    {
+      "slug": "16-ic-chevron-bottom",
+      "name": "16 / Chevron bottom",
+      "size": 16,
+      "file": "16-ic-chevron-bottom.svg",
+      "source": "lucide:chevron-down"
+    },
+    {
+      "slug": "16-ic-chevron-left",
+      "name": "16 / Chevron left",
+      "size": 16,
+      "file": "16-ic-chevron-left.svg",
+      "source": "lucide:chevron-left"
+    },
+    {
+      "slug": "16-ic-chevron-right",
+      "name": "16 / Chevron right",
+      "size": 16,
+      "file": "16-ic-chevron-right.svg",
+      "source": "lucide:chevron-right"
+    },
+    {
+      "slug": "16-ic-clock",
+      "name": "16 / Clock",
+      "size": 16,
+      "file": "16-ic-clock.svg",
+      "source": "lucide:clock"
+    },
+    {
+      "slug": "16-ic-context-menu-vertical",
+      "name": "16 / Context menu vertical",
+      "size": 16,
+      "file": "16-ic-context-menu-vertical.svg",
+      "source": "lucide:ellipsis-vertical"
+    },
+    {
+      "slug": "16-ic-copy",
+      "name": "16 / Copy",
+      "size": 16,
+      "file": "16-ic-copy.svg",
+      "source": "lucide:copy"
+    },
+    {
+      "slug": "16-ic-cross",
+      "name": "16 / Cross",
+      "size": 16,
+      "file": "16-ic-cross.svg",
+      "source": "lucide:x"
+    },
+    {
+      "slug": "16-ic-dashboard",
+      "name": "16 / Dashboard",
+      "size": 16,
+      "file": "16-ic-dashboard.svg",
+      "source": "lucide:layout-dashboard"
+    },
+    {
+      "slug": "16-ic-download",
+      "name": "16 / Download",
+      "size": 16,
+      "file": "16-ic-download.svg",
+      "source": "lucide:download"
+    },
+    {
+      "slug": "16-ic-drag-handle",
+      "name": "16 / Drag handle",
+      "size": 16,
+      "file": "16-ic-drag-handle.svg",
+      "source": "lucide:grip-vertical"
+    },
+    {
+      "slug": "16-ic-edit",
+      "name": "16 / Edit",
+      "size": 16,
+      "file": "16-ic-edit.svg",
+      "source": "lucide:square-pen"
+    },
+    {
+      "slug": "16-ic-external-link",
+      "name": "16 / External link",
+      "size": 16,
+      "file": "16-ic-external-link.svg",
+      "source": "lucide:external-link"
+    },
+    {
+      "slug": "16-ic-file",
+      "name": "16 / File",
+      "size": 16,
+      "file": "16-ic-file.svg",
+      "source": "lucide:file"
+    },
+    {
+      "slug": "16-ic-file-movie",
+      "name": "16 / File movie",
+      "size": 16,
+      "file": "16-ic-file-movie.svg",
+      "source": "lucide:file-video"
+    },
+    {
+      "slug": "16-ic-files",
+      "name": "16 / Files",
+      "size": 16,
+      "file": "16-ic-files.svg",
+      "source": "lucide:files"
+    },
+    {
+      "slug": "16-ic-folder",
+      "name": "16 / Folder",
+      "size": 16,
+      "file": "16-ic-folder.svg",
+      "source": "lucide:folder"
+    },
+    {
+      "slug": "16-ic-info",
+      "name": "16 / Info",
+      "size": 16,
+      "file": "16-ic-info.svg",
+      "source": "lucide:info"
+    },
+    {
+      "slug": "16-ic-key-enter",
+      "name": "16 / Key enter",
+      "size": 16,
+      "file": "16-ic-key-enter.svg",
+      "source": "lucide:corner-down-left"
+    },
+    {
+      "slug": "16-ic-link",
+      "name": "16 / Link",
+      "size": 16,
+      "file": "16-ic-link.svg",
+      "source": "lucide:link"
+    },
+    {
+      "slug": "16-ic-locked",
+      "name": "16 / Locked",
+      "size": 16,
+      "file": "16-ic-locked.svg",
+      "source": "lucide:lock"
+    },
+    {
+      "slug": "16-ic-money",
+      "name": "16 / Money",
+      "size": 16,
+      "file": "16-ic-money.svg",
+      "source": "lucide:banknote"
+    },
+    {
+      "slug": "16-ic-pause",
+      "name": "16 / Pause",
+      "size": 16,
+      "file": "16-ic-pause.svg",
+      "source": "lucide:pause"
+    },
+    {
+      "slug": "16-ic-play",
+      "name": "16 / Play",
+      "size": 16,
+      "file": "16-ic-play.svg",
+      "source": "lucide:play"
+    },
+    {
+      "slug": "16-ic-refresh",
+      "name": "16 / Refresh",
+      "size": 16,
+      "file": "16-ic-refresh.svg",
+      "source": "lucide:refresh-cw"
+    },
+    {
+      "slug": "16-ic-reports",
+      "name": "16 / Reports",
+      "size": 16,
+      "file": "16-ic-reports.svg",
+      "source": "lucide:chart-column"
+    },
+    {
+      "slug": "16-ic-search",
+      "name": "16 / Search",
+      "size": 16,
+      "file": "16-ic-search.svg",
+      "source": "lucide:search"
+    },
+    {
+      "slug": "16-ic-settings",
+      "name": "16 / Settings",
+      "size": 16,
+      "file": "16-ic-settings.svg",
+      "source": "lucide:settings"
+    },
+    {
+      "slug": "16-ic-shield",
+      "name": "16 / Shield",
+      "size": 16,
+      "file": "16-ic-shield.svg",
+      "source": "lucide:shield"
+    },
+    {
+      "slug": "16-ic-shop",
+      "name": "16 / Shop",
+      "size": 16,
+      "file": "16-ic-shop.svg",
+      "source": "lucide:store"
+    },
+    {
+      "slug": "16-ic-shop-managing",
+      "name": "16 / Shop managing",
+      "size": 16,
+      "file": "16-ic-shop-managing.svg",
+      "source": "lucide:building-2"
+    },
+    {
+      "slug": "16-ic-sort-down",
+      "name": "16 / Sort down",
+      "size": 16,
+      "file": "16-ic-sort-down.svg",
+      "source": "lucide:arrow-down-wide-narrow"
+    },
+    {
+      "slug": "16-ic-sort-none",
+      "name": "16 / Sort none",
+      "size": 16,
+      "file": "16-ic-sort-none.svg",
+      "source": "lucide:arrow-up-down"
+    },
+    {
+      "slug": "16-ic-sort-up",
+      "name": "16 / Sort up",
+      "size": 16,
+      "file": "16-ic-sort-up.svg",
+      "source": "lucide:arrow-up-narrow-wide"
+    },
+    {
+      "slug": "16-ic-star-simple",
+      "name": "16 / Star simple",
+      "size": 16,
+      "file": "16-ic-star-simple.svg",
+      "source": "lucide:star"
+    },
+    {
+      "slug": "16-ic-task-returned",
+      "name": "16 / Task returned",
+      "size": 16,
+      "file": "16-ic-task-returned.svg",
+      "source": "lucide:undo-2"
+    },
+    {
+      "slug": "16-ic-tick",
+      "name": "16 / Tick",
+      "size": 16,
+      "file": "16-ic-tick.svg",
+      "source": "lucide:check"
+    },
+    {
+      "slug": "16-ic-todo-list-dots",
+      "name": "16 / Todo list dots",
+      "size": 16,
+      "file": "16-ic-todo-list-dots.svg",
+      "source": "lucide:list-todo"
+    },
+    {
+      "slug": "16-ic-trashcan",
+      "name": "16 / Trashcan",
+      "size": 16,
+      "file": "16-ic-trashcan.svg",
+      "source": "lucide:trash-2"
+    },
+    {
+      "slug": "16-ic-tweak-horizontal",
+      "name": "16 / Tweak horizontal",
+      "size": 16,
+      "file": "16-ic-tweak-horizontal.svg",
+      "source": "lucide:sliders-horizontal"
+    },
+    {
+      "slug": "16-ic-upload",
+      "name": "16 / Upload",
+      "size": 16,
+      "file": "16-ic-upload.svg",
+      "source": "lucide:upload"
+    },
+    {
+      "slug": "16-ic-user",
+      "name": "16 / User",
+      "size": 16,
+      "file": "16-ic-user.svg",
+      "source": "lucide:user"
+    },
+    {
+      "slug": "16-ic-weather-cloud",
+      "name": "16 / Weather cloud",
+      "size": 16,
+      "file": "16-ic-weather-cloud.svg",
+      "source": "lucide:cloud"
+    },
+    {
+      "slug": "24-ic-calendar",
+      "name": "24 / Calendar",
+      "size": 24,
+      "file": "24-ic-calendar.svg",
+      "source": "lucide:calendar"
+    },
+    {
+      "slug": "24-ic-calendar-edit",
+      "name": "24 / Calendar edit",
+      "size": 24,
+      "file": "24-ic-calendar-edit.svg",
+      "source": "lucide:calendar-cog"
+    },
+    {
+      "slug": "24-ic-calendar-text",
+      "name": "24 / Calendar text",
+      "size": 24,
+      "file": "24-ic-calendar-text.svg",
+      "source": "lucide:calendar-days"
+    },
+    {
+      "slug": "24-ic-calendar-tick",
+      "name": "24 / Calendar tick",
+      "size": 24,
+      "file": "24-ic-calendar-tick.svg",
+      "source": "lucide:calendar-check"
+    },
+    {
+      "slug": "24-ic-calendar-with-money",
+      "name": "24 / Calendar with money",
+      "size": 24,
+      "file": "24-ic-calendar-with-money.svg",
+      "source": "lucide:calendar-range"
+    },
+    {
+      "slug": "24-ic-chevron-bottom",
+      "name": "24 / Chevron bottom",
+      "size": 24,
+      "file": "24-ic-chevron-bottom.svg",
+      "source": "lucide:chevron-down"
+    },
+    {
+      "slug": "24-ic-chevron-left",
+      "name": "24 / Chevron left",
+      "size": 24,
+      "file": "24-ic-chevron-left.svg",
+      "source": "lucide:chevron-left"
+    },
+    {
+      "slug": "24-ic-chevron-right",
+      "name": "24 / Chevron right",
+      "size": 24,
+      "file": "24-ic-chevron-right.svg",
+      "source": "lucide:chevron-right"
+    },
+    {
+      "slug": "24-ic-chevron-up",
+      "name": "24 / Chevron up",
+      "size": 24,
+      "file": "24-ic-chevron-up.svg",
+      "source": "lucide:chevron-up"
+    },
+    {
+      "slug": "24-ic-clock",
+      "name": "24 / Clock",
+      "size": 24,
+      "file": "24-ic-clock.svg",
+      "source": "lucide:clock"
+    },
+    {
+      "slug": "24-ic-close",
+      "name": "24 / Close",
+      "size": 24,
+      "file": "24-ic-close.svg",
+      "source": "lucide:x"
+    },
+    {
+      "slug": "24-ic-cross",
+      "name": "24 / Cross",
+      "size": 24,
+      "file": "24-ic-cross.svg",
+      "source": "lucide:x"
+    },
+    {
+      "slug": "24-ic-dashboard",
+      "name": "24 / Dashboard",
+      "size": 24,
+      "file": "24-ic-dashboard.svg",
+      "source": "lucide:layout-dashboard"
+    },
+    {
+      "slug": "24-ic-download",
+      "name": "24 / Download",
+      "size": 24,
+      "file": "24-ic-download.svg",
+      "source": "lucide:download"
+    },
+    {
+      "slug": "24-ic-e-learning",
+      "name": "24 / E learning",
+      "size": 24,
+      "file": "24-ic-e-learning.svg",
+      "source": "lucide:graduation-cap"
+    },
+    {
+      "slug": "24-ic-external-link",
+      "name": "24 / External link",
+      "size": 24,
+      "file": "24-ic-external-link.svg",
+      "source": "lucide:external-link"
+    },
+    {
+      "slug": "24-ic-file",
+      "name": "24 / File",
+      "size": 24,
+      "file": "24-ic-file.svg",
+      "source": "lucide:file"
+    },
+    {
+      "slug": "24-ic-fixture",
+      "name": "24 / Fixture",
+      "size": 24,
+      "file": "24-ic-fixture.svg",
+      "source": "lucide:armchair"
+    },
+    {
+      "slug": "24-ic-flag",
+      "name": "24 / Flag",
+      "size": 24,
+      "file": "24-ic-flag.svg",
+      "source": "lucide:flag"
+    },
+    {
+      "slug": "24-ic-folder",
+      "name": "24 / Folder",
+      "size": 24,
+      "file": "24-ic-folder.svg",
+      "source": "lucide:folder"
+    },
+    {
+      "slug": "24-ic-help",
+      "name": "24 / Help",
+      "size": 24,
+      "file": "24-ic-help.svg",
+      "source": "lucide:circle-help"
+    },
+    {
+      "slug": "24-ic-lightbulb",
+      "name": "24 / Lightbulb",
+      "size": 24,
+      "file": "24-ic-lightbulb.svg",
+      "source": "lucide:lightbulb"
+    },
+    {
+      "slug": "24-ic-locked",
+      "name": "24 / Locked",
+      "size": 24,
+      "file": "24-ic-locked.svg",
+      "source": "lucide:lock"
+    },
+    {
+      "slug": "24-ic-microphone",
+      "name": "24 / Microphone",
+      "size": 24,
+      "file": "24-ic-microphone.svg",
+      "source": "lucide:mic"
+    },
+    {
+      "slug": "24-ic-money",
+      "name": "24 / Money",
+      "size": 24,
+      "file": "24-ic-money.svg",
+      "source": "lucide:banknote"
+    },
+    {
+      "slug": "24-ic-notification-error",
+      "name": "24 / Notification error",
+      "size": 24,
+      "file": "24-ic-notification-error.svg",
+      "source": "lucide:circle-x"
+    },
+    {
+      "slug": "24-ic-notification-information",
+      "name": "24 / Notification information",
+      "size": 24,
+      "file": "24-ic-notification-information.svg",
+      "source": "lucide:info"
+    },
+    {
+      "slug": "24-ic-notification-success",
+      "name": "24 / Notification success",
+      "size": 24,
+      "file": "24-ic-notification-success.svg",
+      "source": "lucide:circle-check"
+    },
+    {
+      "slug": "24-ic-notification-warning",
+      "name": "24 / Notification warning",
+      "size": 24,
+      "file": "24-ic-notification-warning.svg",
+      "source": "lucide:triangle-alert"
+    },
+    {
+      "slug": "24-ic-package-m",
+      "name": "24 / Package m",
+      "size": 24,
+      "file": "24-ic-package-m.svg",
+      "source": "lucide:package"
+    },
+    {
+      "slug": "24-ic-phone",
+      "name": "24 / Phone",
+      "size": 24,
+      "file": "24-ic-phone.svg",
+      "source": "lucide:phone"
+    },
+    {
+      "slug": "24-ic-play",
+      "name": "24 / Play",
+      "size": 24,
+      "file": "24-ic-play.svg",
+      "source": "lucide:play"
+    },
+    {
+      "slug": "24-ic-question",
+      "name": "24 / Question",
+      "size": 24,
+      "file": "24-ic-question.svg",
+      "source": "lucide:circle-help"
+    },
+    {
+      "slug": "24-ic-refresh",
+      "name": "24 / Refresh",
+      "size": 24,
+      "file": "24-ic-refresh.svg",
+      "source": "lucide:refresh-cw"
+    },
+    {
+      "slug": "24-ic-reports",
+      "name": "24 / Reports",
+      "size": 24,
+      "file": "24-ic-reports.svg",
+      "source": "lucide:chart-column"
+    },
+    {
+      "slug": "24-ic-sales-report",
+      "name": "24 / Sales report",
+      "size": 24,
+      "file": "24-ic-sales-report.svg",
+      "source": "lucide:receipt"
+    },
+    {
+      "slug": "24-ic-saved-order",
+      "name": "24 / Saved order",
+      "size": 24,
+      "file": "24-ic-saved-order.svg",
+      "source": "lucide:bookmark"
+    },
+    {
+      "slug": "24-ic-settings",
+      "name": "24 / Settings",
+      "size": 24,
+      "file": "24-ic-settings.svg",
+      "source": "lucide:settings"
+    },
+    {
+      "slug": "24-ic-shop",
+      "name": "24 / Shop",
+      "size": 24,
+      "file": "24-ic-shop.svg",
+      "source": "lucide:store"
+    },
+    {
+      "slug": "24-ic-sort-down",
+      "name": "24 / Sort down",
+      "size": 24,
+      "file": "24-ic-sort-down.svg",
+      "source": "lucide:arrow-down-wide-narrow"
+    },
+    {
+      "slug": "24-ic-sort-up",
+      "name": "24 / Sort up",
+      "size": 24,
+      "file": "24-ic-sort-up.svg",
+      "source": "lucide:arrow-up-narrow-wide"
+    },
+    {
+      "slug": "24-ic-sos-external",
+      "name": "24 / Sos external",
+      "size": 24,
+      "file": "24-ic-sos-external.svg",
+      "source": "lucide:life-buoy"
+    },
+    {
+      "slug": "24-ic-star-simple",
+      "name": "24 / Star simple",
+      "size": 24,
+      "file": "24-ic-star-simple.svg",
+      "source": "lucide:star"
+    },
+    {
+      "slug": "24-ic-task-done",
+      "name": "24 / Task done",
+      "size": 24,
+      "file": "24-ic-task-done.svg",
+      "source": "lucide:circle-check-big"
+    },
+    {
+      "slug": "24-ic-todo-list-dots",
+      "name": "24 / Todo list dots",
+      "size": 24,
+      "file": "24-ic-todo-list-dots.svg",
+      "source": "lucide:list-todo"
+    },
+    {
+      "slug": "24-ic-trashcan",
+      "name": "24 / Trashcan",
+      "size": 24,
+      "file": "24-ic-trashcan.svg",
+      "source": "lucide:trash-2"
+    },
+    {
+      "slug": "24-ic-truck",
+      "name": "24 / Truck",
+      "size": 24,
+      "file": "24-ic-truck.svg",
+      "source": "lucide:truck"
+    },
+    {
+      "slug": "24-ic-tweak-vertical",
+      "name": "24 / Tweak vertical",
+      "size": 24,
+      "file": "24-ic-tweak-vertical.svg",
+      "source": "lucide:sliders-vertical"
+    },
+    {
+      "slug": "24-ic-user",
+      "name": "24 / User",
+      "size": 24,
+      "file": "24-ic-user.svg",
+      "source": "lucide:user"
+    },
+    {
+      "slug": "32-ic-download",
+      "name": "32 / Download",
+      "size": 32,
+      "file": "32-ic-download.svg",
+      "source": "lucide:download"
+    },
+    {
+      "slug": "32-ic-photo",
+      "name": "32 / Photo",
+      "size": 32,
+      "file": "32-ic-photo.svg",
+      "source": "lucide:image"
+    },
+    {
+      "slug": "32-ic-shield",
+      "name": "32 / Shield",
+      "size": 32,
+      "file": "32-ic-shield.svg",
+      "source": "lucide:shield"
+    },
+    {
+      "slug": "48-ic-photo",
+      "name": "48 / Photo",
+      "size": 48,
+      "file": "48-ic-photo.svg",
+      "source": "lucide:image"
+    }
+  ]
+}

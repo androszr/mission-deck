@@ -1,0 +1,10 @@
+{
+  "emails": ["jan.kowalski@example.com"],
+  "aliases": {},
+  "moduleAccess": {
+    "jan.kowalski@example.com": ["dashboard"]
+  },
+  "userMeta": {
+    "jan.kowalski@example.com": { "role": "Tester", "avatar": "logo.png" }
+  }
+}

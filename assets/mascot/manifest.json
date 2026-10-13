@@ -1,0 +1,46 @@
+{
+  "name": "Pip",
+  "license": "Original artwork, same licence as the repository",
+  "poses": [
+    {
+      "pose": "idle",
+      "file": "pip-idle.svg",
+      "label": "Pip, idle"
+    },
+    {
+      "pose": "wave",
+      "file": "pip-wave.svg",
+      "label": "Pip, waving"
+    },
+    {
+      "pose": "thinking",
+      "file": "pip-thinking.svg",
+      "label": "Pip, thinking"
+    },
+    {
+      "pose": "working",
+      "file": "pip-working.svg",
+      "label": "Pip, working"
+    },
+    {
+      "pose": "success",
+      "file": "pip-success.svg",
+      "label": "Pip, success"
+    },
+    {
+      "pose": "error",
+      "file": "pip-error.svg",
+      "label": "Pip, something went wrong"
+    },
+    {
+      "pose": "sleeping",
+      "file": "pip-sleeping.svg",
+      "label": "Pip, sleeping"
+    },
+    {
+      "pose": "celebrating",
+      "file": "pip-celebrating.svg",
+      "label": "Pip, celebrating"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "time-off",
+  "name": "Time off",
+  "version": "1.0.0",
+  "status": "stable",
+  "area": "Team",
+  "description": "The team's time-off calendar, downloaded from a configurable SharePoint/Excel sheet through a Microsoft sign-in.",
+  "icon": "24-ic-calendar",
+  "author": "androszr",
+  "tags": [
+    "time-off",
+    "team",
+    "sharepoint",
+    "calendar"
+  ],
+  "sidebar": {
+    "label": "Time off",
+    "kind": "page",
+    "hub": "support"
+  },
+  "views": [
+    {
+      "id": "time-off-main",
+      "label": "Time off",
+      "title": "Time off",
+      "subtitle": "The team's time-off calendar - who, when and for how long"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Team time off - one shard per person in the time-off/ directory",
+      "paths": [
+        "time-off/"
+      ]
+    }
+  ],
+  "envKeys": [
+    {
+      "name": "TIMEOFF_SHAREPOINT_URL",
+      "description": "View URL of the time-off workbook on SharePoint/OneDrive"
+    },
+    {
+      "name": "TIMEOFF_SHAREPOINT_DOWNLOAD_URL",
+      "description": "Direct download URL of the same workbook (download.aspx?UniqueId=...)"
+    }
+  ],
+  "widgets": [
+    {
+      "id": "away-this-week",
+      "label": "Away this week",
+      "description": "Who is away in the current working week: avatars, day ranges and how busy each day is.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        { "id": "s", "label": "Small", "cols": 2, "rows": 1 },
+        { "id": "m", "label": "Medium", "cols": 3, "rows": 1 },
+        { "id": "l", "label": "Wide", "cols": 6, "rows": 1 },
+        { "id": "s2", "label": "Small, tall", "cols": 2, "rows": 2 },
+        { "id": "m2", "label": "Medium, tall", "cols": 3, "rows": 2 },
+        { "id": "xl", "label": "Wide, tall", "cols": 6, "rows": 2 }
+      ],
+      "defaultVariant": "m"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

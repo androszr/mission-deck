@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "id": "on-call",
+  "name": "On-call",
+  "version": "0.2.0",
+  "status": "beta",
+  "area": "Operations",
+  "description": "Monthly on-call calendar read from a configurable Confluence wiki page: who is on call today, contacts, coordination and on-call hours.",
+  "icon": "24-ic-calendar",
+  "author": "androszr",
+  "tags": ["on-call", "confluence", "calendar"],
+  "sidebar": {
+    "label": "On-call",
+    "kind": "page",
+    "hub": "support"
+  },
+  "views": [
+    {
+      "id": "on-call-main",
+      "label": "On-call",
+      "title": "On-call",
+      "subtitle": "Who is on call today - schedule from a wiki page"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "On-call schedule - index.json and one shard per month in the on-call/ directory",
+      "paths": ["on-call/"]
+    }
+  ],
+  "envKeys": [
+    {
+      "name": "CONFLUENCE_TOKEN",
+      "description": "Confluence token from the vault - needed only for the Sync button"
+    },
+    {
+      "name": "CONFLUENCE_BASE_URL",
+      "description": "Confluence base URL, e.g. https://confluence.example.com"
+    },
+    {
+      "name": "ONCALL_PAGE_ID",
+      "description": "Id of the Confluence page that holds the on-call schedule tables"
+    }
+  ],
+  "widgets": [
+    {
+      "id": "on-call-today",
+      "label": "On call today",
+      "description": "Who is on call today: avatars, the next few days and how many on-call columns are covered this month.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        { "id": "s", "label": "Small", "cols": 2, "rows": 1 },
+        { "id": "s2", "label": "Small, tall", "cols": 2, "rows": 2 },
+        { "id": "m", "label": "Medium", "cols": 3, "rows": 1 },
+        { "id": "m2", "label": "Medium, tall", "cols": 3, "rows": 2 },
+        { "id": "l", "label": "Wide", "cols": 6, "rows": 1 }
+      ],
+      "defaultVariant": "m2"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

@@ -1,0 +1,294 @@
+/* on-call/client/style.css
+   Tokens from css/ds-tokens.css only - no hardcoded hex. Rules prefixed
+   .oncall- so they cannot collide with the core or another module. */
+
+.oncall-card {
+  background: var(--body-primary-bg);
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: var(--radius-m);
+  padding: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.oncall-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.oncall-month-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-left: var(--space-8);
+}
+
+.oncall-sync-label {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.oncall-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+/* ── calendar grid ─────────────────────────────────────────────────────── */
+
+.oncall-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.oncall-week-header,
+.oncall-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.oncall-day-header {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: var(--space-4) 0;
+}
+
+/* Compound selectors (.oncall-grid .oncall-day-btn) on purpose: the day
+   cell also carries ds-btn ds-btn--tertiary for the DS-class gate
+   (check-conventions ds-btn rule), and css/ds.css loads AFTER this
+   stylesheet, so a bare single-class .oncall-day-btn would lose the
+   cascade to .ds-btn--tertiary's own chrome. The extra ancestor class
+   raises specificity above that without !important. */
+.oncall-grid .oncall-day-btn {
+  min-height: 92px;
+  width: 100%;
+  height: auto;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8);
+  padding: var(--space-8);
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: var(--radius-s);
+  background: var(--body-primary-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  font: inherit;
+}
+
+.oncall-grid .oncall-day-btn:hover {
+  background: var(--body-secondary-bg);
+}
+
+.oncall-day--empty {
+  min-height: 92px;
+}
+
+.oncall-grid .oncall-day--weekend {
+  background: var(--body-quaternary-bg);
+}
+
+.oncall-grid .oncall-day--today {
+  border-color: var(--clickable-primary-default-bg);
+  border-width: 2px;
+}
+
+.oncall-day-num {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.oncall-day-avatars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+/* ── avatars ───────────────────────────────────────────────────────────── */
+
+.oncall-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-max, 9999px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  object-fit: cover;
+  border: 2px solid var(--body-primary-bg);
+}
+
+.oncall-avatar--initials {
+  background: var(--body-tertiary-bg);
+  color: var(--body-secondary-text);
+}
+
+.oncall-ring--inventory { border-color: var(--assistive-sky-text); }
+.oncall-ring--orders { border-color: var(--assistive-mandarine-text); }
+.oncall-ring--platform { border-color: var(--assistive-plum-text); }
+.oncall-ring--devops { border-color: var(--state-success-text); }
+
+.oncall-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-max, 9999px);
+  background: var(--body-tertiary-bg);
+  color: var(--body-secondary-text);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ── panels ────────────────────────────────────────────────────────────── */
+
+.oncall-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-16);
+  margin-top: var(--space-16);
+}
+
+@media (max-width: 900px) {
+  .oncall-panels {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.oncall-block {
+  margin-top: var(--space-16);
+}
+
+.oncall-coord-info {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.oncall-coord-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.oncall-coord-note {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.oncall-badges {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+/* An inner wrapper, never the <td> itself: a flex <td> stops being a table
+   cell, so its border and height fall out of step with the rest of the row. */
+.oncall-person-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  vertical-align: middle;
+}
+
+/* ── skeleton ──────────────────────────────────────────────────────────── */
+
+.oncall-skel-bar {
+  display: inline-block;
+  width: 220px;
+  height: 32px;
+  border-radius: var(--radius-s);
+  background: var(--body-secondary-bg);
+}
+
+.oncall-skel-legend {
+  display: inline-block;
+  width: 320px;
+  height: 20px;
+  border-radius: var(--radius-s);
+  background: var(--body-secondary-bg);
+}
+
+.oncall-skel-header {
+  display: inline-block;
+  width: 100%;
+  height: 16px;
+  border-radius: var(--radius-s);
+}
+
+.oncall-skel-cell {
+  display: block;
+  width: 100%;
+  height: 92px;
+  border-radius: var(--radius-s);
+}
+
+/* ── day modal ─────────────────────────────────────────────────────────── */
+
+.oncall-modal-person {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin-bottom: var(--space-8);
+}
+
+.oncall-modal-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-max, 9999px);
+  object-fit: cover;
+}
+
+.oncall-modal-avatar--initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--body-tertiary-bg);
+  color: var(--body-secondary-text);
+  font-weight: 600;
+}
+
+.oncall-modal-person-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.oncall-modal-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.oncall-modal-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.oncall-modal-meta {
+  color: var(--text-secondary);
+  font-size: 13px;
+  width: 100%;
+}
+
+.oncall-modal-note {
+  margin-top: var(--space-8);
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.oncall-modal-divider {
+  border: none;
+  border-top: 1px solid var(--body-tertiary-border);
+  margin: var(--space-12) 0;
+}

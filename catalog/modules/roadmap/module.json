@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "id": "roadmap",
+  "name": "Roadmap",
+  "version": "0.4.1",
+  "status": "beta",
+  "area": "Product",
+  "description": "Roadmap of Discovery initiatives: a Table (row editing, drag-and-drop order, priority by typing a number, a day strip with logged time), a Timeline (quarters and Go-Live) and a Kanban (DISC tasks in Jira), synced with Jira on a personal token.",
+  "icon": "24-ic-todo-list-dots",
+  "author": "androszr",
+  "tags": [
+    "discovery",
+    "roadmap",
+    "initiatives",
+    "jira"
+  ],
+  "sidebar": {
+    "label": "Roadmap",
+    "kind": "page",
+    "hub": "initiatives"
+  },
+  "views": [
+    {
+      "id": "roadmap-main",
+      "label": "Roadmap",
+      "title": "Roadmap",
+      "subtitle": "Discovery initiatives - a table with in-place editing, ordering and Jira sync"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Discovery initiatives (discovery-tasks/, one dt-<id>.json file per initiative) - this module owns them: table edits, order and Jira sync",
+      "paths": [
+        "discovery-tasks/"
+      ]
+    },
+    {
+      "name": "data-tier-0",
+      "access": "read",
+      "description": "Optional pre-fetched Tempo worklogs - read only",
+      "paths": [
+        "discovery-tasks-tempo.json"
+      ]
+    },
+    {
+      "name": "data-tier-0",
+      "access": "read",
+      "description": "Logged time of the time-log module - read only, for the \"other tasks\" section",
+      "paths": [
+        "time-log/"
+      ]
+    }
+  ],
+  "envKeys": [],
+  "server": {
+    "entry": "server/index.js"
+  },
+  "widgets": [
+    {
+      "id": "top-initiatives",
+      "label": "Top initiatives",
+      "description": "The first five Discovery initiatives by order: Jira task progress, owners (PO) and the nearest Go-Live dates.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        {
+          "id": "m",
+          "label": "Medium",
+          "cols": 3,
+          "rows": 1
+        },
+        {
+          "id": "m2",
+          "label": "Medium, tall",
+          "cols": 3,
+          "rows": 2
+        },
+        {
+          "id": "l",
+          "label": "Wide",
+          "cols": 6,
+          "rows": 1
+        },
+        {
+          "id": "xl",
+          "label": "Wide, tall",
+          "cols": 6,
+          "rows": 2
+        }
+      ],
+      "defaultVariant": "l"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+/* demo-hub - module stylesheet. Tokens only, never a hardcoded colour. */
+
+.demo-hub-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  max-width: 720px;
+  margin-bottom: 16px;
+}
+
+.demo-hub-card--wide { max-width: 960px; }
+
+.demo-hub-intro {
+  max-width: 960px;
+  margin-bottom: 16px;
+}
+
+.demo-hub-section-title {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--body-primary-text);
+}
+
+.demo-hub-hint {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+}
+
+.demo-hub-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.demo-hub-label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--body-secondary-text);
+}
+
+/* .ds-input is sized for a one-line control: a fixed 48px height and
+   `padding: 0 16px`, so a textarea inheriting it glues the first line to the
+   top border. Both have to be undone here, not just the height. */
+.demo-hub-textarea {
+  width: 100%;
+  height: auto;
+  min-height: 160px;
+  padding: 12px 16px;
+  line-height: 1.5;
+  resize: vertical;
+  font-family: var(--font-main);
+}
+
+.demo-hub-meta,
+.demo-hub-empty {
+  font-size: var(--text-sm);
+  color: var(--body-tertiary-text);
+}
+
+.demo-hub-empty { margin: 0; }
+
+.demo-hub-steps {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+}
+
+/* ── Blok metadanych synchronizacji ───────────────────────── */
+
+.demo-hub-meta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: var(--radius-s);
+  background: var(--body-secondary-bg);
+  font-size: var(--text-sm);
+}
+
+.demo-hub-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.demo-hub-meta-key {
+  min-width: 230px;
+  color: var(--body-tertiary-text);
+}
+
+.demo-hub-meta-val {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  color: var(--body-primary-text);
+}
+
+.demo-hub-meta-row--muted { color: var(--body-tertiary-text); }
+
+/* ── Tabele ───────────────────────────────────────────────── */
+
+.demo-hub-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.demo-hub-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.demo-hub-table th,
+.demo-hub-table td {
+  text-align: left;
+  padding: 8px 12px 8px 0;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.demo-hub-table th {
+  color: var(--body-tertiary-text);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.demo-hub-cell-muted { color: var(--body-tertiary-text); }
+
+.demo-hub-row--pending td { background: var(--state-warning-bg); }

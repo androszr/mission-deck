@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!--
+  kudos.template.html — canonical celebration/contribution-summary template.
+  The CSS + chrome are FIXED; the skill only
+  fills the {{PLACEHOLDERS}} and repeats/omits the marked blocks.
+
+  Placeholders (single value): {{LANG}} {{PAGE_TITLE}} {{CONFETTI}} {{KICKER}}
+    {{TITLE}} {{HERO_INTRO}} {{BUILT_LEAD}} {{PRIDE_LEAD}} {{QUOTE}}
+    {{ADDED_LEAD}} {{FUTURE_LEAD}} {{SIGN_OFF}} {{SIGNATURE}}
+
+  Repeatable / optional blocks — duplicate the content between the markers once
+  per item, or delete the whole block (markers included) when not used:
+    <!-- BEGIN:badge -->...<!-- END:badge -->        one chip per item ({{BADGE}})
+    <!-- BEGIN:built_card -->...<!-- END:built_card --> one card ({{CARD_ICON}} {{CARD_TITLE}} {{CARD_DESC}})
+    <!-- BEGIN:pride_row -->...<!-- END:pride_row -->  one numbered row ({{N}} {{PRIDE_TITLE}} {{PRIDE_DESC}})
+    <!-- BEGIN:added_section -->...<!-- END:added_section -->  OPTIONAL whole "What we added" section
+    <!-- BEGIN:added_item -->...<!-- END:added_item -->  one item ({{ADDED_TITLE}} {{ADDED_WHY}})
+    <!-- BEGIN:future_item -->...<!-- END:future_item -->  one item ({{FUTURE_TITLE}} {{FUTURE_DESC}})
+-->
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/ds-tokens.css" onerror="this.remove()">
+<title>{{PAGE_TITLE}}</title>
+<style>
+  :root{
+    /* Design System tokens with literal fallbacks: the page also opens straight
+       from disk, with no server to serve /css/ds-tokens.css. */
+    --accent:var(--brand-accent,#b04f14); --accent-dark:var(--brand-accent-dark,#6e3410);
+    --ink:var(--body-primary-text,#0f1f17); --muted:var(--body-secondary-text,#5b6b62);
+    --bg:var(--body-secondary-bg,#f4f7f5); --card:var(--body-primary-bg,#ffffff);
+    --border:var(--body-tertiary-border,#e2ece6); --soft:var(--body-secondary-bg,#eef6f1);
+    --amber:var(--state-warning-text,#D97706);
+    --shadow:0 1px 2px rgba(16,40,28,.06),0 8px 28px rgba(16,40,28,.08);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:40px 24px 72px}
+  .hero{
+    background:linear-gradient(135deg,#b04f14 0%,#8c4213 55%,#6e3410 100%);
+    color:#fff; border-radius:24px; padding:48px 40px; box-shadow:var(--shadow);
+    position:relative; overflow:hidden;
+  }
+  .hero::after{
+    content:""; position:absolute; right:-60px; top:-60px; width:240px; height:240px;
+    background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%); border-radius:50%;
+  }
+  .hero .kicker{font-size:13px; letter-spacing:.14em; text-transform:uppercase; opacity:.9; font-weight:700; margin:0 0 14px}
+  .hero h1{font-size:40px; line-height:1.12; margin:0 0 16px; font-weight:800; letter-spacing:-.01em}
+  .hero p{font-size:18px; margin:0; max-width:60ch; opacity:.97}
+  .hero .confetti{font-size:34px; margin-bottom:8px}
+  .badges{margin-top:26px; display:flex; flex-wrap:wrap; gap:10px}
+  .badge{
+    background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28);
+    color:#fff; padding:7px 14px; border-radius:999px; font-size:13px; font-weight:600; backdrop-filter:blur(2px);
+  }
+  section{margin-top:40px}
+  h2{font-size:24px; font-weight:800; margin:0 0 6px; letter-spacing:-.01em}
+  .lead{color:var(--muted); margin:0 0 20px; font-size:16px}
+  .card{
+    background:var(--card); border:1px solid var(--border); border-radius:18px;
+    padding:26px 28px; box-shadow:var(--shadow); margin-bottom:18px;
+  }
+  .card h3{margin:0 0 8px; font-size:18px; font-weight:750}
+  .card p{margin:0 0 4px; color:#243a30}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media(max-width:640px){ .grid{grid-template-columns:1fr} .hero{padding:36px 24px} .hero h1{font-size:30px} .wrap{padding:24px 16px 56px} }
+  .feature{display:flex; gap:16px; align-items:flex-start}
+  .feature .ico{
+    flex:0 0 auto; width:44px; height:44px; border-radius:12px; background:var(--soft);
+    display:flex; align-items:center; justify-content:center; font-size:22px;
+  }
+  .pride{border-left:5px solid var(--accent)}
+  .pride .num{
+    display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%;
+    background:var(--accent); color:#fff; font-weight:800; font-size:15px; margin-right:10px; flex:0 0 auto;
+  }
+  .pride .row{display:flex; align-items:flex-start; margin-bottom:18px}
+  .pride .row:last-child{margin-bottom:0}
+  .pride .row .body h4{margin:2px 0 4px; font-size:17px; font-weight:750}
+  .pride .row .body p{margin:0; color:#33473d}
+  .quote{
+    background:var(--soft); border:1px solid var(--border); border-radius:18px; padding:24px 28px;
+    font-size:18px; font-style:italic; color:#1c3327;
+  }
+  .added{background:#fbfdfc; border-style:dashed}
+  .added .tag{
+    display:inline-block; background:var(--soft); color:var(--accent-dark); font-weight:700; font-size:12px;
+    letter-spacing:.06em; text-transform:uppercase; padding:4px 10px; border-radius:999px; margin-bottom:14px;
+  }
+  .check{color:var(--accent); font-weight:800; margin-right:8px}
+  ul.clean{margin:10px 0 0; padding:0; list-style:none}
+  ul.clean li{padding:8px 0 8px 0; border-top:1px solid var(--border)}
+  ul.clean li:first-child{border-top:0}
+  ul.clean li b{font-weight:700}
+  .why{color:var(--muted); font-size:14.5px; margin-top:2px; display:block}
+  .future .item{display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-top:1px solid var(--border)}
+  .future .item:first-child{border-top:0}
+  .future .dot{flex:0 0 auto; width:10px; height:10px; border-radius:50%; background:var(--amber); margin-top:8px}
+  .future h4{margin:0 0 3px; font-size:16px; font-weight:750}
+  .future p{margin:0; color:#33473d}
+  .footer{margin-top:44px; text-align:center; color:var(--muted); font-size:14px}
+  .footer .sig{font-weight:700; color:var(--ink)}
+  .pill{display:inline-block; background:var(--soft); border:1px solid var(--border); border-radius:8px; padding:1px 7px; font-size:13px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; color:#1c3327}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="confetti">{{CONFETTI}}</div>
+    <p class="kicker">{{KICKER}}</p>
+    <h1>{{TITLE}}</h1>
+    <p>{{HERO_INTRO}}</p>
+    <div class="badges">
+      <!-- BEGIN:badge -->
+      <span class="badge">{{BADGE}}</span>
+      <!-- END:badge -->
+    </div>
+  </div>
+
+  <section>
+    <h2>What was built</h2>
+    <p class="lead">{{BUILT_LEAD}}</p>
+    <div class="grid">
+      <!-- BEGIN:built_card -->
+      <div class="card">
+        <div class="feature">
+          <div class="ico">{{CARD_ICON}}</div>
+          <div>
+            <h3>{{CARD_TITLE}}</h3>
+            <p>{{CARD_DESC}}</p>
+          </div>
+        </div>
+      </div>
+      <!-- END:built_card -->
+    </div>
+  </section>
+
+  <section>
+    <h2>What I am most proud of</h2>
+    <p class="lead">{{PRIDE_LEAD}}</p>
+    <div class="card pride">
+      <!-- BEGIN:pride_row -->
+      <div class="row">
+        <span class="num">{{N}}</span>
+        <div class="body">
+          <h4>{{PRIDE_TITLE}}</h4>
+          <p>{{PRIDE_DESC}}</p>
+        </div>
+      </div>
+      <!-- END:pride_row -->
+    </div>
+    <div class="quote">{{QUOTE}}</div>
+  </section>
+
+  <!-- BEGIN:added_section -->
+  <section>
+    <h2>What we added</h2>
+    <p class="lead">{{ADDED_LEAD}}</p>
+    <div class="card added">
+      <span class="tag">Done &#10003;</span>
+      <ul class="clean">
+        <!-- BEGIN:added_item -->
+        <li>
+          <span class="check">&#10003;</span><b>{{ADDED_TITLE}}</b>
+          <span class="why">{{ADDED_WHY}}</span>
+        </li>
+        <!-- END:added_item -->
+      </ul>
+    </div>
+  </section>
+  <!-- END:added_section -->
+
+  <section class="future">
+    <h2>Ideas for the future</h2>
+    <p class="lead">{{FUTURE_LEAD}}</p>
+    <div class="card">
+      <!-- BEGIN:future_item -->
+      <div class="item">
+        <span class="dot"></span>
+        <div>
+          <h4>{{FUTURE_TITLE}}</h4>
+          <p>{{FUTURE_DESC}}</p>
+        </div>
+      </div>
+      <!-- END:future_item -->
+    </div>
+  </section>
+
+  <div class="footer">
+    <p class="sig">{{SIGN_OFF}}</p>
+    <p style="margin-top:18px; font-size:16px; color:var(--ink)">&mdash; <span class="sig">{{SIGNATURE}}</span> &#128156;</p>
+  </div>
+
+</div>
+</body>
+</html>

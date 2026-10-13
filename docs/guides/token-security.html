@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Security</title>
+<style>
+  :root {
+    --accent: #b04f14;
+    --ink: #1c2530;
+    --muted: #5b6772;
+    --line: #e3e8ed;
+    --bg: #f5f7f9;
+    --card: #ffffff;
+    --bad: #b3261e;
+    --good: #1f7a4d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e6e9ee;
+      --muted: #a3acb6;
+      --line: #2c343e;
+      --bg: #12161b;
+      --card: #1a2028;
+      --bad: #f2867f;
+      --good: #6fd3a0;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.55;
+  }
+  main { max-width: 880px; margin: 0 auto; padding: 40px 16px 80px; }
+  .eyebrow { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 13px; }
+  h1 { margin: 6px 0 12px; font-size: 30px; }
+  h2 { margin: 32px 0 12px; font-size: 21px; }
+  .lead { color: var(--muted); font-size: 17px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; }
+  .card strong { display: block; margin-bottom: 4px; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+  .never { color: var(--bad); font-weight: 700; white-space: nowrap; }
+  .check { color: var(--good); font-weight: 700; white-space: nowrap; }
+  .alert { border-left: 4px solid var(--bad); }
+  code { background: rgba(127, 127, 127, 0.15); border-radius: 4px; padding: 1px 5px; font-family: ui-monospace, "SF Mono", Consolas, Menlo, monospace; font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">Security one-pager</div>
+  <h1>Access tokens and .env files - how not to leak them</h1>
+  <p class="lead">One stolen Jira token, API key or personal access token opens the door to your tools, data and systems. This page is the full set of rules for everybody on the team, whatever their role.</p>
+
+  <h2>Why it matters</h2>
+  <div class="card">Bots scan public commits in real time: a key pushed to a public repository is typically tried within minutes. Breaches based on stolen credentials are among the most common and the slowest to be detected. A leaked token is not a hypothetical risk.</div>
+
+  <h2>Good practice</h2>
+  <div class="card"><strong>1. Keep tokens only in safe places.</strong> A password manager or vault (Mission Deck reads tokens from Bitwarden) - never documents, notes, chat messages or shared files.</div>
+  <div class="card"><strong>2. A .env file never goes into a repository.</strong> Mission Deck's <code>.env</code> holds configuration only, never a secret, and is gitignored. Keep it that way.</div>
+  <div class="card"><strong>3. Do not copy tokens into files and documents.</strong> A token pasted into a wiki page, a spreadsheet or a slide lives there forever and is readable by everybody with access to that file.</div>
+  <div class="card"><strong>4. Rotate tokens regularly.</strong> Set an expiry date (12 months at most) and rotate earlier whenever the team changes. A token without an expiry is security debt.</div>
+  <div class="card"><strong>5. Grant the smallest scope.</strong> Pick only the permissions you actually need: read-only instead of full access, one project instead of the whole organisation.</div>
+  <div class="card"><strong>6. Use a vault.</strong> One safe place for every token and key makes them easy to revoke and rotate.</div>
+
+  <h2>Never do this</h2>
+  <table>
+    <thead><tr><th>Don't</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Send tokens over chat, email or in an issue comment</td><td class="never">Never</td></tr>
+      <tr><td>Paste tokens into wiki pages, spreadsheets, documents or presentations</td><td class="never">Never</td></tr>
+      <tr><td>Share your token with another person - even "just for a moment"</td><td class="never">Never</td></tr>
+      <tr><td>Give a token a wider scope "just in case"</td><td class="never">Never</td></tr>
+      <tr><td>Create a token without an expiry date</td><td class="never">Never</td></tr>
+      <tr><td>Ignore an expiring-token warning - rotate right away</td><td class="never">Never</td></tr>
+    </tbody>
+  </table>
+
+  <h2>A token leaked? Act now</h2>
+  <div class="card alert">Every minute counts. <strong>1)</strong> Revoke the token in the settings of the service it came from (your Git host, Jira, Figma, ...). <strong>2)</strong> Create a new one with the minimal scope and replace it everywhere it was used. <strong>3)</strong> Tell your team lead and whoever handles security - even if "probably nobody saw it". <strong>4)</strong> Deleting the chat message is NOT enough - the token may already have been copied or indexed.</div>
+
+  <h2>Quick self-audit</h2>
+  <p>Walk this list once a month. Every "no" is a task for today.</p>
+  <table>
+    <thead><tr><th>Question</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Do all my tokens (Jira, Git host, Figma, APIs) have an expiry date?</td><td class="check">Check today</td></tr>
+      <tr><td>Is none of my tokens sitting in a document, note or chat?</td><td class="check">Check today</td></tr>
+      <tr><td>Am I sharing none of my personal tokens with anybody?</td><td class="check">Check today</td></tr>
+      <tr><td>Do my tokens carry only the permissions I actually need?</td><td class="check">Standard</td></tr>
+      <tr><td>Do I keep tokens in a vault rather than "somewhere in files"?</td><td class="check">Standard</td></tr>
+      <tr><td>Do I know whom to tell about a leaked token on my team?</td><td class="check">Worth settling</td></tr>
+    </tbody>
+  </table>
+</main>
+</body>
+</html>

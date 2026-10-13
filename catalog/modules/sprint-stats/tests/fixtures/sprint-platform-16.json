@@ -1,0 +1,106 @@
+{
+  "src": "platform",
+  "sprint_n": 16,
+  "phase": "MID",
+  "teams": [
+    {
+      "src": "platform",
+      "team": "Delta",
+      "unit": "MD",
+      "sprint_n": 16,
+      "sprint_id": 9016,
+      "sprint_name": "PL_16: 01.09-15.09.2026",
+      "state": "active",
+      "phase": "MID",
+      "start": "2026-09-01T09:00:00.000+02:00",
+      "end": "2026-09-15T09:00:00.000+02:00",
+      "goal": "Delta: stabilise the sample service",
+      "summary": {
+        "committed": 3.5,
+        "done": 2.5,
+        "wip": 0,
+        "todo": 0,
+        "dropped": 1.0,
+        "added": 0,
+        "total_issues": 2,
+        "completion_pct": 71
+      },
+      "persons": [
+        {
+          "name": "Jamie Fox",
+          "count": 1,
+          "done": 1,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "estimate": 2.5,
+          "estimate_done": 2.5,
+          "spent_h": 18.0,
+          "orig_h": 16.0
+        },
+        {
+          "name": "Avery Park",
+          "count": 1,
+          "done": 0,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 1,
+          "estimate": 1.0,
+          "estimate_done": 0,
+          "spent_h": 0,
+          "orig_h": 8.0
+        }
+      ],
+      "issues": [
+        {
+          "key": "PLAT-201",
+          "summary": "Platform sample task",
+          "type": "Task",
+          "assignee": "Jamie Fox",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 2.5,
+          "spent_h": 18.0
+        },
+        {
+          "key": "PLAT-202",
+          "summary": "Platform sample bug",
+          "type": "Bug",
+          "assignee": "Avery Park",
+          "status_bucket": "dropped",
+          "status_label": "Cancelled",
+          "estimate": 1.0,
+          "spent_h": null
+        }
+      ],
+      "burndown": [
+        {
+          "day_n": 0,
+          "date": "2026-09-01",
+          "remaining": 3.5
+        },
+        {
+          "day_n": 1,
+          "date": "2026-09-02",
+          "remaining": 3.0
+        },
+        {
+          "day_n": 2,
+          "date": "2026-09-03",
+          "remaining": 2.5
+        },
+        {
+          "day_n": 3,
+          "date": "2026-09-04",
+          "remaining": 2.0
+        },
+        {
+          "day_n": 4,
+          "date": "2026-09-05",
+          "remaining": 1.5
+        }
+      ],
+      "extra": {}
+    }
+  ]
+}

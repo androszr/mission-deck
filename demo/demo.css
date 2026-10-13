@@ -1,0 +1,898 @@
+/* demo/demo.css
+   Chrome of the presentation page: stage, surfaces, bottom bar, narration,
+   table of contents, the autopilot cursor and the hover / focus stand-ins an
+   inert shell needs. DS tokens only - the VS Code palette lives in
+   demo/vscode.css as --vsc-* custom properties. */
+
+/* ── Page frame ──────────────────────────────────────────────────────── */
+
+.demo-body {
+  margin: 0;
+  min-width: 1280px;
+  overflow: hidden;
+}
+
+.demo-app {
+  position: fixed;
+  inset: 0;
+  min-width: 1280px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 0;
+  grid-template-rows: minmax(0, 1fr) 56px;
+}
+
+.demo-app[data-mode="instruktaz"] {
+  grid-template-columns: minmax(0, 1fr) 380px;
+}
+
+/* ── Stage and surfaces ──────────────────────────────────────────────── */
+
+.demo-stage {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  overflow: clip;
+}
+
+/* The camera carries every surface; demo/camera.mjs moves it with one
+   transform. Origin top-left, so the math there is plain scale + offset. */
+.demo-camera {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.demo-camera--cut {
+  animation: demo-cut 0.35s ease-out;
+}
+
+@keyframes demo-cut {
+  from { opacity: 0.2; }
+  to { opacity: 1; }
+}
+
+.demo-stage[data-layout="split"] .demo-camera {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Each surface is the containing block of its own position:fixed children
+   (top bar, rail, flyout, toasts, modals, terminal panel), so the real shell
+   CSS lays out inside the surface box instead of over the demo chrome.
+   overflow: clip (not hidden) so scrollIntoView can never shift a surface. */
+.demo-surface {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: clip;
+  transform: translateZ(0);
+  contain: layout paint;
+  display: none;
+}
+
+.demo-stage[data-layout="cockpit"] #demo-cockpit,
+.demo-stage[data-layout="split"] #demo-cockpit,
+.demo-stage[data-layout="vscode"] #demo-vscode,
+.demo-stage[data-layout="split"] #demo-vscode,
+.demo-stage[data-layout="screen"] #demo-screen {
+  display: block;
+}
+
+.demo-stage[data-layout="split"] #demo-vscode {
+  border-left: 1px solid var(--body-tertiary-border);
+}
+
+.demo-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 10000;
+  cursor: default;
+}
+
+.demo-loading {
+  padding: var(--space-48);
+  color: var(--body-secondary-text);
+  font-size: var(--text-sm);
+}
+
+.demo-shell-error {
+  margin: var(--space-48);
+  align-self: start;
+}
+
+/* ── The real shell inside the cockpit surface ───────────────────────── */
+
+#demo-cockpit .app {
+  height: 100%;
+  min-height: 0;
+}
+
+#demo-cockpit .main {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Prezentacja: the caption pill covers the bottom ~110px of the stage. The
+   page and both terminals get that much extra room at their end, so the last
+   card, the last button and the newest terminal line can always be scrolled
+   above it (the engine scrolls a covered target to the centre). */
+.demo-app[data-mode="prezentacja"] #demo-cockpit .main::after {
+  content: '';
+  display: block;
+  height: 120px;
+}
+
+.demo-app[data-mode="prezentacja"] .vsc-terminal,
+.demo-app[data-mode="prezentacja"] .claude-terminal-host.demo-term {
+  padding-bottom: 112px;
+}
+
+/* Prezentacja: a modal lives above the caption pill - its title and its
+   footer buttons are never under it; a tall body scrolls inside the modal. */
+.demo-app[data-mode="prezentacja"] #demo-cockpit .ds-modal-overlay {
+  padding: var(--space-24) 0 112px;
+}
+
+.demo-app[data-mode="prezentacja"] #demo-cockpit .ds-modal {
+  max-height: 100%;
+}
+
+#demo-cockpit .sidebar-hub-flyout {
+  top: 44px;
+  height: calc(100% - 44px);
+  width: 280px;
+}
+
+#demo-cockpit #claude-terminal-panel {
+  height: 52%;
+  max-height: calc(100% - 48px);
+}
+
+/* The preview pane and its dim layer sit on whichever surface is on screen. */
+.demo-surface .demo-preview {
+  position: fixed;
+  top: 68px;
+  right: var(--space-24);
+  width: 520px;
+  max-height: calc(100% - 100px);
+  overflow: auto;
+  z-index: 300;
+  box-shadow: var(--shadow-l);
+}
+
+.demo-preview-body {
+  margin: 0;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: var(--text-xs);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  color: var(--body-primary-text);
+}
+
+.demo-log-line {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: var(--text-xs);
+  line-height: 1.7;
+  color: var(--body-secondary-text);
+}
+
+.demo-log-line--fail { color: var(--state-danger-text); }
+.demo-log-line--warn { color: var(--state-warning-text); }
+
+/* A toast region on the stage, outside the camera: the same box as the real
+   #ds-toast-region (css/ds.css), used when the cockpit surface is not on
+   screen or the camera is zoomed. Below the caption pill and the shield. */
+.demo-toast-region {
+  position: absolute;
+  /* Clear of the caption pill, which sits at the bottom centre. */
+  bottom: calc(var(--space-48) * 2 + var(--space-8));
+  right: var(--space-24);
+  z-index: 9400;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  pointer-events: none;
+}
+
+/* While a modal is open: top right, under the top bar, clear of the footer. */
+.demo-toast-region.demo-toast-region--top {
+  top: calc(44px + var(--space-16));
+  bottom: auto;
+}
+
+.demo-toast-region .ds-toast {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.demo-toast-region .ds-toast.ds-toast--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Icon-only actions with a real data-tip bubble (styles.css draws it as
+   ::after on :hover) show it while the autopilot cursor hovers them. */
+#demo-cockpit .ds-icon-btn.demo-hover[data-tip]::after,
+#demo-cockpit .page-icon-btn.demo-hover[data-tip]::after {
+  opacity: 1;
+}
+
+/* A neutral full-screen surface (e.g. a sign-in page) painted from a mock. */
+#demo-screen {
+  background: var(--body-secondary-bg);
+  overflow: auto;
+}
+
+/* ── Focus: a modal or a preview softens the rest of the scene ─────────── */
+
+#demo-cockpit .ds-modal-overlay.open {
+  backdrop-filter: blur(3px);
+}
+
+.demo-surface .demo-dim {
+  position: fixed;
+  inset: 0;
+  z-index: 290;
+  background: color-mix(in srgb, var(--ds-gray-15) 35%, transparent);
+  backdrop-filter: blur(3px);
+}
+
+/* ── Pip, the narrator ───────────────────────────────────────────────── */
+
+/* A frame that stacks the current and the previous pose for a crossfade.
+   Pixel art: sharp scaling, height fixed, width from the SVG viewBox. */
+.demo-mascot {
+  position: relative;
+  display: inline-grid;
+  flex: none;
+  align-items: end;
+  justify-items: center;
+}
+
+.demo-mascot-pose {
+  grid-area: 1 / 1;
+  display: block;
+  /* Clipped to the pose's box (demo/mascot-geometry.mjs, which covers the figure's
+     whole motion): idle's cardboard runs past the canvas below the eyes
+     and spilled out under the caption pill. */
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+.demo-mascot-pose img {
+  display: block;
+  max-width: none;
+  image-rendering: pixelated;
+}
+
+.demo-mascot-pose.demo-mascot-leaving,
+.demo-mascot-pose.demo-mascot-entering { opacity: 0; }
+
+/* ── Caption pill (Prezentacja) ──────────────────────────────────────── */
+
+.demo-caption {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-24);
+  z-index: 9500;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-12);
+  max-width: min(860px, calc(100% - 96px));
+  padding: var(--space-8) var(--space-24) var(--space-8) var(--space-12);
+  border-radius: var(--radius-max);
+  background: var(--body-primary-bg);
+  border: 1px solid var(--body-tertiary-border);
+  box-shadow: var(--shadow-l);
+  font-family: var(--font-main);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* Flipped to the top (demo/safe-area.mjs): something the step needs on
+   screen could not move out from under the pill's home position. */
+.demo-caption.demo-caption--top {
+  top: calc(44px + var(--space-12));
+  bottom: auto;
+}
+
+.demo-caption.demo-caption--enter {
+  animation: demo-caption-in 0.45s ease-out;
+}
+
+.demo-caption.demo-caption--enter .demo-mascot {
+  animation: demo-mascot-bounce 0.6s ease-out;
+}
+
+@keyframes demo-caption-in {
+  from { opacity: 0; transform: translate(-50%, 12px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes demo-mascot-bounce {
+  0% { transform: translateY(0); }
+  35% { transform: translateY(-8px); }
+  70% { transform: translateY(0); }
+  85% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+.demo-caption-text {
+  padding-bottom: var(--space-12);
+  font-size: var(--text-lg);
+  line-height: 1.35;
+  color: var(--body-primary-text);
+}
+
+.demo-caption-key {
+  color: var(--body-brand-text);
+  font-weight: var(--font-weight-bold);
+}
+
+.demo-app[data-mode="instruktaz"] .demo-caption {
+  display: none;
+}
+
+/* ── Title card ──────────────────────────────────────────────────────── */
+
+/* Dark in BOTH themes: the primitive gray and brand tokens never flip. */
+.demo-card {
+  position: absolute;
+  inset: 0;
+  z-index: 9800;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 42%, color-mix(in srgb, var(--ds-brand-30) 34%, transparent), transparent 70%),
+    var(--ds-gray-15);
+  color: var(--ds-gray-100);
+  font-family: var(--font-main);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.demo-card.demo-card--visible { opacity: 1; }
+
+/* Before the engine's first render (html has no data-demo-busy yet) the card
+   covers the static shell: a page opened on a chapter's hash shows the title
+   card first, never a frame of the bare shell. */
+html:not([data-demo-busy]) .demo-card[hidden] {
+  display: grid !important; /* beats styles.css [hidden] { display: none !important } */
+  opacity: 1;
+  transition: none;
+}
+
+.demo-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+  max-width: 760px;
+  text-align: center;
+}
+
+.demo-card-wordmark {
+  margin-top: var(--space-8);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ds-brand-40);
+}
+
+.demo-card-kicker {
+  font-size: var(--text-sm);
+  color: var(--ds-gray-70);
+}
+
+.demo-card-title {
+  margin: 0;
+  font-size: 44px;
+  line-height: 1.15;
+  color: var(--ds-gray-100);
+}
+
+.demo-card-subtitle {
+  margin: 0;
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  color: var(--ds-gray-85);
+}
+
+.demo-card-hint {
+  margin-top: var(--space-24);
+  font-size: var(--text-xs);
+  color: var(--ds-gray-60);
+}
+
+.demo-card--visible .demo-card-inner > * {
+  animation: demo-card-rise 0.7s ease-out both;
+}
+
+.demo-card--visible .demo-card-inner > :nth-child(2) { animation-delay: 0.08s; }
+.demo-card--visible .demo-card-inner > :nth-child(3) { animation-delay: 0.14s; }
+.demo-card--visible .demo-card-inner > :nth-child(4) { animation-delay: 0.2s; }
+.demo-card--visible .demo-card-inner > :nth-child(5) { animation-delay: 0.26s; }
+.demo-card--visible .demo-card-inner > :nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes demo-card-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body[data-card="1"] .demo-cursor-layer,
+body[data-card="1"] .demo-caption {
+  visibility: hidden;
+}
+
+/* ── Hover / focus / press stand-ins (the shell is inert) ────────────── */
+
+.sidebar-item.demo-hover,
+.sidebar-hub-flyout-item.demo-hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.sidebar-item.demo-hover .nav-icon {
+  opacity: 1;
+}
+
+.ds-btn--primary.demo-hover {
+  background: var(--clickable-primary-hover-bg);
+  border-color: var(--clickable-primary-hover-border);
+}
+
+.ds-btn--secondary.demo-hover {
+  background: var(--clickable-secondary-hover-bg);
+  border-color: var(--clickable-secondary-hover-border);
+}
+
+.ds-btn--tertiary.demo-hover,
+.ds-icon-btn.demo-hover,
+.ds-modal-close.demo-hover {
+  background: var(--clickable-tertiary-hover-bg);
+}
+
+.ds-tab.demo-hover:not(.active) {
+  background: var(--clickable-secondary-hover-bg);
+  color: var(--clickable-secondary-hover-text);
+}
+
+.ds-segment.demo-hover:not(.active) {
+  color: var(--body-brand-text);
+}
+
+.placeholder-hub-card.demo-hover {
+  border-color: var(--brand-accent);
+  color: var(--brand-accent);
+}
+
+.sidebar-ai-toggle-btn.demo-hover {
+  background: var(--body-secondary-bg);
+  color: var(--body-primary-text);
+}
+
+.ds-input.demo-hover,
+.ds-textarea.demo-hover {
+  border-color: var(--form-primary-hover-border);
+}
+
+/* Targets the shell has no :hover rule for (the real :hover rules come in
+   through demo/hover-mirror.mjs). The cursor still points at them - a
+   callout, a command block, a card it reads from, a badge - so the hover
+   must be visible: content blocks get the brand ring, small controls the
+   hover fill they would get in the app, links their underline. */
+.demo-surface .ds-callout.demo-hover,
+.demo-surface .ds-card.demo-hover:not(.proto-card),
+.demo-surface .ds-table-wrap.demo-hover,
+.demo-surface .demo-point.demo-hover,
+.demo-surface .feedback-modal__shots-zone.demo-hover {
+  box-shadow: 0 0 0 2px var(--body-brand-border);
+}
+
+.demo-surface .proto-card.demo-hover {
+  box-shadow: var(--shadow-m), 0 0 0 2px var(--body-brand-border);
+}
+
+.demo-surface .ds-checkbox-label.demo-hover {
+  border-radius: var(--radius-s);
+  background: var(--state-hover-bg);
+}
+
+.demo-surface .ds-checkbox-label input.demo-hover,
+.demo-surface input[type="checkbox"].demo-hover {
+  outline: 2px solid var(--form-primary-hover-border);
+  outline-offset: 1px;
+}
+
+.demo-surface .ds-badge.demo-hover {
+  filter: brightness(0.92);
+}
+
+.demo-surface .ds-tab.active.demo-hover,
+.demo-surface .ds-segment.active.demo-hover {
+  filter: brightness(0.96);
+}
+
+.demo-surface a.demo-hover:not(.ds-btn):not(.ds-card):not(.sidebar-item) {
+  color: var(--state-success-text);
+  text-decoration: underline;
+}
+
+.demo-surface .app-update-banner__btn.demo-hover:not(:disabled) {
+  filter: brightness(0.94);
+}
+
+.demo-surface .feedback-modal__thumb.demo-hover {
+  outline: 2px solid var(--body-brand-border);
+  outline-offset: 1px;
+}
+
+.ds-input.demo-focus,
+.ds-textarea.demo-focus {
+  border-color: var(--form-primary-focused-border);
+  outline: 2px solid var(--clickable-primary-default-bg);
+  outline-offset: 0;
+}
+
+.demo-pressed {
+  transform: scale(0.97);
+  transition: transform 0.08s ease-out;
+}
+
+.demo-hotspot {
+  outline: 2px dashed var(--body-brand-border);
+  outline-offset: 3px;
+  animation: demo-hotspot-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes demo-hotspot-pulse {
+  0%, 100% { outline-color: var(--body-brand-border); }
+  50% { outline-color: transparent; }
+}
+
+/* ── Autopilot cursor ────────────────────────────────────────────────── */
+
+.demo-cursor-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20000;
+  overflow: hidden;
+}
+
+#demo-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: -3px 0 0 -4px;
+  will-change: transform;
+  filter: drop-shadow(0 1px 2px var(--body-tertiary-border));
+}
+
+#demo-cursor svg {
+  display: block;
+  transform-origin: 4px 3px;
+  transition: transform 0.08s ease-out;
+}
+
+#demo-cursor.demo-cursor--down svg {
+  transform: scale(0.86);
+}
+
+.demo-cursor-shape {
+  fill: var(--body-primary-bg);
+  stroke: var(--body-primary-text);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+.demo-cursor-ripple {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: var(--radius-max);
+  border: 2px solid var(--brand-accent);
+  background: var(--brand-accent-light);
+  opacity: 0;
+  animation: demo-ripple 0.55s ease-out forwards;
+}
+
+@keyframes demo-ripple {
+  from { transform: scale(0.2); opacity: 0.9; }
+  to { transform: scale(1.5); opacity: 0; }
+}
+
+/* The tooltip of the hovered element, drawn like the app's own data-tip
+   bubble (styles.css .page-icon-btn[data-tip]::after): dark text colour as
+   the fill, page colour as the text. Not --body-invert-*: in the light theme
+   both of those are white, which painted an empty white box. */
+.demo-cursor-tip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: calc(360px * var(--demo-tip-zoom, 1));
+  padding: calc(5px * var(--demo-tip-zoom, 1)) calc(9px * var(--demo-tip-zoom, 1));
+  border-radius: 4px;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  font-family: var(--font-main);
+  font-size: calc(11px * var(--demo-tip-zoom, 1));
+  font-weight: 500;
+  line-height: 1.4;
+  box-shadow: var(--shadow-m);
+  white-space: nowrap;
+}
+
+/* ── Bottom bar ──────────────────────────────────────────────────────── */
+
+.demo-bar {
+  position: relative;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-16);
+  padding: 0 var(--space-16);
+  background: var(--body-primary-bg);
+  border-top: 1px solid var(--body-tertiary-border);
+  font-family: var(--font-main);
+  z-index: 2;
+}
+
+/* ── Step progress (top edge of the bottom bar) ──────────────────────── */
+
+/* Fills to 95% over the step's expected time (demo/main.mjs sets the
+   duration and the scale); the ready look needs BOTH the controller's
+   data-progress="ready" and the engine's html[data-demo-ready="1"]. */
+.demo-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 4px;
+  background: var(--body-tertiary-border);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.demo-progress-fill {
+  height: 100%;
+  background: var(--body-brand-icon);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--demo-step-ms, 8000ms) linear, background-color 0.2s ease;
+}
+
+.demo-app[data-progress="idle"] .demo-progress-fill { background: transparent; }
+
+html[data-demo-ready="1"] .demo-app[data-progress="ready"] .demo-progress-fill,
+html[data-demo-ready="1"] .demo-app[data-progress="end"] .demo-progress-fill {
+  background: var(--state-success-icon);
+}
+
+html[data-demo-ready="1"] .demo-app[data-progress="ready"] .demo-progress {
+  animation: demo-progress-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes demo-progress-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+/* The hint and the key legend share ONE grid cell (.demo-bar-cue): the
+   slot is as wide as the legend, so "Next" never widens the bar's right
+   column (at 1280 px it would push into the switches). Visibility, not
+   display: nothing reflows when the step settles. */
+.demo-bar-cue {
+  display: grid;
+  align-items: center;
+  justify-items: end;
+  margin-right: var(--space-8);
+}
+
+.demo-bar-cue > * { grid-area: 1 / 1; }
+
+.demo-progress-hint {
+  visibility: hidden;
+  white-space: nowrap;
+}
+
+html[data-demo-ready="1"] .demo-app[data-progress="ready"] .demo-progress-hint {
+  visibility: visible;
+}
+
+html[data-demo-ready="1"] .demo-app[data-progress="ready"] .demo-bar-keys {
+  visibility: hidden;
+}
+
+.demo-bar-pos {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.demo-bar-chapter {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+}
+
+.demo-bar-step {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--body-primary-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.demo-bar-switches {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.demo-bar-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.demo-bar-keys {
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+  white-space: nowrap;
+}
+
+/* ── Narration (Instruktaz mode) ──────────────────────────────────────────── */
+
+.demo-narration {
+  grid-column: 2;
+  grid-row: 1;
+  overflow-y: auto;
+  padding: var(--space-16);
+  background: var(--body-secondary-bg);
+  border-left: 1px solid var(--body-tertiary-border);
+  display: none;
+}
+
+.demo-app[data-mode="instruktaz"] .demo-narration {
+  display: block;
+}
+
+.demo-narr-head {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-12);
+}
+
+.demo-narration-card .ds-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-12);
+}
+
+.demo-narr-body {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--body-primary-text);
+}
+
+.demo-narr-command {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8);
+  width: 100%;
+}
+
+.demo-narr-command code {
+  display: block;
+  width: 100%;
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-s);
+  background: var(--body-tertiary-bg);
+  color: var(--body-primary-text);
+  font-size: var(--text-xs);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* ── Popovers: table of contents, shortcuts ─────────────────────────── */
+
+.demo-popover {
+  position: fixed;
+  right: var(--space-16);
+  bottom: 68px;
+  width: 420px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  z-index: 30000;
+  box-shadow: var(--shadow-l);
+}
+
+.demo-popover-hint {
+  margin: 0 0 var(--space-12);
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+}
+
+.demo-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.demo-toc-list .ds-btn {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.demo-toc-total {
+  margin-left: auto;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--body-secondary-text);
+  white-space: nowrap;
+}
+
+.demo-toc-time {
+  margin-left: auto;
+  padding-left: var(--space-8);
+  font-weight: 400;
+  color: var(--body-secondary-text);
+  white-space: nowrap;
+}
+
+.demo-toc-list .ds-btn[aria-current="true"] {
+  color: var(--body-brand-text);
+  background: var(--clickable-tertiary-hover-bg);
+}
+
+.demo-help-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-8) var(--space-16);
+  margin: 0 0 var(--space-12);
+  font-size: var(--text-sm);
+  color: var(--body-primary-text);
+}
+
+.demo-help-list dd {
+  margin: 0;
+  color: var(--body-secondary-text);
+}
+
+.demo-help-list kbd {
+  display: inline-block;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: var(--radius-s);
+  background: var(--body-secondary-bg);
+  font-family: var(--font-main);
+  font-size: var(--text-xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-cursor-ripple { display: none; }
+  .demo-camera--cut { animation: none; }
+  .demo-caption.demo-caption--enter,
+  .demo-caption.demo-caption--enter .demo-mascot,
+  .demo-card--visible .demo-card-inner > * { animation: none; }
+  .demo-card, .demo-mascot-pose { transition: none; }
+  .demo-hotspot { animation: none; }
+  .demo-pressed { transform: none; }
+  .demo-progress-fill { transition: none; }
+  html[data-demo-ready="1"] .demo-app[data-progress="ready"] .demo-progress { animation: none; }
+}

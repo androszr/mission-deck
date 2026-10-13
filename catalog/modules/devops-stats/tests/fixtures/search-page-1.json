@@ -1,0 +1,38 @@
+{
+  "startAt": 0, "maxResults": 100, "total": 3,
+  "issues": [
+    {
+      "key": "DEVOPS-1",
+      "fields": {
+        "summary": "Build the thing", "created": "2026-09-01T08:00:00.000+0000",
+        "issuetype": { "id": "10", "subtask": false }, "status": { "id": "4" },
+        "assignee": { "displayName": "Person A" }, "customfield_10100": "DEVOPS-3"
+      },
+      "changelog": { "total": 3, "histories": [
+        { "created": "2026-09-03T08:00:00.000+0000", "items": [ { "field": "status", "from": "2", "to": "4" } ] },
+        { "created": "2026-09-02T08:00:00.000+0000", "items": [ { "field": "status", "from": "1", "to": "2" } ] },
+        { "created": "2026-09-02T12:00:00.000+0000", "items": [ { "field": "Flagged", "from": null, "to": "Impediment" } ] }
+      ] }
+    },
+    {
+      "key": "DEVOPS-2",
+      "fields": {
+        "summary": "Skip the middle", "created": "2026-09-05T08:00:00.000+0000",
+        "issuetype": { "id": "10", "subtask": false }, "status": { "id": "4" },
+        "assignee": null
+      },
+      "changelog": { "total": 1, "histories": [
+        { "created": "2026-09-06T08:00:00.000+0000", "items": [ { "field": "status", "from": "1", "to": "4" } ] }
+      ] }
+    },
+    {
+      "key": "DEVOPS-3",
+      "fields": {
+        "summary": "Epic one", "created": "2026-08-20T08:00:00.000+0000",
+        "issuetype": { "id": "11", "subtask": false }, "status": { "id": "1" },
+        "assignee": null, "customfield_10101": "Epic one"
+      },
+      "changelog": { "total": 0, "histories": [] }
+    }
+  ]
+}

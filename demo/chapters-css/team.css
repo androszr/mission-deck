@@ -1,0 +1,62 @@
+/* demo/chapters-css/team.css - "Team directory" mock layout.
+   Port of modules/team-directory/client/style.css (.team-directory-* ->
+   .zespol-*), DS tokens only. Settings > Users uses the real
+   styles.css rules (uzy-*), nothing here. */
+
+.zespol-toolbar { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.zespol-search { max-width: 420px; flex: 1 1 auto; }
+.zespol-count { font-size: var(--text-sm); color: var(--body-secondary-text); white-space: nowrap; }
+
+.zespol-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.zespol-team-card { display: flex; padding: 0; overflow: visible; animation: zespol-in 0.25s ease-out; }
+.zespol-logo-col {
+  flex: 0 0 100px; width: 100px; display: flex; align-items: center; justify-content: center;
+  padding: 12px; border-right: 1px solid var(--body-tertiary-border);
+}
+.zespol-crest { width: 72px; height: auto; display: block; }
+.zespol-crest-shield { fill: var(--brand-accent-dark); }
+.zespol-crest-sky { fill: var(--assistive-sky-bg); }
+.zespol-crest-peak { fill: var(--brand-accent); }
+.zespol-crest-snow { fill: var(--body-primary-bg); }
+.zespol-crest-ribbon { fill: var(--brand-accent-dark); stroke: var(--body-primary-bg); stroke-width: 1.5; }
+.zespol-crest-label { fill: var(--clickable-primary-default-text); font-size: 10px; font-weight: var(--font-weight-bold); letter-spacing: 0.5px; }
+.zespol-team-body { flex: 1 1 auto; min-width: 0; padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 12px; }
+.zespol-team-header { display: flex; align-items: center; gap: 12px; }
+.zespol-team-name { font-size: var(--text-base); font-weight: var(--font-weight-bold); color: var(--body-primary-text); }
+.zespol-team-badge { background: var(--body-quaternary-bg); color: var(--body-secondary-text); }
+.zespol-people-grid { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0; }
+
+.zespol-person-tile {
+  display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;
+  cursor: pointer; border-radius: var(--radius-m); padding: 4px; width: 72px;
+}
+.zespol-person-tile.demo-hover { background: var(--body-secondary-bg); }
+.zespol-person-avatar {
+  width: 56px; height: 56px; border-radius: var(--radius-max); flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  background: var(--clickable-primary-default-bg); color: var(--clickable-primary-default-text);
+  font-size: var(--text-sm); font-weight: var(--font-weight-bold);
+}
+.zespol-person-caption, .zespol-person-role {
+  max-width: 72px; line-height: 1.2; font-size: var(--text-xs); word-break: break-word;
+  overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; max-height: calc(1.2em * 2);
+}
+.zespol-person-caption { font-weight: var(--font-weight-medium); color: var(--body-primary-text); }
+.zespol-person-role { color: var(--body-tertiary-text); }
+.zespol-team-hidden { display: none; }
+
+.zespol-modal-hero { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 16px; }
+.zespol-modal-avatar {
+  width: 88px; height: 88px; border-radius: var(--radius-max); display: flex; align-items: center; justify-content: center;
+  background: var(--clickable-primary-default-bg); color: var(--clickable-primary-default-text); font-size: var(--text-xl); font-weight: var(--font-weight-bold);
+}
+.zespol-modal-name { margin: 0; font-size: var(--text-lg); color: var(--body-primary-text); }
+.zespol-modal-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.zespol-modal-row { display: flex; gap: 16px; font-size: var(--text-sm); color: var(--body-primary-text); }
+.zespol-modal-label { width: 72px; color: var(--body-tertiary-text); }
+.zespol-modal-mail { color: var(--clickable-primary-default-bg); }
+
+.zespol-modal-photo .uzy-form-photo__actions .ds-btn { align-self: flex-start; }
+.zespol-photo-new { box-shadow: 0 0 0 3px var(--brand-accent); animation: zespol-in 0.3s ease-out; }
+
+@keyframes zespol-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .zespol-team-card, .zespol-photo-new { animation: none; } }

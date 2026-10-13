@@ -1,0 +1,25 @@
+PLANNER -- Overwatch  |  MINI  |  Phase 4  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | OVERWATCH // mini app plan         [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  > Vite + React + TypeScript.                     |
+  |                                                   |
+  |  [x] screens and states                           |
+  |  [x] acceptance criteria                          |
+  |  [x] files in the app repo                        |
+  |                                                   |
+  |  > small app, sharp plan.                         |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Overwatch - Planner
+    {{MODEL}}

@@ -1,0 +1,109 @@
+{
+  "env": {
+    "GIT_TERMINAL_PROMPT": "0",
+    "GIT_ASKPASS": "",
+    "SSH_ASKPASS": "",
+    "SSH_ASKPASS_REQUIRE": "never"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npm start)",
+      "Bash(npm run lint)",
+      "Bash(npm run lint:fix)",
+      "Bash(npm test)",
+      "Bash(npm run test:api)",
+      "Bash(npm run test:all)",
+      "Bash(node --test tests/*)",
+      "Bash(node --version)",
+      "Bash(command -v *)",
+      "Bash(curl -s http://localhost:3001/*)",
+      "Edit(.claude/skills/**)",
+      "Edit(.claude/agents/**)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_type",
+      "mcp__playwright__browser_press_key",
+      "mcp__playwright__browser_select_option",
+      "mcp__playwright__browser_hover",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_console_messages",
+      "mcp__playwright__browser_network_requests",
+      "mcp__playwright__browser_resize",
+      "mcp__playwright__browser_close",
+      "mcp__gitnexus__detect_changes",
+      "mcp__gitnexus__impact",
+      "mcp__gitnexus__context",
+      "mcp__gitnexus__query",
+      "mcp__gitnexus__trace",
+      "mcp__gitnexus__check",
+      "mcp__gitnexus__explain",
+      "mcp__gitnexus__cypher",
+      "mcp__gitnexus__list_repos",
+      "mcp__gitnexus__rename",
+      "mcp__gitnexus__api_impact",
+      "mcp__gitnexus__route_map",
+      "mcp__gitnexus__tool_map",
+      "mcp__gitnexus__shape_check",
+      "mcp__gitnexus__pdg_query",
+      "mcp__gitnexus__group_list",
+      "mcp__gitnexus__group_sync"
+    ],
+    "deny": [
+      "Bash(git reset --hard*)",
+      "Bash(git reset --merge*)",
+      "Bash(git reset --keep*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const cmd=(JSON.parse(d).tool_input.command||'');if(/git\\s[^&|;]*reset\\s[^&|;]*--hard/.test(cmd))process.stdout.write(JSON.stringify({hookSpecificOutput:{hookEventName:'PreToolUse',permissionDecision:'deny',permissionDecisionReason:'BLOCKED: git reset --hard is forbidden in this repo. Use git stash, git restore, or git reset --soft instead.'}}))})\"",
+            "statusMessage": "Checking for git reset --hard..."
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-root-screenshot.js\"",
+            "statusMessage": "Blocking image writes to repo root..."
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__playwright__browser_take_screenshot",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-root-screenshot.js\"",
+            "statusMessage": "Enforcing bare screenshot filename..."
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-root-screenshot.js\"",
+            "statusMessage": "Blocking .png write to repo root..."
+          }
+        ]
+  },
+      {
+        "matcher": "Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/hook-agent-banner.js\"",
+            "statusMessage": "Rendering the agent spawn banner..."
+          }
+        ]
+      }
+    ]
+  }
+}

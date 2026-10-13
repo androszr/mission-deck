@@ -1,0 +1,25 @@
+COMMIT MESSAGE -- Relay  |  MISSION DECK  |  draft only  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | RELAY // commit draft              [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ git diff --staged --stat                       |
+  |                                                   |
+  |  [x] one topic or a split proposal                |
+  |  [x] conventional commit format                   |
+  |  [x] nothing committed without a yes              |
+  |                                                   |
+  |  > say what changed, and why.                     |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Relay - Commit message
+    {{MODEL}}

@@ -1,0 +1,25 @@
+SECURITY -- Forge  |  PRE-SHIP AUDIT  |  Phase 2  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | FORGE // security audit            [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  REVIEW SCOPE:                                    |
+  |  [x] tokens never logged or stored                |
+  |  [x] paths never joined from input                |
+  |  [x] origin checks on every write                 |
+  |                                                   |
+  |  findings: BLOCK / WARN / NOTE                    |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Forge - Security
+    {{MODEL}}

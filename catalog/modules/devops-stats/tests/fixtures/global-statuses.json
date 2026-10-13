@@ -1,0 +1,6 @@
+[
+  { "id": "2", "name": "Renamed globally", "statusCategory": { "key": "new" } },
+  { "id": "10600", "name": "Old review", "statusCategory": { "key": "indeterminate" } },
+  { "id": "13807", "name": "Old closed", "statusCategory": { "key": "done" } },
+  { "id": "99999", "name": "Never used", "statusCategory": { "key": "new" } }
+]

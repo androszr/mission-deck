@@ -1,0 +1,24 @@
+PROTO LAB  |  MISSION DECK  |  Phase 0
+
+  .---------------------------------------------------.
+  | MISSION DECK // PROTO LAB          [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  > ./prototype.sh --target #proto-detail          |
+  |                                                   |
+  |  no backend. no pipelines. no tests.              |
+  |  just the mock, the design system.                |
+  |                                                   |
+  |  $ mount ds-data/prototypes/       [ro]           |
+  |  ############################## ready             |
+  |                                                   |
+  |  > let's build a screen.                          |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  /prototype - Prototype Environment

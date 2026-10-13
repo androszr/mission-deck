@@ -1,0 +1,5 @@
+{ "month": "2026-10", "entries": [
+  { "date": "2026-10-05", "weekday": "Mon", "column": "platform", "person": "Alex Morgan", "person_slug": "alex-morgan", "matched": true, "note": "" },
+  { "date": "2026-10-21", "weekday": "Wed", "column": "platform", "person": "Alex Morgan", "person_slug": "alex-morgan", "matched": true, "note": "" },
+  { "date": "2026-10-22", "weekday": "Thu", "column": "devops", "person": "Casey Novak", "person_slug": "casey-novak", "matched": true, "note": "" }
+] }

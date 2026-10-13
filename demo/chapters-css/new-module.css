@@ -1,0 +1,293 @@
+/* demo/chapters-css/new-module.css - layout for chapter `new-module` mocks; DS tokens only. */
+
+/* "Zainstalowane" table on a 1440px stage with the full rail: the module id
+   goes under its name instead of wrapping mid-word next to it ("ar-" /
+   "eksperymenty"), so the name keeps its width too. */
+#demo-cockpit .moduly-table .moduly-row-name-text {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+#demo-cockpit .moduly-table .moduly-card-id {
+  overflow-wrap: normal;
+  white-space: nowrap;
+}
+
+#demo-cockpit .moduly-search-row .moduly-search-count {
+  padding-right: var(--space-4);
+}
+
+/* ── Relay strip over the VS Code editor ─────────────────────────────── */
+
+/* The strip sits over both editor groups (.vsc-main is a flex column). The
+   spawn banners are ASCII art printed verbatim: never wrap a line (a wrapped
+   box falls apart); a line wider than the terminal group scrolls sideways
+   (.vsc-terminal already has overflow: auto). */
+#demo-vscode .vsc-main:has(> .nowy-modul-relay) .demo-term-line--dim {
+  white-space: pre;
+  word-break: normal;
+}
+
+.nowy-modul-relay {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-12);
+  background: var(--body-primary-bg);
+  border-bottom: 1px solid var(--body-tertiary-border);
+}
+
+.nowy-modul-chips {
+  display: flex;
+  align-items: stretch;
+}
+
+.nowy-modul-link {
+  flex: 0 0 14px;
+  align-self: center;
+  height: 2px;
+  background: var(--body-tertiary-border);
+}
+
+.nowy-modul-chip {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 8px;
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: var(--radius-s);
+  background: var(--body-secondary-bg);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nowy-modul-chip--work {
+  border-color: var(--clickable-primary-default-bg);
+  box-shadow: 0 0 0 2px var(--clickable-primary-default-bg);
+  transform: translateY(-2px);
+  animation: nowy-modul-pulse 1.2s ease-in-out infinite;
+}
+
+.nowy-modul-chip--done { border-color: var(--state-success-text); }
+.nowy-modul-chip--fix { border-color: var(--state-warning-text); }
+
+@keyframes nowy-modul-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px var(--clickable-primary-default-bg); }
+  50% { box-shadow: 0 0 0 5px var(--body-tertiary-border); }
+}
+
+.nowy-modul-chip-persona {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--body-primary-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nowy-modul-chip-agent,
+.nowy-modul-chip-model {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  color: var(--body-secondary-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nowy-modul-chip-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.nowy-modul-baton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-width: 0;
+  font-size: 12px;
+  color: var(--body-secondary-text);
+  animation: nowy-modul-baton-in 0.45s ease-out;
+}
+
+@keyframes nowy-modul-baton-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: none; }
+}
+
+.nowy-modul-baton-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 10px;
+}
+
+.nowy-modul-baton-who {
+  font-weight: 600;
+  color: var(--body-primary-text);
+}
+
+.nowy-modul-baton-arrow { color: var(--clickable-primary-default-bg); }
+
+.nowy-modul-baton-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 2px 8px;
+  border-radius: var(--radius-s);
+  background: var(--body-secondary-bg);
+  color: var(--body-primary-text);
+}
+
+/* Inside the dark VS Code mock the strip takes the editor's own palette
+   (--vsc-*, demo/vscode.css) instead of a white DS panel. */
+#demo-vscode .nowy-modul-relay {
+  background: var(--vsc-sidebar);
+  border-bottom-color: var(--vsc-border);
+}
+
+#demo-vscode .nowy-modul-link { background: var(--vsc-active); }
+
+#demo-vscode .nowy-modul-chip {
+  background: var(--vsc-tab);
+  border-color: var(--vsc-active);
+}
+
+#demo-vscode .nowy-modul-chip--work { background: var(--vsc-active); border-color: var(--vsc-focus); }
+#demo-vscode .nowy-modul-chip--done { border-color: var(--vsc-green); }
+#demo-vscode .nowy-modul-chip--fix { border-color: var(--vsc-yellow); }
+
+#demo-vscode .nowy-modul-chip-persona,
+#demo-vscode .nowy-modul-baton-who { color: var(--vsc-status-fg); }
+
+#demo-vscode .nowy-modul-chip-agent,
+#demo-vscode .nowy-modul-chip-model,
+#demo-vscode .nowy-modul-baton { color: var(--vsc-fg-dim); }
+
+#demo-vscode .nowy-modul-baton-text {
+  background: var(--vsc-active);
+  color: var(--vsc-text);
+}
+
+/* ── The module page ─────────────────────────────────────────────────── */
+
+#demo-cockpit .nowy-modul-updated { margin-top: var(--space-8); }
+
+#demo-cockpit .nowy-modul-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--space-16);
+  align-items: start;
+}
+
+/* Half a stage (split view) has no room for two columns: the preview goes under the list. */
+.demo-stage[data-layout="split"] #demo-cockpit .nowy-modul-layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+#demo-cockpit .nowy-modul-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-12);
+  margin-bottom: var(--space-12);
+}
+
+#demo-cockpit .nowy-modul-filter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 180px;
+}
+
+#demo-cockpit .nowy-modul-filter-label {
+  font-size: 12px;
+  color: var(--body-secondary-text);
+}
+
+#demo-cockpit .nowy-modul-count {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--body-secondary-text);
+}
+
+#demo-cockpit .nowy-modul-row-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--body-primary-text);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+#demo-cockpit .nowy-modul-row:hover,
+#demo-cockpit .nowy-modul-row.demo-hover,
+#demo-cockpit .nowy-modul-row--sel { background: var(--body-secondary-bg); }
+
+#demo-cockpit .nowy-modul-cell-at {
+  white-space: nowrap;
+  color: var(--body-secondary-text);
+}
+
+#demo-cockpit .nowy-modul-source {
+  margin: var(--space-12) 0 0;
+  font-size: 12px;
+  color: var(--body-secondary-text);
+}
+
+#demo-cockpit .nowy-modul-preview-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--body-secondary-text);
+}
+
+#demo-cockpit .nowy-modul-preview-title { margin: var(--space-4) 0; }
+
+#demo-cockpit .nowy-modul-preview-meta {
+  font-size: 13px;
+  color: var(--body-secondary-text);
+}
+
+#demo-cockpit .nowy-modul-preview-list {
+  margin: var(--space-12) 0;
+  padding-left: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* What the last correction added: a short accent glow, then nothing. */
+#demo-cockpit .nowy-modul-fresh {
+  animation: nowy-modul-fresh 2.4s ease-out;
+}
+
+@keyframes nowy-modul-fresh {
+  0%, 40% { box-shadow: 0 0 0 3px var(--clickable-primary-default-bg); }
+  100% { box-shadow: 0 0 0 0 var(--clickable-primary-default-bg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nowy-modul-chip,
+  .nowy-modul-chip--work,
+  .nowy-modul-baton,
+  #demo-cockpit .nowy-modul-fresh { animation: none; transition: none; }
+}
+
+#demo-cockpit .nowy-modul-cell-nowrap { white-space: nowrap; }
+
+/* Split view: half a stage - a denser table so five columns fit. */
+.demo-stage[data-layout="split"] #demo-cockpit .nowy-modul-table th,
+.demo-stage[data-layout="split"] #demo-cockpit .nowy-modul-table td {
+  padding-inline: var(--space-8);
+  font-size: 13px;
+}

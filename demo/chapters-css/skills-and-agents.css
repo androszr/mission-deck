@@ -1,0 +1,7 @@
+/* demo/chapters-css/skills-and-agents.css - layout for chapter `skills-and-agents` mocks; DS tokens only.
+   The Agents and Skills cards use the real Settings classes from styles.css; only the
+   open ds-select list needs rules here. */
+
+/* The model list opens over the next card, like js/ds-select.js does. */
+.skille-i-agenci-drop { z-index: 30; }
+.sett-agent-card:has(.skille-i-agenci-drop:not([hidden])) { position: relative; z-index: 20; overflow: visible; }

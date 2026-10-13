@@ -1,0 +1,25 @@
+BUG SCANNER -- Hex  |  MINI  |  Phase 6.7  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | HEX // mini bug sweep              [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ tsc --noEmit                                   |
+  |                                                   |
+  |  state edges .... checked                         |
+  |  async paths .... checked                         |
+  |                                                   |
+  |  > nothing hides in a small app.                  |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Hex - Bug scanner
+    {{MODEL}}

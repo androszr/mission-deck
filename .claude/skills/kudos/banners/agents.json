@@ -1,0 +1,6 @@
+{
+  "_comment": "banner name -> agent; /kudos runs inline (no agent), so the banner carries no {{MODEL}}.",
+  "kudos": {
+    "hint": "no agent - /kudos runs inline in the main session"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "_comment": "banner name -> agent whose model:frontmatter fills {{MODEL}}. Read by scripts/agent-banner.js.",
+  "summarizer": "meeting-summarizer"
+}

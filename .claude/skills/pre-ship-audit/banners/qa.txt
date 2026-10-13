@@ -1,0 +1,25 @@
+QA AUDIT -- Watch  |  PRE-SHIP AUDIT  |  Phase 2  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | WATCH // coverage audit            [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  REVIEW SCOPE:                                    |
+  |  [x] tests for every new branch                   |
+  |  [x] assertions that can fail                     |
+  |  [x] fixtures that stay synthetic                 |
+  |                                                   |
+  |  > findings: BLOCK / WARN / NOTE                  |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Watch - Qa audit
+    {{MODEL}}

@@ -1,0 +1,18 @@
+{
+  "startAt": 3, "maxResults": 100, "total": 4,
+  "issues": [
+    {
+      "key": "DEVOPS-4",
+      "fields": {
+        "summary": "Reopened", "created": "2026-09-10T08:00:00.000+0000",
+        "issuetype": { "id": "10", "subtask": false }, "status": { "id": "2" },
+        "assignee": null
+      },
+      "changelog": { "total": 3, "histories": [
+        { "created": "2026-09-11T08:00:00.000+0000", "items": [ { "field": "status", "from": "1", "to": "2" } ] },
+        { "created": "2026-09-12T08:00:00.000+0000", "items": [ { "field": "status", "from": "2", "to": "4" } ] },
+        { "created": "2026-09-13T08:00:00.000+0000", "items": [ { "field": "status", "from": "4", "to": "2" } ] }
+      ] }
+    }
+  ]
+}

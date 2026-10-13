@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="105" height="40" viewBox="0 0 105 40" role="img" aria-label="Comet">
+  <path d="M20 3 L35 9 V20 C35 29 28 35 20 37 C12 35 5 29 5 20 V9 Z" fill="rgb(217,119,6)"/>
+  <text x="20" y="25" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="rgb(255,255,255)">C</text>
+  <text x="42" y="26" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="rgb(217,119,6)">Comet</text>
+</svg>

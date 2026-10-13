@@ -1,0 +1,6 @@
+/* Module stylesheet - import design-system tokens via CSS custom properties.
+   Use var(--surface-1), var(--text-primary), var(--brand-accent), etc.
+   Never hardcode hex colors; all tokens are defined in css/ds-tokens.css.
+   The header action slot (`#<viewId>-actions`) and `.ds-actions` already
+   carry their own layout from css/ds.css / styles.css - do not redeclare
+   `display: flex` or a gap for them here. */

@@ -1,0 +1,7 @@
+/* demo/chapters-css/design.css - layout for chapter `design` mocks; DS tokens only. */
+
+/* Icon names are short ("24 / Calendar edit"); keep words whole. */
+#demo-cockpit .asv-name {
+  overflow-wrap: normal;
+  word-break: normal;
+}

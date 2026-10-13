@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "id": "sprint-stats",
+  "name": "Sprint Stats",
+  "version": "0.2.1",
+  "status": "beta",
+  "description": "Commitment vs delivery per team and per person - Atlas, Borealis, Comet (story points) and Delta (man-days): sprint tabs, goals, tiles, issue table, trend and burndown, refresh from Jira, and a Spillover tab (spillover percentage of closed sprints)",
+  "icon": "24-ic-reports",
+  "author": "androszr",
+  "tags": [
+    "sprint",
+    "jira",
+    "velocity",
+    "burndown"
+  ],
+  "sidebar": {
+    "label": "Sprint Stats",
+    "kind": "page",
+    "hub": "activity"
+  },
+  "views": [
+    {
+      "id": "sprint-stats-main",
+      "label": "Sprint Stats",
+      "title": "Sprint Stats",
+      "subtitle": "Commitment vs delivery per team and person: Atlas, Borealis, Comet and Delta"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Sprint statistics in sprint-stats/ (index.json, one shard per board and sprint, spillover.json)",
+      "paths": [
+        "sprint-stats/"
+      ]
+    }
+  ],
+  "envKeys": [
+    {
+      "name": "JIRA_TOKEN",
+      "description": "Personal Jira token (preferred)"
+    },
+    {
+      "name": "JIRA_TECH_TOKEN",
+      "description": "Technical Jira token (fallback)"
+    },
+    {
+      "name": "JIRA_URL",
+      "description": "Jira base URL (default https://jira.example.com)"
+    }
+  ],
+  "widgets": [
+    {
+      "id": "latest-sprint",
+      "label": "Latest sprint",
+      "description": "Commitment delivery in the current main-board sprint: ring, numbers, teams and trend.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        {
+          "id": "s",
+          "label": "Small",
+          "cols": 2,
+          "rows": 1
+        },
+        {
+          "id": "m",
+          "label": "Medium",
+          "cols": 3,
+          "rows": 1
+        },
+        {
+          "id": "l",
+          "label": "Wide",
+          "cols": 6,
+          "rows": 1
+        },
+        {
+          "id": "s2",
+          "label": "Small, tall",
+          "cols": 2,
+          "rows": 2
+        },
+        {
+          "id": "m2",
+          "label": "Medium, tall",
+          "cols": 3,
+          "rows": 2
+        },
+        {
+          "id": "xl",
+          "label": "Wide, tall",
+          "cols": 6,
+          "rows": 2
+        }
+      ],
+      "defaultVariant": "m"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

@@ -1,0 +1,30 @@
+/* demo/chapters-css/academy.css - layout for chapter `academy` mocks; DS tokens only. */
+
+/* The Mural tile that was just saved: one soft pulse of the brand ring. */
+#demo-cockpit .tc-mural-tile.dm-szkolenie-fresh {
+  box-shadow: 0 0 0 2px var(--brand-accent);
+  animation: dmSzkolenieFresh 1.4s ease-out 1;
+}
+
+@keyframes dmSzkolenieFresh {
+  0% { transform: scale(0.96); opacity: 0.4; }
+  60% { transform: scale(1.02); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #demo-cockpit .tc-mural-tile.dm-szkolenie-fresh { animation: none; }
+}
+
+/* Prezentacja: the sticky progress footer sits under the caption pill. Its
+   own background grows downwards, so its text and bar stay above the pill. */
+.demo-app[data-mode="prezentacja"] #demo-cockpit #view-academy .tc-progressbar {
+  padding-bottom: calc(18px + 96px);
+}
+
+/* The real bar sticks to the scrollport's CONTENT edge (main keeps a 24px
+   padding-bottom), so a 24px strip of the page shows under it. Unseen at 1:1,
+   but a zoomed camera puts that strip on screen: pin the bar to the padding edge. */
+#demo-cockpit #view-academy .tc-progressbar {
+  bottom: -24px;
+}

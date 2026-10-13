@@ -1,0 +1,149 @@
+/* modules/usage-analytics/client/style.css
+   Scaffolded by scripts/new-module.js.
+
+   Prefix every rule with .usage-analytics- so it cannot collide with the core or
+   another module. Colours come from css/ds-tokens.css as var(--...) -
+   a hardcoded hex is a convention violation. */
+
+.usage-analytics-root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16, 16px);
+}
+
+.usage-analytics-filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16, 16px);
+}
+
+.usage-analytics-chart {
+  padding: var(--space-16, 16px);
+}
+.usage-analytics-chart svg { display: block; width: 100%; }
+
+.usage-analytics-person {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  align-items: center;
+  gap: var(--space-8, 8px);
+}
+.usage-analytics-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.usage-analytics-initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--state-inactive-bg);
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+}
+.usage-analytics-hash { font-family: var(--font-mono, monospace); font-size: var(--text-sm); }
+
+.usage-analytics-actions-row {
+  display: flex;
+  gap: var(--space-8, 8px);
+}
+
+.usage-analytics-note {
+  margin: var(--space-8, 8px) 0 0;
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+}
+
+.usage-analytics-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 10px);
+  gap: 2px;
+}
+.usage-analytics-strip-cell {
+  width: 10px;
+  height: 18px;
+  border-radius: 2px;
+  background: var(--state-inactive-bg);
+}
+.usage-analytics-strip-cell--1 { background: var(--state-success-bg); }
+.usage-analytics-strip-cell--2 { background: var(--state-success-icon); }
+.usage-analytics-strip-cell--3 { background: var(--state-success-text); }
+
+.usage-analytics-bars { display: flex; flex-direction: column; gap: var(--space-8, 8px); }
+.usage-analytics-bar-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) 3fr 48px;
+  align-items: center;
+  gap: var(--space-8, 8px);
+}
+.usage-analytics-bar-track {
+  display: block;
+  height: 8px;
+  border-radius: var(--radius-max);
+  background: var(--state-inactive-bg);
+  overflow: hidden;
+}
+.usage-analytics-bar-fill {
+  display: block;
+  height: 100%;
+  background: var(--body-brand-icon);
+}
+.usage-analytics-bar-value { text-align: right; font-variant-numeric: tabular-nums; }
+
+.usage-analytics-log {
+  max-height: 200px;
+  overflow: auto;
+  margin-top: var(--space-12, 12px);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+.usage-analytics-refresh-summary { margin-top: var(--space-12, 12px); }
+
+.usage-analytics-modal .ds-modal-body { max-height: 70vh; overflow: auto; }
+
+/* -- Responsive fit (clipping audit 2026-10-09) ------------------------------
+   The view is sized by the shell, not the viewport (the rail eats width), so
+   every breakpoint below is a container query on the view root. */
+.usage-analytics-root { container-type: inline-size; min-width: 0; }
+.usage-analytics-filters { flex-wrap: wrap; }
+
+/* .ds-table-wrap clips (overflow: hidden) - a table wider than the view must
+   scroll inside its wrapper instead of losing its right-hand columns. */
+.usage-analytics-root .ds-table-wrap,
+.usage-analytics-modal .ds-table-wrap { overflow-x: auto; }
+
+/* KPI tiles: labels may wrap, never overflow a narrow tile. */
+.usage-analytics-stats .ds-stat { min-width: 0; }
+.usage-analytics-stats .ds-stat-label { overflow-wrap: anywhere; }
+/* The delta slot keeps its height when "Skip me" hides the badges, so the
+   row does not jump. */
+.usage-analytics-delta { min-height: 24px; display: flex; align-items: center; }
+
+/* Person modal: four tiles, no period label column. */
+.usage-analytics-stats--plain { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.usage-analytics-stat-date { font-size: var(--text-lg); white-space: nowrap; }
+
+@container (max-width: 900px) {
+  .usage-analytics-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .usage-analytics-stats .ds-stat-subject { grid-column: 1 / -1; padding-block: var(--space-8, 8px); }
+}
+@container (max-width: 360px) {
+  .usage-analytics-stats { grid-template-columns: minmax(0, 1fr); }
+  .usage-analytics-stats .ds-stat-value { font-size: var(--text-xl); }
+}
+@media (max-width: 720px) {
+  .usage-analytics-stats--plain { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .usage-analytics-bar-row { grid-template-columns: minmax(80px, 1fr) 2fr 40px; }
+}
+/* Narrow view: the period switch takes the full row and its segments shrink
+   instead of pushing the page sideways. */
+@container (max-width: 420px) {
+  .usage-analytics-filters .ds-segmented { width: 100%; max-width: 100%; }
+  .usage-analytics-filters .ds-segment { flex: 1 1 0; min-width: 0; padding-inline: var(--space-8, 8px); }
+}
+/* The chart's axis labels scale with the SVG; below ~560px they become
+   unreadable, so the chart keeps that width and scrolls inside its card. */
+.usage-analytics-chart { overflow-x: auto; }
+.usage-analytics-chart svg { min-width: 560px; }

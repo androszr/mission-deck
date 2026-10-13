@@ -1,0 +1,7 @@
+{ "team_members": [
+  { "first_name": "Alex", "last_name": "Morgan", "role": "Dev", "team": "Atlas" },
+  { "first_name": "Robin", "last_name": "Złotek", "role": "QA", "team": "Atlas" },
+  { "first_name": "Sam", "last_name": "Rivera", "role": "Dev", "team": "Atlas" },
+  { "first_name": "Casey", "last_name": "Novak", "role": "DevOps", "team": "Falcon" },
+  { "first_name": "Taylor", "last_name": "Kim", "role": "Dev", "team": "Delta" }
+] }

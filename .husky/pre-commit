@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+# set -e: without core.hooksPath's old husky shim (which ran this file as
+# `sh -e <file>`), git now runs it directly via the shebang above, so this
+# script must stop itself on the first failing command - otherwise a blocked
+# commit (exit 1 below) would silently fall through to the next line and the
+# hook would still report success.
+set -e
+node scripts/hook-lint-staged.js
+
+# Restore agent model: lines to HEAD in the index (personal prefs never leak into commits)
+node scripts/restore-agent-models-for-commit.js
+
+# Who may change the core on this machine. Runs LAST, after the line above has
+# put the personal model: preferences back, so a staged agent file that still
+# differs here is a real edit and not somebody's model pick.
+node scripts/hook-core-scope.js

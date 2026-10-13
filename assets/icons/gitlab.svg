@@ -1,0 +1,9 @@
+<!-- GitLab tanuki. A vendor brand mark, deliberately NOT in
+     assets/icons/ds/ - the Design System catalog carries UI icons,
+     not third-party logos, and a brand mark keeps its own colours. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 380" width="16" height="16" role="img" aria-hidden="true" focusable="false">
+  <path fill="#E24329" d="m374.6 161.8-.5-1.4L323.4 28a13.2 13.2 0 0 0-5.2-6.3 13.6 13.6 0 0 0-15.6.8 13.6 13.6 0 0 0-4.5 6.8l-34.1 104.4H117.1L83 29.3a13.4 13.4 0 0 0-4.5-6.9 13.6 13.6 0 0 0-15.6-.8 13.3 13.3 0 0 0-5.2 6.3L7 160.3l-.5 1.4a93.5 93.5 0 0 0 31 108.1l.2.1.5.4 76.6 57.4 38 28.7 23 17.5a15.7 15.7 0 0 0 19 0l23-17.5 38-28.7 77.1-57.8.2-.1a93.6 93.6 0 0 0 31-108z"/>
+  <path fill="#FC6D26" d="m374.6 161.8-.5-1.4a170 170 0 0 0-67.8 30.5L190.7 278.5l73.9 55.8 77.1-57.8.2-.1a93.6 93.6 0 0 0 32.7-114.6z"/>
+  <path fill="#FCA326" d="m116.7 334.3 38 28.7 23 17.5a15.7 15.7 0 0 0 19 0l23-17.5 38-28.7-73.9-55.8z"/>
+  <path fill="#FC6D26" d="M74.7 190.9A170 170 0 0 0 7 160.4l-.5 1.4a93.5 93.5 0 0 0 31 108.1l.2.1.5.4 76.6 57.4 74-55.8z"/>
+</svg>

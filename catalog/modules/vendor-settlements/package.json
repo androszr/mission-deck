@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "dependencies": {
+    "docx": "^9.7.1",
+    "mammoth": "^1.12.0"
+  }
+}

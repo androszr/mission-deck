@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "responsibilities",
+  "name": "Responsibilities",
+  "version": "0.2.0",
+  "status": "beta",
+  "description": "Responsibility matrix: groups, areas, owners and an R / A / G rating for the chosen month, for four projects (Main, Web, Mobile, Platform).",
+  "icon": "24-ic-task-done",
+  "author": "androszr",
+  "tags": ["responsibilities", "rag", "owners"],
+  "sidebar": {
+    "label": "Responsibilities",
+    "kind": "page",
+    "hub": "support"
+  },
+  "views": [
+    {
+      "id": "responsibilities-main",
+      "label": "Responsibilities",
+      "title": "Responsibilities",
+      "subtitle": "Responsibility matrix - area status per month"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Team data: one responsibility matrix per project in responsibilities/ (main.json, web.json, mobile.json, platform.json)",
+      "paths": [
+        "responsibilities/"
+      ]
+    }
+  ],
+  "envKeys": [],
+  "widgets": [
+    {
+      "id": "rag-of-month",
+      "label": "R / A / G rating",
+      "description": "Rating split of the Main project's responsibility areas for the last closed month: green, amber, red and unrated areas.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        { "id": "s", "label": "Small", "cols": 2, "rows": 1 },
+        { "id": "s2", "label": "Small, tall", "cols": 2, "rows": 2 },
+        { "id": "m", "label": "Medium", "cols": 3, "rows": 1 },
+        { "id": "m2", "label": "Medium, tall", "cols": 3, "rows": 2 }
+      ],
+      "defaultVariant": "m2"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

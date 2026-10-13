@@ -1,0 +1,918 @@
+/* modules/gantt-roadmap/client/style.css
+   All colors via DS tokens (css/ds-tokens.css) — no hex literals.
+   Prefix: .ar- to avoid collision with core or other modules. */
+
+/* ---- Area color classes -------------------------------------------------- */
+
+.gr-area--blue    { --gr-area-fg: var(--ds-blue-55);    --gr-area-bg: var(--ds-blue-95);    }
+.gr-area--green   { --gr-area-fg: var(--ds-green-25);   --gr-area-bg: var(--ds-green-95);   }
+.gr-area--teal    { --gr-area-fg: var(--ds-green-35);   --gr-area-bg: var(--ds-green-90);   }
+.gr-area--yellow  { --gr-area-fg: var(--ds-yellow-35);  --gr-area-bg: var(--ds-yellow-95);  }
+.gr-area--orange  { --gr-area-fg: var(--ds-orange-40);  --gr-area-bg: var(--ds-orange-95);  }
+.gr-area--red     { --gr-area-fg: var(--ds-red-40);     --gr-area-bg: var(--ds-red-95);     }
+.gr-area--gray    { --gr-area-fg: var(--ds-gray-35);    --gr-area-bg: var(--ds-gray-95);    }
+.gr-area--violet  { --gr-area-fg: var(--ds-violet-40);  --gr-area-bg: var(--ds-violet-95);  }
+.gr-area--magenta { --gr-area-fg: var(--ds-magenta-40); --gr-area-bg: var(--ds-magenta-95); }
+.gr-area--cyan    { --gr-area-fg: var(--ds-cyan-25);    --gr-area-bg: var(--ds-cyan-95);    }
+.gr-area--brand   { --gr-area-fg: var(--ds-brand-30);   --gr-area-bg: var(--ds-brand-95);   }
+.gr-area--navy    { --gr-area-fg: var(--ds-blue-25);    --gr-area-bg: var(--ds-blue-90);    }
+
+/* ---- Layout variables ---------------------------------------------------- */
+
+:root {
+  --gr-label-w: 310px;
+  --gr-week-w:  1fr;   /* weeks share remaining space equally on desktop */
+}
+
+/* ---- Root ---------------------------------------------------------------- */
+
+.gr-root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding-bottom: var(--space-32);
+}
+
+/* ---- Toolbar ------------------------------------------------------------- */
+
+.gr-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  padding: var(--space-12) 0;
+}
+
+.gr-toolbar-sep {
+  flex: 1;
+}
+
+.gr-person-filter {
+  width: 220px;
+}
+
+/* js/ds-select.js wraps every select.ds-input in .ds-sel-wrap, which is
+   full width by default and pushed the toolbar onto three lines. */
+.gr-toolbar .ds-sel-wrap {
+  flex: 0 0 220px;
+  width: 220px;
+}
+
+/* ---- Gantt container ----------------------------------------------------- */
+
+.gr-gantt-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--body-secondary-border);
+  border-radius: var(--radius-m);
+  background: var(--body-primary-bg);
+}
+
+.gr-gantt {
+  position: relative;
+  width: 100%;           /* fills the scroll container on desktop */
+}
+
+/* On narrow viewports force a minimum width so columns stay usable */
+@media (max-width: 900px) {
+  :root { --gr-week-w: 56px; }
+  .gr-gantt {
+    min-width: calc(var(--gr-label-w) + var(--gr-weeks, 14) * var(--gr-week-w));
+    width: max-content;
+  }
+}
+
+/* ---- Gantt header -------------------------------------------------------- */
+
+.gr-gantt-head {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--body-primary-bg);
+  border-bottom: 2px solid var(--body-secondary-border);
+}
+
+.gr-gantt-row {
+  display: grid;
+  grid-template-columns: var(--gr-label-w) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+/* Inner grid for week cells — sits inside the single 1fr timeline cell */
+.gr-gantt-weeks-inner {
+  display: grid;
+  grid-template-columns: repeat(var(--gr-weeks, 14), 1fr);
+  align-items: stretch;
+}
+
+/* Day-precision month/sprint rows */
+/* Same two-track template as .gr-gantt-row and every body row, so the month
+   and sprint bands start exactly where the week cells and the lanes start. */
+.gr-gantt-month-row {
+  display: grid;
+  grid-template-columns: var(--gr-label-w) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.gr-gantt-month-band {
+  flex: 1;
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.gr-gantt-sprint-band {
+  flex: 1;
+  position: relative;
+  height: 20px;
+  overflow: hidden;
+  background: var(--ds-violet-97, var(--body-quaternary-bg));
+}
+
+.gr-gantt-sprint-abs-cell {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--space-4);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  color: var(--ds-violet-40, var(--body-secondary-text));
+  border-left: 2px solid var(--ds-violet-60, var(--body-secondary-border));
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.gr-gantt-label-cell {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-8);
+  border-right: 1px solid var(--body-secondary-border);
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: sticky;
+  left: 0;
+  background: var(--body-primary-bg);
+  z-index: 5;
+}
+
+.gr-gantt-month-cell {
+  padding: var(--space-4) var(--space-4);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--body-secondary-text);
+  border-right: 1px solid var(--body-secondary-border);
+  border-bottom: 1px solid var(--body-quaternary-bg);
+  height: 24px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.gr-gantt-month-cell:last-child { border-right: none; }
+
+.gr-gantt-week-cell {
+  padding: var(--space-2) var(--space-2);
+  font-size: var(--text-2xs);
+  color: var(--body-tertiary-text);
+  border-right: 1px solid var(--body-quaternary-bg);
+  height: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.gr-gantt-week-cell.gr-today-col {
+  background: color-mix(in srgb, var(--body-brand-bg) 10%, transparent);
+}
+
+.gr-gantt-week-cell.gr-xmas-col {
+  background: color-mix(in srgb, var(--ds-red-95) 60%, transparent);
+}
+
+.gr-week-no {
+  font-weight: 600;
+  color: var(--body-primary-text);
+}
+
+.gr-week-date {
+  font-size: 9px;
+  color: var(--body-tertiary-text);
+}
+
+/* Sprint row */
+.gr-gantt-sprint-cell {
+  font-size: var(--text-2xs);
+  color: var(--body-secondary-text);
+  border-right: 1px solid var(--body-quaternary-bg);
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--body-quaternary-bg);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.gr-sprint-cell-labeled {
+  font-weight: 600;
+  border-left: 2px solid var(--ds-violet-60, var(--body-secondary-border));
+}
+
+/* ---- Gantt body ---------------------------------------------------------- */
+
+.gr-gantt-body { }
+
+/* ---- Group header row ---------------------------------------------------- */
+
+.gr-group-header {
+  display: grid;
+  grid-template-columns: var(--gr-label-w) minmax(0, 1fr);
+  align-items: center;
+  background: var(--body-quaternary-bg);
+  border-top: 1px solid var(--body-secondary-border);
+  border-bottom: 1px solid var(--body-secondary-border);
+  min-height: 44px;
+}
+
+.gr-group-header-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-8);
+  position: sticky;
+  left: 0;
+  background: var(--body-quaternary-bg);
+  z-index: 4;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.gr-group-color-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-max);
+  background: var(--gr-area-fg, var(--body-secondary-text));
+  flex-shrink: 0;
+}
+
+.gr-group-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-8);
+}
+
+.gr-group-collapse-btn {
+  background: none;
+  border: none;
+  padding: var(--space-2);
+  cursor: pointer;
+  color: var(--body-secondary-text);
+  font-size: var(--text-xs);
+  border-radius: var(--radius-s);
+  display: flex;
+  align-items: center;
+}
+
+.gr-group-collapse-btn:hover { background: var(--body-secondary-bg); }
+.gr-group-collapse-btn:focus-visible { outline: 2px solid var(--body-brand-border); }
+
+.gr-group-note {
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+  padding: 0 var(--space-8) var(--space-4);
+  position: sticky;
+  left: 0;
+}
+
+/* ---- Task row ------------------------------------------------------------ */
+
+.gr-task-row {
+  display: grid;
+  grid-template-columns: var(--gr-label-w) minmax(0, 1fr);
+  align-items: stretch;
+  border-bottom: 1px solid var(--body-quaternary-bg);
+  min-height: 44px;
+}
+
+.gr-task-row:hover { background: color-mix(in srgb, var(--body-brand-bg) 4%, transparent); }
+
+.gr-task-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-8);
+  position: sticky;
+  left: 0;
+  background: var(--body-primary-bg);
+  z-index: 3;
+  font-size: var(--text-xs);
+  cursor: default;
+  border-right: 1px solid var(--body-secondary-border);
+  overflow: hidden;
+}
+
+.gr-task-row:hover .gr-task-label {
+  background: color-mix(in srgb, var(--body-brand-bg) 4%, var(--body-primary-bg));
+}
+
+.gr-task-n {
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  color: var(--body-tertiary-text);
+  flex-shrink: 0;
+  min-width: 32px;
+}
+
+.gr-task-title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13.5px;
+}
+
+.gr-task-avatars {
+  display: flex;
+  align-items: center;
+  /* negative margin creates slight overlap between avatars */
+  gap: 0;
+  flex-shrink: 0;
+}
+
+.gr-task-avatars .gr-avatar {
+  margin-left: -6px;
+  box-shadow: 0 0 0 2px var(--body-primary-bg);
+}
+
+.gr-task-avatars .gr-avatar:first-child { margin-left: 0; }
+
+.gr-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-max);
+  background: var(--body-secondary-bg);
+  color: var(--body-secondary-text);
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.gr-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- Gantt lane (task bars) ---------------------------------------------- */
+
+.gr-lane {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--gr-weeks, 14), var(--gr-week-w));
+}
+
+.gr-lane-inner {
+  position: relative;
+  height: 100%;
+  min-height: 44px;
+  grid-column: 1 / -1;
+}
+
+/* Week column backgrounds */
+.gr-lane-bg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--gr-weeks, 14), var(--gr-week-w));
+  pointer-events: none;
+}
+
+.gr-lane-bg-cell {
+  border-right: 1px solid var(--body-quaternary-bg);
+}
+
+/* gr-today-col on lane-bg-cell intentionally has no fill;
+   a precise .gr-today-line is injected instead (see index.js) */
+
+.gr-lane-bg-cell.gr-xmas-col {
+  background: color-mix(in srgb, var(--ds-red-95) 50%, transparent);
+}
+
+/* Task bar */
+.gr-bar {
+  position: absolute;
+  top: 9px;
+  height: 26px;
+  border-radius: var(--radius-s);
+  background: var(--gr-area-bg, var(--body-quaternary-bg));
+  border: 1px solid var(--gr-area-fg, var(--body-secondary-border));
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  cursor: default;
+  box-sizing: border-box;
+  transition: box-shadow 0.1s;
+  user-select: none;
+}
+
+.gr-bar:hover { box-shadow: var(--shadow-s); }
+
+.gr-bar-label {
+  font-size: 13px;
+  color: var(--gr-area-fg, var(--body-primary-text));
+  /* extra padding on both sides so text never overlaps the resize handles */
+  padding: 0 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  pointer-events: none;
+}
+
+/* Edit-mode handles */
+.gr-edit .gr-bar { cursor: grab; }
+.gr-edit .gr-bar:active { cursor: grabbing; }
+
+.gr-bar-handle {
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 2;
+  background: color-mix(in srgb, var(--gr-area-fg, var(--body-secondary-text)) 20%, transparent);
+  display: none;
+}
+
+.gr-edit .gr-bar-handle { display: block; }
+
+.gr-bar-handle-l { left: 0; border-radius: var(--radius-s) 0 0 var(--radius-s); }
+.gr-bar-handle-r { right: 0; border-radius: 0 var(--radius-s) var(--radius-s) 0; }
+
+/* Milestone diamond */
+.gr-bar.gr-milestone {
+  width: 18px !important;
+  height: 18px;
+  top: 13px;
+  transform: rotate(45deg);
+  border-radius: var(--radius-s);
+  cursor: default;
+}
+
+.gr-edit .gr-bar.gr-milestone { cursor: grab; }
+
+/* Phase bar — same look as a single-phase task bar; gaps via calc() in JS */
+.gr-phase-bar {
+  position: absolute;
+  height: 26px;
+  border-radius: var(--radius-s);
+  background: var(--gr-area-bg, var(--body-quaternary-bg));
+  border: 1px solid var(--gr-area-fg, var(--body-secondary-border));
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  cursor: default;
+  box-sizing: border-box;
+  user-select: none;
+  transition: box-shadow 0.1s;
+}
+
+.gr-phase-bar:hover { box-shadow: var(--shadow-s); }
+.gr-edit .gr-phase-bar { cursor: grab; }
+
+.gr-phase-bar-label {
+  font-size: 13px;
+  color: var(--gr-area-fg, var(--body-primary-text));
+  padding: 0 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  flex: 1;
+}
+
+.gr-phase-bar .gr-bar-handle {
+  background: color-mix(in srgb, var(--gr-area-fg, var(--body-secondary-text)) 20%, transparent);
+}
+
+/* Collapsed group: envelope bar */
+.gr-group-envelope-row {
+  display: grid;
+  grid-template-columns: var(--gr-label-w) minmax(0, 1fr);
+  border-bottom: 1px solid var(--body-secondary-border);
+  min-height: 28px;
+}
+
+.gr-group-envelope-label {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-xs);
+  color: var(--body-tertiary-text);
+  position: sticky;
+  left: 0;
+  background: var(--body-primary-bg);
+}
+
+/* Today line */
+.gr-today-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--body-brand-bg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ---- Drawer -------------------------------------------------------------- */
+
+.gr-drawer {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  bottom: 0;
+  width: 380px;
+  background: var(--body-primary-bg);
+  box-shadow: var(--shadow-l);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.2s ease;
+  border-left: 1px solid var(--body-secondary-border);
+  overflow: hidden;
+}
+
+.gr-drawer.gr-drawer--open {
+  right: 0;
+}
+
+.gr-drawer-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  border-bottom: 1px solid var(--body-secondary-border);
+  flex-shrink: 0;
+}
+
+.gr-drawer-header-n {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--body-tertiary-text);
+  flex-shrink: 0;
+}
+
+.gr-drawer-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  color: var(--body-primary-text);
+  border-radius: var(--radius-s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gr-drawer-close:hover { background: var(--body-secondary-bg); }
+.gr-drawer-close:focus-visible { outline: 2px solid var(--body-brand-border); }
+
+.gr-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.gr-drawer-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.gr-drawer-field-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--body-secondary-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gr-drawer-sep {
+  height: 1px;
+  background: var(--body-secondary-border);
+  margin: 0;
+}
+
+.gr-drawer-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.gr-drawer-title-row .ds-input {
+  flex: 1;
+}
+
+.gr-drawer-order-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.gr-order-btn {
+  background: none;
+  border: 1px solid var(--body-secondary-border);
+  border-radius: var(--radius-s);
+  width: 24px;
+  height: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--body-secondary-text);
+}
+
+.gr-order-btn:hover { background: var(--body-secondary-bg); }
+.gr-order-btn:focus-visible { outline: 2px solid var(--body-brand-border); }
+
+.gr-drawer-weeks-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+}
+
+/* Phases */
+.gr-phase-list { display: flex; flex-direction: column; gap: var(--space-8); }
+
+.gr-phase-item {
+  border: 1px solid var(--body-secondary-border);
+  border-radius: var(--radius-s);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.gr-phase-item-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.gr-phase-item-weeks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+/* Person picker */
+.gr-person-picker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.gr-person-team-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--body-tertiary-text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Person picker — tile grid with avatar + short name */
+.gr-person-chips {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(68px, 1fr));
+  gap: var(--space-4);
+}
+
+.gr-person-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-8) var(--space-4);
+  border: 1.5px solid var(--body-secondary-border);
+  border-radius: var(--radius-m);
+  cursor: pointer;
+  background: none;
+  font-size: var(--text-2xs);
+  color: var(--body-secondary-text);
+  transition: background 0.1s, border-color 0.1s;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.gr-person-chip .gr-avatar {
+  width: 36px;
+  height: 36px;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.gr-person-chip:hover {
+  background: var(--body-quaternary-bg);
+  border-color: var(--body-tertiary-border);
+}
+.gr-person-chip:focus-visible { outline: 2px solid var(--body-brand-border); }
+
+.gr-person-chip.gr-person-chip--selected {
+  border-color: var(--body-brand-border);
+  background: color-mix(in srgb, var(--body-brand-bg) 8%, var(--body-primary-bg));
+  color: var(--body-primary-text);
+}
+
+.gr-person-chip.gr-person-chip--selected .gr-avatar {
+  box-shadow: 0 0 0 2px var(--body-brand-border);
+}
+
+.gr-person-chip-name {
+  font-size: var(--text-2xs);
+  line-height: 1.2;
+  word-break: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* People in drawer (assigned) */
+.gr-assigned-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.gr-assigned-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-4);
+  border-radius: var(--radius-s);
+}
+
+.gr-assigned-row:hover { background: var(--body-quaternary-bg); }
+
+.gr-assigned-row .gr-avatar {
+  width: 34px;
+  height: 34px;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.gr-assigned-name {
+  flex: 1;
+  font-size: var(--text-xs);
+}
+
+.gr-assigned-badge {
+  font-size: var(--text-2xs);
+  color: var(--body-brand-text);
+  font-weight: 600;
+}
+
+/* Drawer footer */
+.gr-drawer-footer {
+  padding: var(--space-12) var(--space-16);
+  border-top: 1px solid var(--body-secondary-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  flex-shrink: 0;
+}
+
+/* ---- Area modal palette -------------------------------------------------- */
+
+.gr-color-palette {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.gr-color-chip {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-s);
+  border: 2px solid transparent;
+  cursor: pointer;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.1s;
+}
+
+.gr-color-chip:focus-visible { outline: 2px solid var(--body-brand-border); }
+
+.gr-color-chip.gr-color-chip--active {
+  border-color: var(--body-primary-text);
+}
+
+.gr-color-chip-inner {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-s);
+}
+
+/* ---- Backlog section ------------------------------------------------------ */
+
+.gr-backlog {
+  border-top: 2px solid var(--body-secondary-border);
+  padding-top: var(--space-16);
+}
+
+.gr-backlog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.gr-backlog-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-8);
+  border-bottom: 1px solid var(--body-quaternary-bg);
+}
+
+.gr-backlog-item:hover { background: var(--body-quaternary-bg); }
+
+.gr-backlog-title {
+  flex: 1;
+  font-size: var(--text-sm);
+}
+
+.gr-backlog-edit-input {
+  flex: 1;
+}
+
+.gr-backlog-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+.gr-backlog-add-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8);
+}
+
+/* ---- Callout storage unavailable ----------------------------------------- */
+
+.gr-storage-callout {
+  margin: var(--space-32) auto;
+  max-width: 480px;
+}
+
+/* ---- Skeleton ------------------------------------------------------------ */
+
+.gr-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-16);
+}
+
+.gr-skeleton-bar {
+  height: 20px;
+  border-radius: var(--radius-s);
+}
+
+/* ---- Dragging state ------------------------------------------------------- */
+
+.gr-dragging {
+  cursor: grabbing !important;
+}
+
+.gr-dragging * {
+  cursor: grabbing !important;
+}
+
+/* ---- Dark mode auto-inverts through DS tokens ----------------------------- */
+/* All colors use --ds-* and --body-* which flip in ds-tokens-dark.css     */

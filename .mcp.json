@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "gitnexus": {
+      "command": "node",
+      "args": [
+        "scripts/mcp-launch.js",
+        "gitnexus",
+        "mcp"
+      ],
+      "env": {
+        "GITNEXUS_MAX_FILE_SIZE": "3000",
+        "GITNEXUS_WORKER_SUB_BATCH_TIMEOUT_MS": "120000",
+        "GITNEXUS_WORKER_MAX_CUMULATIVE_TIMEOUT_MS": "600000"
+      }
+    },
+    "playwright": {
+      "command": "node",
+      "args": [
+        "scripts/mcp-launch.js",
+        "npx",
+        "-y",
+        "@playwright/mcp@0.0.80",
+        "--output-dir",
+        "user-data/screenshots"
+      ]
+    }
+  }
+}

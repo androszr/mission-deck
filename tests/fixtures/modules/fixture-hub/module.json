@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "fixture-hub",
+  "name": "Fixture Hub",
+  "version": "0.1.0",
+  "area": "Product",
+  "description": "Test fixture hub module with two views",
+  "icon": "24-ic-folder",
+  "sidebar": { "label": "Fixture Hub", "kind": "hub" },
+  "views": [
+    { "id": "fixture-hub-lista", "label": "Lista", "title": "Lista", "subtitle": "Widok testowy" },
+    { "id": "fixture-hub-raport", "label": "Raport", "title": "Raport", "subtitle": "Widok testowy" }
+  ],
+  "client": { "entry": "client/index.js", "style": "client/style.css" }
+}

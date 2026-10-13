@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "costs",
+  "name": "Costs",
+  "version": "0.1.1",
+  "status": "beta",
+  "description": "Team labour costs: hours from Tempo times daily rates, per person and month, split by area, epic, issue and company. Rates, settings and hours live in the module's own costs/ directory of the team data.",
+  "icon": "24-ic-money",
+  "author": "androszr",
+  "tags": [
+    "costs",
+    "tempo",
+    "rates",
+    "finance"
+  ],
+  "sidebar": {
+    "label": "Costs",
+    "kind": "page",
+    "hub": "finance"
+  },
+  "views": [
+    {
+      "id": "costs-main",
+      "label": "Costs",
+      "title": "Costs",
+      "subtitle": "Hours from Tempo and daily rates - epics, issues and people by month"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Daily rates (costs/team-rates.json), who is included in costs (costs/config.json) and the aggregated Tempo hours, one file per month (costs/hours/YYYY-MM.json + index.json)",
+      "paths": [
+        "costs/"
+      ]
+    },
+    {
+      "name": "data-tier-0",
+      "access": "read",
+      "description": "Team directory (team/team-members.json) - the list of people, read only",
+      "paths": [
+        "team/"
+      ]
+    }
+  ],
+  "envKeys": [
+    {
+      "name": "JIRA_TOKEN",
+      "description": "Personal Jira token from the Bitwarden vault - fetching Tempo worklogs (preferred)"
+    },
+    {
+      "name": "JIRA_TECH_TOKEN",
+      "description": "Technical Jira token (fallback)"
+    },
+    {
+      "name": "JIRA_URL",
+      "description": "Jira base URL (default https://jira.example.com)"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

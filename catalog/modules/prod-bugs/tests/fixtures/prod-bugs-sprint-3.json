@@ -1,0 +1,137 @@
+{
+  "sprint": 3,
+  "sprintName": "Sprint 3",
+  "dateRange": {
+    "startDate": "2026-02-10",
+    "endDate": "2026-02-24"
+  },
+  "dateRangeDisplay": "10.02-24.02",
+  "fetchedAt": "2026-07-19T18:51:36",
+  "areas": {
+    "orders": {
+      "bugs": 2,
+      "bugFixTime": null,
+      "resolvedCount": 0,
+      "createdCount": 0,
+      "openBugs": [
+        {
+          "key": "APP-1848",
+          "summary": "[FE] Toast notifications sometimes stay open",
+          "status": "Closed",
+          "created": "2025-11-28"
+        },
+        {
+          "key": "APP-1847",
+          "summary": "[FE] Refreshing stock levels does not update audit products",
+          "status": "Closed",
+          "created": "2025-12-09"
+        }
+      ],
+      "resolvedBugs": []
+    },
+    "otherModules": {
+      "bugs": 7,
+      "bugFixTime": 12.1,
+      "resolvedCount": 11,
+      "createdCount": 10,
+      "openBugs": [
+        {
+          "key": "APP-2107",
+          "summary": "Audit table flags rows that are not errors",
+          "status": "Cancelled",
+          "created": "2025-09-25"
+        },
+        {
+          "key": "APP-96",
+          "summary": "Rounding difference of 0.01 in daily totals",
+          "status": "Blocked",
+          "created": "2025-12-05"
+        },
+        {
+          "key": "APP-1329",
+          "summary": "Catalogue: navigation to a product group scrolls to the wrong row while sorting",
+          "status": "Closed",
+          "created": "2026-01-13"
+        }
+      ],
+      "resolvedBugs": [
+        {
+          "key": "APP-1510",
+          "summary": "Wrong quantities of linked products",
+          "status": "Closed",
+          "created": "2026-01-02",
+          "resolved": "2026-02-17",
+          "fixDays": 46
+        },
+        {
+          "key": "APP-1503",
+          "summary": "Document from the previous day is missing from the total",
+          "status": "Closed",
+          "created": "2026-01-05",
+          "resolved": "2026-02-20",
+          "fixDays": 46
+        },
+        {
+          "key": "APP-1682",
+          "summary": "Missing documents for a resent order",
+          "status": "Closed",
+          "created": "2026-02-02",
+          "resolved": "2026-02-20",
+          "fixDays": 18
+        }
+      ]
+    },
+    "platform": {
+      "bugs": 55,
+      "bugFixTime": 26.2,
+      "resolvedCount": 4,
+      "createdCount": 10,
+      "openBugs": [
+        {
+          "key": "WEB-15233",
+          "summary": "[BE] Harden the sync of recommendations with the ERP",
+          "status": "New",
+          "created": "2024-09-04"
+        },
+        {
+          "key": "WEB-16486",
+          "summary": "[BE] Errors when deleting notification tokens",
+          "status": "New",
+          "created": "2024-12-18"
+        },
+        {
+          "key": "WEB-17038",
+          "summary": "[BE] Rejected orders are not returned for read-only roles",
+          "status": "New",
+          "created": "2025-01-17"
+        }
+      ],
+      "resolvedBugs": [
+        {
+          "key": "WEB-21800",
+          "summary": "[WEB] Dashboard renders widgets in the wrong order",
+          "status": "Cancelled",
+          "created": "2025-12-31",
+          "resolved": "2026-02-16",
+          "fixDays": 47
+        },
+        {
+          "key": "WEB-21919",
+          "summary": "[BE] 403 user with oid not found",
+          "status": "Done",
+          "created": "2026-01-23",
+          "resolved": "2026-02-17",
+          "fixDays": 25
+        },
+        {
+          "key": "WEB-21951",
+          "summary": "[BE] Wrong region assigned to sites in the visits store",
+          "status": "Done",
+          "created": "2026-01-26",
+          "resolved": "2026-02-19",
+          "fixDays": 24
+        }
+      ]
+    }
+  }
+}

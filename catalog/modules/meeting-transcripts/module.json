@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "id": "meeting-transcripts",
+  "name": "Meeting Transcripts",
+  "version": "0.2.4",
+  "status": "beta",
+  "description": "Turns meeting recordings (audio or video) into a transcript with speaker labels and a summary - via Gemini. Every day it fetches new recordings from chosen OneDrive folders, processes them in a queue and sends a finished meeting to the Meeting Archive with one click.",
+  "icon": "24-ic-microphone",
+  "author": "androszr",
+  "tags": [
+    "meetings",
+    "transcription",
+    "gemini",
+    "onedrive"
+  ],
+  "sidebar": {
+    "label": "Meeting Transcripts",
+    "kind": "page",
+    "hub": "knowledge"
+  },
+  "views": [
+    {
+      "id": "meeting-transcripts-main",
+      "label": "Meeting Transcripts",
+      "title": "Meeting Transcripts",
+      "subtitle": "Recording queue, automatic OneDrive fetching and sending to the Meeting Archive"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "access": "read",
+      "description": "Team directory (team/) - matching speakers from Teams tiles to full names",
+      "paths": [
+        "team/"
+      ]
+    }
+  ],
+  "envKeys": [
+    {
+      "name": "GEMINI_PERSONAL_TOKEN",
+      "description": "Gemini key for transcription and summaries (from the vault, item GEMINI)"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  },
+  "widgets": [
+    {
+      "id": "transcription-queue",
+      "label": "Transcription queue",
+      "description": "Recording queue state: how many are waiting, in progress or failed, the progress of the current recording and the next fetch run (numbers only, read-only).",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        {
+          "id": "s",
+          "label": "Small",
+          "cols": 2,
+          "rows": 1
+        },
+        {
+          "id": "m",
+          "label": "Medium",
+          "cols": 3,
+          "rows": 1
+        },
+        {
+          "id": "m2",
+          "label": "Medium, tall",
+          "cols": 3,
+          "rows": 2
+        }
+      ],
+      "defaultVariant": "s"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+/* demo/chapters-css/publishing.css - layout for chapter `publishing` mocks; DS tokens only. */
+
+/* The status list opens over the footer and past the window's edge, the
+   way js/ds-select.js positions it (fixed, out of every scroller): while it
+   is open the window and its body stop clipping. */
+#dm-publikacja-modal .ds-modal:has(.ds-sel--open),
+#dm-publikacja-modal .ds-modal:has(.ds-sel--open) .ds-modal-body { overflow: visible; }
+
+
+/* The merge request page (publikacja-mr-screen), in the neutral window frame
+   of demo/chapters-css/onboarding.css. */
+.dm-publikacja-mr-window { width: min(980px, 100%); }
+
+.dm-publikacja-mr-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-24) var(--space-32) var(--space-32);
+}
+
+.dm-publikacja-mr-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.dm-publikacja-mr-title {
+  margin: 0;
+  font-size: var(--text-xl);
+  color: var(--body-primary-text);
+}
+
+.dm-publikacja-mr-meta,
+.dm-publikacja-mr-desc {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+}
+
+.dm-publikacja-mr-desc { color: var(--body-primary-text); margin-bottom: var(--space-12); }
+
+.dm-publikacja-mr-tags {
+  display: flex;
+  gap: var(--space-8);
+}

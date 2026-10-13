@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<style>
+  :root {
+    --brand-accent: #b04f14;
+    --brand-accent-light: #fff4e9;
+    --brand-accent-dark: #8c4213;
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F7F8FA;
+    --text-primary: #1A1A2E;
+    --text-secondary: #6B7280;
+    --text-tertiary: #9CA3AF;
+    --border: #E5E7EB;
+    --border-light: #F0F1F3;
+    --red: #EF4444;
+    --red-light: #FEF2F2;
+    --yellow: #F59E0B;
+    --yellow-light: #FFFBEB;
+    --blue: #4338CA;
+    --blue-light: #EEF2FF;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+  }
+  /* ===== Header ===== */
+  .report-header {
+    background: var(--bg-primary);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    border-top: 4px solid var(--brand-accent);
+  }
+  .report-header img.logo { height: 38px; margin-bottom: 24px; }
+  .report-header .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand-accent);
+    background: var(--brand-accent-light);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .report-header h1 {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .report-header .subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 70ch;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 36px;
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border-light);
+  }
+  .meta-item .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-tertiary); font-weight: 600; }
+  .meta-item .value { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+
+  /* ===== Participants chips ===== */
+  .people { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .person {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+    padding: 4px 12px 4px 5px;
+    font-size: 13px; font-weight: 600;
+  }
+  .person .ava {
+    flex: none; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--brand-accent-light); color: var(--brand-accent-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800;
+  }
+  .person .role { color: var(--text-secondary); font-weight: 500; }
+
+  /* ===== Section ===== */
+  section.card {
+    background: var(--bg-primary);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 28px 36px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-light);
+  }
+  section.card > h2 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section.card > h2::before {
+    content: "";
+    width: 4px;
+    height: 20px;
+    background: var(--brand-accent);
+    border-radius: 2px;
+  }
+  h3 { font-size: 16px; font-weight: 700; margin: 22px 0 10px; }
+  h4 { font-size: 14px; font-weight: 700; margin: 16px 0 6px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.04em; }
+  p { margin-bottom: 12px; color: #2d2d40; }
+  p + ul, p + ol { margin-top: -4px; }
+  ul, ol { margin: 0 0 14px 20px; }
+  li { margin-bottom: 6px; }
+  .lead { font-size: 16px; color: var(--text-secondary); }
+
+  /* ===== KPI / quick-facts cards ===== */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin: 4px 0 8px;
+  }
+  .kpi {
+    background: linear-gradient(135deg, var(--brand-accent-light) 0%, #F1FBF6 100%);
+    border: 1px solid #CFEFDD;
+    border-radius: var(--radius);
+    padding: 20px 22px;
+  }
+  .kpi .num { font-size: 34px; font-weight: 800; color: var(--brand-accent-dark); line-height: 1; letter-spacing: -0.02em; }
+  .kpi .unit { font-size: 18px; font-weight: 700; color: var(--brand-accent-dark); }
+  .kpi .desc { font-size: 13px; color: var(--text-secondary); margin-top: 8px; font-weight: 500; }
+
+  /* ===== Topic blocks (flow / topics) ===== */
+  .topic {
+    border: 1px solid var(--border-light);
+    border-left: 4px solid var(--brand-accent);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 14px 0;
+    background: var(--bg-primary);
+  }
+  .topic > h3 { margin-top: 0; display: flex; align-items: baseline; gap: 10px; }
+  .topic > h3 .idx { color: var(--text-tertiary); font-weight: 800; font-size: 14px; }
+  .topic .topic-tag {
+    display: inline-block; margin-left: auto; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--text-secondary); background: var(--bg-secondary);
+    border-radius: 999px; padding: 2px 10px;
+  }
+
+  /* ===== Tables ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 18px;
+    font-size: 14px;
+  }
+  thead th {
+    text-align: left;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 10px 14px;
+    border-bottom: 2px solid var(--border);
+  }
+  tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.who { font-weight: 600; white-space: nowrap; }
+  td.when { white-space: nowrap; color: var(--text-secondary); }
+  tbody tr:hover { background: #FbFcFd; }
+
+  /* ===== Badges ===== */
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+  .badge.open    { background: var(--blue-light); color: var(--blue); }        /* to do / open */
+  .badge.done    { background: var(--brand-accent-light); color: var(--brand-accent-dark); } /* done / closed */
+  .badge.risk    { background: var(--red-light); color: #B91C1C; }             /* at risk / blocked */
+  .badge.consider{ background: var(--yellow-light); color: #B45309; }          /* to consider / in progress */
+
+  /* ===== Callout ===== */
+  .callout {
+    border-left: 4px solid var(--brand-accent);
+    background: var(--brand-accent-light);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 14px 0;
+  }
+  .callout.warn { border-left-color: var(--yellow); background: var(--yellow-light); }
+  .callout.risk { border-left-color: var(--red); background: var(--red-light); }
+  .callout strong { color: var(--text-primary); }
+
+  /* ===== Q&A blocks ===== */
+  .qa { border-bottom: 1px solid var(--border-light); padding: 14px 0; }
+  .qa:last-child { border-bottom: none; }
+  .qa .q { font-weight: 700; display: flex; gap: 8px; }
+  .qa .q::before { content: "P:"; color: var(--brand-accent-dark); font-weight: 800; }
+  .qa .a { color: #2d2d40; display: flex; gap: 8px; margin-top: 4px; }
+  .qa .a::before { content: "O:"; color: var(--text-tertiary); font-weight: 800; }
+  .qa .asker { font-size: 12px; color: var(--text-tertiary); font-weight: 600; margin-left: 26px; }
+
+  /* ===== Reco / next steps ===== */
+  .reco { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border-light); }
+  .reco:last-child { border-bottom: none; }
+  .reco .ico { flex: none; width: 34px; height: 34px; border-radius: 9px; background: var(--brand-accent-light); color: var(--brand-accent-dark); display: flex; align-items: center; justify-content: center; font-weight: 800; }
+  .reco .body strong { display: block; font-size: 15px; margin-bottom: 2px; }
+  .reco .body span { font-size: 14px; color: var(--text-secondary); }
+
+  footer.report-footer {
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 13px;
+    margin-top: 28px;
+  }
+  footer.report-footer a { color: var(--brand-accent-dark); }
+
+  @media print {
+    body { background: #fff; }
+    section.card, .report-header, .topic { box-shadow: none; border: 1px solid var(--border); break-inside: avoid; }
+    .page { padding: 0; }
+  }
+  @media (max-width: 600px) {
+    .report-header, section.card { padding: 22px 20px; }
+    .report-header h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- BEGIN component:header (required) -->
+  <!-- logo: the Mission Deck mark (assets/logo.svg) inlined as a data URI - keep it inline, the document must stand alone -->
+  <header class="report-header">
+    <img class="logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' role='img' aria-label='Mission Deck'%3E%3Ctitle%3EMission Deck%3C/title%3E%3Cdefs%3E%3ClinearGradient id='md-g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffb867'/%3E%3Cstop offset='1' stop-color='%23e8772c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23md-g)'/%3E%3Crect x='21' y='11' width='26' height='34' rx='5' transform='rotate(16 34 28)' fill='%23fff' opacity='.35'/%3E%3Crect x='19' y='14' width='27' height='35' rx='5.5' transform='rotate(6 32 31)' fill='%23fff' opacity='.62'/%3E%3Crect x='16' y='17' width='28' height='36' rx='6' transform='rotate(-5 30 35)' fill='%23fff'/%3E%3Cpath d='M0 -10Q0 0 10 0Q0 0 0 10Q0 0 -10 0Q0 0 0 -10Z' transform='translate(30 35) scale(.95)' fill='%23b04f14'/%3E%3Ccircle cx='38.5' cy='25.5' r='2.4' fill='%234fb478'/%3E%3C/svg%3E" alt="Mission Deck">
+    <span class="eyebrow">{{EYEBROW}}</span>
+    <h1>{{H1}}</h1>
+    <p class="subtitle">{{SUBTITLE}}</p>
+    <div class="meta-row">
+      <!-- repeat <div class="meta-item"> for each piece of metadata (Date / Duration / Meeting type / Facilitator / Source); remove unused ones -->
+      <div class="meta-item"><div class="label">{{META_LABEL}}</div><div class="value">{{META_VALUE}}</div></div>
+    </div>
+  </header>
+  <!-- END component:header -->
+
+  <!-- BEGIN component:participants (optional) -->
+  <section class="card">
+    <h2>Participants</h2>
+    <div class="people">
+      <!-- repeat .person for each participant; .ava = initials; .role optional (remove if none) -->
+      <span class="person"><span class="ava">{{INITIALS}}</span>{{NAME}}<span class="role">{{ROLE}}</span></span>
+    </div>
+  </section>
+  <!-- END component:participants -->
+
+  <!-- BEGIN component:tldr (required) -->
+  <section class="card">
+    <h2>TL;DR</h2>
+    <div class="callout"><strong>{{STRONG}}</strong> {{BODY}}</div>
+  </section>
+  <!-- END component:tldr -->
+
+  <!-- BEGIN component:quick-facts (optional) -->
+  <section class="card">
+    <h2>At a glance</h2>
+    <div class="kpi-grid">
+      <!-- repeat .kpi (e.g. Topics / Decisions / Action items / Open questions / Participants) -->
+      <div class="kpi"><div class="num">{{NUM}}<span class="unit">{{UNIT}}</span></div><div class="desc">{{DESC}}</div></div>
+    </div>
+  </section>
+  <!-- END component:quick-facts -->
+
+  <!-- BEGIN component:topics (required, main content) -->
+  <section class="card">
+    <h2>Flow and topics discussed</h2>
+    <!-- repeat .topic for each topic; .idx numbers 1,2,3...; .topic-tag optional status/area (remove if none) -->
+    <div class="topic">
+      <h3><span class="idx">{{IDX}}</span>{{TOPIC_TITLE}}<span class="topic-tag">{{TOPIC_TAG}}</span></h3>
+      <!-- topic content: <p> paragraphs, <ul>/<ol> lists, optional <h4> subsections (e.g. Business context / Description / Discussion / Edge cases) -->
+      <p>{{TOPIC_BODY}}</p>
+    </div>
+  </section>
+  <!-- END component:topics -->
+
+  <!-- BEGIN component:decisions (optional) -->
+  <section class="card">
+    <h2>Decisions</h2>
+    <ul>
+      <!-- repeat <li> for each decision -->
+      <li>{{DECISION}}</li>
+    </ul>
+  </section>
+  <!-- END component:decisions -->
+
+  <!-- BEGIN component:action-items (optional) -->
+  <section class="card">
+    <h2>Action items</h2>
+    <table>
+      <thead><tr><th class="num">#</th><th>Who</th><th>Task</th><th>Due</th><th>Status</th></tr></thead>
+      <tbody>
+        <!-- repeat <tr>; badge: "open" (to do) | "consider" (in progress) | "done" (done) | "risk" (at risk) -->
+        <tr><td class="num">{{NR}}</td><td class="who">{{WHO}}</td><td>{{TASK}}</td><td class="when">{{WHEN}}</td><td><span class="badge open">{{STATUS}}</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+  <!-- END component:action-items -->
+
+  <!-- BEGIN component:risks (optional, repeatable) -->
+  <section class="card">
+    <h2>Risks and blockers</h2>
+    <!-- blocker variant: <div class="callout risk"> ; warning variant: <div class="callout warn"> -->
+    <div class="callout warn"><strong>{{STRONG}}</strong> {{BODY}}</div>
+  </section>
+  <!-- END component:risks -->
+
+  <!-- BEGIN component:qa (optional, for interview/feedback meetings) -->
+  <section class="card">
+    <h2>Questions and answers</h2>
+    <!-- repeat .qa for each Q/A pair; .asker optional (remove if none) -->
+    <div class="qa">
+      <div class="q">{{QUESTION}}</div>
+      <div class="a">{{ANSWER}}</div>
+      <div class="asker">{{ASKER}}</div>
+    </div>
+  </section>
+  <!-- END component:qa -->
+
+  <!-- BEGIN component:open-questions (optional) -->
+  <section class="card">
+    <h2>Open questions</h2>
+    <ul>
+      <!-- repeat <li> for each unresolved question -->
+      <li>{{OPEN_QUESTION}}</li>
+    </ul>
+  </section>
+  <!-- END component:open-questions -->
+
+  <!-- BEGIN component:next-steps (optional) -->
+  <section class="card">
+    <h2>Next steps</h2>
+    <!-- repeat .reco for each step; number .ico 1,2,3... -->
+    <div class="reco">
+      <div class="ico">{{ICO}}</div>
+      <div class="body"><strong>{{STRONG}}</strong><span>{{SPAN}}</span></div>
+    </div>
+  </section>
+  <!-- END component:next-steps -->
+
+  <!-- BEGIN component:footer (required) -->
+  <footer class="report-footer">
+    <p>{{FOOTER_LINE}}</p>
+    <!-- optional source link (remove if none): recording / transcript -->
+    <p>Source: <a href="{{SOURCE_URL}}">{{SOURCE_LABEL}}</a></p>
+  </footer>
+  <!-- END component:footer -->
+
+</div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+/* modules/costs/client/style.css - tokens only, DS classes do the rest. */
+
+/* -- rhythm: stats -> 24 -> tabs -> 24 -> section head -> 12 -> toolbar -> 16 -> table -- */
+.costs-callout { margin-bottom: var(--space-12); }
+.costs-tabs { margin-top: var(--space-24); }
+.costs-tabs .ds-tab { flex: 1 1 0; }
+.costs-stats { --ds-stat-cols: 4; }
+#costs-panel > .ds-section-head:first-child { margin-top: var(--space-24); }
+#costs-panel .ds-section-head,
+.costs-config-modal .ds-section-head { margin-top: var(--space-24); margin-bottom: var(--space-12); }
+.costs-config-modal .ds-section-head:first-child { margin-top: 0; }
+.costs-muted { color: var(--text-secondary); font-size: var(--text-sm); }
+.costs-note { margin: 0 0 var(--space-12); }
+
+/* -- toolbar: one row, every control 40px -- */
+.costs-filters { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-12); margin-bottom: var(--space-16); }
+.costs-filters .ds-input,
+.costs-filters .ds-sel-trigger { height: 40px; }
+.costs-filters .ds-input[type="search"],
+.costs-filters .ds-input[type="text"],
+.costs-filters .ds-input[type="email"] { flex: 0 1 320px; width: 320px; min-width: 200px; }
+.costs-filters .ds-segmented { flex: 0 0 auto; }
+.costs-filters .ds-segment { height: 40px; padding: 0 var(--space-24); }
+.costs-filters .ds-btn--sm { height: 40px; }
+.costs-filters .ds-checkbox-label { white-space: nowrap; }
+.costs-filters-end { display: flex; align-items: center; gap: var(--space-8); margin-left: auto; }
+
+/* -- date range control -- */
+.costs-range { position: relative; flex: 0 0 auto; }
+.costs-range-trigger { display: inline-flex; align-items: center; gap: var(--space-8); width: auto; cursor: pointer; text-align: left; white-space: nowrap; }
+.costs-range-caption { color: var(--text-secondary); font-size: var(--text-xs); }
+.costs-range-pop { position: absolute; top: calc(100% + var(--space-8)); left: 0; z-index: 30; display: flex; flex-direction: column; gap: var(--space-16); padding: var(--space-16); width: max-content; box-shadow: var(--shadow-l); }
+.costs-range-fields { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); }
+.costs-range-fields .ds-input { height: 40px; }
+.costs-range-body { display: flex; gap: var(--space-16); }
+.costs-range-presets { display: flex; flex-direction: column; gap: 2px; padding-right: var(--space-16); border-right: 1px solid var(--body-tertiary-border); }
+.costs-preset { border: 0; background: none; text-align: left; justify-content: flex-start; min-width: 0; padding: var(--space-8) var(--space-12); border-radius: var(--radius-s); font: inherit; font-size: var(--text-sm); color: var(--body-primary-text); cursor: pointer; white-space: nowrap; }
+.costs-preset:hover { background: var(--state-hover-bg); color: var(--body-brand-text); }
+.costs-cal { display: flex; flex-direction: column; gap: var(--space-8); }
+.costs-cal-head { display: flex; align-items: center; justify-content: space-between; }
+.costs-cal-title { font-weight: var(--font-weight-bold); color: var(--body-primary-text); }
+.costs-cal-grid { display: grid; grid-template-columns: repeat(7, 36px); gap: 2px 0; }
+.costs-cal-dow { text-align: center; font-size: var(--text-xs); color: var(--body-tertiary-text); padding: var(--space-4, 4px) 0; }
+.costs-cal-day { height: 36px; min-width: 0; padding: 0; justify-content: center; border: 0; background: none; font: inherit; font-size: var(--text-sm); color: var(--body-primary-text); cursor: pointer; border-radius: var(--radius-s); font-variant-numeric: tabular-nums; }
+.costs-cal-day:hover:not(:disabled) { background: var(--state-hover-bg); }
+.costs-cal-day:disabled { color: var(--body-tertiary-text); opacity: 0.4; cursor: default; }
+.costs-cal-day.is-today { box-shadow: inset 0 0 0 1px var(--body-tertiary-border); }
+.costs-cal-day.is-in { background: var(--state-success-bg); border-radius: 0; }
+.costs-cal-day.is-start, .costs-cal-day.is-end { background: var(--clickable-primary-default-bg); color: var(--clickable-primary-default-text); font-weight: var(--font-weight-bold); }
+.costs-cal-day.is-start:not(.is-end) { border-radius: var(--radius-s) 0 0 var(--radius-s); }
+.costs-cal-day.is-end:not(.is-start) { border-radius: 0 var(--radius-s) var(--radius-s) 0; }
+.costs-cal-sel { display: flex; flex-direction: column; gap: 2px; padding-top: var(--space-8); border-top: 1px solid var(--body-tertiary-border); }
+.costs-range-foot { display: flex; justify-content: flex-end; gap: var(--space-8); }
+.costs-range-field { display: block; margin-bottom: var(--space-12); }
+
+/* -- table container: rounded border, inner scroll, sticky header + first column -- */
+.costs-table-wrap { background: var(--body-primary-bg); }
+.costs-scroll { overflow: auto; max-height: max(420px, calc(100vh - 240px)); }
+.costs-scroll--config { max-height: 45vh; }
+.costs-months { font-size: var(--text-sm); }
+.costs-months th,
+.costs-months td { padding: 8px 12px; text-align: right; white-space: nowrap; vertical-align: middle; font-variant-numeric: tabular-nums; }
+.costs-months th:first-child,
+.costs-months td:first-child { text-align: left; width: 520px; min-width: 420px; max-width: 560px; white-space: normal; }
+.costs-months thead th { position: sticky; top: 0; z-index: 3; background: var(--table-primary-default-bg); }
+.costs-months th:first-child,
+.costs-months td:first-child { position: sticky; left: 0; z-index: 2; box-shadow: 1px 0 0 var(--body-tertiary-border); }
+.costs-months thead th:first-child { z-index: 4; }
+.costs-months tbody td:first-child { background: var(--table-secondary-default-bg); }
+.costs-months tbody tr.ds-table-sub td:first-child { background: var(--body-secondary-bg); }
+.costs-months tbody tr:hover td:first-child { background: var(--state-hover-bg); }
+.costs-months tfoot th { position: sticky; bottom: 0; z-index: 3; background: var(--table-primary-default-bg); font-weight: var(--font-weight-bold); border-top: 2px solid var(--table-primary-default-border); border-bottom: none; font-size: var(--text-sm); }
+.costs-months tfoot th:first-child { z-index: 4; }
+.costs-month--partial { color: var(--text-secondary); }
+.costs-zero { color: var(--text-secondary); }
+.costs-unpriced { color: var(--state-danger-text); font-weight: var(--font-weight-bold); }
+.costs-row--no-rate td:first-child .costs-ellipsis { color: var(--state-danger-text); }
+
+/* first column: one line, ellipsis, full text in the title attribute */
+.costs-namecell { display: flex; align-items: center; gap: var(--space-8); min-width: 0; }
+.costs-ellipsis { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--table-secondary-default-text); }
+.costs-namecell .ds-badge { flex: none; }
+
+/* hierarchy: epic semibold, issue 24px in, person 48px in */
+.costs-row-epic td { font-weight: var(--font-weight-semibold, 600); }
+.costs-row-epic .costs-ellipsis,
+.costs-row-epic .costs-epic-name { color: var(--body-primary-text); }
+.costs-indent-0 { padding-left: var(--space-12); }
+.costs-indent-1 { padding-left: calc(var(--space-12) + var(--space-24)) !important; }
+.costs-indent-2 { padding-left: calc(var(--space-12) + var(--space-48)) !important; }
+.costs-row-issue td { font-weight: var(--font-weight-regular, 400); }
+.costs-toggle { flex: none; width: 20px; height: 20px; justify-content: center; color: var(--body-secondary-text); }
+.costs-toggle:hover { color: var(--body-primary-text); }
+
+/* Jira links: DS brand green, the same when visited, underline on hover only */
+.costs-months a.ds-link,
+.costs-months a.ds-link:visited { color: var(--brand-accent); text-decoration: none; font-weight: var(--font-weight-medium); }
+.costs-months a.ds-link:hover { color: var(--state-success-text); text-decoration: underline; }
+
+/* people */
+.costs-person-role { color: var(--text-secondary); font-size: var(--text-xs); margin-left: var(--space-4, 4px); }
+.costs-avatar { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; flex: none; }
+.costs-avatar--initials { display: inline-flex; align-items: center; justify-content: center; background: var(--body-quaternary-bg); color: var(--body-secondary-text); font-size: 10px; }
+.costs-cell-actions { display: flex; align-items: center; justify-content: flex-end; gap: var(--space-8); }
+.costs-areas td .costs-cell-actions { justify-content: flex-end; }
+
+/* unassigned disclosure */
+.costs-disclosure { gap: var(--space-8); }
+.costs-disclosure .ds-row-toggle-chevron { color: var(--body-secondary-text); }
+.costs-disclosure[aria-expanded="true"] .ds-row-toggle-chevron { transform: rotate(90deg); }
+.costs-num { font-variant-numeric: tabular-nums; }
+.costs-legend { margin: var(--space-8) 0 0; }
+.costs-unassigned th.right,
+.costs-unassigned td.right { text-align: right; }
+
+/* configuration modal */
+.costs-config-modal { padding: var(--space-32, 32px); }
+.costs-config-modal .ds-modal-body { max-height: 72vh; overflow: auto; }
+.costs-config td,
+.costs-config th { padding: 8px 12px; vertical-align: middle; }
+.costs-config td .costs-cell-actions { justify-content: flex-start; }
+.costs-config .ds-checkbox-group { display: flex; flex-direction: row; flex-wrap: nowrap; gap: var(--space-12); }
+.costs-config .ds-checkbox-label { white-space: nowrap; }
+.costs-rate-input { width: 120px; height: 36px; }
+/* "Total" column pinned to the right edge, like the first column on the left */
+.costs-months th:last-child,
+.costs-months td:last-child { position: sticky; right: 0; box-shadow: -1px 0 0 var(--body-tertiary-border); font-weight: var(--font-weight-semibold, 600); }
+.costs-months tbody td:last-child { z-index: 2; background: var(--table-secondary-default-bg); }
+.costs-months .ds-table-sub td:last-child { background: var(--body-secondary-bg); }
+.costs-months thead th:last-child,
+.costs-months tfoot th:last-child { z-index: 4; }
+.costs-months thead th:first-child,
+.costs-months tfoot th:first-child { position: sticky; left: 0; z-index: 4; }
+.costs-months tbody tr:hover td:last-child { background: var(--state-hover-bg); }
+/* first column wraps instead of truncating */
+.costs-months .costs-namecell { align-items: flex-start; }
+.costs-months .costs-ellipsis { white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; line-height: 1.35; }
+/* names, persons and ticket keys in the first column: regular weight */
+.costs-months td:first-child,
+.costs-months td:first-child *,
+.costs-months td:first-child a.ds-link,
+.costs-months td:first-child a.ds-link:visited { font-weight: var(--font-weight-regular, 400); }
+/* leaf rows (no toggle) line up with the text of the row above them */
+.costs-epics td.costs-indent-2 .costs-namecell { padding-left: 28px; }
+.costs-months .costs-namecell { align-items: center; }
+.costs-ellipsis .costs-avatar { vertical-align: middle; margin-right: var(--space-8); }
+.costs-end-input { width: 150px; height: 36px; }
+/* Firmy view: one more level (company > person > epic > task) */
+.costs-indent-3 { padding-left: calc(var(--space-12) + var(--space-48) + var(--space-24)) !important; }
+.costs-months td.costs-leaf .costs-namecell { padding-left: 28px; }
+/* Konfiguracja modal: wider, person + team in one column, nothing overflows */
+.ds-modal--xl.costs-config-modal { width: min(1320px, calc(100vw - 48px)); }
+.costs-config-people { table-layout: fixed; width: 100%; }
+.costs-config-people th:nth-child(1) { width: 26%; }
+.costs-config-people th:nth-child(2) { width: 96px; }
+.costs-config-people th:nth-child(3) { width: 250px; }
+.costs-config-people th:nth-child(4) { width: 16%; }
+.costs-config-people th:nth-child(5) { width: 160px; }
+.costs-config-people th:nth-child(6) { width: 130px; }
+.costs-config-people td { padding: var(--space-8) var(--space-12); vertical-align: middle; }
+.costs-config-people .ds-input { width: 100%; height: 36px; min-width: 0; }
+.costs-config-center { text-align: center; }
+.costs-config-name { color: var(--body-primary-text); overflow-wrap: anywhere; }
+.costs-config-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4, 4px) var(--space-8); margin-top: 2px; font-size: var(--text-xs); color: var(--body-secondary-text); }
+.costs-config-meta .costs-remove { height: auto; padding: 0; min-height: 0; }
+.costs-areas-pick { display: flex; flex-wrap: nowrap; gap: var(--space-12); }
+.costs-areas-pick .ds-checkbox-label { white-space: nowrap; font-size: var(--text-sm); }

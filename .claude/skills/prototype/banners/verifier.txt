@@ -1,0 +1,25 @@
+VERIFIER -- Ledger  |  PROTOTYPE  |  Phase 6f  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | LEDGER // prototype audit          [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  ACCEPTANCE CRITERIA:                             |
+  |  AC1 ........ verified on disk                    |
+  |  AC2 ........ verified on disk                    |
+  |                                                   |
+  |  > blind check. proof only.                       |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Ledger - Verifier
+    {{MODEL}}

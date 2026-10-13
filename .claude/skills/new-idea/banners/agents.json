@@ -1,0 +1,20 @@
+{
+  "_comment": "banner name -> agent whose model:frontmatter fills {{MODEL}}; [left, right] for a parallel banner. Read by scripts/agent-banner.js.",
+  "planner": "idea-planner",
+  "implementer": "idea-implementer",
+  "guardian": "cockpit-guardian",
+  "verifier": "ac-verifier",
+  "parallel-guardian-verifier": [
+    "cockpit-guardian",
+    "ac-verifier"
+  ],
+  "playwright": "playwright-specialist",
+  "bugauditor": "bug-auditor",
+  "backend": "backend-implementer",
+  "frontend": "frontend-implementer",
+  "lead": "engineering-lead-reviewer",
+  "qa": "qa-automation-implementer",
+  "gapfix": {
+    "hint": "either implementer - pass --agent idea-implementer|backend-implementer|frontend-implementer"
+  }
+}

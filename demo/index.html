@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo — how we work with Mission Deck</title>
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <!-- Blocking, like in the app: data-theme lands on <html> before any sheet. -->
+  <script src="/js/theme-boot.js"></script>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/css/ds-tokens.css">
+  <link rel="stylesheet" href="/css/ds-tokens-dark.css">
+  <link rel="stylesheet" href="/css/ds.css">
+  <link rel="stylesheet" href="./demo.css">
+  <link rel="stylesheet" href="./vscode.css">
+  <link rel="stylesheet" href="./chapters.css">
+  <!-- No inline script anywhere on this page: CSP is script-src 'self'. -->
+  <script type="module" src="./main.mjs"></script>
+</head>
+<body class="demo-body">
+
+<div class="demo-app" id="demo-app" data-mode="prezentacja" data-progress="idle">
+  <div class="demo-stage" id="demo-stage" data-layout="cockpit">
+    <!-- The camera: one transform (scale + translate) over every surface. -->
+    <div class="demo-camera" id="demo-camera">
+      <div class="demo-surface demo-surface--cockpit" id="demo-cockpit" inert>
+        <div class="demo-loading">Loading the app’s look…</div>
+      </div>
+      <div class="demo-surface demo-surface--vscode demo-vscode" id="demo-vscode" inert></div>
+      <div class="demo-surface demo-surface--screen" id="demo-screen" inert></div>
+    </div>
+    <!-- Pip narrates every step in one short sentence (Presentation mode). -->
+    <div class="demo-caption" id="demo-caption" aria-live="polite" hidden>
+      <span class="demo-mascot demo-mascot--pill" id="demo-caption-mascot" data-mascot-size="pill"></span>
+      <span class="demo-caption-text" id="demo-caption-text"></span>
+    </div>
+    <!-- Title card: chapter start and the closing card. -->
+    <div class="demo-card" id="demo-card" aria-live="polite" hidden>
+      <div class="demo-card-inner">
+        <span class="demo-mascot demo-mascot--card" id="demo-card-mascot" data-mascot-size="card"></span>
+        <div class="demo-card-wordmark">Mission Deck</div>
+        <div class="demo-card-kicker" id="demo-card-kicker"></div>
+        <h1 class="demo-card-title" id="demo-card-title"></h1>
+        <p class="demo-card-subtitle" id="demo-card-subtitle"></p>
+        <div class="demo-card-hint">Press Enter to start</div>
+      </div>
+    </div>
+    <!-- Swallows every mouse click on the scene: the autopilot drives it, the
+         presenter only presses keys. -->
+    <div class="demo-shield" id="demo-shield" aria-hidden="true"></div>
+  </div>
+
+  <aside class="demo-narration" id="demo-narration" aria-live="polite" aria-label="Step description">
+    <div class="ds-card demo-narration-card">
+      <div class="ds-card-body">
+        <div class="demo-narr-head">
+          <span class="demo-mascot demo-mascot--narr" id="demo-narr-mascot" data-mascot-size="narr"></span>
+          <span class="ds-badge ds-badge--gray" id="demo-narr-chapter"></span>
+        </div>
+        <h2 class="ds-section-head-title" id="demo-narr-title"></h2>
+        <p class="demo-narr-body" id="demo-narr-body"></p>
+        <div class="demo-narr-command" id="demo-narr-command" hidden>
+          <code id="demo-narr-command-text"></code>
+          <button type="button" class="ds-btn ds-btn--secondary ds-btn--sm" id="demo-narr-copy">Copy command</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <footer class="demo-bar" id="demo-bar">
+    <!-- Step progress (demo/main.mjs): fills while the step plays, turns
+         "ready" once the engine settled it - then Enter is due. -->
+    <div class="demo-progress" id="demo-progress" aria-hidden="true">
+      <div class="demo-progress-fill" id="demo-progress-fill"></div>
+    </div>
+    <div class="demo-bar-pos">
+      <span class="demo-bar-chapter" id="demo-bar-chapter"></span>
+      <span class="demo-bar-step" id="demo-bar-step"></span>
+    </div>
+    <div class="demo-bar-switches">
+      <div class="ds-segmented" role="group" aria-label="Demo mode">
+        <button type="button" class="ds-segment active" data-demo-mode="prezentacja" aria-pressed="true">Presentation</button>
+        <button type="button" class="ds-segment" data-demo-mode="instruktaz" aria-pressed="false">Walkthrough</button>
+      </div>
+      <!-- Track switch (demo/tracks.mjs): remembered only in the hash. -->
+      <div class="ds-segmented" role="group" aria-label="Demo version">
+        <button type="button" class="ds-segment" data-demo-track="short" aria-pressed="false">Short</button>
+        <button type="button" class="ds-segment active" data-demo-track="full" aria-pressed="true">Full</button>
+      </div>
+    </div>
+    <div class="demo-bar-actions">
+      <!-- One slot, two layers: the key legend while a step plays, "Next" once it is done. -->
+      <span class="demo-bar-cue">
+        <span class="demo-bar-keys">Enter / space — next · ← — back</span>
+        <span class="ds-badge ds-badge--green demo-progress-hint" id="demo-progress-hint">Next ↵</span>
+      </span>
+      <button type="button" class="ds-btn ds-btn--secondary ds-btn--sm" id="demo-toc-btn" aria-controls="demo-toc" aria-expanded="false">Contents</button>
+      <button type="button" class="ds-btn ds-btn--tertiary ds-btn--sm" id="demo-help-btn" aria-controls="demo-help" aria-expanded="false">Shortcuts</button>
+    </div>
+  </footer>
+</div>
+
+<div class="demo-cursor-layer" id="demo-cursor-layer" aria-hidden="true"></div>
+
+<div class="ds-card demo-popover demo-toc" id="demo-toc" role="dialog" aria-labelledby="demo-toc-title" hidden>
+  <div class="ds-card-header">
+    <span class="ds-card-title" id="demo-toc-title">Contents</span>
+    <span class="demo-toc-total" id="demo-toc-total"></span>
+  </div>
+  <div class="ds-card-body">
+    <p class="demo-popover-hint">A chapter always starts at the first step of the chosen demo version.</p>
+    <ol class="demo-toc-list" id="demo-toc-list"></ol>
+  </div>
+</div>
+
+<div class="ds-card demo-popover demo-help" id="demo-help" role="dialog" aria-labelledby="demo-help-title" hidden>
+  <div class="ds-card-header">
+    <span class="ds-card-title" id="demo-help-title">Keyboard shortcuts</span>
+  </div>
+  <div class="ds-card-body">
+    <dl class="demo-help-list">
+      <dt><kbd>Enter</kbd> <kbd>Space</kbd> <kbd>→</kbd></dt><dd>Next step. During an animation: finish the current step at once.</dd>
+      <dt><kbd>←</kbd></dt><dd>Previous step (state replayed from the start of the chapter).</dd>
+      <dt><kbd>?</kbd></dt><dd>Show or hide this list.</dd>
+      <dt><kbd>Esc</kbd></dt><dd>Close the contents or this list.</dd>
+      <dt><kbd>Tab</kbd></dt><dd>Move to the switches on the bottom bar; <kbd>Enter</kbd> or <kbd>Space</kbd> on a switch changes the mode or the demo version.</dd>
+    </dl>
+    <p class="demo-popover-hint">Clicking the scene changes nothing — the autopilot drives the demo.</p>
+  </div>
+</div>
+
+</body>
+</html>

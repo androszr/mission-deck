@@ -1,0 +1,96 @@
+/* demo/chapters-css/feedback.css - layout for chapter `feedback` mocks; DS tokens only. */
+
+/* The pasted screenshot: a miniature of the cockpit drawn with tokens, in
+   place of the <img> _paintThumbs renders from the clipboard. */
+.zgloszenia-thumb { animation: zgloszenia-paste 0.35s ease-out; }
+
+.zgloszenia-shot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--body-secondary-bg);
+}
+
+.zgloszenia-shot span { position: absolute; display: block; }
+
+.zgloszenia-shot-bar {
+  inset: 0 0 auto;
+  height: 9px;
+  background: var(--body-primary-bg);
+  border-bottom: 1px solid var(--body-tertiary-border);
+}
+
+.zgloszenia-shot-rail {
+  top: 9px;
+  bottom: 0;
+  left: 0;
+  width: 12px;
+  background: var(--clickable-primary-default-bg);
+}
+
+.zgloszenia-shot-card {
+  top: 16px;
+  left: 18px;
+  right: 6px;
+  height: 18px;
+  border-radius: var(--radius-s);
+  background: var(--body-primary-bg);
+  border: 1px solid var(--body-tertiary-border);
+}
+
+.zgloszenia-shot-card--2 {
+  top: 40px;
+  height: 26px;
+  border-color: var(--state-danger-border);
+}
+
+@keyframes zgloszenia-paste {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zgloszenia-thumb { animation: none; }
+}
+
+/* The merge request page (zgloszenia-mr-screen), in the neutral window frame
+   of demo/chapters-css/onboarding.css. */
+.zgloszenia-mr-window { width: min(980px, 100%); }
+
+.zgloszenia-mr-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-24) var(--space-32) var(--space-32);
+}
+
+.zgloszenia-mr-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.zgloszenia-mr-title {
+  margin: 0;
+  font-size: var(--text-xl);
+  color: var(--body-primary-text);
+}
+
+.zgloszenia-mr-meta {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--body-secondary-text);
+}
+
+.zgloszenia-mr-desc {
+  margin: 0;
+  padding-left: var(--space-24);
+  font-size: var(--text-sm);
+  color: var(--body-primary-text);
+}
+
+.zgloszenia-mr-lead {
+  margin: 0 0 var(--space-8);
+  font-size: var(--text-sm);
+  color: var(--body-primary-text);
+}

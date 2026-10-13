@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Installing Mission Deck</title>
+<style>
+  :root {
+    --accent: #b04f14;
+    --accent-dark: #8c4213;
+    --ink: #1c2530;
+    --muted: #5b6772;
+    --line: #e3e8ed;
+    --bg: #f5f7f9;
+    --card: #ffffff;
+    --code-bg: #1e2733;
+    --code-ink: #e8eef4;
+    --warn-bg: #fff7e6;
+    --warn-line: #f0c050;
+    --info-bg: #eef3ff;
+    --info-line: #6f8fec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e6e9ee;
+      --muted: #a3acb6;
+      --line: #2c343e;
+      --bg: #12161b;
+      --card: #1a2028;
+      --warn-bg: #3a2f14;
+      --info-bg: #17233f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: #fff;
+    padding: 48px 16px 56px;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 8px; font-size: 32px; }
+  header p { margin: 0 auto; max-width: 560px; opacity: 0.95; }
+  main { max-width: 880px; margin: -28px auto 0; padding: 0 16px 80px; }
+  section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+  }
+  h2 { margin: 0 0 10px; font-size: 20px; display: flex; gap: 12px; align-items: center; }
+  .num {
+    flex: 0 0 auto; width: 36px; height: 36px; border-radius: 50%;
+    background: var(--accent); color: #fff; font-size: 17px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  code {
+    background: rgba(127, 127, 127, 0.15);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-family: ui-monospace, "SF Mono", Consolas, Menlo, monospace;
+    font-size: 14px;
+  }
+  pre {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border-radius: 10px;
+    padding: 14px 18px;
+    overflow-x: auto;
+    font-family: ui-monospace, "SF Mono", Consolas, Menlo, monospace;
+    font-size: 14px;
+  }
+  pre code { background: none; padding: 0; color: inherit; }
+  .note { border-radius: 10px; padding: 12px 16px; margin: 12px 0; font-size: 15px; }
+  .info { background: var(--info-bg); border-left: 4px solid var(--info-line); }
+  .warn { background: var(--warn-bg); border-left: 4px solid var(--warn-line); }
+  .split { display: flex; gap: 14px; flex-wrap: wrap; }
+  .split > div { flex: 1 1 260px; }
+  a { color: var(--accent); }
+  @media (prefers-color-scheme: dark) { a { color: #9d98ff; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Installing Mission Deck</h1>
+  <p>A step-by-step guide to running Mission Deck on your computer. Go through the steps in order - it takes about fifteen minutes.</p>
+</header>
+<main>
+
+<section>
+  <h2>Before you start</h2>
+  <p>You need Visual Studio Code and a modern browser. You do not need an encryption key or any token to begin - the setup wizard asks for them at the end, and every one of them is optional.</p>
+</section>
+
+<section>
+  <h2><span class="num">0</span>Install the tools</h2>
+  <ul>
+    <li><strong>Visual Studio Code</strong> - the editor you open the project in (<a href="https://code.visualstudio.com">code.visualstudio.com</a>).</li>
+    <li><strong>Node.js 24</strong> - the runtime. On macOS install it with Homebrew, not the <code>.pkg</code> installer: the latter needs an administrator password for every global tool install.</li>
+    <li><strong>Git</strong> - version control. On Windows keep the installer's default options (Git Bash comes with it, and the git hooks and Claude Code need it).</li>
+    <li><strong>Python 3.10+</strong> - used by helper scripts. On macOS the command is <code>python3</code>, on Windows <code>python</code> or <code>py</code>.</li>
+  </ul>
+  <div class="split">
+    <div><strong>macOS</strong><pre><code>brew install node@24 git python</code></pre></div>
+    <div><strong>Windows</strong><pre><code>winget install OpenJS.NodeJS.LTS Git.Git Python.Python.3.12</code></pre></div>
+  </div>
+  <div class="note info"><strong>What is Homebrew?</strong> On macOS the <code>brew</code> commands need the Homebrew package manager. If you do not have it, install it once with the command from <a href="https://brew.sh">brew.sh</a>.</div>
+  <div class="note warn">After installing, close and reopen the terminal (preferably the whole of VS Code) so the system sees the new commands. Check with <code>node -v</code> (it should start with <code>v24</code>), <code>git --version</code> and <code>python3 --version</code> / <code>python --version</code>.</div>
+</section>
+
+<section>
+  <h2><span class="num">1</span>Get the code</h2>
+  <pre><code>git clone https://github.com/androszr/mission-deck.git</code></pre>
+  <p>Put it somewhere safe on a local disk - <strong>outside OneDrive and iCloud</strong>.</p>
+  <ul>
+    <li>Windows: preferably straight on <code>C:\</code> (for example <code>C:\mission-deck</code>).</li>
+    <li>Mac: in your home folder (for example <code>~/Projects/mission-deck</code>).</li>
+  </ul>
+  <div class="note info"><strong>Why does it matter?</strong> OneDrive and iCloud folders sync continuously. The app creates a lot of files that should not sync - it would slow the machine down and could corrupt data.</div>
+</section>
+
+<section>
+  <h2><span class="num">2</span>Open the folder in Visual Studio Code</h2>
+  <ol>
+    <li>Choose <strong>File &rarr; Open Folder...</strong></li>
+    <li>Pick the project folder and press <strong>Open</strong>.</li>
+    <li>When asked "Do you trust the authors of the files in this folder?", press <strong>Yes, I trust the authors</strong>.</li>
+  </ol>
+  <div class="note warn"><strong>Use a clean window.</strong> Open the project in a new VS Code window - do not add it to a workspace with other folders. Several folders in one window make terminal commands run in the wrong directory.</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span>Install the dependencies</h2>
+  <p>Choose <strong>Terminal &rarr; New Terminal</strong> and run:</p>
+  <pre><code>npm install
+npm run setup</code></pre>
+  <p><code>npm run setup</code> downloads, once, the browser used by visual verification and builds the code map for Claude Code. You do not create or edit a <code>.env</code> file to start.</p>
+</section>
+
+<section>
+  <h2><span class="num">4</span>Start the app</h2>
+  <pre><code>npm start</code></pre>
+  <p>The server starts - keep this terminal open while you work. After a moment the browser opens Mission Deck by itself, on the first run straight on the setup wizard.</p>
+  <div class="note info"><strong>No browser window?</strong> Open one yourself and go to <code>localhost:3001</code>.</div>
+</section>
+
+<section>
+  <h2><span class="num">5</span>The setup wizard</h2>
+  <p>On the first run Mission Deck opens on a wizard that walks you through setup:</p>
+  <ul>
+    <li><strong>Environment</strong> - checks that Node, Git, Python, Bitwarden CLI and Claude Code are present; what is missing installs with one button.</li>
+    <li><strong>Bitwarden</strong> (optional) - unlocking a vault gives the app its tokens (Jira, Confluence and others) without pasting them anywhere.</li>
+    <li><strong>App repository access</strong> - a token the app uses to recognise you and fetch updates, if you run it from your own Git host.</li>
+    <li><strong>Encryption keys</strong> - paste the key your team gave you; the data decrypts automatically.</li>
+    <li><strong>Team data</strong> - pulls the team data repository, if you configured one.</li>
+    <li><strong>Update</strong> - checks for and installs the newest version with one click.</li>
+    <li><strong>Academy</strong> - unlocks when the rest is done and leads you to building your first module.</li>
+  </ul>
+  <div class="note info"><strong>Why an encryption key?</strong> Team data lives in its repository encrypted (AES-256-GCM), so it is unreadable without the key. The wizard saves the key locally in <code>.encryption-key</code>, readable by the owner only - it never goes into <code>.env</code> or anywhere off your machine.</div>
+  <p>You can return to the wizard at any time from <strong>Start here</strong> in the side menu, just above Settings.</p>
+</section>
+
+<section>
+  <h2><span class="num">6</span>Bitwarden CLI (optional)</h2>
+  <p>If your team keeps tokens in Bitwarden, install and log in to the CLI once:</p>
+  <pre><code>npm install -g @bitwarden/cli
+bw config server https://vault.bitwarden.com
+bw login</code></pre>
+  <p>Logging in is a one-time step. Unlocking the vault (typing the password) then happens inside Mission Deck: <strong>Settings &rarr; Keys</strong> or the Bitwarden pill in the top bar.</p>
+</section>
+
+<section>
+  <h2><span class="num">7</span>Claude Code</h2>
+  <div class="split">
+    <div><strong>macOS</strong><pre><code>brew install --cask claude-code</code></pre></div>
+    <div><strong>Windows</strong><pre><code>npm install -g @anthropic-ai/claude-code</code></pre></div>
+  </div>
+  <p>Then run <code>claude</code> in the VS Code terminal, in the project folder. On the first run a browser opens to sign in to your Anthropic account. From then on Claude Code works in the terminal with the whole project as context.</p>
+</section>
+
+<section>
+  <h2>Done</h2>
+  <p>Mission Deck is installed. You now have two places to work: <strong>Mission Deck in the browser</strong> - dashboards, data, reports and every module - and <strong>Visual Studio Code with Claude Code</strong>, where you build new modules and grow the app.</p>
+  <p>To learn how, open the <strong>Academy</strong> from the dashboard tile, or go straight to <code>http://localhost:3001/#academy</code> while the app runs.</p>
+  <p>Stuck? See <code>docs/troubleshooting.md</code>, or open an issue on the project's GitHub page.</p>
+</section>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,266 @@
+/* demo/chapters-css/using-a-module.css - layout for chapter `using-a-module` (and the last step of
+   `catalog`): the time-log module CSS is not loaded in the demo, so its layout rules are copied
+   from modules/time-log/client/style.css, scoped to the demo page section. DS tokens only. */
+
+#view-katalog-time-log .tlc-header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  min-height: 20px;
+}
+
+#view-katalog-time-log .tlc-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+#view-katalog-time-log .tlc-search-wrap {
+  flex: 1;
+  min-width: 200px;
+  max-width: 280px;
+  margin: 0;
+}
+
+#view-katalog-time-log .tlc-team-seg {
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+#view-katalog-time-log .tlc-toolbar-actions {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: auto;
+}
+
+#view-katalog-time-log .tlc-count {
+  font-size: 12px;
+  color: var(--body-tertiary-text);
+}
+
+#view-katalog-time-log .tlc-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 12px;
+  color: var(--body-secondary-text);
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+#view-katalog-time-log .tlc-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#view-katalog-time-log .tlc-legend-note {
+  color: var(--body-tertiary-text);
+  font-size: 12px;
+}
+
+#view-katalog-time-log .tlc-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+#view-katalog-time-log .tlc-legend-dot--logged { background: var(--brand-accent); }
+
+#view-katalog-time-log .tlc-legend-dot--miss { background: var(--state-danger-bg); }
+
+#view-katalog-time-log .tlc-legend-dot--vacation { background: var(--body-tertiary-bg); opacity: 0.5; }
+
+#view-katalog-time-log .tlc-legend-dot--weekend { background: var(--body-tertiary-bg); opacity: 0.4; }
+
+#view-katalog-time-log .tlc-legend-dot--holiday { background: var(--body-tertiary-bg); opacity: 0.35; }
+
+#view-katalog-time-log .tlc-grid-wrap {
+  overflow-y: auto;
+  max-height: 480px;
+  border: 1px solid var(--body-tertiary-border);
+  border-radius: var(--fds-radius-card);
+  margin-bottom: 12px;
+}
+
+#view-katalog-time-log .tlc-grid {
+  display: grid;
+  gap: 2px;
+  padding: 4px;
+  min-width: max-content;
+}
+
+#view-katalog-time-log .tlc-cell {
+  height: 26px;
+  min-width: 28px;
+  border-radius: var(--fds-radius-input);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  transition: opacity 0.1s;
+}
+
+#view-katalog-time-log .tlc-cell[role="button"] {
+  cursor: pointer;
+}
+
+#view-katalog-time-log .tlc-cell[role="button"]:hover, #view-katalog-time-log .tlc-cell[role="button"]:focus-visible {
+  opacity: 0.8;
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 1px;
+}
+
+#view-katalog-time-log .tlc-cell--header {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--body-secondary-text);
+  align-items: flex-end;
+  padding-bottom: 3px;
+  height: 28px;
+  position: sticky;
+  top: 0;
+  background: var(--body-primary-bg);
+  z-index: 1;
+}
+
+#view-katalog-time-log .tlc-cell--logged { background: var(--brand-accent); }
+
+#view-katalog-time-log .tlc-cell--logged[style] {
+  background: color-mix(in srgb, var(--brand-accent) calc((0.25 + var(--tlc-frac, 1) * 0.75) * 100%), transparent);
+  color: var(--body-primary-text);
+}
+
+#view-katalog-time-log .tlc-cell--logged.tlc-cell--hi {
+  color: var(--surface-primary);
+}
+
+#view-katalog-time-log .tlc-cell--miss { background: var(--state-danger-bg); }
+
+#view-katalog-time-log .tlc-cell--vacation { background: var(--body-tertiary-bg); opacity: 0.5; position: relative; }
+
+#view-katalog-time-log .tlc-cell--vacation::after {
+  content: '🌴';
+  font-size: 11px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+#view-katalog-time-log .tlc-cell--weekend { background: var(--body-tertiary-bg); opacity: 0.4; }
+
+#view-katalog-time-log .tlc-cell--holiday { background: var(--body-tertiary-bg); opacity: 0.35; position: relative; }
+
+#view-katalog-time-log .tlc-cell--holiday::after {
+  content: '✦';
+  font-size: 8px;
+  opacity: 0.5;
+  position: absolute;
+}
+
+#view-katalog-time-log .tlc-cell--summary {
+  background: transparent;
+  font-weight: 600;
+  font-size: 11px;
+  color: var(--body-secondary-text);
+  border-top: 1px solid var(--body-tertiary-border);
+}
+
+#view-katalog-time-log .tlc-sum--full { color: var(--brand-accent); }
+
+#view-katalog-time-log .tlc-sum--ok { color: var(--body-secondary-text); }
+
+#view-katalog-time-log .tlc-sum--warn { color: var(--state-danger-text); }
+
+#view-katalog-time-log .tlc-name-cell {
+  font-size: 12px;
+  padding: 0 10px 0 4px;
+  color: var(--body-secondary-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: sticky;
+  left: 0;
+  background: var(--body-primary-bg);
+  z-index: 2;
+}
+
+#view-katalog-time-log .tlc-name-cell.tlc-cell--header {
+  font-size: 11px;
+  /* Corner cell: sticky on both axes - sits above the row and column sticky layers. */
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+#view-katalog-time-log .tlc-name-cell.tlc-cell--summary {
+  font-size: 11px;
+  font-weight: 600;
+  border-top: 1px solid var(--body-tertiary-border);
+  background: var(--body-primary-bg);
+}
+
+#view-katalog-time-log .tlc-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+#view-katalog-time-log .tlc-avatar--initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--body-tertiary-bg);
+  color: var(--body-primary-text);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+#view-katalog-time-log .tlc-name-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#view-katalog-time-log .tlc-teams-btn {
+  margin-left: auto;
+  flex-shrink: 0;
+  padding: 2px 4px !important;
+  min-width: 0 !important;
+  height: auto !important;
+}
+
+#view-katalog-time-log .tlc-cell--row-sum {
+  font-size: 11px;
+  font-weight: 600;
+  background: transparent;
+  padding: 0 4px;
+  min-width: 36px;
+}
+
+#view-katalog-time-log .tlc-cell-h {
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* A heatmap column that just filled in after the pull. */
+#view-katalog-time-log .dm-uzycie-modulu-fresh .tlc-cell--logged { animation: dmUzycieFresh 0.9s ease-out 1; }
+@keyframes dmUzycieFresh { from { opacity: 0.2; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  #view-katalog-time-log .dm-uzycie-modulu-fresh .tlc-cell--logged { animation: none; }
+}

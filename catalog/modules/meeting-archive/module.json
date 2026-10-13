@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "id": "meeting-archive",
+  "name": "Meeting archive",
+  "version": "0.3.0",
+  "status": "beta",
+  "description": "Archive of the team's processed meetings - folders, search, summaries and transcripts. Takes finished meetings from the Meeting transcripts module with one click and sends the change to the team at once.",
+  "icon": "24-ic-calendar-text",
+  "author": "androszr",
+  "tags": [
+    "meetings",
+    "archive",
+    "knowledge",
+    "transcript"
+  ],
+  "sidebar": {
+    "label": "Meeting archive",
+    "kind": "page",
+    "hub": "knowledge"
+  },
+  "views": [
+    {
+      "id": "meeting-archive-main",
+      "label": "Meeting archive",
+      "title": "Meeting archive",
+      "subtitle": "Archive of the team's processed meetings - summaries, transcripts, categories and folders"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Team data: the meeting archive (meeting-archive/) - the module owns it and sends changes right after each save",
+      "paths": [
+        "meeting-archive/"
+      ]
+    }
+  ],
+  "envKeys": [],
+  "server": {
+    "entry": "server/index.js"
+  },
+  "widgets": [
+    {
+      "id": "recent-meetings",
+      "label": "Recent meetings",
+      "description": "The five most recent meetings in the archive, the number of meetings in the last 30 days, participants of the newest meeting and this month's calendar.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        { "id": "s", "label": "Small", "cols": 2, "rows": 1 },
+        { "id": "s2", "label": "Small, tall", "cols": 2, "rows": 2 },
+        { "id": "m", "label": "Medium", "cols": 3, "rows": 1 },
+        { "id": "m2", "label": "Medium, tall", "cols": 3, "rows": 2 },
+        { "id": "l", "label": "Wide", "cols": 6, "rows": 1 },
+        { "id": "xl", "label": "Wide, tall", "cols": 6, "rows": 2 }
+      ],
+      "defaultVariant": "m2"
+    }
+  ]
+}

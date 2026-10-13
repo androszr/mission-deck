@@ -1,0 +1,364 @@
+{
+  "src": "main",
+  "sprint_n": 16,
+  "phase": "MID",
+  "teams": [
+    {
+      "src": "main",
+      "team": "Atlas",
+      "unit": "SP",
+      "sprint_n": 16,
+      "sprint_id": 1600,
+      "sprint_name": "Atlas Sprint 16",
+      "state": "active",
+      "phase": "MID",
+      "start": "2026-09-01T09:00:00.000+02:00",
+      "end": "2026-09-15T09:00:00.000+02:00",
+      "goal": "Atlas: ship the sample feature",
+      "summary": {
+        "committed": 18,
+        "done": 8,
+        "wip": 8,
+        "todo": 2,
+        "dropped": 0,
+        "added": 0,
+        "total_issues": 4,
+        "completion_pct": 44
+      },
+      "persons": [
+        {
+          "name": "Alex Morgan",
+          "committed": 8,
+          "done": 5,
+          "wip": 2,
+          "todo": 1,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 62,
+          "days_with_work": 6
+        },
+        {
+          "name": "Sam Rivera",
+          "committed": 8,
+          "done": 5,
+          "wip": 2,
+          "todo": 1,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 62,
+          "days_with_work": 6
+        },
+        {
+          "name": "Jordan Lee",
+          "committed": 8,
+          "done": 5,
+          "wip": 2,
+          "todo": 1,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 62,
+          "days_with_work": 6
+        }
+      ],
+      "issues": [
+        {
+          "key": "APP-100",
+          "summary": "Atlas sample issue 1",
+          "type": "Story",
+          "assignee": "Alex Morgan",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "APP-101",
+          "summary": "Atlas sample issue 2",
+          "type": "Story",
+          "assignee": "Sam Rivera",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 3,
+          "spent_h": null
+        },
+        {
+          "key": "APP-102",
+          "summary": "Atlas sample issue 3",
+          "type": "Story",
+          "assignee": "Jordan Lee",
+          "status_bucket": "wip",
+          "status_label": "In Progress",
+          "estimate": 8,
+          "spent_h": null
+        },
+        {
+          "key": "APP-103",
+          "summary": "Atlas sample issue 4",
+          "type": "Story",
+          "assignee": "Alex Morgan",
+          "status_bucket": "todo",
+          "status_label": "To Do",
+          "estimate": 2,
+          "spent_h": null
+        }
+      ],
+      "burndown": [
+        {
+          "day_n": 0,
+          "date": "2026-09-01",
+          "remaining": 18
+        },
+        {
+          "day_n": 1,
+          "date": "2026-09-02",
+          "remaining": 16
+        },
+        {
+          "day_n": 2,
+          "date": "2026-09-03",
+          "remaining": 14
+        },
+        {
+          "day_n": 3,
+          "date": "2026-09-04",
+          "remaining": 12
+        },
+        {
+          "day_n": 4,
+          "date": "2026-09-05",
+          "remaining": 10
+        },
+        {
+          "day_n": 5,
+          "date": "2026-09-06",
+          "remaining": 8
+        }
+      ],
+      "extra": {}
+    },
+    {
+      "src": "main",
+      "team": "Borealis",
+      "unit": "SP",
+      "sprint_n": 16,
+      "sprint_id": 1601,
+      "sprint_name": "Borealis Sprint 16",
+      "state": "active",
+      "phase": "MID",
+      "start": "2026-09-01T09:00:00.000+02:00",
+      "end": "2026-09-15T09:00:00.000+02:00",
+      "goal": "Borealis: ship the sample feature",
+      "summary": {
+        "committed": 18,
+        "done": 8,
+        "wip": 8,
+        "todo": 2,
+        "dropped": 0,
+        "added": 0,
+        "total_issues": 3,
+        "completion_pct": 44
+      },
+      "persons": [
+        {
+          "name": "Taylor Kim",
+          "committed": 8,
+          "done": 5,
+          "wip": 2,
+          "todo": 1,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 62,
+          "days_with_work": 6
+        },
+        {
+          "name": "Casey Novak",
+          "committed": 8,
+          "done": 5,
+          "wip": 2,
+          "todo": 1,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 62,
+          "days_with_work": 6
+        }
+      ],
+      "issues": [
+        {
+          "key": "APP-110",
+          "summary": "Borealis sample issue 1",
+          "type": "Story",
+          "assignee": "Taylor Kim",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "APP-111",
+          "summary": "Borealis sample issue 2",
+          "type": "Story",
+          "assignee": "Casey Novak",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 3,
+          "spent_h": null
+        },
+        {
+          "key": "APP-112",
+          "summary": "Borealis sample issue 3",
+          "type": "Story",
+          "assignee": "Taylor Kim",
+          "status_bucket": "wip",
+          "status_label": "In Progress",
+          "estimate": 8,
+          "spent_h": null
+        }
+      ],
+      "burndown": [
+        {
+          "day_n": 0,
+          "date": "2026-09-01",
+          "remaining": 18
+        },
+        {
+          "day_n": 1,
+          "date": "2026-09-02",
+          "remaining": 16
+        },
+        {
+          "day_n": 2,
+          "date": "2026-09-03",
+          "remaining": 14
+        },
+        {
+          "day_n": 3,
+          "date": "2026-09-04",
+          "remaining": 12
+        },
+        {
+          "day_n": 4,
+          "date": "2026-09-05",
+          "remaining": 10
+        },
+        {
+          "day_n": 5,
+          "date": "2026-09-06",
+          "remaining": 8
+        }
+      ],
+      "extra": {}
+    },
+    {
+      "src": "main",
+      "team": "Comet",
+      "unit": "SP",
+      "sprint_n": 16,
+      "sprint_id": 1602,
+      "sprint_name": "Comet Sprint 16",
+      "state": "active",
+      "phase": "MID",
+      "start": "2026-09-01T09:00:00.000+02:00",
+      "end": "2026-09-15T09:00:00.000+02:00",
+      "goal": "Comet: ship the sample feature",
+      "summary": {
+        "committed": 18,
+        "done": 8,
+        "wip": 8,
+        "todo": 2,
+        "dropped": 0,
+        "added": 0,
+        "total_issues": 3,
+        "completion_pct": 44
+      },
+      "persons": [
+        {
+          "name": "Riley Shaw",
+          "committed": 8,
+          "done": 5,
+          "wip": 2,
+          "todo": 1,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 62,
+          "days_with_work": 6
+        },
+        {
+          "name": "Morgan Blake",
+          "committed": 8,
+          "done": 5,
+          "wip": 2,
+          "todo": 1,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 62,
+          "days_with_work": 6
+        }
+      ],
+      "issues": [
+        {
+          "key": "APP-120",
+          "summary": "Comet sample issue 1",
+          "type": "Story",
+          "assignee": "Riley Shaw",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "APP-121",
+          "summary": "Comet sample issue 2",
+          "type": "Story",
+          "assignee": "Morgan Blake",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 3,
+          "spent_h": null
+        },
+        {
+          "key": "APP-122",
+          "summary": "Comet sample issue 3",
+          "type": "Story",
+          "assignee": "Riley Shaw",
+          "status_bucket": "wip",
+          "status_label": "In Progress",
+          "estimate": 8,
+          "spent_h": null
+        }
+      ],
+      "burndown": [
+        {
+          "day_n": 0,
+          "date": "2026-09-01",
+          "remaining": 18
+        },
+        {
+          "day_n": 1,
+          "date": "2026-09-02",
+          "remaining": 16
+        },
+        {
+          "day_n": 2,
+          "date": "2026-09-03",
+          "remaining": 14
+        },
+        {
+          "day_n": 3,
+          "date": "2026-09-04",
+          "remaining": 12
+        },
+        {
+          "day_n": 4,
+          "date": "2026-09-05",
+          "remaining": 10
+        },
+        {
+          "day_n": 5,
+          "date": "2026-09-06",
+          "remaining": 8
+        }
+      ],
+      "extra": {}
+    }
+  ]
+}

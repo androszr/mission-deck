@@ -1,0 +1,61 @@
+# Secrets and local configuration
+.env
+.encryption-key
+
+# User data (plans, notes, screenshots, history) - never in the repo
+user-data/
+
+# /new-idea plans - local, everyone has their own. The folder stays in the repo (README), its content does not.
+plans/*
+!plans/README.md
+
+# Data repositories cloned locally (separate git repos)
+data-sub-repositories/
+
+# Local app cache (PID, version, logs)
+data/
+
+# Node
+node_modules/
+
+# GitNexus index (npm run setup) - local, everyone has their own
+.gitnexus/
+
+# GitNexus skills in the flat layout a newer CLI installs next to the
+# committed .claude/skills/gitnexus/. Analyze runs here with --index-only
+# (scripts/_gitnexus-analyze.js), so nothing creates them any more - the entry
+# is for machines that already got them, so they never ride in on `git add -A`.
+/.claude/skills/gitnexus-*/
+/.claude/skills/generated/
+
+# Consent to core changes on THIS machine (scripts/_core-scope.js).
+# Gitignored by design: without it the gate is on, and whoever maintains the
+# core creates this file once on their own machine and never hands it to anyone.
+/.core-dev
+
+# Working copies (git worktree) for parallel core work. This is the native
+# worktree location of Claude Code and scripts/worktree.js. A nested worktree
+# must not ride into `git add -A` as an embedded repo or dirty the tree for
+# app updates (_appUpdateDirtEntries). docs/architecture/worktrees.md
+/.claude/worktrees/
+
+# Stray screenshots in the repo root (the right place: user-data/screenshots/)
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+/*.webp
+
+# System / IDE
+.DS_Store
+.vscode/
+*.log
+
+# Plug & play modules (local)
+# The leading slash is required: without it the pattern matches a "modules"
+# directory at any depth and would hide the committed fixture tests/fixtures/modules/.
+/modules/
+
+# Python bytecode
+__pycache__/
+*.pyc

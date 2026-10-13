@@ -1,0 +1,268 @@
+[
+  {
+    "event_type": "View Viewed",
+    "event_time": "2026-10-06 08:00:00.123456",
+    "user_id": "alex-morgan",
+    "session_id": 1000,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.6.0",
+      "view": "sprint-stats-main",
+      "base_view": "sprint-stats-main",
+      "view_title": "Sprint Stats"
+    },
+    "user_properties": {
+      "full_name": "Alex Morgan"
+    }
+  },
+  {
+    "event_type": "View Exited",
+    "event_time": "2026-10-06 08:05:00.123456",
+    "user_id": "alex-morgan",
+    "session_id": 1000,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.6.0",
+      "view": "sprint-stats-main",
+      "base_view": "sprint-stats-main",
+      "duration_ms": 60000
+    },
+    "user_properties": {
+      "full_name": "Alex Morgan"
+    }
+  },
+  {
+    "event_type": "View Viewed",
+    "event_time": "2026-10-06 09:00:00.123456",
+    "user_id": "alex-morgan",
+    "session_id": 1000,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.6.0",
+      "view": "sprint-stats-main",
+      "base_view": "sprint-stats-main",
+      "view_title": "Sprint Stats"
+    },
+    "user_properties": {
+      "full_name": "Alex Morgan"
+    }
+  },
+  {
+    "event_type": "View Exited",
+    "event_time": "2026-10-06 09:10:00.123456",
+    "user_id": "alex-morgan",
+    "session_id": 1000,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.6.0",
+      "view": "sprint-stats-main",
+      "base_view": "sprint-stats-main",
+      "duration_ms": 120000
+    },
+    "user_properties": {
+      "full_name": "Alex Morgan"
+    }
+  },
+  {
+    "event_type": "View Viewed",
+    "event_time": "2026-10-06 09:15:00.123456",
+    "user_id": "alex-morgan",
+    "session_id": 1000,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.6.0",
+      "view": "settings",
+      "base_view": "settings",
+      "view_title": "Settings"
+    },
+    "user_properties": {
+      "full_name": "Alex Morgan"
+    }
+  },
+  {
+    "event_type": "View Exited",
+    "event_time": "2026-10-06 09:20:00.123456",
+    "user_id": "alex-morgan",
+    "session_id": 1000,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.6.0",
+      "view": "settings",
+      "base_view": "settings",
+      "duration_ms": 90000000
+    },
+    "user_properties": {
+      "full_name": "Alex Morgan"
+    }
+  },
+  {
+    "event_type": "View Viewed",
+    "event_time": "2026-10-07 22:30:00.123456",
+    "user_id": "alex-morgan",
+    "session_id": 2000,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.6.0",
+      "view": "team-directory-list",
+      "base_view": "team-directory-list",
+      "view_title": "Team directory"
+    },
+    "user_properties": {
+      "full_name": "Alex Morgan"
+    }
+  },
+  {
+    "event_type": "View Viewed",
+    "event_time": "2026-10-08 08:00:00.123456",
+    "user_id": "alex-morgan",
+    "session_id": -1,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.6.0",
+      "view": "settings",
+      "base_view": "settings",
+      "view_title": "Settings"
+    },
+    "user_properties": {
+      "full_name": "Alex Morgan"
+    }
+  },
+  {
+    "event_type": "session_start",
+    "event_time": "2026-10-08 08:01:00.123456",
+    "user_id": "alex-morgan",
+    "session_id": 2000,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.6.0"
+    },
+    "user_properties": {
+      "full_name": "Alex Morgan"
+    }
+  },
+  {
+    "event_type": "View Viewed",
+    "event_time": "2026-10-07 10:00:00.123456",
+    "user_id": "sam-rivera",
+    "session_id": 3000,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.4.0",
+      "view": "team-directory-list",
+      "base_view": "team-directory-list",
+      "view_title": "Team directory"
+    },
+    "user_properties": {
+      "full_name": "Sam Rivera"
+    }
+  },
+  {
+    "event_type": "View Render Failed",
+    "event_time": "2026-10-07 10:01:00.123456",
+    "user_id": "sam-rivera",
+    "session_id": 3000,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.4.0",
+      "view": "team-directory-list",
+      "base_view": "team-directory-list",
+      "phase": "render",
+      "message": "boom"
+    },
+    "user_properties": {
+      "full_name": "Sam Rivera"
+    }
+  },
+  {
+    "event_type": "View Render Failed",
+    "event_time": "2026-10-07 10:02:00.123456",
+    "user_id": "sam-rivera",
+    "session_id": 3000,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.4.0",
+      "view": "team-directory-list",
+      "base_view": "team-directory-list",
+      "phase": "render",
+      "message": "boom"
+    },
+    "user_properties": {
+      "full_name": "Sam Rivera"
+    }
+  },
+  {
+    "event_type": "View Viewed",
+    "event_time": "2026-09-30 10:00:00.123456",
+    "user_id": "sam-rivera",
+    "session_id": 500,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.4.0",
+      "view": "sprint-stats-main",
+      "base_view": "sprint-stats-main",
+      "view_title": "Sprint Stats"
+    },
+    "user_properties": {
+      "full_name": "Sam Rivera"
+    }
+  },
+  {
+    "event_type": "View Viewed",
+    "event_time": "2026-10-06 10:00:00.123456",
+    "user_id": "zed",
+    "session_id": 9000,
+    "event_properties": {
+      "app_version": "1.6.0",
+      "view": "dashboard-other",
+      "base_view": "dashboard-other",
+      "view_title": "dashboard-other"
+    },
+    "user_properties": {
+      "full_name": "Sam Rivera"
+    }
+  },
+  {
+    "event_type": "View Viewed",
+    "event_time": "2026-10-06 10:05:00.123456",
+    "user_id": "zed",
+    "session_id": 9000,
+    "event_properties": {
+      "cockpit": "other-app",
+      "app_version": "1.6.0",
+      "view": "dashboard-other",
+      "base_view": "dashboard-other",
+      "view_title": "dashboard-other"
+    },
+    "user_properties": {
+      "full_name": "Sam Rivera"
+    }
+  },
+  {
+    "event_type": "Api Request Completed",
+    "event_time": "2026-10-06 10:06:00.123456",
+    "user_id": "zed",
+    "session_id": 9000,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.6.0",
+      "path": "/api/x"
+    },
+    "user_properties": {
+      "full_name": "Sam Rivera"
+    }
+  },
+  {
+    "event_type": "View Viewed",
+    "event_time": "2026-10-06 11:00:00.123456",
+    "user_id": null,
+    "session_id": -1,
+    "event_properties": {
+      "cockpit": "starter",
+      "app_version": "1.6.0",
+      "view": "settings",
+      "base_view": "settings",
+      "view_title": "Settings"
+    },
+    "user_properties": {}
+  }
+]

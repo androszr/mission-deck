@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "modules": [
+    {
+      "id": "costs",
+      "status": "beta",
+      "area": "Finance",
+      "summary": "Team labour costs: logged hours times daily rates, per person and month, split by area, epic and issue.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "demo-hub",
+      "status": "beta",
+      "area": "Platform",
+      "summary": "A small module for trying out sync: a note saved here becomes a file in the team data repository and reaches the team through the encrypted mirror on the next sync.",
+      "featured": true,
+      "order": 1,
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "devops-stats",
+      "status": "beta",
+      "area": "Engineering",
+      "summary": "Flow metrics for an engineering team from Jira: work in progress, throughput, lead and cycle time, and epic cycle time.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "gantt-roadmap",
+      "status": "beta",
+      "area": "Product",
+      "summary": "A weekly Gantt chart for a quarterly plan: tasks, areas, phases, a backlog and an HTML export to share outside the app.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "knowledge-base",
+      "status": "beta",
+      "area": "Knowledge",
+      "summary": "A read-only browser of discovery documents in the team data repository: interviews, research, requirements and UX briefs.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "locations",
+      "status": "stable",
+      "area": "Operations",
+      "summary": "A searchable directory of locations with a full card per location and a one-file import from Excel or CSV.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "meeting-archive",
+      "status": "beta",
+      "area": "Knowledge",
+      "summary": "An archive of processed meetings: folders, search, summaries and transcripts, fed by the Meeting transcripts module.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "meeting-transcripts",
+      "status": "beta",
+      "area": "Knowledge",
+      "summary": "Turns meeting recordings into a transcript with speaker labels and a summary, and picks up new recordings on a schedule.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "on-call",
+      "status": "beta",
+      "area": "Operations",
+      "summary": "A monthly on-call calendar read from a configurable wiki page: who is on call today, contacts and on-call hours.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "onboarding",
+      "status": "beta",
+      "area": "Team",
+      "summary": "Helpful links and individual onboarding plans for new team members, built from a template and exportable to a file.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "prod-bugs",
+      "status": "beta",
+      "area": "Engineering",
+      "summary": "Open production bugs and mean time to fix per sprint for several product areas, fetched from Jira.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "qa-tests",
+      "status": "beta",
+      "area": "Engineering",
+      "summary": "Test automation coverage: test case status per product area, regression runs and time saved by automation, fetched from Jira.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "responsibilities",
+      "status": "beta",
+      "area": "Team",
+      "summary": "A responsibility matrix: groups, areas, owners and a status rating for the chosen month, per project.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "roadmap",
+      "status": "beta",
+      "area": "Product",
+      "summary": "A roadmap of discovery initiatives: an editable table with drag-and-drop ordering, a timeline and a board view.",
+      "tags": [
+        "roadmap",
+        "discovery",
+        "jira",
+        "kanban"
+      ],
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "rollout-waves",
+      "status": "beta",
+      "area": "Operations",
+      "summary": "A rollout planned in weekly waves across the locations directory, with training progress and coordination per wave.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "sprint-planning",
+      "status": "beta",
+      "area": "Delivery",
+      "summary": "Sprint planning per team: on-call, capacity and holidays, absences, and a velocity proposal from Sprint Stats.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "sprint-review",
+      "status": "beta",
+      "area": "Delivery",
+      "summary": "Sprint Review coordination for several teams: sessions, topics, sprint goal status and a countdown to the review.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "sprint-stats",
+      "status": "beta",
+      "area": "Delivery",
+      "summary": "Commitment versus delivery per team and per person: sprint tabs, goals, tiles and an issue table.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "team-directory",
+      "status": "beta",
+      "area": "Team",
+      "summary": "A team roster with contact details: team cards, member photos, search by person or role, and contact by e-mail or chat.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "time-log",
+      "status": "beta",
+      "area": "Delivery",
+      "summary": "Who on the team logged time over the last 14 days: a person by day heatmap with issues, time off and a reminder draft.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "time-off",
+      "status": "stable",
+      "area": "Team",
+      "summary": "The team time-off calendar, downloaded from a configurable spreadsheet after a Microsoft sign-in.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "usage-analytics",
+      "status": "beta",
+      "area": "Platform",
+      "summary": "Mission Deck usage from Amplitude: active people, sessions, page views and time, per module and per user.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    },
+    {
+      "id": "vendor-settlements",
+      "status": "beta",
+      "area": "Finance",
+      "summary": "Vendor settlements and acceptance protocols per area: costs versus accepted work, a settlement form against a purchase order pool and a filtered list.",
+      "owner": {
+        "slug": "androszr",
+        "name": "androszr"
+      }
+    }
+  ]
+}

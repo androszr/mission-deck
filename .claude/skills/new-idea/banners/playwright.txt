@@ -1,0 +1,25 @@
+PLAYWRIGHT -- Proxy  |  MISSION DECK  |  Phase 6g visual-verify  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | PROXY // visual check              [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ open http://localhost:<port>/                  |
+  |                                                   |
+  |  [x] screenshot every state                       |
+  |  [x] console stays empty                          |
+  |  [x] layout holds at phone width                  |
+  |                                                   |
+  |  > what the user sees is the truth.               |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Proxy - Playwright
+    {{MODEL}}

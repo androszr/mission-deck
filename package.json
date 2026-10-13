@@ -1,0 +1,55 @@
+{
+  "name": "mission-deck",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Mission Deck - a local, plug-and-play cockpit a product team grows itself with modules and Claude Code",
+  "license": "MIT",
+  "author": "androszr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/androszr/mission-deck.git"
+  },
+  "homepage": "https://github.com/androszr/mission-deck#readme",
+  "bugs": {
+    "url": "https://github.com/androszr/mission-deck/issues"
+  },
+  "engines": {
+    "node": ">=24 <25",
+    "npm": ">=11 <13"
+  },
+  "scripts": {
+    "start": "node scripts/kill-port.js && node server.js",
+    "setup": "node scripts/bootstrap-playwright.js && node scripts/bootstrap-gitnexus.js",
+    "stop": "node scripts/stop-server.js",
+    "restart": "node scripts/stop-server.js && node scripts/kill-port.js && node server.js",
+    "lint": "eslint js/ demo/ server.js scripts/*.js tests/*.js --no-error-on-unmatched-pattern --max-warnings 0",
+    "lint:fix": "eslint js/ demo/ server.js scripts/*.js tests/*.js --no-error-on-unmatched-pattern --fix",
+    "lint:modules": "eslint \"modules/*/**/*.{js,mjs}\" \"catalog/modules/*/**/*.{js,mjs}\" --no-error-on-unmatched-pattern --max-warnings 0",
+    "lint:modules:fix": "eslint \"modules/*/**/*.{js,mjs}\" \"catalog/modules/*/**/*.{js,mjs}\" --no-error-on-unmatched-pattern --fix",
+    "pretest": "node scripts/kill-stale-tests.js",
+    "test": "node scripts/test-unit-js.js",
+    "pretest:core": "node scripts/kill-stale-tests.js",
+    "test:core": "node scripts/test-unit-js.js --core",
+    "pretest:api": "node scripts/kill-stale-tests.js",
+    "test:api": "node scripts/run-with-timeout.js 300000 node --test --test-concurrency=1 tests/test_api_*.js",
+    "test:api:one": "node scripts/run-api-one.js",
+    "test:all": "npm test && npm run test:api",
+    "setup:dev": "npm install --include=dev",
+    "prepare": "node scripts/prepare.js",
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "lint-staged": {
+    "*.js": "eslint --max-warnings 0 --no-warn-ignored",
+    "*.mjs": "eslint --max-warnings 0 --no-warn-ignored"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "lint-staged": "^16.4.0"
+  },
+  "dependencies": {
+    "ws": "^8.21.2"
+  },
+  "optionalDependencies": {
+    "node-pty": "^1.1.0"
+  }
+}

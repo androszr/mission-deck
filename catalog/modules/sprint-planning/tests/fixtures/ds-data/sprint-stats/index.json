@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "boards": {
+    "main": {
+      "board_id": "101",
+      "project": "ATL"
+    },
+    "ops": {
+      "board_id": "202",
+      "project": "DLT"
+    }
+  },
+  "sprints": [
+    {
+      "src": "main",
+      "sprint_n": 17,
+      "phase": "END",
+      "teams": [
+        {
+          "src": "main",
+          "team": "Atlas",
+          "unit": "SP",
+          "sprint_n": 17,
+          "sprint_id": 9017,
+          "sprint_name": "Atlas Sprint 17",
+          "state": "closed",
+          "phase": "END",
+          "start": "2026-08-25T10:30:00.000+02:00",
+          "end": "2026-09-08T10:30:00.000+02:00",
+          "goal": "Goal 17",
+          "summary": {
+            "committed": 35,
+            "done": 30
+          }
+        }
+      ]
+    },
+    {
+      "src": "main",
+      "sprint_n": 18,
+      "phase": "END",
+      "teams": [
+        {
+          "src": "main",
+          "team": "Atlas",
+          "unit": "SP",
+          "sprint_n": 18,
+          "sprint_id": 9018,
+          "sprint_name": "Atlas Sprint 18",
+          "state": "closed",
+          "phase": "END",
+          "start": "2026-09-08T10:30:00.000+02:00",
+          "end": "2026-09-22T10:30:00.000+02:00",
+          "goal": "Goal 18",
+          "summary": {
+            "committed": 45,
+            "done": 40
+          }
+        }
+      ]
+    },
+    {
+      "src": "main",
+      "sprint_n": 19,
+      "phase": "END",
+      "teams": [
+        {
+          "src": "main",
+          "team": "Atlas",
+          "unit": "SP",
+          "sprint_n": 19,
+          "sprint_id": 9019,
+          "sprint_name": "Atlas Sprint 19",
+          "state": "closed",
+          "phase": "END",
+          "start": "2026-09-22T10:30:00.000+02:00",
+          "end": "2026-10-06T10:30:00.000+02:00",
+          "goal": "Goal 19",
+          "summary": {
+            "committed": 55,
+            "done": 50
+          }
+        }
+      ]
+    },
+    {
+      "src": "main",
+      "sprint_n": 20,
+      "phase": "END",
+      "teams": [
+        {
+          "src": "main",
+          "team": "Atlas",
+          "unit": "SP",
+          "sprint_n": 20,
+          "sprint_id": 9020,
+          "sprint_name": "Atlas Sprint 20",
+          "state": "active",
+          "phase": "END",
+          "start": "2026-10-06T10:30:00.000+02:00",
+          "end": "2026-10-20T10:30:00.000+02:00",
+          "goal": "Goal 20",
+          "summary": {
+            "committed": 16,
+            "done": 11
+          }
+        }
+      ]
+    },
+    {
+      "src": "ops",
+      "sprint_n": 20,
+      "phase": "END",
+      "teams": [
+        {
+          "src": "ops",
+          "team": "Delta",
+          "unit": "MD",
+          "sprint_n": 20,
+          "sprint_id": 9020,
+          "sprint_name": "Delta Sprint 20",
+          "state": "active",
+          "phase": "END",
+          "start": "2026-10-06",
+          "end": "2026-10-20",
+          "goal": "Goal 20",
+          "summary": {
+            "committed": 8.4,
+            "done": 3.4
+          }
+        }
+      ]
+    }
+  ]
+}

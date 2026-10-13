@@ -1,0 +1,380 @@
+/* ============================================================
+   BreakpointViewer chrome — deployed-app port of the cockpit
+   standalone prototype viewer (js/prototypy.js renderProtoStandaloneView
+   + styles.css proto-viewport-bar / proto-standalone-toolbar /
+   proto-cq-root / proto-mac-* / pnz-phone blocks).
+
+   Device-chrome exemption (the DS rule "never hardcode a colour" has one):
+   the phone bezel / MacBook lid geometry and their hardware-simulation
+   grays have no DS-token equivalent and are allowed as raw hex here.
+   Brand/border/text colors elsewhere use tokens.css custom properties.
+   ============================================================ */
+
+.bv-root {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--body-primary-bg, #fff);
+}
+
+/* ── Floating draggable pill toolbar (mirrors styles.css:41976-41992) ───── */
+.bv-toolbar {
+  position: fixed;
+  z-index: 1100;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  background: transparent;
+  border-radius: var(--radius-max, 9999px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .18), 0 1px 3px rgba(0, 0, 0, .10);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+.bv-toolbar:active { cursor: grabbing; }
+
+.bv-drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 36px;
+  color: var(--body-tertiary-text, #8c8c8c);
+  cursor: grab;
+  flex-shrink: 0;
+  border-radius: var(--radius-max, 9999px) 0 0 var(--radius-max, 9999px);
+  background: var(--body-primary-bg, #fff);
+  border: 1px solid var(--body-tertiary-border, #e5e5e5);
+  border-right: none;
+  margin-right: -1px;
+}
+.bv-drag-handle:active { cursor: grabbing; }
+.bv-drag-handle:hover { color: var(--body-secondary-text, #595959); }
+
+/* ── Segmented bar (mirrors styles.css:30340-30372) ──────────────────────── */
+.bv-segmented {
+  display: flex;
+  align-items: center;
+  background: var(--body-primary-bg, #fff);
+  border: 1px solid var(--body-tertiary-border, #e5e5e5);
+  border-radius: var(--radius-max, 9999px);
+  padding: 4px;
+  gap: 2px;
+}
+.bv-segment {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding: 0 var(--space-8, 8px);
+  font-size: var(--text-sm, 0.875rem);
+  font-family: var(--font-main, inherit);
+  color: var(--body-primary-text, #262626);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-max, 9999px);
+  cursor: pointer;
+}
+.bv-segment svg { display: block; flex-shrink: 0; }
+/* Preset wider than the current window — grayed out but still clickable
+   (force-clicking still shows the frame, with horizontal scroll). The
+   active preset keeps its full green style even when oversized. */
+.bv-segment.bv-segment--oversized:not(.active) {
+  opacity: 0.35;
+  color: var(--body-secondary-text, #595959);
+}
+.bv-segment.bv-segment--disabled {
+  opacity: 0.3;
+  color: var(--body-tertiary-text, #8c8c8c);
+  cursor: not-allowed;
+}
+.bv-segment.active {
+  background: var(--body-brand-bg, #b04f14);
+  color: var(--body-invert-text, #fff);
+}
+
+/* ── "Demo states" picker — plain <select>, next to the breakpoint pill.
+   Absent whenever the mounted prototype exports no `demoStates` (undefined
+   prop, no element rendered at all — see BreakpointViewer.tsx). ── */
+.bv-state-select {
+  height: 36px;
+  padding: 0 var(--space-8, 8px);
+  font-size: var(--text-sm, 0.875rem);
+  font-family: var(--font-main, inherit);
+  color: var(--body-primary-text, #262626);
+  background: var(--body-primary-bg, #fff);
+  border: 1px solid var(--body-tertiary-border, #e5e5e5);
+  border-radius: var(--radius-max, 9999px);
+  cursor: pointer;
+  max-width: 180px;
+}
+
+/* ── Canvas + container-query root ────────────────────────────────────────
+   .proto-cq-root is the persistent host for the deployed prototype
+   component: it never remounts across preset switches, only its inline
+   width and parent frame change (mirrors styles.css:30407-30423). */
+.bv-canvas {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: safe center;
+  align-items: flex-start;
+  /* auto (not hidden): a preset wider than the real browser window must
+     stay at its EXACT declared pixel width and be reachable by scrolling,
+     never silently shrunk to "whatever fits" — see resolveFrameKind in
+     BreakpointViewer.tsx. */
+  overflow: auto;
+}
+.bv-canvas--mobile {
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.proto-cq-root {
+  container-type: inline-size;
+  container-name: proto;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ── Frame wrapper — ONE stable structure, chrome toggled by className ────
+   Never conditionally mount/unmount wrapper elements around the cq root:
+   that would remount the deployed prototype and lose its in-component
+   state. Phone/mac chrome elements are always-present siblings/wrappers,
+   restyled (not inserted/removed) purely via the bv-frame--<kind> modifier.
+
+   .bv-lid is the shrink-wrap element around the cq-root: it is styled as
+   the phone bezel or the MacBook lid depending on frame kind, so the
+   bezel/lid always aligns exactly to the active preset width — mirrors
+   styles.css .proto-mac (width: fit-content) wrapping .proto-mac-viewport. */
+.bv-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* min-width (not width): lets the frame grow past 100% when the
+     fit-content lid/bezel is wider than the canvas (e.g. a forced-mac
+     fallback at 1920 on a narrower window) — a fixed 100% would trap the
+     overflow, leaving nothing for .bv-canvas's overflow:auto to scroll to
+     (mirrors styles.css .proto-mac-stage / .proto-standalone-canvas
+     > .proto-mac-stage). */
+  min-width: 100%;
+  width: fit-content;
+}
+.bv-lid {
+  position: relative;
+  display: flex;
+  width: fit-content;
+}
+.bv-frame-chrome-phone,
+.bv-frame-chrome-mac,
+.bv-frame-chrome-mac-deck {
+  display: none;
+}
+
+/* No-chrome desktop mode (a declared preset > 375, or an undeclared one
+   used defensively): the CANVAS is the exact declared width, set inline by
+   BreakpointViewer.tsx (`.proto-cq-root` style="width:<bp>px"). Nothing
+   here may override that width — no `width:100%`, no `flex:1` (a
+   flex-basis:0 default would make the browser stretch it to the available
+   row space regardless of the inline width, which was the measured bug:
+   choosing 768px vs 1920px rendered identically at whatever the real
+   window happened to be). */
+.bv-frame--none {
+  height: 100vh;
+}
+.bv-frame--none .bv-lid {
+  height: 100%;
+  flex-direction: column;
+}
+.bv-frame--none .proto-cq-root {
+  height: 100%;
+}
+
+/* Real narrow browser/device viewport (isMobile, MOBILE_QUERY) — the ONLY
+   mode that fills 100% width: there is no preset to be exact about, the
+   canvas simply is the device viewport. */
+.bv-frame--mobile {
+  height: 100vh;
+  width: 100%;
+}
+.bv-frame--mobile .bv-lid {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.bv-frame--mobile .proto-cq-root {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* ── Phone bezel (simplified device chrome; mirrors styles.css .pnz-phone/
+   .pnz-notch/.pnz-screen, pixel geometry kept, chrome content stripped) ── */
+.bv-frame--phone {
+  padding: var(--space-24, 24px) 0;
+  min-height: 100vh;
+  justify-content: center;
+}
+.bv-frame--phone .bv-lid {
+  background: #0c0d0f;
+  border-radius: 52px;
+  padding: 12px;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, .34),
+    0 8px 18px rgba(0, 0, 0, .20),
+    inset 0 0 0 2px rgba(255, 255, 255, .06);
+  box-sizing: border-box;
+}
+.bv-frame--phone .proto-cq-root {
+  /* width comes from the inline style set in BreakpointViewer.tsx — the
+     EXACT selected preset (e.g. 375px), never a stylized larger screen.
+     A fixed 384px here was the measured bug: every phone preset rendered
+     at the same 384px canvas regardless of which one was selected. */
+  height: 812px;
+  border-radius: 42px;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+}
+.bv-frame--phone .bv-frame-chrome-phone {
+  display: block;
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 11px;
+  height: 11px;
+  border-radius: var(--radius-max, 9999px);
+  background: #0c0d0f;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .10);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ── MacBook frame (simplified device chrome; mirrors styles.css .proto-mac-* ) ──
+   .bv-lid IS the lid here — shrink-wraps to the cq-root's inline {bp}px
+   width, so the lid, screen and deck below all align to the same width. */
+.bv-frame--mac {
+  padding: var(--space-24, 24px) 0;
+  min-height: 100vh;
+  justify-content: center;
+}
+.bv-frame--mac .bv-lid {
+  flex-direction: column;
+  align-items: center;
+  background: #1d1d1f;
+  border-radius: var(--radius-l, 12px) var(--radius-l, 12px) var(--radius-s, 4px) var(--radius-s, 4px);
+  padding: var(--space-16, 16px) var(--space-12, 12px) var(--space-12, 12px);
+  box-shadow: var(--shadow-l, 0 8px 24px rgba(0,0,0,.16));
+}
+.bv-frame--mac .proto-cq-root {
+  background: var(--body-primary-bg, #fff);
+  border-radius: var(--radius-s, 4px);
+  overflow: hidden;
+  min-height: 320px;
+  box-sizing: border-box;
+}
+.bv-frame--mac .bv-frame-chrome-mac {
+  display: block;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+.bv-frame--mac .bv-mac-camera {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3a3a3c;
+}
+.bv-frame--mac .bv-frame-chrome-mac-deck {
+  display: block;
+  position: relative;
+  width: 108%;
+  height: 12px;
+  background: linear-gradient(180deg, #d3d7dd, #a7adb6);
+  border-radius: 0 0 var(--radius-m, 8px) var(--radius-m, 8px);
+  box-shadow: var(--shadow-m, 0 4px 8px rgba(0,0,0,.08));
+}
+.bv-frame--mac .bv-mac-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 84px;
+  height: 8px;
+  background: #9aa0a8;
+  border-radius: 0 0 var(--radius-s, 4px) var(--radius-s, 4px);
+}
+
+/* Placeholder mode: no lid/bezel chrome — the placeholder occupies the
+   full canvas like the cockpit's .proto-frame-empty stage. */
+.bv-frame--placeholder .bv-lid {
+  width: 100%;
+}
+
+/* ── Undeclared-narrowest-preset placeholder (mirrors styles.css
+   .proto-frame-empty) — cq root stays mounted (display:none) so switching
+   back to a built preset restores prior in-component state. ── */
+.bv-frame--placeholder {
+  min-height: 100vh;
+  justify-content: center;
+}
+.bv-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8, 8px);
+  padding: var(--space-16, 16px);
+  text-align: center;
+}
+.bv-placeholder-icon { color: var(--body-secondary-text, #595959); opacity: 0.65; }
+.bv-placeholder-label {
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: var(--font-weight-bold, 600);
+  color: var(--body-secondary-text, #595959);
+}
+.bv-placeholder-desc {
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--body-secondary-text, #595959);
+  max-width: 260px;
+  line-height: 1.5;
+}
+
+/* ── Mobile: no toolbar, no frame, full-screen (mirrors styles.css
+   @media (max-width: 430px) body.proto-standalone-mode block; this app
+   uses the plan's explicit 768px threshold). ── */
+@media (max-width: 768px) {
+  .bv-toolbar { display: none; }
+  .bv-root {
+    height: 100dvh;
+    min-height: auto;
+    overflow: hidden;
+  }
+  .bv-canvas {
+    align-items: stretch;
+    justify-content: stretch;
+    height: 100%;
+    min-height: auto;
+    overflow: hidden;
+  }
+  .bv-frame--mobile {
+    padding: 0;
+    min-height: auto;
+    height: 100%;
+  }
+  .bv-frame--mobile .bv-lid {
+    height: 100%;
+  }
+  .bv-frame--mobile .proto-cq-root {
+    height: 100%;
+  }
+}

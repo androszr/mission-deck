@@ -1,0 +1,25 @@
+IMPLEMENTER -- Cipher  |  MINI  |  Phase 6  |  {{MODEL}}
+
+  .---------------------------------------------------.
+  | CIPHER // mini build               [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  $ npm run build                                  |
+  |                                                   |
+  |  implement the plan in the app repo.              |
+  |  types first, then components.                    |
+  |                                                   |
+  |  > ship it small, ship it right.                  |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  |                                                   |
+  '---------------------------------------------------'
+                        |||
+               _________|_|_________
+  Agent Cipher - Implementer
+    {{MODEL}}

@@ -1,0 +1,20 @@
+{
+  "main": {
+    "board_id": "1",
+    "project": "APP",
+    "teams": [
+      "Atlas",
+      "Borealis",
+      "Comet"
+    ],
+    "active_sprint_n": 16,
+    "generated_at": "2026-09-08T08:00:00"
+  },
+  "platform": {
+    "board_id": "2",
+    "project": "PLAT",
+    "active_sprint_id": 9016,
+    "year_filter": 2026,
+    "generated_at": "2026-09-08T08:00:00"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "id": "gantt-roadmap",
+  "name": "Gantt roadmap",
+  "version": "0.2.1",
+  "status": "beta",
+  "area": "Product",
+  "description": "A weekly Gantt chart for a team's quarterly plan - tasks, areas, phases, a backlog and an HTML export to share outside the app.",
+  "icon": "24-ic-calendar-tick",
+  "author": "androszr",
+  "tags": [
+    "roadmap",
+    "gantt",
+    "planning",
+    "initiatives"
+  ],
+  "sidebar": {
+    "label": "Gantt roadmap",
+    "kind": "page",
+    "hub": "initiatives"
+  },
+  "views": [
+    {
+      "id": "gantt-roadmap-main",
+      "label": "Gantt roadmap",
+      "title": "Gantt roadmap",
+      "subtitle": "Weekly Gantt chart - tasks, areas, phases, backlog and HTML export"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Gantt roadmap - quarter calendar, tasks, areas, roster and backlog",
+      "paths": [
+        "gantt-roadmap/"
+      ]
+    }
+  ],
+  "envKeys": [],
+  "widgets": [
+    {
+      "id": "this-week",
+      "label": "Roadmap: this week",
+      "description": "The current week of the Gantt roadmap: quarter progress, task due dates, milestones and the people working on them.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        {
+          "id": "s2",
+          "label": "Small, tall",
+          "cols": 2,
+          "rows": 2
+        },
+        {
+          "id": "m",
+          "label": "Medium",
+          "cols": 3,
+          "rows": 1
+        },
+        {
+          "id": "m2",
+          "label": "Medium, tall",
+          "cols": 3,
+          "rows": 2
+        },
+        {
+          "id": "l",
+          "label": "Wide",
+          "cols": 6,
+          "rows": 1
+        },
+        {
+          "id": "xl",
+          "label": "Wide, tall",
+          "cols": 6,
+          "rows": 2
+        }
+      ],
+      "defaultVariant": "m2"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

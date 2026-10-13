@@ -1,0 +1,4 @@
+{ "month": "2027-01", "entries": [
+  { "date": "2027-01-04", "weekday": "Mon", "column": "platform", "person": "Sam Rivera", "person_slug": "sam-rivera", "matched": true, "note": "" },
+  { "date": "2027-01-20", "weekday": "Wed", "column": "platform", "person": "Alex Morgan", "person_slug": "alex-morgan", "matched": true, "note": "" }
+] }

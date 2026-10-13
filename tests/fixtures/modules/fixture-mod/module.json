@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "fixture-mod",
+  "name": "Fixture Module",
+  "version": "0.1.0",
+  "area": "Product",
+  "description": "Test fixture module",
+  "icon": "24-ic-folder",
+  "sidebar": {
+    "label": "Fixture",
+    "kind": "item"
+  },
+  "views": [
+    {
+      "id": "fixture-mod-main",
+      "label": "Glowna",
+      "title": "Fixture",
+      "subtitle": "Widok testowy"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "server": {
+    "entry": "server/index.js"
+  },
+  "widgets": [
+    {
+      "id": "licznik",
+      "label": "Licznik",
+      "description": "Testowy kafelek",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        {
+          "id": "s",
+          "label": "Small",
+          "cols": 2,
+          "rows": 1
+        },
+        {
+          "id": "m",
+          "label": "Medium",
+          "cols": 3,
+          "rows": 1
+        }
+      ],
+      "defaultVariant": "s"
+    }
+  ]
+}

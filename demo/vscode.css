@@ -1,0 +1,728 @@
+/* demo/vscode.css
+   The Visual Studio Code (Dark+) mock and the terminal lines both terminals
+   share. This is the ONE place in demo/ with non-DS colour values: they mock a
+   foreign UI, and every one of them is declared as a --vsc-* custom property
+   on one of the palette selectors below. Every other rule reads var(--vsc-*). */
+
+.demo-vscode,
+.demo-term,
+.demo-cursor-tip--vsc {
+  --vsc-bg: #1e1e1e;
+  --vsc-sidebar: #252526;
+  --vsc-activity: #333333;
+  --vsc-titlebar: #3c3c3c;
+  --vsc-tab: #2d2d2d;
+  --vsc-border: #2b2b2b;
+  --vsc-fg: #cccccc;
+  --vsc-fg-dim: #858585;
+  --vsc-text: #d4d4d4;
+  --vsc-kw: #569cd6;
+  --vsc-str: #ce9178;
+  --vsc-num: #b5cea8;
+  --vsc-com: #6a9955;
+  --vsc-punc: #d4d4d4;
+  --vsc-status: #007acc;
+  --vsc-status-fg: #ffffff;
+  --vsc-hover: #2a2d2e;
+  --vsc-active: #37373d;
+  --vsc-focus: #007fd4;
+  --vsc-widget-border: #454545;
+  --vsc-status-hover: rgb(255 255 255 / 0.12);
+  --vsc-new: #264f78;
+  --vsc-green: #0dbc79;
+  --vsc-yellow: #e5e510;
+  --vsc-red: #f14c4c;
+  --vsc-cyan: #11a8cd;
+  --vsc-claude: #d97757;
+  --vsc-light-red: #ff5f57;
+  --vsc-light-yellow: #febc2e;
+  --vsc-light-green: #28c840;
+  --vsc-cc-accent: #d97757;
+  --vsc-cc-text: #e8e8e8;
+  --vsc-cc-dim: #999999;
+  --vsc-cc-green: #4eba65;
+  --vsc-cc-red: #ff6b80;
+  --vsc-cc-yellow: #ffc107;
+  --vsc-cc-user-bg: #373737;
+  --vsc-cc-user-fg: #c8c8c8;
+  --vsc-cc-rule: #888888;
+  --vsc-cc-diff-add: #225c2b;
+  --vsc-cc-diff-del: #7a2936;
+  --vsc-md-text: #cccccc;
+  --vsc-md-link: #3794ff;
+  --vsc-md-heading: #e7e7e7;
+  --vsc-md-rule: rgb(255 255 255 / 0.18);
+  --vsc-md-rule-strong: rgb(255 255 255 / 0.69);
+  --vsc-md-code-fg: #d7ba7d;
+  --vsc-md-code-bg: rgb(255 255 255 / 0.1);
+  --vsc-md-font: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", system-ui, sans-serif;
+  /* Figma's web editor (chapter prototyp-weryfikacja, the fidelity check). */
+  --vsc-fig-bg: #2c2c2c;
+  --vsc-fig-canvas: #1e1e1e;
+  --vsc-fig-border: #444444;
+  --vsc-fig-text: #ffffff;
+  --vsc-fig-dim: #b3b3b3;
+  --vsc-fig-hover: #383838;
+  --vsc-fig-accent: #0d99ff;
+  --vsc-fig-select: rgb(13 153 255 / 0.22);
+  --vsc-fig-avatar: #9747ff;
+  --vsc-term-mono: "SF Mono", SFMono-Regular, ui-monospace, Menlo, Consolas, monospace;
+  --vsc-mono: ui-monospace, Menlo, Consolas, "SFMono-Regular", monospace;
+  --vsc-ui: -apple-system, "Segoe UI", system-ui, sans-serif;
+}
+
+/* Bitwarden web vault palette (demo/chapters-css/onboarding.css), from the
+   vendor's public theme (libs/components/src/tw-theme.css). Declared on the
+   stage so the full-screen surface inherits it. */
+.demo-stage {
+  --vsc-bw-nav: rgb(22 55 146);
+  --vsc-bw-nav-active: rgb(16 41 107);
+  --vsc-bw-nav-hover: rgb(255 255 255 / 0.12);
+  --vsc-bw-nav-text: rgb(255 255 255);
+  --vsc-bw-nav-muted: rgb(255 255 255 / 0.72);
+  --vsc-bw-bg: rgb(255 255 255);
+  --vsc-bw-bg-alt: rgb(243 246 249);
+  --vsc-bw-primary: rgb(23 93 220);
+  --vsc-bw-primary-hover: rgb(16 71 172);
+  --vsc-bw-primary-soft: rgb(219 229 246);
+  --vsc-bw-on-primary: rgb(255 255 255);
+  --vsc-bw-text: rgb(27 32 41);
+  --vsc-bw-muted: rgb(96 109 145);
+  --vsc-bw-border: rgb(230 233 239);
+  --vsc-bw-border-strong: rgb(168 179 200);
+  --vsc-bw-success: rgb(12 128 24);
+  --vsc-bw-success-soft: rgb(191 236 195);
+  --vsc-bw-backdrop: rgb(27 32 41 / 0.3);
+  --vsc-bw-shadow: 0 4px 16px rgb(0 0 0 / 0.12);
+  --vsc-bw-shadow-dialog: 0 10px 30px rgb(0 0 0 / 0.2);
+  --vsc-bw-font: Inter, -apple-system, "Segoe UI", system-ui, sans-serif;
+  --vsc-bw-radius: 0.5rem;
+}
+
+/* A word processor's web editor (prototyp-feedback-word in
+   demo/chapters-css/prototyp-feedback.css): title bar, ribbon, grey canvas,
+   white page. Generic palette, no vendor mark. Declared on the stage so the
+   full-screen surface inherits it. */
+.demo-stage {
+  --vsc-word-accent: #2b579a;
+  --vsc-word-accent-dark: #1e3f73;
+  --vsc-word-on-accent: #ffffff;
+  --vsc-word-ribbon: #f3f2f1;
+  --vsc-word-ribbon-border: #e1dfdd;
+  --vsc-word-tool-hover: #e1dfdd;
+  --vsc-word-text: #252423;
+  --vsc-word-muted: #605e5c;
+  --vsc-word-canvas: #e6e6e6;
+  --vsc-word-page: #ffffff;
+  --vsc-word-link: #0563c1;
+  --vsc-word-mark: #d13438;
+  --vsc-word-shadow: 0 1px 3px rgb(0 0 0 / 0.18), 0 6px 18px rgb(0 0 0 / 0.08);
+  --vsc-word-font: Aptos, Calibri, "Segoe UI", -apple-system, system-ui, sans-serif;
+  --vsc-word-ui: "Segoe UI", -apple-system, system-ui, sans-serif;
+}
+
+/* VPN client on a macOS desktop (vpn-client-screen in
+   demo/chapters-css/onboarding.css): menu bar, popover, accent. */
+.demo-stage {
+  --vsc-gp-desk-a: rgb(74 98 140);
+  --vsc-gp-desk-b: rgb(150 128 170);
+  --vsc-gp-menubar: rgb(246 246 246 / 0.82);
+  --vsc-gp-menubar-text: rgb(30 30 30);
+  --vsc-gp-tray-hover: rgb(0 0 0 / 0.1);
+  --vsc-gp-panel: rgb(255 255 255);
+  --vsc-gp-panel-alt: rgb(245 246 248);
+  --vsc-gp-text: rgb(51 51 51);
+  --vsc-gp-muted: rgb(125 125 125);
+  --vsc-gp-border: rgb(222 224 228);
+  --vsc-gp-idle: rgb(150 154 160);
+  --vsc-gp-accent: rgb(0 112 210);
+  --vsc-gp-accent-hover: rgb(0 92 180);
+  --vsc-gp-on-accent: rgb(255 255 255);
+  --vsc-gp-ok: rgb(44 160 70);
+  --vsc-gp-tip: rgb(40 40 40 / 0.92);
+  --vsc-gp-shadow: 0 12px 32px rgb(0 0 0 / 0.28);
+  --vsc-gp-font: -apple-system, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+}
+
+/* ── Frame ───────────────────────────────────────────────────────────── */
+
+.demo-stage[data-layout="vscode"] #demo-vscode,
+.demo-stage[data-layout="split"] #demo-vscode {
+  display: flex;
+}
+
+.demo-vscode {
+  flex-direction: column;
+  height: 100%;
+  background: var(--vsc-bg);
+  color: var(--vsc-fg);
+  font-family: var(--vsc-ui);
+  font-size: 13px;
+}
+
+.vsc-titlebar {
+  flex: none;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: var(--vsc-titlebar);
+  color: var(--vsc-fg);
+  font-size: 12px;
+}
+
+.vsc-lights {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.vsc-lights i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--vsc-light-red);
+}
+
+.vsc-lights i:nth-child(2) { background: var(--vsc-light-yellow); }
+.vsc-lights i:nth-child(3) { background: var(--vsc-light-green); }
+
+.vsc-body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 48px 240px minmax(0, 1fr);
+}
+
+.vsc-activity {
+  background: var(--vsc-activity);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8px;
+  gap: 4px;
+}
+
+.vsc-act {
+  width: 48px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--vsc-fg-dim);
+  border-left: 2px solid transparent;
+}
+
+.vsc-act--on {
+  color: var(--vsc-status-fg);
+  border-left-color: var(--vsc-status-fg);
+}
+
+/* ── Explorer ────────────────────────────────────────────────────────── */
+
+.vsc-explorer {
+  background: var(--vsc-sidebar);
+  overflow-y: auto;
+  min-width: 0;
+}
+
+.vsc-pane-title {
+  padding: 10px 20px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--vsc-fg-dim);
+}
+
+.vsc-root-title {
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--vsc-fg);
+}
+
+.vsc-node {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  padding-left: calc(8px + var(--vsc-depth, 0) * 12px);
+  white-space: nowrap;
+  color: var(--vsc-fg);
+}
+
+.vsc-twisty {
+  width: 16px;
+  flex: none;
+  color: var(--vsc-fg-dim);
+  font-size: 10px;
+}
+
+.vsc-node.demo-hover { background: var(--vsc-hover); }
+.vsc-node--active { background: var(--vsc-active); outline: 1px solid var(--vsc-focus); outline-offset: -1px; }
+.vsc-node--new { animation: vsc-appear 1.2s ease-out; }
+
+@keyframes vsc-appear {
+  from { background: var(--vsc-new); }
+  to { background: transparent; }
+}
+
+/* ── Editor ──────────────────────────────────────────────────────────── */
+
+/* .vsc-main is a flex column: a chapter may prepend a strip over both
+   groups (relay, counters); the groups take the rest of the height. */
+.vsc-main {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Two editor groups side by side: files on the left, the terminal tab on the
+   right, both the full height of the editor area (no bottom panel). */
+.vsc-groups {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+}
+
+.vsc-groups[data-files="0"] { grid-template-columns: minmax(0, 1fr); }
+.vsc-groups[data-files="0"] .vsc-group--files { display: none; }
+
+.vsc-group {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 35px minmax(0, 1fr);
+  background: var(--vsc-bg);
+}
+
+.vsc-group--term { border-left: 1px solid var(--vsc-border); }
+.vsc-groups[data-files="0"] .vsc-group--term { border-left: none; }
+
+/* Half a stage (split layout): one group at a time, the one written to last. */
+.demo-stage[data-layout="split"] .vsc-groups { grid-template-columns: minmax(0, 1fr); }
+.demo-stage[data-layout="split"] .vsc-groups[data-focus="term"] .vsc-group--files,
+.demo-stage[data-layout="split"] .vsc-groups[data-focus="files"][data-files="1"] .vsc-group--term { display: none; }
+.demo-stage[data-layout="split"] .vsc-group--term { border-left: none; }
+
+.vsc-tabs {
+  display: flex;
+  background: var(--vsc-sidebar);
+  overflow: hidden;
+}
+
+.vsc-tab--term { gap: 6px; }
+.vsc-tab--term svg { flex: none; color: var(--vsc-fg-dim); }
+
+.vsc-tab {
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  background: var(--vsc-tab);
+  color: var(--vsc-fg-dim);
+  border-right: 1px solid var(--vsc-border);
+  white-space: nowrap;
+}
+
+.vsc-tab--on {
+  background: var(--vsc-bg);
+  color: var(--vsc-status-fg);
+  box-shadow: inset 0 1px 0 var(--vsc-status);
+}
+
+.vsc-editor {
+  display: flex;
+  overflow: auto;
+  background: var(--vsc-bg);
+  font-family: var(--vsc-mono);
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.vsc-welcome {
+  margin: auto;
+  color: var(--vsc-fg-dim);
+  font-family: var(--vsc-ui);
+}
+
+/* ── Markdown preview ("Open Preview") ───────────────────────────────── */
+/* Every .md file the demo shows is its rendered preview, never raw text:
+   in the file group (the tab is "Preview <file>") and, for a document read
+   while the terminal is the only group, as a second tab of the terminal
+   group. The pane sits in the group's body row (in flow, never an overlay),
+   so it always starts right under its own tab bar. VS Code's default dark
+   preview; palette from the --vsc-md-* properties above. */
+
+.vsc-tab--md { gap: 6px; }
+.vsc-tab--md svg { flex: none; color: var(--vsc-kw); }
+
+.vsc-group[data-preview="1"] > .vsc-terminal { display: none; }
+
+.vsc-editor:has(> .vsc-md-scroll) { overflow: hidden; }
+
+.vsc-md-scroll {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 26px 112px;
+  background: var(--vsc-bg);
+}
+
+.vsc-md-pane { animation: vsc-md-in 0.25s ease-out; }
+
+@keyframes vsc-md-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.vsc-md-body {
+  max-width: 880px;
+  margin: 0 auto;
+  color: var(--vsc-md-text);
+  font-family: var(--vsc-md-font);
+  font-size: 14px;
+  line-height: 22px;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.vsc-md-body h1,
+.vsc-md-body h2,
+.vsc-md-body h3,
+.vsc-md-body h4 {
+  margin: 24px 0 16px;
+  color: var(--vsc-md-heading);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.vsc-md-body h1 {
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--vsc-md-rule);
+  font-size: 2em;
+}
+
+.vsc-md-body h2 {
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--vsc-md-rule);
+  font-size: 1.5em;
+}
+
+.vsc-md-body h3 { font-size: 1.25em; }
+
+.vsc-md-body p,
+.vsc-md-body ol,
+.vsc-md-body ul,
+.vsc-md-body table,
+.vsc-md-body pre,
+.vsc-md-body blockquote { margin: 0 0 16px; }
+
+.vsc-md-body ol,
+.vsc-md-body ul { padding-left: 2em; }
+
+.vsc-md-body li.vsc-md-task { list-style: none; margin-left: -1.4em; }
+.vsc-md-body li.vsc-md-task input { margin: 0 4px 0 0; vertical-align: -2px; }
+
+.vsc-md-body strong { color: var(--vsc-md-heading); font-weight: 600; }
+
+.vsc-md-body a { color: var(--vsc-md-link); text-decoration: none; }
+
+.vsc-md-body code {
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: var(--vsc-md-code-bg);
+  color: var(--vsc-md-code-fg);
+  font-family: var(--vsc-mono);
+  font-size: 1em;
+  line-height: 1.357em;
+}
+
+.vsc-md-body pre {
+  padding: 16px;
+  border-radius: 3px;
+  background: var(--vsc-md-code-bg);
+  overflow-x: auto;
+}
+
+.vsc-md-body pre code {
+  padding: 0;
+  background: none;
+  color: var(--vsc-md-text);
+  white-space: pre;
+}
+
+.vsc-md-body blockquote {
+  padding: 0 16px;
+  border-left: 5px solid var(--vsc-md-rule);
+  color: var(--vsc-md-text);
+}
+
+.vsc-md-body table { border-collapse: collapse; }
+
+.vsc-md-body th,
+.vsc-md-body td { padding: 5px 10px; text-align: left; }
+
+.vsc-md-body th {
+  border-bottom: 1px solid var(--vsc-md-rule-strong);
+  color: var(--vsc-md-heading);
+  font-weight: 600;
+}
+
+.vsc-md-body td { border-top: 1px solid var(--vsc-md-rule); }
+
+/* The end of the document: what a scroll to ".vsc-caret" aims at (a preview has no caret). */
+.vsc-md-body .vsc-md-end {
+  display: block;
+  width: 0;
+  height: 0;
+  border: 0;
+  background: none;
+  animation: none;
+}
+
+.vsc-md-body hr {
+  height: 2px;
+  border: 0;
+  background: var(--vsc-md-rule);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vsc-md-pane { animation: none; }
+}
+
+.vsc-gutter {
+  margin: 0;
+  padding: 8px 12px 8px 20px;
+  color: var(--vsc-fg-dim);
+  text-align: right;
+  user-select: none;
+}
+
+.vsc-code {
+  margin: 0;
+  padding: 8px 0;
+  color: var(--vsc-text);
+  white-space: pre;
+}
+
+.vsc-caret {
+  display: inline-block;
+  width: 2px;
+  height: 17px;
+  vertical-align: text-bottom;
+  background: var(--vsc-text);
+  animation: vsc-blink 1s steps(1) infinite;
+}
+
+@keyframes vsc-blink { 50% { opacity: 0; } }
+
+.vsc-tok-kw { color: var(--vsc-kw); }
+.vsc-tok-str { color: var(--vsc-str); }
+.vsc-tok-num { color: var(--vsc-num); }
+.vsc-tok-com { color: var(--vsc-com); font-style: italic; }
+.vsc-tok-punc { color: var(--vsc-punc); }
+
+/* ── Terminal editor tab ─────────────────────────────────────────────── */
+
+/* A banner is ASCII art printed verbatim: a line wider than the group
+   scrolls sideways (see .demo-term-line--dim in a chapter that prints one). */
+.vsc-terminal {
+  min-height: 0;
+  overflow: auto;
+  padding: 4px 20px 12px;
+}
+
+.vsc-terminal.demo-hover { outline: 1px solid var(--vsc-focus); outline-offset: -1px; }
+
+/* The rest of the VS Code chrome under the autopilot cursor: the list-hover
+   fill on tabs and status items, and VS Code's hover widget for a tooltip
+   (the cursor bubble gets .demo-cursor-tip--vsc over this surface). */
+.vsc-tab.demo-hover:not(.vsc-tab--on) { background: var(--vsc-hover); color: var(--vsc-fg); }
+.vsc-statusbar .demo-hover { background: var(--vsc-status-hover); }
+.demo-cursor-tip.demo-cursor-tip--vsc {
+  border: 1px solid var(--vsc-widget-border);
+  border-radius: 3px;
+  background: var(--vsc-sidebar);
+  color: var(--vsc-fg);
+  font-family: var(--vsc-ui);
+  font-size: calc(12px * var(--demo-tip-zoom, 1));
+  font-weight: 400;
+}
+
+#demo-vsc-status-file {
+  display: flex;
+  gap: 16px;
+  margin-left: auto;
+}
+
+.vsc-branch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.vsc-empty {
+  padding: 8px 20px;
+  color: var(--vsc-fg-dim);
+}
+
+.vsc-tab-hint {
+  margin-left: 6px;
+  color: var(--vsc-fg-dim);
+  font-size: 11px;
+}
+
+.vsc-statusbar {
+  flex: none;
+  height: 22px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 0 10px;
+  background: var(--vsc-status);
+  color: var(--vsc-status-fg);
+  font-size: 12px;
+}
+
+/* ── Terminal lines (VS Code terminal and the cockpit Claude panel) ──── */
+/* Drawn after the Claude Code v2 CLI: welcome box, input box, tool calls
+   with result lines, spinner. The terminal stays dark in both themes. */
+
+.demo-term {
+  background: var(--vsc-bg);
+  color: var(--vsc-text);
+  font-family: var(--vsc-term-mono);
+  font-size: 12px;
+  line-height: 18px;
+  overflow-y: auto;
+}
+
+.demo-term-line { white-space: pre-wrap; word-break: break-word; }
+.demo-term-line--out { color: var(--vsc-text); }
+.demo-term-line--dim { color: var(--vsc-cc-dim); }
+.demo-term-line--ok { color: var(--vsc-cc-green); }
+.demo-term-line--warn { color: var(--vsc-cc-yellow); }
+.demo-term-line--err { color: var(--vsc-cc-red); }
+.demo-term-line--cmd .demo-term-prompt { color: var(--vsc-cyan); }
+
+/* Welcome box: rounded accent border, title sitting on the top border. */
+.demo-term-line--claude { margin: 10px 0 8px; }
+.demo-term-welcome {
+  position: relative;
+  max-width: 820px;
+  padding: 12px 14px 8px;
+  border: 1px solid var(--vsc-cc-accent);
+  border-radius: 8px;
+}
+.demo-term-welcome-title {
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  padding: 0 6px;
+  background: var(--vsc-bg);
+  color: var(--vsc-cc-accent);
+}
+.demo-term-welcome-name { font-weight: 700; }
+.demo-term-welcome-ver { color: var(--vsc-cc-dim); }
+.demo-term-welcome-cols { display: flex; flex-wrap: wrap; gap: 0 14px; }
+.demo-term-welcome-main {
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.demo-term-welcome-hello { font-weight: 700; color: var(--vsc-cc-text); }
+.demo-term-welcome-star {
+  margin: 2px 0;
+  color: var(--vsc-cc-accent);
+  font-size: 24px;
+  line-height: 30px;
+}
+.demo-term-welcome-dim { color: var(--vsc-cc-dim); }
+.demo-term-welcome-side {
+  flex: 1.4 1 280px;
+  padding-left: 14px;
+  border-left: 1px solid var(--vsc-cc-accent);
+  color: var(--vsc-cc-text);
+}
+.demo-term-welcome-head { color: var(--vsc-cc-accent); font-weight: 700; }
+.demo-term-welcome-rule { margin: 4px 0; border-top: 1px solid var(--vsc-cc-accent); }
+
+/* A submitted prompt: the muted "> text" block. */
+.demo-term-line--user {
+  display: flex;
+  gap: 1ch;
+  margin: 10px 0 6px;
+  padding: 0 1ch;
+  background: var(--vsc-cc-user-bg);
+  color: var(--vsc-cc-user-fg);
+}
+.demo-term-line--user .demo-term-prompt { flex: none; color: var(--vsc-cc-dim); }
+
+/* The input box a prompt is typed into. */
+.demo-term-input { margin: 10px 0 6px; }
+.demo-term-input-field {
+  display: flex;
+  gap: 1ch;
+  padding: 4px 1ch;
+  border-top: 1px solid var(--vsc-cc-rule);
+  border-bottom: 1px solid var(--vsc-cc-rule);
+  color: var(--vsc-cc-text);
+}
+.demo-term-input-field .demo-term-prompt { flex: none; color: var(--vsc-cc-text); }
+.demo-term-input-text { min-width: 0; white-space: pre-wrap; word-break: break-word; }
+.demo-term-caret {
+  display: inline-block;
+  width: 1ch;
+  height: 16px;
+  vertical-align: -3px;
+  background: var(--vsc-cc-text);
+  animation: demo-term-caret 1s steps(1) infinite;
+}
+.demo-term-input-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 2ch;
+  padding: 2px 2ch 0;
+  color: var(--vsc-cc-dim);
+}
+.demo-term-mode { color: var(--vsc-cc-dim); }
+
+@keyframes demo-term-caret { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .demo-term-caret { animation: none; } }
+
+/* "✻ Thinking… (esc to interrupt)" */
+.demo-term-spinner { display: flex; gap: 1ch; margin: 6px 0; color: var(--vsc-cc-accent); }
+.demo-term-spinner-glyph { flex: none; width: 1ch; }
+.demo-term-spinner-hint { color: var(--vsc-cc-dim); }
+
+/* "⏺ Tool(arg)" / "⏺ text", hanging indent; "  ⎿  result" under it. */
+.demo-term-line--tool,
+.demo-term-line--assistant { margin: 8px 0; }
+.demo-term-head { display: flex; gap: 1ch; }
+.demo-term-dot { flex: none; width: 1ch; }
+.demo-term-line--tool .demo-term-dot { color: var(--vsc-cc-green); }
+.demo-term-line--assistant .demo-term-dot { color: var(--vsc-cc-text); }
+.demo-term-line--assistant .demo-term-text { color: var(--vsc-cc-text); }
+.demo-term-call { min-width: 0; color: var(--vsc-cc-text); }
+.demo-term-tool { font-weight: 700; }
+.demo-term-cmd { font-family: inherit; }
+.demo-term-result { display: flex; padding-left: 2ch; color: var(--vsc-cc-dim); }
+.demo-term-elbow { flex: none; width: 3ch; }
+.demo-term-result-text { min-width: 0; }
+.demo-term-body { padding-left: 5ch; color: var(--vsc-cc-dim); }
+.demo-term-fold { color: var(--vsc-cc-dim); }
+.demo-term-diff { margin-left: 5ch; padding-left: 1ch; color: var(--vsc-cc-text); }
+.demo-term-diff--add { background: var(--vsc-cc-diff-add); }
+.demo-term-diff--del { background: var(--vsc-cc-diff-del); }
+
+.claude-terminal-host.demo-term {
+  height: 100%;
+  overflow-y: auto;
+  padding: 8px 12px;
+}

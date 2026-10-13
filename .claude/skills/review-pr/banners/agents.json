@@ -1,0 +1,6 @@
+{
+  "_comment": "banner name -> agent whose model:frontmatter fills {{MODEL}}. Read by scripts/agent-banner.js.",
+  "review": {
+    "hint": "no roster agent - /review-pr spawns the built-in general-purpose, which inherits the session model, so the banner carries no {{MODEL}}"
+  }
+}

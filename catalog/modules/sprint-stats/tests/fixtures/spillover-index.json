@@ -1,0 +1,322 @@
+{
+  "schema_version": 1,
+  "boards": {
+    "main": {
+      "board_id": "1",
+      "project": "MAIN",
+      "teams": [
+        "Atlas",
+        "Borealis",
+        "Comet"
+      ],
+      "active_sprint_n": 9,
+      "generated_at": "2026-10-09T08:00:00"
+    }
+  },
+  "sprints": [
+    {
+      "src": "main",
+      "sprint_n": 6,
+      "phase": "END",
+      "teams": [
+        {
+          "src": "main",
+          "team": "Atlas",
+          "unit": "SP",
+          "sprint_n": 6,
+          "state": "closed",
+          "phase": "END",
+          "start": "2026-04-07T09:00:00.000+02:00",
+          "end": "2026-04-21T09:00:00.000+02:00",
+          "summary": {
+            "committed": 40,
+            "done": 30,
+            "wip": 4,
+            "todo": 3,
+            "dropped": 3,
+            "added": 0,
+            "total_issues": 10,
+            "completion_pct": 0
+          },
+          "issues_count": 0,
+          "persons_count": 0,
+          "has_burndown": false
+        },
+        {
+          "src": "main",
+          "team": "Borealis",
+          "unit": "SP",
+          "sprint_n": 6,
+          "state": "closed",
+          "phase": "END",
+          "start": "2026-04-08T09:00:00.000+02:00",
+          "end": "2026-04-22T09:00:00.000+02:00",
+          "summary": {
+            "committed": 60,
+            "done": 50,
+            "wip": 0,
+            "todo": 0,
+            "dropped": 10,
+            "added": 0,
+            "total_issues": 10,
+            "completion_pct": 0
+          },
+          "issues_count": 0,
+          "persons_count": 0,
+          "has_burndown": false
+        }
+      ]
+    },
+    {
+      "src": "main",
+      "sprint_n": 7,
+      "phase": "END",
+      "teams": [
+        {
+          "src": "main",
+          "team": "Atlas",
+          "unit": "SP",
+          "sprint_n": 7,
+          "state": "closed",
+          "phase": "END",
+          "start": "2026-04-21T09:00:00.000+02:00",
+          "end": "2026-05-05T09:00:00.000+02:00",
+          "summary": {
+            "committed": 50,
+            "done": 45,
+            "wip": 0,
+            "todo": 0,
+            "dropped": 5,
+            "added": 0,
+            "total_issues": 10,
+            "completion_pct": 0
+          },
+          "issues_count": 0,
+          "persons_count": 0,
+          "has_burndown": false
+        },
+        {
+          "src": "main",
+          "team": "Borealis",
+          "unit": "SP",
+          "sprint_n": 7,
+          "state": "closed",
+          "phase": "END",
+          "start": "2026-04-21T09:00:00.000+02:00",
+          "end": "2026-05-05T09:00:00.000+02:00",
+          "summary": {
+            "committed": 50,
+            "done": 40,
+            "wip": 0,
+            "todo": 0,
+            "dropped": 10,
+            "added": 0,
+            "total_issues": 10,
+            "completion_pct": 0
+          },
+          "issues_count": 0,
+          "persons_count": 0,
+          "has_burndown": false
+        },
+        {
+          "src": "main",
+          "team": "Comet",
+          "unit": "SP",
+          "sprint_n": 7,
+          "state": "closed",
+          "phase": "END",
+          "start": "2026-04-21T09:00:00.000+02:00",
+          "end": "2026-05-05T09:00:00.000+02:00",
+          "summary": {
+            "committed": 0,
+            "done": 0,
+            "wip": 0,
+            "todo": 0,
+            "dropped": 0,
+            "added": 0,
+            "total_issues": 10,
+            "completion_pct": 0
+          },
+          "issues_count": 0,
+          "persons_count": 0,
+          "has_burndown": false
+        }
+      ]
+    },
+    {
+      "src": "main",
+      "sprint_n": 8,
+      "phase": "END",
+      "teams": [
+        {
+          "src": "main",
+          "team": "Atlas",
+          "unit": "SP",
+          "sprint_n": 8,
+          "state": "closed",
+          "phase": "END",
+          "start": "2026-05-05T09:00:00.000+02:00",
+          "end": "2026-05-19T09:00:00.000+02:00",
+          "summary": {
+            "committed": 30,
+            "done": 30,
+            "wip": 0,
+            "todo": 0,
+            "dropped": 0,
+            "added": 0,
+            "total_issues": 10,
+            "completion_pct": 0
+          },
+          "issues_count": 0,
+          "persons_count": 0,
+          "has_burndown": false
+        },
+        {
+          "src": "main",
+          "team": "Borealis",
+          "unit": "SP",
+          "sprint_n": 8,
+          "state": "closed",
+          "phase": "END",
+          "start": "2026-05-05T09:00:00.000+02:00",
+          "end": "2026-05-19T09:00:00.000+02:00",
+          "summary": {
+            "committed": 30,
+            "done": 24,
+            "wip": 0,
+            "todo": 0,
+            "dropped": 6,
+            "added": 0,
+            "total_issues": 10,
+            "completion_pct": 0
+          },
+          "issues_count": 0,
+          "persons_count": 0,
+          "has_burndown": false
+        },
+        {
+          "src": "main",
+          "team": "Comet",
+          "unit": "SP",
+          "sprint_n": 8,
+          "state": "active",
+          "phase": "END",
+          "start": "2026-05-05T09:00:00.000+02:00",
+          "end": "2026-05-19T09:00:00.000+02:00",
+          "summary": {
+            "committed": 20,
+            "done": 10,
+            "wip": 5,
+            "todo": 5,
+            "dropped": 0,
+            "added": 0,
+            "total_issues": 10,
+            "completion_pct": 0
+          },
+          "issues_count": 0,
+          "persons_count": 0,
+          "has_burndown": false
+        }
+      ]
+    },
+    {
+      "src": "main",
+      "sprint_n": 9,
+      "phase": "MID",
+      "teams": [
+        {
+          "src": "main",
+          "team": "Atlas",
+          "unit": "SP",
+          "sprint_n": 9,
+          "state": "active",
+          "phase": "END",
+          "start": "2026-05-19T09:00:00.000+02:00",
+          "end": "2026-06-02T09:00:00.000+02:00",
+          "summary": {
+            "committed": 30,
+            "done": 10,
+            "wip": 10,
+            "todo": 10,
+            "dropped": 0,
+            "added": 0,
+            "total_issues": 10,
+            "completion_pct": 0
+          },
+          "issues_count": 0,
+          "persons_count": 0,
+          "has_burndown": false
+        },
+        {
+          "src": "main",
+          "team": "Borealis",
+          "unit": "SP",
+          "sprint_n": 9,
+          "state": "active",
+          "phase": "END",
+          "start": "2026-05-19T09:00:00.000+02:00",
+          "end": "2026-06-02T09:00:00.000+02:00",
+          "summary": {
+            "committed": 30,
+            "done": 10,
+            "wip": 10,
+            "todo": 10,
+            "dropped": 0,
+            "added": 0,
+            "total_issues": 10,
+            "completion_pct": 0
+          },
+          "issues_count": 0,
+          "persons_count": 0,
+          "has_burndown": false
+        },
+        {
+          "src": "main",
+          "team": "Comet",
+          "unit": "SP",
+          "sprint_n": 9,
+          "state": "active",
+          "phase": "END",
+          "start": "2026-05-19T09:00:00.000+02:00",
+          "end": "2026-06-02T09:00:00.000+02:00",
+          "summary": {
+            "committed": 20,
+            "done": 5,
+            "wip": 10,
+            "todo": 5,
+            "dropped": 0,
+            "added": 0,
+            "total_issues": 10,
+            "completion_pct": 0
+          },
+          "issues_count": 0,
+          "persons_count": 0,
+          "has_burndown": false
+        }
+      ]
+    },
+    {
+      "src": "platform",
+      "sprint_n": 3,
+      "phase": "END",
+      "teams": [
+        {
+          "src": "platform",
+          "team": "Delta",
+          "unit": "MD",
+          "sprint_n": 3,
+          "state": "closed",
+          "start": "2026-04-01T00:00:00",
+          "end": "2026-04-10T00:00:00",
+          "summary": {
+            "committed": 99,
+            "done": 99,
+            "wip": 0,
+            "todo": 0,
+            "dropped": 0
+          }
+        }
+      ]
+    }
+  ]
+}

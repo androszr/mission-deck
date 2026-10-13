@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "sprint-review",
+  "name": "Sprint Review",
+  "version": "0.3.1",
+  "status": "beta",
+  "description": "Sprint Review coordination for several teams - sessions, teams and topics from the meeting page in Confluence, sprint goal status, a countdown to the submission deadline and a text and visual agenda to paste into a chat",
+  "icon": "24-ic-calendar-tick",
+  "author": "androszr",
+  "tags": [
+    "sprint review",
+    "confluence",
+    "agenda"
+  ],
+  "sidebar": {
+    "label": "Sprint Review",
+    "kind": "page",
+    "hub": "activity"
+  },
+  "views": [
+    {
+      "id": "sprint-review-main",
+      "label": "Sprint Review",
+      "title": "Sprint Review",
+      "subtitle": "Sessions, teams and topics from the Sprint Review page in Confluence, goal status and the meeting agenda"
+    }
+  ],
+  "client": {
+    "entry": "client/index.js",
+    "style": "client/style.css"
+  },
+  "dataRepos": [
+    {
+      "name": "data-tier-0",
+      "description": "Sprint Review sessions in sprint-review/ (index.json + sessions/<id>.json)",
+      "paths": [
+        "sprint-review/"
+      ]
+    },
+    {
+      "name": "data-tier-0",
+      "access": "read",
+      "description": "Sprint goals from the Sprint Stats module (sprint-stats/index.json) - read only",
+      "paths": [
+        "sprint-stats/"
+      ]
+    }
+  ],
+  "envKeys": [
+    {
+      "name": "CONFLUENCE_TOKEN",
+      "description": "Confluence token from the Bitwarden vault - page list and session import"
+    },
+    {
+      "name": "CONFLUENCE_BASE_URL",
+      "description": "Confluence base URL (default https://confluence.example.com)"
+    },
+    {
+      "name": "SPRINT_REVIEW_CONFLUENCE_PARENT_ID",
+      "description": "Id of the Confluence page the Sprint Review pages live under"
+    }
+  ],
+  "widgets": [
+    {
+      "id": "next-sprint-review",
+      "label": "Next Sprint Review",
+      "description": "Days to the next Sprint Review, the deadline for team goals and (in the tall size) the facilitator, the presenters and the number of teams with topics.",
+      "client": "client/widget.js",
+      "export": "renderWidget",
+      "variants": [
+        {
+          "id": "s",
+          "label": "Small",
+          "cols": 2,
+          "rows": 1
+        },
+        {
+          "id": "m",
+          "label": "Medium",
+          "cols": 3,
+          "rows": 1
+        },
+        {
+          "id": "m2",
+          "label": "Medium, tall",
+          "cols": 3,
+          "rows": 2
+        }
+      ],
+      "defaultVariant": "m"
+    }
+  ],
+  "server": {
+    "entry": "server/index.js"
+  }
+}

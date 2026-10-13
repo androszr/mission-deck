@@ -1,0 +1,401 @@
+/* rollout-waves/client/style.css
+   Prefixed .rollout-waves- so it cannot collide with the core or another
+   module. Colours come from css/ds-tokens.css as var(--...) - a hardcoded
+   hex is a convention violation. */
+
+/* ── KPI bar ──────────────────────────────────────────────────────────── */
+
+.rollout-waves-kpi-bar {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 1100px) {
+  .rollout-waves-kpi-bar { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .rollout-waves-kpi-bar { grid-template-columns: repeat(2, 1fr); }
+}
+
+.rollout-waves-kpi-card {
+  min-height: 108px;
+}
+
+.rollout-waves-kpi-card .ds-card-body {
+  padding: 12px 16px;
+}
+
+.rollout-waves-kpi-value {
+  font-size: 28px;
+  font-weight: var(--font-weight-bold);
+  color: var(--body-primary-text);
+}
+
+.rollout-waves-kpi-sub {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  margin-top: 4px;
+}
+
+/* A skeleton bar that sits DIRECTLY on the page background needs a darker
+   shade: .ds-skeleton paints --body-quaternary-bg, which IS the page
+   background (body { background: var(--bg-secondary) } -> --body-quaternary-bg),
+   so the segmented-control bar was laid out correctly and invisible
+   (CLAUDE.md "Loading skeletons", same override styles.css uses for
+   .asv-skel-seg). The bars inside a white .ds-card or a .ds-table body cell
+   would read fine on the default; the KPI cards keep the darker shade so the
+   whole first paint pulses at one contrast. */
+.rollout-waves-kpi-card .ds-skeleton,
+.rollout-waves-skel-seg.ds-skeleton,
+.rollout-waves-skel-filter-input.ds-skeleton,
+.rollout-waves-skel-filter-select.ds-skeleton {
+  background: var(--body-secondary-bg);
+}
+
+.rollout-waves-skel-title {
+  display: block;
+  height: 14px;
+  width: 80px;
+  margin-bottom: 12px;
+}
+
+.rollout-waves-skel-value {
+  display: block;
+  height: 28px;
+  width: 64px;
+}
+
+/* ── Next start ─────────────────────────────────────────────────────── */
+
+.rollout-waves-nearest-card {
+  margin-bottom: 16px;
+}
+
+.rollout-waves-nearest-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  font-size: var(--text-sm);
+  color: var(--body-primary-text);
+}
+
+.rollout-waves-skel-nearest {
+  display: block;
+  height: 20px;
+  width: 70%;
+}
+
+/* ── Wave segmented control + table/managers buttons ─────────────────── */
+
+.rollout-waves-seg-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.rollout-waves-wave-seg {
+  flex-wrap: wrap;
+  width: fit-content;
+}
+
+.rollout-waves-skel-seg {
+  display: block;
+  height: 32px;
+  width: 260px;
+  border-radius: var(--radius-max);
+}
+
+/* ── Diagnostics ──────────────────────────────────────────────────────── */
+
+.rollout-waves-diagnostics-clickable {
+  cursor: pointer;
+}
+
+.rollout-waves-diagnostics-clickable:hover,
+.rollout-waves-diagnostics-clickable:focus-visible {
+  filter: brightness(0.97);
+}
+
+/* ── Filters ──────────────────────────────────────────────────────────── */
+
+.rollout-waves-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.rollout-waves-filter-input {
+  /* One combined search field replaced the two 220px inputs it used to sit
+     next to. It FLEXES instead of taking a fixed width, and the measurement
+     is why: at a fixed 420px the row (input + three 200px selects + gaps)
+     needed 1056px and cleared a 1440px window by 5px, so a longer select
+     label, a scrollbar or a zoomed page wrapped it again. Growing from a
+     300px basis keeps the row on one line down to a bar of about 900px and
+     lets the field absorb the slack on a wide screen instead of leaving it
+     empty. */
+  flex: 1 1 300px;
+  min-width: 260px;
+  max-width: 520px;
+}
+
+/* Matches the real filter row's control count and widths (one 420px search
+   field, three 200px selects) so the first-paint skeleton reserves the exact
+   height and shape the real filter bar takes - the loading-skeleton rule
+   this module was built to honour: a painter must never approximate. */
+.rollout-waves-skel-filter-input {
+  display: block;
+  height: 48px;
+  width: 420px;
+  border-radius: var(--radius-s);
+}
+
+.rollout-waves-skel-filter-select {
+  display: block;
+  height: 48px;
+  width: 200px;
+  border-radius: var(--radius-s);
+}
+
+.rollout-waves-filter-select {
+  width: fit-content;
+  min-width: 160px;
+}
+
+/* js/ds-select.js hides the native <select> above and wraps it in
+   .ds-sel-wrap, which css/ds.css sets to display: block; width: 100% - a
+   full-width flex item that forces the row to wrap, so the three dropdowns
+   land one under another instead of beside the search input. Scoped to
+   this view only; css/ds.css itself stays untouched. */
+.rollout-waves-filters .ds-sel-wrap {
+  flex: 0 0 200px;
+  width: 200px;
+}
+
+@media (max-width: 640px) {
+  .rollout-waves-filters .ds-sel-wrap {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+}
+
+/* ── Locations table ────────────────────────────────────────────────────── */
+
+.rollout-waves-table-wrap {
+  overflow-x: auto;
+}
+
+.rollout-waves-table {
+  min-width: 960px;
+}
+
+.rollout-waves-count {
+  font-size: var(--text-xs);
+  color: var(--body-secondary-text);
+  margin-bottom: 8px;
+}
+
+.rollout-waves-load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+/* Mobile card fallback - hidden by default, swapped in below the phone
+   breakpoint (a 10-column table cannot be usefully scrolled on a phone). */
+.rollout-waves-stores-cards {
+  display: none;
+}
+
+.rollout-waves-store-card {
+  padding: 12px 16px;
+}
+
+.rollout-waves-store-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.rollout-waves-store-card-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: var(--text-sm);
+  border-bottom: 1px solid var(--body-tertiary-border);
+}
+
+.rollout-waves-store-card-row:last-of-type {
+  border-bottom: none;
+}
+
+.rollout-waves-store-card-k {
+  color: var(--body-secondary-text);
+  flex-shrink: 0;
+}
+
+.rollout-waves-store-card-v {
+  text-align: right;
+  color: var(--body-primary-text);
+  overflow-wrap: anywhere;
+}
+
+.rollout-waves-store-card-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--body-tertiary-border);
+  font-size: var(--text-xs);
+}
+
+@media (max-width: 720px) {
+  .rollout-waves-table-wrap { display: none; }
+  .rollout-waves-stores-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.rollout-waves-skel-row {
+  display: block;
+  height: 14px;
+  width: 90%;
+}
+
+/* ── Waves table modal ────────────────────────────────────────────────── */
+
+.rollout-waves-wave-cell-clickable,
+.rollout-waves-locations-cell-clickable {
+  cursor: pointer;
+  color: var(--body-brand-icon);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rollout-waves-wave-cell-clickable:hover,
+.rollout-waves-locations-cell-clickable:hover {
+  filter: brightness(0.85);
+}
+
+.rollout-waves-wave-cell-clickable:focus-visible,
+.rollout-waves-locations-cell-clickable:focus-visible {
+  outline: 2px solid var(--body-brand-icon);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.rollout-waves-expander-row td {
+  background: var(--table-secondary-default-bg);
+  border-top: 1px solid var(--body-tertiary-border);
+}
+
+.rollout-waves-expander-panels {
+  position: relative;
+  padding: 16px;
+}
+
+.rollout-waves-panel-toolbar {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.rollout-waves-panel-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.rollout-waves-detail-section {
+  min-width: 160px;
+}
+
+.rollout-waves-detail-heading {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--body-tertiary-text);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.rollout-waves-detail-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 480px;
+}
+
+.rollout-waves-detail-empty {
+  font-size: var(--text-sm);
+  color: var(--body-tertiary-text);
+}
+
+.rollout-waves-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rollout-waves-row-active {
+  background: var(--state-info-bg);
+}
+
+/* ── Import modal ─────────────────────────────────────────────────────── */
+
+.rollout-waves-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 16px;
+  border: 1px dashed var(--body-tertiary-border);
+  border-radius: var(--radius-m);
+  text-align: center;
+  cursor: pointer;
+  color: var(--body-secondary-text);
+  font-size: var(--text-sm);
+}
+
+.rollout-waves-dropzone:hover,
+.rollout-waves-dropzone:focus-visible,
+.rollout-waves-dropzone--dragover {
+  border-color: var(--body-brand-icon);
+  color: var(--body-primary-text);
+}
+
+.rollout-waves-import-filename {
+  font-size: var(--text-sm);
+  color: var(--body-primary-text);
+  margin-top: 8px;
+}
+
+.rollout-waves-import-result {
+  margin-top: 12px;
+}
+
+.rollout-waves-import-unknown-list {
+  margin-top: 8px;
+  max-height: 160px;
+  overflow-y: auto;
+  font-size: var(--text-xs);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
