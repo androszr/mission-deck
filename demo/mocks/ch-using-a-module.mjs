@@ -9,7 +9,7 @@
 
 import { esc, modalShell } from './common.mjs';
 import { fruitFaceFor } from '../../assets/avatars/fruit-avatars.mjs';
-import { TEAMS, DATES, PEOPLE, LAST_WORKDAY, hoursOf, fmtDate, initialsOf } from './time-log-data.mjs';
+import { TEAMS, DATES, PEOPLE, LAST_WORKDAY, hoursOf, fmtDate } from './time-log-data.mjs';
 
 const P = 'dm-uzycie-modulu-';
 
@@ -41,7 +41,7 @@ const TEAMS_SVG = '<svg width="13" height="13" viewBox="0 0 24 24" fill="current
  * @param {{ fresh?: boolean, team?: string }} props
  */
 function body({ fresh = false, team = '' } = {}) {
-  const people = PEOPLE.map((p) => ({ ...p, ini: initialsOf(p.name) }));
+  const people = PEOPLE;
   const shown = team ? people.filter((p) => p.team === team) : people;
   const rows = shown.map((p) => {
     const hs = DATES.map((_, d) => hours(p, d, fresh));

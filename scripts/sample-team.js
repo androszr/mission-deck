@@ -754,10 +754,18 @@ function writeRoadmap(w, people, worklogs) {
   // work in progress today and tomorrow. Done tasks log a few days before
   // the discovery end; tasks in progress log most days of the last two weeks.
   const recentDays = eachDay(addDays(QUARTER_END, -16), addDays(QUARTER_END, -1)).filter((d) => !isWeekend(d));
+  // Hands the task total out in half-hour units, the remainder to the latest
+  // days, so the days always add up to timeByPerson. A day left with no unit
+  // is skipped.
   const spread = (secs, days) => {
     const out = {};
-    const per = Math.max(1800, Math.round(secs / days.length / 1800) * 1800);
-    for (const d of days) out[d] = per;
+    const units = Math.round(secs / 1800);
+    const base = Math.floor(units / days.length);
+    const extra = units % days.length;
+    days.forEach((d, i) => {
+      const n = base + (i >= days.length - extra ? 1 : 0);
+      if (n > 0) out[d] = n * 1800;
+    });
     return out;
   };
   const stageOrder = ['preparation', 'problem-space', 'solution-space', 'delivery', 'pilot', 'go-live'];

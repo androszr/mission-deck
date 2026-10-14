@@ -37,7 +37,6 @@ const BUSY = {
   architekt: ['Parker Lane', 'Riley Chen'],
 };
 
-const _ini = (n) => n.split(' ').map((w) => w.charAt(0)).join('').slice(0, 2).toUpperCase();
 const _av = (n) => (n ? '<span class="roadmapa-avatar demo-fruit" title="' + esc(n) + '">' + fruitFaceFor(n) + '</span>' : '');
 const DEMO_TODAY_ISO = '2026-10-04';
 

@@ -49,12 +49,61 @@
       "mcp__gitnexus__shape_check",
       "mcp__gitnexus__pdg_query",
       "mcp__gitnexus__group_list",
-      "mcp__gitnexus__group_sync"
+      "mcp__gitnexus__group_sync",
+      "Bash(git diff:*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git ls-files:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(grep:*)",
+      "Bash(awk:*)",
+      "Bash(bash .claude/skills/ship/preflight.sh:*)",
+      "Bash(bash .claude/skills/ship/close-out.sh)",
+      "Bash(bash .claude/skills/ship/close-out.sh --close)",
+      "Bash(bash .claude/skills/ship/close-out.sh --plan)",
+      "Bash(bash .claude/skills/ship/gate.sh:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh pr diff:*)",
+      "Bash(python3 .claude/skills/shunt/bulk_read.py:*)",
+      "Bash(python3 .claude/skills/shunt/code_write.py:*)",
+      "Bash(python3 .claude/skills/shunt/exempt.py:*)",
+      "Bash(python3 .claude/skills/scout/scout_check.py:*)",
+      "Bash(python3 .claude/skills/ship/manual_check.py:*)",
+      "Bash(.venv/bin/pytest:*)",
+      "Bash(swift build:*)",
+      "Bash(swift test:*)",
+      "Bash(npm run build:*)",
+      "Bash(ruff check:*)",
+      "mcp__dark-army",
+      "mcp__bob",
+      "Bash(pnpm lint)",
+      "Bash(pnpm typecheck)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm build)",
+      "Bash(pnpm audit:*)"
     ],
     "deny": [
       "Bash(git reset --hard*)",
       "Bash(git reset --merge*)",
-      "Bash(git reset --keep*)"
+      "Bash(git reset --keep*)",
+      "Bash(git reset:*)",
+      "Bash(git checkout:*)",
+      "Read(~/.dark-army/api-token)",
+      "Read(~/.dark-army/relay.json)",
+      "Read(~/.dark-army/devices.json)",
+      "Read(~/.dark-army/grok-bot.json)",
+      "Read(~/.dark-army/grok-bot.secrets)",
+      "Read(~/.dark-army/grok-bot-mcp-token)",
+      "Read(~/.bob-companion/**)",
+      "Read(**/.dark-army/key)",
+      "Read(**/.bob-companion/key)",
+      "Bash(cat ~/.dark-army/relay.json*)",
+      "Bash(cat ~/.dark-army/devices.json*)",
+      "Bash(cat ~/.dark-army/grok-bot*)",
+      "Bash(cat .dark-army/key*)",
+      "Edit(**/.dark-army/worktree-setup.sh)"
     ]
   },
   "hooks": {
@@ -93,7 +142,7 @@
             "statusMessage": "Blocking .png write to repo root..."
           }
         ]
-  },
+      },
       {
         "matcher": "Agent",
         "hooks": [

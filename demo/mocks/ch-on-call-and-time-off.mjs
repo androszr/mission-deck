@@ -43,7 +43,6 @@ const GODZINY = [
   ['Inventory', 'Mon-Sun', '6:00-22:00', 'Deliveries and stocktakes'],
 ];
 
-const _ini = (n) => n.split(' ').map((w) => w.charAt(0)).join('').slice(0, 2).toUpperCase();
 const _slug = (n) => n.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z]+/g, '.');
 const _mail = (n) => _slug(n) + '@example.com';
 

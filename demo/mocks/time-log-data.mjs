@@ -62,7 +62,3 @@ export function hoursOf(p, i, fresh) {
 /** 'DD.MM' of a DATES entry. */
 export const fmtDate = (iso) => iso.slice(8, 10) + '.' + iso.slice(5, 7);
 
-/** 'AM' from 'Alex Morgan'. */
-export function initialsOf(name) {
-  return name.split(' ').map((w) => w.charAt(0)).join('').slice(0, 2).toUpperCase();
-}

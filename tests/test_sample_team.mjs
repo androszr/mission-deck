@@ -422,7 +422,11 @@ describe('AC4: Northwind Product, fictional and tidy', () => {
       const holders = new Set([init.po, init.analyst, init.designer, init.architect].filter(Boolean));
       for (const t of init.jiraTasks) {
         assert.ok(holders.has(t.assignee), f + ' ' + t.key + ': ' + t.assignee + ' holds no role');
-        for (const byDay of Object.values(t.timeByPersonByDay || {})) for (const d of Object.keys(byDay)) days.add(d);
+        for (const [who, byDay] of Object.entries(t.timeByPersonByDay || {})) {
+          for (const d of Object.keys(byDay)) days.add(d);
+          const sum = Object.values(byDay).reduce((a, b) => a + b, 0);
+          assert.equal(sum, t.timeByPerson[who], f + ' ' + t.key + ': the days add up to the total');
+        }
       }
     }
     for (const d of ['2026-09-22', '2026-09-23', '2026-09-24', '2026-09-25', '2026-09-28', '2026-09-29']) assert.ok(days.has(d), d + ' has logged time');

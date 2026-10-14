@@ -17463,11 +17463,6 @@ function _cocreateAvatarForSlug(slug) {
 const COCREATE_PROGRESS_SUBDIR = 'academy/progress';
 
 /**
- * A person slug is server-derived (never request input), but it becomes a FILE
- * NAME here, so it is validated as one before it is ever joined into a path.
- * @param {string} slug @returns {string|null}
- */
-/**
  * Where Academy progress and the mural may be read and written. Normally the
  * cloned team data; in sample mode the local sample copy, which has no clone
  * (and needs none: _cocreatePushDataFile skips publishing there).
@@ -17476,6 +17471,11 @@ function _cocreateStorageReady() {
   return SAMPLE_MODE_ACTIVE ? fs.existsSync(DATA_TIER_0_DIR) : dataTier0Exists();
 }
 
+/**
+ * A person slug is server-derived (never request input), but it becomes a FILE
+ * NAME here, so it is validated as one before it is ever joined into a path.
+ * @param {string} slug @returns {string|null}
+ */
 function _cocreateSlugSafe(slug) {
   return typeof slug === 'string' && /^[a-z0-9][a-z0-9-]{0,63}$/.test(slug) ? slug : null;
 }

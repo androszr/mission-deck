@@ -12,7 +12,7 @@
 
 import { esc, modalShell } from './common.mjs';
 import { fruitFaceFor } from '../../assets/avatars/fruit-avatars.mjs';
-import { TEAMS, DATES, PEOPLE, LAST_WORKDAY, hoursOf, fmtDate, initialsOf } from './time-log-data.mjs';
+import { TEAMS, DATES, PEOPLE, LAST_WORKDAY, hoursOf, fmtDate } from './time-log-data.mjs';
 
 /**
  * The section body js/module-host.js builds for a module view: page header
@@ -54,7 +54,6 @@ const ISSUES = [
 
 const fmtH = (h) => String(h % 1 === 0 ? h : h.toFixed(1));
 const _hours = hoursOf;
-const _initials = initialsOf;
 
 function _visible(team) {
   return team ? PEOPLE.filter((p) => p.team === team) : PEOPLE;

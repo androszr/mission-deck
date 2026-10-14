@@ -158,7 +158,6 @@ const TOPICS = {
   Comet: [],
 };
 
-const _ini = (n) => n.split(' ').map((w) => w.charAt(0)).join('').toUpperCase();
 
 function _teamCard(team, status) {
   const locked = team === 'Delta';

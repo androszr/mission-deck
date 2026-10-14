@@ -1,0 +1,4 @@
+interface:
+  display_name: "Security Pass"
+  short_description: "Standalone security audit of the working tree (or the whole app before a milestone ships) for mission-deck."
+  default_prompt: "Use $security-pass for this task."

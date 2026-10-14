@@ -64,3 +64,35 @@ __pycache__/
 
 # Static demo site built by scripts/demo-export.js --site _site
 /_site/
+
+.dark-army/
+
+# managed by Dark Army
+.env.*
+!.env.example
+*.pem
+*.p12
+*.key
+Thumbs.db
+.idea/
+*.swp
+*~
+.claude/settings.local.json
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+.build/
+DerivedData/
+plans/
+docs/research/
+/scout/
+/manual-check/
+/.worktrees/
+.next/
+out/
+.vercel
+coverage/

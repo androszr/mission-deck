@@ -76,6 +76,16 @@ describe('demo walkthrough', () => {
     }
   });
 
+  it('no chapter computes initials, except the edit modal before a photo is chosen', () => {
+    for (const f of files) {
+      const src = fs.readFileSync(path.join(dir, f), 'utf8');
+      // ch-team's "Edit person" modal shows initials until a photo is uploaded,
+      // the placeholder the real Settings > Users form shows.
+      const scan = f === 'ch-team.mjs' ? src.replace(/uzy-card__avatar--initials[^\n]*_ini\(f, l\)[^\n]*/, '') : src;
+      assert.doesNotMatch(scan, /\b(_ini|_initials|initialsOf)\(|\.ini\b/, f + ' computes initials for an avatar');
+    }
+  });
+
   it('every chapter that shows people imports the fruit module and the demo styles the slot', () => {
     for (const f of ['ch-academy.mjs', 'ch-on-call-and-time-off.mjs', 'ch-roadmap.mjs', 'ch-sprints.mjs', 'ch-sync.mjs', 'ch-team.mjs', 'ch-team-keys.mjs', 'ch-time-tracking.mjs', 'ch-using-a-module.mjs', 'shell.mjs']) {
       const src = fs.readFileSync(path.join(dir, f), 'utf8');
