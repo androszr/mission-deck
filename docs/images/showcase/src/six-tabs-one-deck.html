@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mission Deck - six tabs, one deck</title>
+<link rel="stylesheet" href="poster.css">
+<style>
+  .cols { position: absolute; left: 72px; right: 72px; top: 400px; display: grid; grid-template-columns: 480px 1fr; gap: 56px; }
+  .pile { position: relative; height: 560px; }
+  .tab { position: absolute; width: 380px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5); font-family: var(--mono); font-size: 17px; }
+  .tab header { height: 32px; display: flex; align-items: center; gap: 7px; padding: 0 12px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+  .tab header span { width: 10px; height: 10px; border-radius: 50%; background: #4a3d33; }
+  .tab header em { font-style: normal; margin-left: 8px; }
+  .tab p { padding: 14px 16px; line-height: 1.5; color: var(--text); }
+  .tab p small { color: var(--muted); font-size: 15px; }
+  .tab.lost { border-color: var(--red); }
+  .q { position: absolute; font-size: 38px; font-weight: 700; color: var(--red); }
+  .after .window { width: 100%; }
+  .after .window img { height: 300px; object-fit: cover; object-position: left top; }
+  .after .steps { margin-top: 34px; }
+  .caption { position: absolute; left: 72px; bottom: 120px; width: 470px; font-size: 24px; line-height: 1.35; color: var(--muted); }
+  .caption strong { color: var(--text); }
+</style>
+</head>
+<body>
+  <p class="prompt"><b>~/team$</b> <i>where is the sprint board again?</i></p>
+  <h1>Six tabs. <em>One deck.</em></h1>
+  <p class="lede">The sprint is in one tool, the bugs in another, the roadmap in a
+    slide deck and the on-call rota in somebody's head. <strong>Every Monday
+    somebody asks where it all lives.</strong></p>
+
+  <div class="cols">
+    <div>
+      <p class="label"><b class="before">BEFORE</b> &middot; tab-hopping</p>
+      <div class="pile">
+        <div class="tab" style="left:0;top:0"><header><span></span><span></span><span></span><em>sprint-41-final-v3.xlsx</em></header><p>29 / 34 points?<br><small>last edited 9 days ago</small></p></div>
+        <div class="tab" style="left:70px;top:110px"><header><span></span><span></span><span></span><em>tracker - Prod bugs</em></header><p>24 open<br><small>filter: none saved</small></p></div>
+        <div class="tab lost" style="left:10px;top:220px"><header><span></span><span></span><span></span><em>#team-chat</em></header><p>who is on call this week?<br><small>3 replies, no answer</small></p></div>
+        <div class="q" style="left:410px;top:236px">?</div>
+        <div class="tab" style="left:80px;top:330px"><header><span></span><span></span><span></span><em>Roadmap Q4 (copy).pptx</em></header><p>Order editing - slide 7<br><small>which version is current?</small></p></div>
+        <div class="tab lost" style="left:0;top:440px"><header><span></span><span></span><span></span><em>wiki / onboarding</em></header><p>Page not found<br><small>moved?</small></p></div>
+        <div class="q" style="left:400px;top:452px">?</div>
+      </div>
+    </div>
+    <div class="after">
+      <p class="label"><b class="after">AFTER</b> &middot; one deck</p>
+      <div class="window">
+        <div class="window-bar"><span></span><span></span><span></span><em>Mission Deck</em></div>
+        <img src="../../dashboard.png" alt="">
+      </div>
+      <ol class="steps">
+        <li><span class="n">1</span><span><strong>Eight fixed drawers</strong> - Team, Activity, Finance, Initiatives and more.</span></li>
+        <li><span class="n">2</span><span><strong>The dashboard</strong> shows the numbers the moment you arrive.</span></li>
+        <li><span class="n">3</span><span><strong>Plain files on your laptop</strong>, shared with the team when you say so.</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="wordmark"><b>MISSION</b> DECK</div>
+    <div class="dots">sprints &middot; bugs &middot; roadmap &middot; people</div>
+  </div>
+</body>
+</html>

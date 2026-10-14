@@ -103,3 +103,31 @@ test('demo-hub: the note header is server-owned and round-trips', () => {
   // sha256 of the BARE name - `.enc` appended here breaks every decrypt.
   assert.match(src, /encryptRelPath\(NOTE_REL_PATH, key\)/);
 });
+
+test('demo-hub: it follows the team data directory the host gives it, never the default one', async () => {
+  const os = await import('node:os');
+  const { createRequire } = await import('node:module');
+  const register = createRequire(import.meta.url)(path.join(MODULE_DIR, 'server/index.js'));
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'demo-hub-ds-'));
+  const ds = path.join(tmp, 'ds-data');
+  fs.mkdirSync(path.join(ds, 'demo-hub'), { recursive: true });
+  fs.writeFileSync(path.join(ds, 'demo-hub', 'note.md'), '---\nauthor: A\n---\n\nhello from the host dir\n');
+  const sent = [];
+  const reg = register({
+    moduleId: MODULE_ID,
+    rootDir: path.join(tmp, 'no-such-root'),
+    dataTier0Dir: ds,
+    makeLock: () => (fn) => fn(),
+    jsonResponse: (_res, status, body) => sent.push({ status, body }),
+    readBody: async () => ({}),
+    log: () => {},
+  });
+  await reg.routes.find(r => r.method === 'GET' && r.path === '/ds-data').handler({}, {});
+  assert.equal(sent[0].body.available, true);
+  assert.match(sent[0].body.text, /hello from the host dir/);
+  // the mirror is the sibling of the host dir, which is not cloned here: no git call, a calm answer
+  await reg.routes.find(r => r.method === 'GET' && r.path === '/history').handler({}, {});
+  assert.equal(sent[1].status, 200);
+  assert.deepEqual(sent[1].body.rows, []);
+  fs.rmSync(tmp, { recursive: true, force: true });
+});

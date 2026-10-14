@@ -1,0 +1,167 @@
+{
+  "generated_at": "2026-09-30T16:00:00.000Z",
+  "window_days": 14,
+  "dates": [
+    "2026-09-29",
+    "2026-09-28",
+    "2026-09-27",
+    "2026-09-26",
+    "2026-09-25",
+    "2026-09-24",
+    "2026-09-23",
+    "2026-09-22",
+    "2026-09-21",
+    "2026-09-20",
+    "2026-09-19",
+    "2026-09-18",
+    "2026-09-17",
+    "2026-09-16"
+  ],
+  "persons": {
+    "tomas-novak": {
+      "name": "Tomas Novak",
+      "team": "Atlas",
+      "logged_days_count": 5,
+      "miss_days_count": 5
+    },
+    "kofi-mensah": {
+      "name": "Kofi Mensah",
+      "team": "Comet",
+      "logged_days_count": 7,
+      "miss_days_count": 3
+    },
+    "taylor-kim": {
+      "name": "Taylor Kim",
+      "team": "Comet",
+      "logged_days_count": 7,
+      "miss_days_count": 3
+    },
+    "jonas-berg": {
+      "name": "Jonas Berg",
+      "team": "Echo",
+      "logged_days_count": 8,
+      "miss_days_count": 2
+    },
+    "oscar-lindqvist": {
+      "name": "Oscar Lindqvist",
+      "team": "Delta",
+      "logged_days_count": 8,
+      "miss_days_count": 2
+    },
+    "felix-moreau": {
+      "name": "Felix Moreau",
+      "team": "Falcon",
+      "logged_days_count": 9,
+      "miss_days_count": 1
+    },
+    "aiko-tanaka": {
+      "name": "Aiko Tanaka",
+      "team": "Borealis",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "alex-morgan": {
+      "name": "Alex Morgan",
+      "team": "Atlas",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "amara-diallo": {
+      "name": "Amara Diallo",
+      "team": "Falcon",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "chloe-dubois": {
+      "name": "Chloe Dubois",
+      "team": "Falcon",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "dmitri-volkov": {
+      "name": "Dmitri Volkov",
+      "team": "Delta",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "elena-rossi": {
+      "name": "Elena Rossi",
+      "team": "Borealis",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "grace-whitfield": {
+      "name": "Grace Whitfield",
+      "team": "Comet",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "hannah-weiss": {
+      "name": "Hannah Weiss",
+      "team": "Delta",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "ingrid-solberg": {
+      "name": "Ingrid Solberg",
+      "team": "Comet",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "jordan-lee": {
+      "name": "Jordan Lee",
+      "team": "Borealis",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "leila-karimi": {
+      "name": "Leila Karimi",
+      "team": "Delta",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "nadia-petrova": {
+      "name": "Nadia Petrova",
+      "team": "Echo",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "priya-raman": {
+      "name": "Priya Raman",
+      "team": "Atlas",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "rafael-costa": {
+      "name": "Rafael Costa",
+      "team": "Echo",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "sam-rivera": {
+      "name": "Sam Rivera",
+      "team": "Atlas",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "samir-haddad": {
+      "name": "Samir Haddad",
+      "team": "Borealis",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "yuki-sato": {
+      "name": "Yuki Sato",
+      "team": "Falcon",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    },
+    "zoe-carter": {
+      "name": "Zoe Carter",
+      "team": "Echo",
+      "logged_days_count": 10,
+      "miss_days_count": 0
+    }
+  },
+  "unmatched_authors": []
+}

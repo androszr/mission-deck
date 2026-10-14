@@ -745,6 +745,16 @@ html[data-demo-ready="1"] .demo-app[data-progress="ready"] .demo-bar-keys {
   gap: var(--space-8);
 }
 
+.demo-bar-github { text-decoration: none; }
+html:not([data-demo-site]) .demo-bar-github { display: none; }
+.demo-bar-github { white-space: nowrap; }
+.demo-bar-github-short { display: none; }
+/* Narrow windows: the short label keeps Contents and Shortcuts reachable. */
+@media (max-width: 1439px) {
+  .demo-bar-github-full { display: none; }
+  .demo-bar-github-short { display: inline; }
+}
+
 .demo-bar-keys {
   font-size: var(--text-xs);
   color: var(--body-tertiary-text);

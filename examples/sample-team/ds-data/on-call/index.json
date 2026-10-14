@@ -1,0 +1,256 @@
+{
+  "generated_at": "2026-09-30T16:00:00.000Z",
+  "source_url": "https://wiki.example.com/northwind/on-call",
+  "source_page_id": "100000",
+  "source_version": 12,
+  "source_updated": "2026-09-29T15:00:00.000Z",
+  "source_title": "On-call schedule",
+  "columns": [
+    {
+      "key": "inventory",
+      "label": "inventory"
+    },
+    {
+      "key": "orders",
+      "label": "orders"
+    },
+    {
+      "key": "platform",
+      "label": "platform"
+    },
+    {
+      "key": "devops",
+      "label": "devops"
+    }
+  ],
+  "roster": [
+    {
+      "name": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "emails": [
+        "sam.rivera@northwind.example"
+      ],
+      "phone": "+1 555 0110",
+      "company": "Northwind",
+      "role": "DEVOPS",
+      "scopes": {
+        "inventory": true,
+        "orders": true,
+        "platform": true
+      }
+    },
+    {
+      "name": "Priya Raman",
+      "person_slug": "priya-raman",
+      "emails": [
+        "priya.raman@northwind.example"
+      ],
+      "phone": "+1 555 0111",
+      "company": "Northwind",
+      "role": "BE",
+      "scopes": {
+        "inventory": false,
+        "orders": false,
+        "platform": true
+      }
+    },
+    {
+      "name": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "emails": [
+        "jordan.lee@northwind.example"
+      ],
+      "phone": "+1 555 0112",
+      "company": "Northwind",
+      "role": "BE",
+      "scopes": {
+        "inventory": false,
+        "orders": true,
+        "platform": true
+      }
+    },
+    {
+      "name": "Samir Haddad",
+      "person_slug": "samir-haddad",
+      "emails": [
+        "samir.haddad@northwind.example"
+      ],
+      "phone": "+1 555 0113",
+      "company": "Northwind",
+      "role": "BE",
+      "scopes": {
+        "inventory": true,
+        "orders": false,
+        "platform": false
+      }
+    },
+    {
+      "name": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "emails": [
+        "taylor.kim@northwind.example"
+      ],
+      "phone": "+1 555 0114",
+      "company": "Northwind",
+      "role": "DEVOPS",
+      "scopes": {
+        "inventory": false,
+        "orders": true,
+        "platform": true
+      }
+    },
+    {
+      "name": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "emails": [
+        "ingrid.solberg@northwind.example"
+      ],
+      "phone": "+1 555 0115",
+      "company": "Northwind",
+      "role": "BE",
+      "scopes": {
+        "inventory": false,
+        "orders": false,
+        "platform": true
+      }
+    },
+    {
+      "name": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "emails": [
+        "dmitri.volkov@northwind.example"
+      ],
+      "phone": "+1 555 0116",
+      "company": "Northwind",
+      "role": "BE",
+      "scopes": {
+        "inventory": true,
+        "orders": true,
+        "platform": true
+      }
+    },
+    {
+      "name": "Oscar Lindqvist",
+      "person_slug": "oscar-lindqvist",
+      "emails": [
+        "oscar.lindqvist@northwind.example"
+      ],
+      "phone": "+1 555 0117",
+      "company": "Northwind",
+      "role": "BE",
+      "scopes": {
+        "inventory": false,
+        "orders": false,
+        "platform": false
+      }
+    },
+    {
+      "name": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "emails": [
+        "rafael.costa@northwind.example"
+      ],
+      "phone": "+1 555 0118",
+      "company": "Northwind",
+      "role": "DEVOPS",
+      "scopes": {
+        "inventory": false,
+        "orders": true,
+        "platform": true
+      }
+    },
+    {
+      "name": "Nadia Petrova",
+      "person_slug": "nadia-petrova",
+      "emails": [
+        "nadia.petrova@northwind.example"
+      ],
+      "phone": "+1 555 0119",
+      "company": "Northwind",
+      "role": "BE",
+      "scopes": {
+        "inventory": true,
+        "orders": false,
+        "platform": true
+      }
+    },
+    {
+      "name": "Felix Moreau",
+      "person_slug": "felix-moreau",
+      "emails": [
+        "felix.moreau@northwind.example"
+      ],
+      "phone": "+1 555 0120",
+      "company": "Northwind",
+      "role": "BE",
+      "scopes": {
+        "inventory": false,
+        "orders": true,
+        "platform": true
+      }
+    },
+    {
+      "name": "Chloe Dubois",
+      "person_slug": "chloe-dubois",
+      "emails": [
+        "chloe.dubois@northwind.example"
+      ],
+      "phone": "+1 555 0121",
+      "company": "Northwind",
+      "role": "BE",
+      "scopes": {
+        "inventory": false,
+        "orders": false,
+        "platform": false
+      }
+    }
+  ],
+  "coordination": [
+    {
+      "name": "Hannah Weiss",
+      "email": "hannah.weiss@northwind.example",
+      "phone": "+15550190",
+      "phone_display": "+1 555 0190",
+      "note": ""
+    },
+    {
+      "name": "Amara Diallo",
+      "email": "amara.diallo@northwind.example",
+      "phone": "+15550191",
+      "phone_display": "+1 555 0191",
+      "note": "or Teams call"
+    }
+  ],
+  "hours": [
+    {
+      "system": "Inventory",
+      "days": "Monday to Friday",
+      "hours": [
+        "06:00-22:00"
+      ],
+      "scope": "Incidents and failed imports"
+    },
+    {
+      "system": "Orders",
+      "days": "Monday to Sunday",
+      "hours": [
+        "00:00-24:00"
+      ],
+      "scope": "Orders cannot be placed or edited"
+    },
+    {
+      "system": "Platform",
+      "days": "Monday to Sunday",
+      "hours": [
+        "00:00-24:00"
+      ],
+      "scope": "API gateway and background jobs"
+    }
+  ],
+  "months": [
+    "2026-07",
+    "2026-08",
+    "2026-09"
+  ],
+  "warnings": []
+}

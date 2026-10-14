@@ -1,0 +1,301 @@
+{
+  "slug": "samir-haddad",
+  "name": "Samir Haddad",
+  "display_short": "S. Haddad",
+  "email": "samir.haddad@northwind.example",
+  "team": "Borealis",
+  "logged_days_count": 10,
+  "miss_days_count": 0,
+  "days": [
+    {
+      "date": "2026-09-29",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "BOR-201",
+          "summary": "Fix rounding in the daily totals",
+          "hours": 4,
+          "logged_at": "2026-09-29T17:12:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-203",
+          "summary": "Mobile layout of the payment step",
+          "hours": 4.5,
+          "logged_at": "2026-09-29T17:43:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "BOR-201",
+          "summary": "Fix rounding in the daily totals",
+          "hours": 2.5,
+          "logged_at": "2026-09-28T17:42:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-200",
+          "summary": "Order summary email template",
+          "hours": 5.5,
+          "logged_at": "2026-09-28T17:58:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-27",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-26",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-25",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "BOR-200",
+          "summary": "Order summary email template",
+          "hours": 4.5,
+          "logged_at": "2026-09-25T17:52:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-201",
+          "summary": "Fix rounding in the daily totals",
+          "hours": 2.5,
+          "logged_at": "2026-09-25T17:14:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-207",
+          "summary": "Progress indicator for checkout",
+          "hours": 0.5,
+          "logged_at": "2026-09-25T17:45:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "BOR-200",
+          "summary": "Order summary email template",
+          "hours": 3,
+          "logged_at": "2026-09-24T17:21:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-203",
+          "summary": "Mobile layout of the payment step",
+          "hours": 4,
+          "logged_at": "2026-09-24T17:49:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-201",
+          "summary": "Fix rounding in the daily totals",
+          "hours": 1.5,
+          "logged_at": "2026-09-24T17:15:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "BOR-203",
+          "summary": "Mobile layout of the payment step",
+          "hours": 8,
+          "logged_at": "2026-09-23T17:53:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "BOR-200",
+          "summary": "Order summary email template",
+          "hours": 3.5,
+          "logged_at": "2026-09-22T17:54:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-202",
+          "summary": "Coupon field on the last step",
+          "hours": 3,
+          "logged_at": "2026-09-22T17:24:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-201",
+          "summary": "Fix rounding in the daily totals",
+          "hours": 2,
+          "logged_at": "2026-09-22T17:24:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-21",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "BOR-202",
+          "summary": "Coupon field on the last step",
+          "hours": 2,
+          "logged_at": "2026-09-21T17:52:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-200",
+          "summary": "Order summary email template",
+          "hours": 6,
+          "logged_at": "2026-09-21T17:50:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-20",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-19",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-18",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "BOR-203",
+          "summary": "Mobile layout of the payment step",
+          "hours": 2,
+          "logged_at": "2026-09-18T17:58:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-202",
+          "summary": "Coupon field on the last step",
+          "hours": 4,
+          "logged_at": "2026-09-18T17:59:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-201",
+          "summary": "Fix rounding in the daily totals",
+          "hours": 2.5,
+          "logged_at": "2026-09-18T17:36:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "BOR-207",
+          "summary": "Progress indicator for checkout",
+          "hours": 2.5,
+          "logged_at": "2026-09-17T17:47:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-202",
+          "summary": "Coupon field on the last step",
+          "hours": 4.5,
+          "logged_at": "2026-09-17T17:58:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-203",
+          "summary": "Mobile layout of the payment step",
+          "hours": 0.5,
+          "logged_at": "2026-09-17T17:22:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "BOR-201",
+          "summary": "Fix rounding in the daily totals",
+          "hours": 3,
+          "logged_at": "2026-09-16T17:37:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "BOR-202",
+          "summary": "Coupon field on the last step",
+          "hours": 5,
+          "logged_at": "2026-09-16T17:24:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    }
+  ]
+}

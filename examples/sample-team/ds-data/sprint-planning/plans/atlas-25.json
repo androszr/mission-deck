@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "id": "atlas-25",
+  "team": "atlas",
+  "sprintN": 25,
+  "dateFrom": "2026-08-26",
+  "dateTo": "2026-09-09",
+  "datesSource": "computed",
+  "createdAt": "2026-08-25T10:00:00.000Z",
+  "updatedAt": "2026-08-25T10:00:00.000Z",
+  "sections": {
+    "oncall": {
+      "done": true,
+      "dev": "Sam Rivera",
+      "devops": "Priya Raman",
+      "note": ""
+    },
+    "capacity": {
+      "done": true,
+      "peopleOverride": null,
+      "extraDaysOff": 0,
+      "events": [
+        {
+          "text": "Quarter review on the last day",
+          "id": "it-8065a728"
+        }
+      ],
+      "dependencies": []
+    },
+    "absences": {
+      "done": true,
+      "manual": [
+        {
+          "person": "Sam Rivera",
+          "dateFrom": "2026-08-30",
+          "dateTo": "2026-09-08",
+          "reason": "Holiday",
+          "id": "it-8f0d197c"
+        },
+        {
+          "person": "Priya Raman",
+          "dateFrom": "2026-09-05",
+          "dateTo": "2026-09-08",
+          "reason": "Holiday",
+          "id": "it-5dec2bf1"
+        }
+      ]
+    },
+    "velocity": {
+      "done": true,
+      "override": null,
+      "note": "Average of the last three sprints"
+    },
+    "refinements": {
+      "done": true,
+      "items": [
+        {
+          "key": "ATL-180",
+          "topic": "Edit quantities on an open order",
+          "note": "",
+          "id": "it-1ddc0a30"
+        },
+        {
+          "key": "ATL-181",
+          "topic": "Order history table with filters",
+          "note": "",
+          "id": "it-b6b2d107"
+        }
+      ],
+      "cross": [
+        {
+          "key": "ATL-190",
+          "teams": [
+            "atlas",
+            "borealis"
+          ],
+          "note": "Shared order summary component",
+          "id": "it-bea91d42"
+        }
+      ]
+    },
+    "goal": {
+      "done": true,
+      "goal": "Add reorder with one click"
+    },
+    "jira": {
+      "done": true
+    }
+  }
+}

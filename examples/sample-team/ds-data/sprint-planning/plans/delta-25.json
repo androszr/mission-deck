@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "id": "delta-25",
+  "team": "delta",
+  "sprintN": 25,
+  "dateFrom": "2026-08-26",
+  "dateTo": "2026-09-09",
+  "datesSource": "computed",
+  "createdAt": "2026-08-25T10:00:00.000Z",
+  "updatedAt": "2026-08-25T10:00:00.000Z",
+  "sections": {
+    "oncall": {
+      "done": true,
+      "dev": "Dmitri Volkov",
+      "devops": "Oscar Lindqvist",
+      "note": ""
+    },
+    "capacity": {
+      "done": true,
+      "peopleOverride": null,
+      "extraDaysOff": 0,
+      "events": [
+        {
+          "text": "Quarter review on the last day",
+          "id": "it-55b03d1f"
+        }
+      ],
+      "dependencies": [
+        {
+          "text": "Carrier test accounts from the vendor",
+          "id": "it-3082f9f3"
+        }
+      ]
+    },
+    "absences": {
+      "done": true,
+      "manual": [
+        {
+          "person": "Hannah Weiss",
+          "dateFrom": "2026-08-31",
+          "dateTo": "2026-09-05",
+          "reason": "Holiday",
+          "id": "it-c61d47d8"
+        },
+        {
+          "person": "Dmitri Volkov",
+          "dateFrom": "2026-08-27",
+          "dateTo": "2026-09-05",
+          "reason": "Holiday",
+          "id": "it-a40f7be2"
+        },
+        {
+          "person": "Oscar Lindqvist",
+          "dateFrom": "2026-08-26",
+          "dateTo": "2026-08-29",
+          "reason": "Holiday",
+          "id": "it-9107c312"
+        }
+      ]
+    },
+    "velocity": {
+      "done": true,
+      "override": null,
+      "note": "Average of the last three sprints"
+    },
+    "refinements": {
+      "done": true,
+      "items": [
+        {
+          "key": "DLT-180",
+          "topic": "Delivery status timeline",
+          "note": "",
+          "id": "it-5eb067a6"
+        },
+        {
+          "key": "DLT-181",
+          "topic": "Slot picker for delivery dates",
+          "note": "",
+          "id": "it-8b06f930"
+        }
+      ],
+      "cross": []
+    },
+    "goal": {
+      "done": true,
+      "goal": "Print delivery labels in the warehouse view"
+    },
+    "jira": {
+      "done": true
+    }
+  }
+}

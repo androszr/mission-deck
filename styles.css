@@ -4017,6 +4017,7 @@ tr.empty-cell-row .empty-mascot-img {
 .app-top-bar__active-badge,
 .app-top-bar__terminal,
 .app-top-bar__stash,
+.app-top-bar__sample,
 .app-top-bar__daycycle,
 .app-top-bar__sync,
 .app-top-bar__bw,
@@ -4033,6 +4034,15 @@ tr.empty-cell-row .empty-mascot-img {
    shouldShowStashPill leaves the container empty when git stash list is empty;
    :empty keeps the flex gap from reserving a margin for nothing. */
 .app-top-bar__stash:empty { display: none; }
+
+/* Sample mode: badge + "Leave sample mode". Empty -> zero width, like the stash pill. */
+.app-top-bar__sample:empty { display: none; }
+.app-top-bar__sample { gap: var(--space-8); }
+/* Nothing is synced in sample mode: the Sync and End of day controls would only be refused. */
+html[data-sample-mode="1"] .app-top-bar__sync,
+html[data-sample-mode="1"] .app-top-bar__daycycle { display: none; }
+.topbar-sample-badge { white-space: nowrap; }
+.topbar-sample-leave { white-space: nowrap; }
 .topbar-stash-btn { gap: var(--space-4); }
 .topbar-stash-btn .nav-icon { width: 16px; height: 16px; }
 
@@ -5794,6 +5804,19 @@ select.gtc-role-sel {
   width: 100%;
   min-height: 120px;
   resize: vertical;
+}
+
+/* "Try it with sample data" inside the first card. */
+.obw-sample {
+  margin-top: var(--space-16);
+  padding-top: var(--space-16);
+  border-top: 1px solid var(--body-tertiary-border);
+}
+.obw-sample[hidden] { display: none; }
+.obw-sample-title {
+  margin: 0 0 var(--space-8);
+  font-size: var(--text-base, var(--text-sm));
+  font-weight: var(--font-weight-medium);
 }
 
 .obw-step-actions {

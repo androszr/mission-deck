@@ -487,9 +487,61 @@ const DATA_TIER_0_DIR_NAME = 'ds-data';
 // does not hoist: a reader further down the file must never have to prove that
 // this line already ran.
 const DATA_TIER_0_CANONICAL_URL = 'https://gitlab.example.com/your-group/mission-deck-data.git';
+
+// -- Sample mode (boot half) ---------------------------------------------------
+// "Try it with sample data": the onboarding wizard (and the top-bar badge) can
+// point the team data at a COPY of examples/sample-team/ds-data, so a fresh
+// install shows believable modules without a data repository. The state is one
+// marker file, data/sample-mode.json, read ONCE here, before anything derives a
+// path from DATA_TIER_0_DIR - which is why entering and leaving need a restart.
+// The copy lives in data/sample-team/ds-data (gitignored with the rest of
+// data/); an explicit DATA_TIER_0_DIR in the environment always wins and turns
+// the mode off. In test mode the marker is honoured only when SAMPLE_DATA_DIR
+// is set, so no api suite can ever read a developer's real data/ folder.
+// The routes, the sync refusal and the static mapping are in `// -- Sample mode --`.
+const SAMPLE_DATA_DIR = process.env.SAMPLE_DATA_DIR
+  ? path.resolve(process.env.SAMPLE_DATA_DIR)
+  : path.join(ROOT, 'data');
+const SAMPLE_MODE_FILE = path.join(SAMPLE_DATA_DIR, 'sample-mode.json');
+const SAMPLE_COPY_ROOT = path.join(SAMPLE_DATA_DIR, 'sample-team');
+const SAMPLE_COPY_DS = path.join(SAMPLE_COPY_ROOT, 'ds-data');
+const SAMPLE_SOURCE_DS = path.join(ROOT, 'examples', 'sample-team', 'ds-data');
+
+/** The marker file's content, or null: absent, unreadable or not `active: true`. */
+function _sampleModeReadMarker() {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(SAMPLE_MODE_FILE, 'utf8'));
+    if (parsed && parsed.active === true) {
+      return { since: typeof parsed.since === 'string' ? parsed.since : null };
+    }
+  } catch { /* no marker: the normal state */ }
+  return null;
+}
+
+const SAMPLE_MODE_MARKER_AT_BOOT = (!IS_TEST_MODE || process.env.SAMPLE_DATA_DIR) ? _sampleModeReadMarker() : null;
+// Any explicit data location in the environment wins and turns the mode off;
+// captured BEFORE the mode sets DATA_SUB_REPOS_DIR itself below.
+const SAMPLE_MODE_ENV_BLOCKED = Boolean(
+  process.env.DATA_TIER_0_DIR || process.env.DATA_SUB_REPOS_DIR || process.env.DATA_TIER_0_GIT_DIR,
+);
+const SAMPLE_MODE_ACTIVE = Boolean(
+  SAMPLE_MODE_MARKER_AT_BOOT && !SAMPLE_MODE_ENV_BLOCKED && fs.existsSync(SAMPLE_COPY_DS),
+);
+const SAMPLE_MODE_SINCE = SAMPLE_MODE_ACTIVE ? SAMPLE_MODE_MARKER_AT_BOOT.since : null;
+// Modules read DATA_SUB_REPOS_DIR themselves (knowledge base, meeting archive,
+// responsibilities ...), so the mode sets it - unless the person already did.
+// _restartChildEnv() strips it again, otherwise "Leave sample mode" would
+// restart into the copy for good.
+const SAMPLE_MODE_OWNS_SUB_REPOS_ENV = SAMPLE_MODE_ACTIVE && !process.env.DATA_SUB_REPOS_DIR;
+if (SAMPLE_MODE_OWNS_SUB_REPOS_ENV) process.env.DATA_SUB_REPOS_DIR = SAMPLE_COPY_ROOT;
+if (SAMPLE_MODE_MARKER_AT_BOOT && !SAMPLE_MODE_ACTIVE) {
+  console.warn('[sample-mode] marker ignored: '
+    + (SAMPLE_MODE_ENV_BLOCKED ? 'DATA_TIER_0_DIR, DATA_SUB_REPOS_DIR or DATA_TIER_0_GIT_DIR is set in the environment' : 'the sample copy is missing'));
+}
+if (SAMPLE_MODE_ACTIVE) console.log('[sample-mode] active: team data is ' + SAMPLE_COPY_DS + ' (nothing is synced)');
 const DATA_TIER_0_DIR = process.env.DATA_TIER_0_DIR
   ? path.resolve(process.env.DATA_TIER_0_DIR)
-  : path.join(ROOT, 'data-sub-repositories', DATA_TIER_0_DIR_NAME);
+  : (SAMPLE_MODE_ACTIVE ? SAMPLE_COPY_DS : path.join(ROOT, 'data-sub-repositories', DATA_TIER_0_DIR_NAME));
 const DATA_TIER_0_URL_PATH = '/data-sub-repositories/' + DATA_TIER_0_DIR_NAME + '/';
 
 // Two directories, two jobs. DATA_TIER_0_DIR above is PLAINTEXT: it is what the
@@ -3169,6 +3221,9 @@ function _restartChildEnv(baseEnv) {
   // output, and an inherited session with no `_bwSession` record is the state
   // lie in the other direction. It travels in the handoff payload instead.
   delete out.BW_SESSION;
+  // Set by sample mode itself (see `// -- Sample mode (boot half)`); the child
+  // decides again from the marker file.
+  if (SAMPLE_MODE_OWNS_SUB_REPOS_ENV) delete out.DATA_SUB_REPOS_DIR;
   return out;
 }
 
@@ -6379,6 +6434,38 @@ function serveStatic(req, res) {
     }
   }
 
+  // Sample mode: the team data URL space is served from the sample copy, not
+  // from <repo>/data-sub-repositories (the browser reads ds-data over HTTP).
+  // The prefix test ignores case: on a case-insensitive disk `/DS-Data/` would
+  // otherwise miss this branch and serve the real folder from ROOT.
+  if (SAMPLE_MODE_ACTIVE && normalized.toLowerCase().startsWith(DATA_TIER_0_URL_PATH.toLowerCase())) {
+    if (!normalized.startsWith(DATA_TIER_0_URL_PATH)) {
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('Not found');
+      return;
+    }
+    const sampleFile = path.resolve(path.join(DATA_TIER_0_DIR, normalized.slice(DATA_TIER_0_URL_PATH.length)));
+    // A missing file has no realpath: resolve its nearest existing parent and
+    // re-append the rest, so a symlinked SAMPLE_DATA_DIR (macOS /var) still
+    // compares like for like and the stub or 404 follows instead of a 403.
+    let realFile = sampleFile;
+    let tail = '';
+    for (let probe = sampleFile; ; probe = path.dirname(probe)) {
+      try { realFile = path.join(fs.realpathSync(probe), tail); break; } catch { /* keep climbing */ }
+      if (path.dirname(probe) === probe) break;
+      tail = path.join(path.basename(probe), tail);
+    }
+    let realRoot = DATA_TIER_0_DIR;
+    try { realRoot = fs.realpathSync(DATA_TIER_0_DIR); } catch { /* keep the plain path */ }
+    if (!sampleFile.startsWith(DATA_TIER_0_DIR + path.sep) || !(realFile === realRoot || realFile.startsWith(realRoot + path.sep))) {
+      res.writeHead(403, { 'Content-Type': 'text/plain' });
+      res.end('Forbidden');
+      return;
+    }
+    _serveResolvedFile(req, res, sampleFile, urlPath);
+    return;
+  }
+
   const filePath = path.resolve(path.join(ROOT, normalized));
   // Path traversal guard — reject any resolved path outside ROOT.
   if (!filePath.startsWith(ROOT + path.sep) && filePath !== ROOT) {
@@ -8045,6 +8132,7 @@ async function handleDataTier0Status(_req, res) {
 let _dataTier0CheckUpdateCache = null;
 
 async function handleDataTier0CheckUpdate(_req, res) {
+  if (SAMPLE_MODE_ACTIVE) return jsonResponse(res, 200, { ok: true, hasUpdate: false, sampleMode: true });
   if (!dataTier0Exists()) return jsonResponse(res, 200, { ok: false, error: 'not-configured' });
   if (!DATA_TIER_0_TOKEN) return jsonResponse(res, 200, { ok: false, error: 'no-token' });
   if (_dataTier0CheckUpdateCache && Date.now() < _dataTier0CheckUpdateCache.expiresAt) {
@@ -9063,6 +9151,9 @@ async function _dataTier0Clone(log = () => {}) {
 
 // Startup / post-Bitwarden-unlock auto-clone. Silent when nothing to do.
 async function _autoCloneDataTier0(label = '[auto-clone]') {
+  // Sample mode has no clone and must never create one: the clone would pull
+  // the REAL team repository into the sample copy.
+  if (SAMPLE_MODE_ACTIVE) return { skipped: 'sample-mode' };
   if (dataTier0Exists()) return { skipped: 'already-cloned' };
   if (!DATA_TIER_0_TOKEN || !dataTier0RemoteUrl()) return { skipped: 'no-token-or-url' };
   const r = await withDataTierLock(() => _dataTier0Clone());
@@ -10197,6 +10288,7 @@ function _afterRemoteRefreshSuccess(d) {
  * @returns {Promise<{repo: string, ok: boolean, error?: string, skipped?: string}>}
  */
 async function _repoRefreshRemote(d) {
+  if (SAMPLE_MODE_ACTIVE && d.id === 'data-tier-0') return { repo: d.id, ok: true, skipped: 'sample-mode' };
   const fileLock = await _acquireRepoFileLock(d.dir, { maxWaitMs: 0 });
   if (!fileLock.ok) return { repo: d.id, ok: false, skipped: 'locked' };
   try {
@@ -17590,6 +17682,8 @@ function _cocreateReadSync() {
  * @returns {Promise<{state: string, reason?: string, message?: string}>}
  */
 async function _cocreatePushDataFile(relPath, absPath, removed, message) {
+  // A publish that cannot happen is a sync state, never a failed step.
+  if (SAMPLE_MODE_ACTIVE) return { state: 'skipped', reason: 'sample-mode' };
   if (IS_TEST_MODE) return { state: 'skipped', reason: 'test-mode' };
   if (!dataTier0Exists()) return { state: 'skipped', reason: 'repo-missing' };
   if (!DATA_TIER_0_TOKEN) return { state: 'skipped', reason: 'no-token' };
@@ -23181,6 +23275,175 @@ async function handleDashboardLayoutPut(req, res) {
   return jsonResponse(res, 200, { ok: true, layout: { ...layout, items } });
 }
 
+// -- Sample mode --------------------------------------------------------------
+// GET  /api/sample-mode          -> { active, since, available, restartRequired }
+// POST /api/sample-mode/enter    -> copies examples/sample-team/ds-data into
+//                                   data/sample-team/ds-data, installs the catalog
+//                                   modules that are not installed yet, writes the
+//                                   marker LAST. Takes effect after a restart.
+// POST /api/sample-mode/leave    -> removes the marker and the copy. Same restart.
+// While the mode is active every data-tier-0 sync operation answers 409
+// `sample-mode` (_sampleModeRefusesSync, called by the router before any
+// dispatch): nothing reaches git or a remote. `status` and `check-update` stay
+// open - they only read. The boot half (marker, paths) is near DATA_TIER_0_DIR.
+// Detail: docs/architecture/sample-mode.md.
+
+const withSampleModeLock = _makeChainLock();
+
+/** True when the request is a data-tier-0 sync operation that must not run in sample mode. */
+function _sampleModeRefusesSync(method, urlPath) {
+  if (!SAMPLE_MODE_ACTIVE) return false;
+  let op = null;
+  const legacy = /^\/api\/data-tier-0\/([^/]+)$/.exec(urlPath);
+  if (legacy) {
+    op = legacy[1];
+  } else {
+    const parsed = _parseDataRepoPath(urlPath);
+    if (parsed && parsed.repoId === 'data-tier-0') op = parsed.op;
+  }
+  if (op !== null && op !== 'status' && op !== 'check-update') return true;
+  // Publishing a prototype pushes to a remote with the deploy token.
+  return method === 'GET' && urlPath === '/api/prototypes/deploy-stream';
+}
+
+function _sampleModeRefusal(res) {
+  jsonResponse(res, 409, {
+    error: 'sample-mode',
+    message: 'Sample data is on - nothing is synced. Leave sample mode to sync your real team data.',
+  });
+}
+
+/**
+ * The catalog modules of the LOCAL catalog folder as [{ id, area }] (null for a
+ * hosted catalog). The area is the curated one of catalog.json: a manifest that
+ * names none is installed under it, exactly as the Modules tab does.
+ */
+function _sampleModeCatalogModules() {
+  if (!_modulesCatalogIsLocal()) return null;
+  const root = modulesCatalogDir();
+  const dir = path.join(root, 'modules');
+  let names;
+  try { names = fs.readdirSync(dir); } catch { return []; }
+  let curated = [];
+  try {
+    const parsed = JSON.parse(fs.readFileSync(path.join(root, 'catalog.json'), 'utf8'));
+    curated = Array.isArray(parsed && parsed.modules) ? parsed.modules : [];
+  } catch { /* an uncurated folder is still a catalog */ }
+  return names
+    .filter((n) => MODULE_ID_RE.test(n) && fs.existsSync(path.join(dir, n, 'module.json')))
+    .sort()
+    .map((id) => {
+      const entry = curated.find((c) => c && c.id === id);
+      return { id, area: entry && typeof entry.area === 'string' ? entry.area : undefined };
+    });
+}
+
+/** In the test suites the mode may only touch a throwaway folder (SAMPLE_DATA_DIR). */
+function _sampleModeWritesAllowed(res) {
+  if (IS_TEST_MODE && !process.env.SAMPLE_DATA_DIR) {
+    jsonResponse(res, 409, { error: 'test-mode', message: 'Sample mode is not changed in test mode.' });
+    return false;
+  }
+  return true;
+}
+
+function handleSampleModeStatus(_req, res) {
+  const markerNow = _sampleModeReadMarker();
+  // What the NEXT boot will do: marker present, no explicit data dir, copy there.
+  const willBeActive = Boolean(markerNow && !SAMPLE_MODE_ENV_BLOCKED && fs.existsSync(SAMPLE_COPY_DS));
+  jsonResponse(res, 200, {
+    active: SAMPLE_MODE_ACTIVE,
+    since: SAMPLE_MODE_SINCE,
+    available: fs.existsSync(SAMPLE_SOURCE_DS),
+    restartRequired: willBeActive !== SAMPLE_MODE_ACTIVE,
+    blockedByEnv: SAMPLE_MODE_ENV_BLOCKED,
+  });
+}
+
+async function handleSampleModeEnter(req, res) {
+  if (!checkOrigin(req, res)) return;
+  if (!_sampleModeWritesAllowed(res)) return;
+  if (SAMPLE_MODE_ENV_BLOCKED) {
+    return jsonResponse(res, 409, {
+      error: 'explicit-data-dir',
+      message: 'A data folder (DATA_TIER_0_DIR, DATA_SUB_REPOS_DIR or DATA_TIER_0_GIT_DIR) is set for this app, so it always uses that. Remove it to try the sample data.',
+    });
+  }
+  if (SAMPLE_MODE_ACTIVE) {
+    return jsonResponse(res, 409, { error: 'already-active', message: 'Sample mode is already on.' });
+  }
+  return withSampleModeLock(async () => {
+    if (!fs.existsSync(SAMPLE_SOURCE_DS)) {
+      return jsonResponse(res, 500, { error: 'sample-missing', message: 'The sample data is missing from this copy of Mission Deck (examples/sample-team).' });
+    }
+    // Copy beside the target, then swap: a failed copy never leaves a half
+    // tree where a boot would look for the copy.
+    const stage = SAMPLE_COPY_ROOT + '.tmp-' + process.pid;
+    try {
+      fs.rmSync(stage, { recursive: true, force: true });
+      fs.mkdirSync(stage, { recursive: true });
+      fs.cpSync(SAMPLE_SOURCE_DS, path.join(stage, 'ds-data'), { recursive: true });
+      fs.rmSync(SAMPLE_COPY_ROOT, { recursive: true, force: true });
+      fs.renameSync(stage, SAMPLE_COPY_ROOT);
+    } catch (e) {
+      try { fs.rmSync(stage, { recursive: true, force: true }); } catch { /* best effort */ }
+      return jsonResponse(res, 500, { error: 'copy-failed', message: 'Could not copy the sample data: ' + e.message });
+    }
+
+    // Every catalog module the sample data has something to show for. A module
+    // that cannot be installed is reported, it never stops the mode.
+    const installed = [];
+    const failed = [];
+    const catalogModules = _sampleModeCatalogModules();
+    if (catalogModules) {
+      for (const { id, area } of catalogModules) {
+        if (fs.existsSync(path.join(MODULES_DIR, id))) continue;
+        try {
+          const r = await fetch('http://127.0.0.1:' + PORT + '/api/modules/install', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(area ? { id, area } : { id }),
+            signal: AbortSignal.timeout(60000),
+          });
+          const body = await r.json().catch(() => ({}));
+          if (r.ok && body && body.ok !== false) installed.push(id);
+          else failed.push({ id, error: (body && body.error) || ('http-' + r.status) });
+        } catch (e) {
+          failed.push({ id, error: e.name === 'TimeoutError' ? 'timeout' : 'request-failed' });
+        }
+      }
+    }
+
+    const since = new Date().toISOString();
+    try {
+      fs.mkdirSync(path.dirname(SAMPLE_MODE_FILE), { recursive: true });
+      const tmp = SAMPLE_MODE_FILE + '.tmp-' + process.pid;
+      fs.writeFileSync(tmp, JSON.stringify({ active: true, since }, null, 2) + '\n', 'utf8');
+      fs.renameSync(tmp, SAMPLE_MODE_FILE);
+    } catch (e) {
+      return jsonResponse(res, 500, { error: 'marker-failed', message: 'Could not save the sample mode state: ' + e.message });
+    }
+    return jsonResponse(res, 200, {
+      status: 'entered', since, restartRequired: true, installed, failed, catalog: catalogModules ? 'local' : 'hosted',
+    });
+  });
+}
+
+async function handleSampleModeLeave(req, res) {
+  if (!checkOrigin(req, res)) return;
+  if (!_sampleModeWritesAllowed(res)) return;
+  return withSampleModeLock(async () => {
+    try {
+      fs.rmSync(SAMPLE_MODE_FILE, { force: true });
+      // Only ever the folder this mode created, never a path built from input.
+      if (path.basename(SAMPLE_COPY_ROOT) === 'sample-team') fs.rmSync(SAMPLE_COPY_ROOT, { recursive: true, force: true });
+    } catch (e) {
+      return jsonResponse(res, 500, { error: 'leave-failed', message: 'Could not leave sample mode: ' + e.message });
+    }
+    return jsonResponse(res, 200, { status: 'left', restartRequired: true });
+  });
+}
+
 // ── Route dispatch ──────────────────────────────────────────────────────────
 
 const server = http.createServer((req, res) => {
@@ -23189,6 +23452,9 @@ const server = http.createServer((req, res) => {
   const method = req.method;
 
   if (urlPath.startsWith('/api/') && !checkRateLimit(req, res)) return;
+
+  // Sample mode: no data-tier-0 sync operation runs (see `// -- Sample mode --`).
+  if (_sampleModeRefusesSync(method, urlPath)) { _sampleModeRefusal(res); return; }
 
   // Settings / system --------------------------------------------------------
   if (method === 'GET' && urlPath === '/api/settings/env') {
@@ -23207,6 +23473,12 @@ const server = http.createServer((req, res) => {
     dispatch(handleSettingsEncryptionKeyGenerate, req, res);
   } else if (method === 'POST' && urlPath === '/api/settings/encryption-key/export') {
     dispatch(handleSettingsEncryptionKeyExport, req, res);
+  } else if (method === 'GET' && urlPath === '/api/sample-mode') {
+    handleSampleModeStatus(req, res);
+  } else if (method === 'POST' && urlPath === '/api/sample-mode/enter') {
+    dispatch(handleSampleModeEnter, req, res);
+  } else if (method === 'POST' && urlPath === '/api/sample-mode/leave') {
+    dispatch(handleSampleModeLeave, req, res);
   } else if (method === 'POST' && urlPath === '/api/settings/restart') {
     dispatch(handleSettingsRestart, req, res);
   } else if (method === 'POST' && urlPath === '/api/settings/shutdown') {

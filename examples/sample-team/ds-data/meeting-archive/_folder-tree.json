@@ -1,0 +1,22 @@
+{
+  "folders": [
+    {
+      "id": "reviews",
+      "name": "Reviews",
+      "parent_id": null,
+      "order": 1
+    },
+    {
+      "id": "planning",
+      "name": "Planning",
+      "parent_id": null,
+      "order": 2
+    },
+    {
+      "id": "retros",
+      "name": "Retrospectives",
+      "parent_id": null,
+      "order": 3
+    }
+  ]
+}

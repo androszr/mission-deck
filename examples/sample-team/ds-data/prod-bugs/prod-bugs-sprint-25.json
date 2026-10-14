@@ -1,0 +1,364 @@
+{
+  "sprint": 25,
+  "sprintName": "Sprint 25",
+  "dateRange": {
+    "startDate": "2026-08-26",
+    "endDate": "2026-09-08"
+  },
+  "dateRangeDisplay": "26.08-08.09",
+  "fetchedAt": "2026-09-30T08:00:00",
+  "areas": {
+    "orders": {
+      "bugs": 7,
+      "bugFixTime": 44,
+      "resolvedCount": 4,
+      "createdCount": 3,
+      "openBugs": [
+        {
+          "key": "ATL-4035",
+          "summary": "Duplicate confirmation email after a quick double click (2)",
+          "status": "Open",
+          "priority": "Medium",
+          "created": "2026-08-08"
+        },
+        {
+          "key": "ATL-4044",
+          "summary": "Wrong currency symbol on the order PDF (2)",
+          "status": "Blocked",
+          "priority": "High",
+          "created": "2026-08-19"
+        },
+        {
+          "key": "ATL-4045",
+          "summary": "Edit dialog opens twice on slow connections (2)",
+          "status": "New",
+          "priority": "Low",
+          "created": "2026-08-15"
+        },
+        {
+          "key": "ATL-4046",
+          "summary": "Bulk import skips the last row of a file (2)",
+          "status": "Open",
+          "priority": "Low",
+          "created": "2026-08-14"
+        },
+        {
+          "key": "ATL-4061",
+          "summary": "Reorder button disabled for archived products (2)",
+          "status": "New",
+          "priority": "Medium",
+          "created": "2026-09-01"
+        },
+        {
+          "key": "ATL-4062",
+          "summary": "Cancelled order still appears in the open list (2)",
+          "status": "In Progress",
+          "priority": "Critical",
+          "created": "2026-09-03"
+        },
+        {
+          "key": "ATL-4063",
+          "summary": "Order note disappears when the page is reloaded (2)",
+          "status": "Open",
+          "priority": "Medium",
+          "created": "2026-09-08"
+        }
+      ],
+      "resolvedBugs": [
+        {
+          "key": "ATL-4003",
+          "summary": "Order total shows the old price after an edit",
+          "status": "Done",
+          "priority": "Medium",
+          "created": "2026-07-02",
+          "resolved": "2026-09-06",
+          "fixDays": 66
+        },
+        {
+          "key": "ATL-4028",
+          "summary": "Reorder button disabled for archived products",
+          "status": "Done",
+          "priority": "Low",
+          "created": "2026-07-27",
+          "resolved": "2026-08-29",
+          "fixDays": 33
+        },
+        {
+          "key": "ATL-4005",
+          "summary": "Wrong currency symbol on the order PDF",
+          "status": "Done",
+          "priority": "Low",
+          "created": "2026-07-04",
+          "resolved": "2026-09-02",
+          "fixDays": 60
+        },
+        {
+          "key": "ATL-4041",
+          "summary": "Order history filter forgets the date range (2)",
+          "status": "Done",
+          "priority": "Critical",
+          "created": "2026-08-16",
+          "resolved": "2026-09-02",
+          "fixDays": 17
+        }
+      ]
+    },
+    "otherModules": {
+      "bugs": 10,
+      "bugFixTime": 21,
+      "resolvedCount": 6,
+      "createdCount": 4,
+      "openBugs": [
+        {
+          "key": "CMT-4030",
+          "summary": "Carrier name missing in the tracking email",
+          "status": "Open",
+          "priority": "Critical",
+          "created": "2026-07-19"
+        },
+        {
+          "key": "CMT-4036",
+          "summary": "Stock badge shows zero for large packs",
+          "status": "Open",
+          "priority": "Medium",
+          "created": "2026-08-09"
+        },
+        {
+          "key": "CMT-4049",
+          "summary": "Typo tolerance returns unrelated products (2)",
+          "status": "New",
+          "priority": "Medium",
+          "created": "2026-08-21"
+        },
+        {
+          "key": "CMT-4051",
+          "summary": "Partial delivery marked as complete (2)",
+          "status": "Open",
+          "priority": "Medium",
+          "created": "2026-08-23"
+        },
+        {
+          "key": "CMT-4052",
+          "summary": "Price shown without tax for one account type (2)",
+          "status": "In Progress",
+          "priority": "Critical",
+          "created": "2026-08-19"
+        },
+        {
+          "key": "CMT-4054",
+          "summary": "Carrier name missing in the tracking email (2)",
+          "status": "Open",
+          "priority": "Low",
+          "created": "2026-08-13"
+        },
+        {
+          "key": "CMT-4064",
+          "summary": "Delivery slot shows the wrong weekday (2)",
+          "status": "New",
+          "priority": "Critical",
+          "created": "2026-08-29"
+        },
+        {
+          "key": "CMT-4065",
+          "summary": "Stock badge shows zero for large packs (2)",
+          "status": "New",
+          "priority": "High",
+          "created": "2026-08-28"
+        },
+        {
+          "key": "CMT-4066",
+          "summary": "Variant picker resets after adding to the order (3)",
+          "status": "Open",
+          "priority": "Medium",
+          "created": "2026-08-27"
+        },
+        {
+          "key": "CMT-4067",
+          "summary": "Search ignores the exact product code on the second page (3)",
+          "status": "New",
+          "priority": "Medium",
+          "created": "2026-09-04"
+        }
+      ],
+      "resolvedBugs": [
+        {
+          "key": "CMT-4047",
+          "summary": "Imported image is shown rotated (2)",
+          "status": "Done",
+          "priority": "Medium",
+          "created": "2026-08-20",
+          "resolved": "2026-08-28",
+          "fixDays": 8
+        },
+        {
+          "key": "CMT-4038",
+          "summary": "Search ignores the exact product code on the second page (2)",
+          "status": "Done",
+          "priority": "Medium",
+          "created": "2026-07-29",
+          "resolved": "2026-08-27",
+          "fixDays": 29
+        },
+        {
+          "key": "CMT-4037",
+          "summary": "Variant picker resets after adding to the order (2)",
+          "status": "Done",
+          "priority": "High",
+          "created": "2026-08-03",
+          "resolved": "2026-09-04",
+          "fixDays": 32
+        },
+        {
+          "key": "CMT-4048",
+          "summary": "Label print preview is blank in one browser (2)",
+          "status": "Done",
+          "priority": "High",
+          "created": "2026-08-18",
+          "resolved": "2026-09-02",
+          "fixDays": 15
+        },
+        {
+          "key": "CMT-4050",
+          "summary": "Category tree collapses after saving (2)",
+          "status": "Done",
+          "priority": "Medium",
+          "created": "2026-08-12",
+          "resolved": "2026-09-06",
+          "fixDays": 25
+        },
+        {
+          "key": "CMT-4053",
+          "summary": "Synonym list ignores capital letters (2)",
+          "status": "Done",
+          "priority": "Medium",
+          "created": "2026-08-20",
+          "resolved": "2026-09-08",
+          "fixDays": 19
+        }
+      ]
+    },
+    "platform": {
+      "bugs": 11,
+      "bugFixTime": 42,
+      "resolvedCount": 4,
+      "createdCount": 3,
+      "openBugs": [
+        {
+          "key": "FAL-4017",
+          "summary": "Webhook retried more often than configured",
+          "status": "Open",
+          "priority": "Critical",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "FAL-4021",
+          "summary": "Duplicate webhook after a manual retry",
+          "status": "In Progress",
+          "priority": "Medium",
+          "created": "2026-07-04"
+        },
+        {
+          "key": "FAL-4040",
+          "summary": "Pagination cursor repeats the last item (2)",
+          "status": "Open",
+          "priority": "Medium",
+          "created": "2026-07-29"
+        },
+        {
+          "key": "FAL-4056",
+          "summary": "Webhook retried more often than configured (2)",
+          "status": "New",
+          "priority": "Medium",
+          "created": "2026-08-20"
+        },
+        {
+          "key": "FAL-4057",
+          "summary": "API returns 500 for an empty filter list (2)",
+          "status": "Open",
+          "priority": "Critical",
+          "created": "2026-08-13"
+        },
+        {
+          "key": "FAL-4058",
+          "summary": "Rate limit header missing on error responses (2)",
+          "status": "In Progress",
+          "priority": "Low",
+          "created": "2026-08-25"
+        },
+        {
+          "key": "FAL-4059",
+          "summary": "Gateway health check reports healthy during a restart (2)",
+          "status": "Blocked",
+          "priority": "High",
+          "created": "2026-08-25"
+        },
+        {
+          "key": "FAL-4060",
+          "summary": "Duplicate webhook after a manual retry (2)",
+          "status": "Open",
+          "priority": "High",
+          "created": "2026-08-14"
+        },
+        {
+          "key": "FAL-4068",
+          "summary": "Slow query on the audit log search (2)",
+          "status": "In Progress",
+          "priority": "Medium",
+          "created": "2026-08-26"
+        },
+        {
+          "key": "FAL-4069",
+          "summary": "Wrong content type on the error page (2)",
+          "status": "New",
+          "priority": "Critical",
+          "created": "2026-08-30"
+        },
+        {
+          "key": "FAL-4070",
+          "summary": "Queue worker stops after a long job (2)",
+          "status": "Open",
+          "priority": "High",
+          "created": "2026-09-03"
+        }
+      ],
+      "resolvedBugs": [
+        {
+          "key": "FAL-4033",
+          "summary": "Sandbox keys expire after one day instead of seven (2)",
+          "status": "Done",
+          "priority": "High",
+          "created": "2026-07-15",
+          "resolved": "2026-09-05",
+          "fixDays": 52
+        },
+        {
+          "key": "FAL-4039",
+          "summary": "Audit log entry missing for key rotation (2)",
+          "status": "Done",
+          "priority": "Medium",
+          "created": "2026-08-03",
+          "resolved": "2026-09-08",
+          "fixDays": 36
+        },
+        {
+          "key": "FAL-4018",
+          "summary": "API returns 500 for an empty filter list",
+          "status": "Done",
+          "priority": "Medium",
+          "created": "2026-07-02",
+          "resolved": "2026-09-05",
+          "fixDays": 65
+        },
+        {
+          "key": "FAL-4055",
+          "summary": "Token refresh fails near midnight UTC (2)",
+          "status": "Done",
+          "priority": "Low",
+          "created": "2026-08-24",
+          "resolved": "2026-09-07",
+          "fixDays": 14
+        }
+      ]
+    }
+  }
+}

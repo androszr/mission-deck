@@ -1,0 +1,28 @@
+{
+  "segments": [
+    {
+      "speaker_id": "Sam Rivera",
+      "start": 5,
+      "end": 25,
+      "text": "With two people on holiday I would commit to thirty points, not thirty-four."
+    },
+    {
+      "speaker_id": "Jordan Lee",
+      "start": 68,
+      "end": 88,
+      "text": "Checkout has the release on day one. I want a freeze on risky changes until it is out."
+    },
+    {
+      "speaker_id": "Taylor Kim",
+      "start": 129,
+      "end": 149,
+      "text": "Comet is fine with that. We will use the first days to fix import errors."
+    },
+    {
+      "speaker_id": "Dmitri Volkov",
+      "start": 185,
+      "end": 205,
+      "text": "Delta can take the carrier connector as the main goal, it does not touch the release."
+    }
+  ]
+}

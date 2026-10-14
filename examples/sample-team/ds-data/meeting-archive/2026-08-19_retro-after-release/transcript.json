@@ -1,0 +1,34 @@
+{
+  "segments": [
+    {
+      "speaker_id": "Elena Rossi",
+      "start": 5,
+      "end": 25,
+      "text": "The rounding bug cost us two days of support time. Let us start with what we saw first."
+    },
+    {
+      "speaker_id": "Tomas Novak",
+      "start": 39,
+      "end": 59,
+      "text": "Our regression suite had no case with a price like nine ninety-nine times three."
+    },
+    {
+      "speaker_id": "Kofi Mensah",
+      "start": 109,
+      "end": 129,
+      "text": "I can add a set of awkward prices to the shared test data today."
+    },
+    {
+      "speaker_id": "Jordan Lee",
+      "start": 136,
+      "end": 156,
+      "text": "And a rule: any change to totals needs a second pair of eyes before the release."
+    },
+    {
+      "speaker_id": "Nadia Petrova",
+      "start": 188,
+      "end": 208,
+      "text": "Support asked for a banner when a known issue is open. That would have saved many tickets."
+    }
+  ]
+}

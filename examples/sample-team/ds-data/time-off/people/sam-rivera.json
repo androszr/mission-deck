@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "dateFrom": "2026-07-28",
+      "dateTo": "2026-07-28",
+      "submittedAt": "2026-07-06T08:12:00",
+      "submittedBy": "sam.rivera@northwind.example"
+    },
+    {
+      "dateFrom": "2026-08-30",
+      "dateTo": "2026-09-10",
+      "submittedAt": "2026-08-03T13:05:00",
+      "submittedBy": "sam.rivera@northwind.example"
+    }
+  ],
+  "name": "Sam Rivera",
+  "slug": "sam-rivera"
+}

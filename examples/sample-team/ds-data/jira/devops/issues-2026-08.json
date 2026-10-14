@@ -1,0 +1,301 @@
+{
+  "month": "2026-08",
+  "issues": [
+    {
+      "key": "DEVOPS-110",
+      "summary": "Upgrade the base container image",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-08-05T09:00:00.000Z",
+      "started_at": "2026-08-07T10:00:00.000Z",
+      "done_at": "2026-08-14T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Ingrid Solberg",
+      "time_spent_s": 64800,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-08-05T09:00:00.000Z",
+          "to": "2026-08-07T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-08-07T10:00:00.000Z",
+          "to": "2026-08-13T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-08-13T14:00:00.000Z",
+          "to": "2026-08-14T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-08-14T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-111",
+      "summary": "Pin the dependency versions",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-08-06T09:40:00.000Z",
+      "started_at": "2026-08-08T10:00:00.000Z",
+      "done_at": "2026-08-10T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Felix Moreau",
+      "time_spent_s": 10800,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-08-06T09:40:00.000Z",
+          "to": "2026-08-08T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-08-08T10:00:00.000Z",
+          "to": "2026-08-09T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-08-09T14:00:00.000Z",
+          "to": "2026-08-10T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-08-10T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-112",
+      "summary": "Automate the preview environments",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-08-12T09:32:00.000Z",
+      "started_at": "2026-08-14T10:00:00.000Z",
+      "done_at": "2026-08-22T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Samir Haddad",
+      "time_spent_s": 64800,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-08-12T09:32:00.000Z",
+          "to": "2026-08-14T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-08-14T10:00:00.000Z",
+          "to": "2026-08-20T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-08-20T14:00:00.000Z",
+          "to": "2026-08-22T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-08-22T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-113",
+      "summary": "Document the rollback procedure",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-08-14T09:12:00.000Z",
+      "started_at": "2026-08-14T10:00:00.000Z",
+      "done_at": "2026-08-19T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Jordan Lee",
+      "time_spent_s": 43200,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-08-14T09:12:00.000Z",
+          "to": "2026-08-14T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-08-14T10:00:00.000Z",
+          "to": "2026-08-18T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-08-18T14:00:00.000Z",
+          "to": "2026-08-19T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-08-19T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-114",
+      "summary": "Alert on failed background jobs",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-08-18T09:57:00.000Z",
+      "started_at": "2026-08-19T10:00:00.000Z",
+      "done_at": "2026-08-21T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Rafael Costa",
+      "time_spent_s": 10800,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-08-18T09:57:00.000Z",
+          "to": "2026-08-19T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-08-19T10:00:00.000Z",
+          "to": "2026-08-20T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-08-20T14:00:00.000Z",
+          "to": "2026-08-21T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-08-21T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-115",
+      "summary": "Dashboard for deploy frequency",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-08-26T09:25:00.000Z",
+      "started_at": "2026-08-28T10:00:00.000Z",
+      "done_at": "2026-09-04T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Nadia Petrova",
+      "time_spent_s": 54000,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-08-26T09:25:00.000Z",
+          "to": "2026-08-28T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-08-28T10:00:00.000Z",
+          "to": "2026-09-02T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-09-02T14:00:00.000Z",
+          "to": "2026-09-04T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-09-04T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-116",
+      "summary": "Move the staging database to the new instance",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-08-27T09:12:00.000Z",
+      "started_at": "2026-08-28T10:00:00.000Z",
+      "done_at": "2026-08-30T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Taylor Kim",
+      "time_spent_s": 21600,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-08-27T09:12:00.000Z",
+          "to": "2026-08-28T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-08-28T10:00:00.000Z",
+          "to": "2026-08-30T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-08-30T14:00:00.000Z",
+          "to": "2026-08-30T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-08-30T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-117",
+      "summary": "Reduce the build cache size",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-08-28T09:37:00.000Z",
+      "started_at": "2026-08-29T10:00:00.000Z",
+      "done_at": "2026-09-03T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Samir Haddad",
+      "time_spent_s": 32400,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-08-28T09:37:00.000Z",
+          "to": "2026-08-29T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-08-29T10:00:00.000Z",
+          "to": "2026-09-01T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-09-01T14:00:00.000Z",
+          "to": "2026-09-03T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-09-03T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "key": "warehouse",
+  "label": "Warehouse",
+  "total": 96,
+  "active_total": 83,
+  "automated": 32,
+  "coverage_pct": 38.55,
+  "statuses": {
+    "Automated": 32,
+    "Test": 8,
+    "Open": 13,
+    "In Progress": 9,
+    "New": 7,
+    "Blocked": 14,
+    "Closed": 13,
+    "Cancelled": 0
+  },
+  "tests": [],
+  "runs_7d": 25,
+  "executions_7d": 200,
+  "last_run_at": "2026-09-29T05:30:00.000+0200",
+  "last_run_key": "QA-RUN-3007",
+  "manual_effort_min_total": 0,
+  "auto_exec_min_total": 0,
+  "savings_min_total": 0
+}

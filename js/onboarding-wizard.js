@@ -7,6 +7,8 @@
 //
 // Steps, and why each one is here rather than in the source cockpit's four:
 //   1 Environment   - /api/tools/status. Mission Deck only; the source has no probe.
+//                     Also carries "Try it with sample data" (js/sample-mode.js):
+//                     a fictional team for a first look, no team data needed.
 //   2 Bitwarden     - ported; the vault is where every token lives.
 //   3 App access    - /api/gitlab-tokens/*. Mission Deck only; tokens never sit in .env.
 //                     The APP token alone - the data-repo token lives in step 5.
@@ -37,6 +39,8 @@ import { confirmDsModal } from './ds-modal.js';
 import { showToast } from './toast.js';
 import { onInfraChanged } from './infra-events.js';
 import { getInfraNetwork } from './infra-banner.js';
+import { fetchSampleModeStatus, sampleEnterState, SAMPLE_ENTER_LABEL, SAMPLE_LEAVE_LABEL, SAMPLE_RESTART_LABEL } from './sample-mode-helpers.mjs';
+import { enterSampleMode, leaveSampleMode, restartSampleMode } from './sample-mode.js';
 
 const VIEW_ID = 'onboarding-wizard';
 
@@ -209,6 +213,36 @@ function _wireStep1(root) {
       else window.location.hash = '#settings/tools';
     });
   }
+}
+
+// ── Step 1b — sample data ────────────────────────────────────────────────────
+// Lives in the first card: the first thing a newcomer without team data meets.
+// GET /api/sample-mode decides the wording (js/sample-mode-helpers.mjs); the
+// button either starts the mode or, while it is on, leaves it.
+
+function _paintSample(root, status) {
+  const block = root.querySelector('#obw-sample');
+  if (!block) return;
+  const st = sampleEnterState(status);
+  block.hidden = st.mode === 'unavailable';
+  const hint = block.querySelector('#obw-sample-hint');
+  if (hint) hint.textContent = st.hint;
+  const btn = block.querySelector('#obw-sample-btn');
+  if (!btn) return;
+  btn.hidden = !(st.mode === 'enter' || st.mode === 'active' || st.mode === 'restart');
+  btn.dataset.mode = st.mode;
+  btn.textContent = st.mode === 'active' ? SAMPLE_LEAVE_LABEL : st.mode === 'restart' ? SAMPLE_RESTART_LABEL : SAMPLE_ENTER_LABEL;
+  btn.className = 'ds-btn ' + (st.mode === 'active' ? 'ds-btn--secondary' : 'ds-btn--primary');
+}
+
+function _wireSample(root) {
+  const btn = root.querySelector('#obw-sample-btn');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    if (btn.dataset.mode === 'active') leaveSampleMode(btn);
+    else if (btn.dataset.mode === 'restart') restartSampleMode(btn);
+    else enterSampleMode(btn);
+  });
 }
 
 // ── Step 2 — Bitwarden ───────────────────────────────────────────────────────
@@ -1294,6 +1328,13 @@ function _buildHtml() {
         <div class="obw-step-actions">
           <button type="button" class="ds-btn ds-btn--secondary" id="obw-tools-refresh-btn">Check again</button>
           <button type="button" class="ds-btn ds-btn--secondary" id="obw-tools-open-btn">Open Tools</button>
+        </div>
+        <div class="obw-sample" id="obw-sample" hidden>
+          <h3 class="obw-sample-title">Just looking around?</h3>
+          <p class="obw-step-desc" id="obw-sample-hint"></p>
+          <div class="obw-step-actions">
+            <button type="button" class="ds-btn ds-btn--primary" id="obw-sample-btn" hidden>${escHtml(SAMPLE_ENTER_LABEL)}</button>
+          </div>
         </div>`)}
 
       ${_card('step2', 'Step 2 — Bitwarden', `
@@ -1421,6 +1462,7 @@ export async function renderOnboardingWizard() {
 
   root.innerHTML = _buildHtml();
   _wireStep1(root);
+  _wireSample(root);
   _wireStep2(root);
   _wireStep3(root);
   _wireStep4(root);
@@ -1429,12 +1471,13 @@ export async function renderOnboardingWizard() {
 
   // Five independent probes: fan out, never chain. A slow Bitwarden spawn must
   // not hold up the key file read.
-  const [tools, bw, targets, enc, repo] = await Promise.all([
+  const [tools, bw, targets, enc, repo, sample] = await Promise.all([
     _getJson('/api/tools/status'),
     _getJson('/api/bitwarden/status?t=' + Date.now()),
     _fetchGitlabTokenTargets(),
     _getJson('/api/settings/encryption-status?t=' + Date.now()),
     _getJson(`/api/data/${OBW_DATA_REPO_ID}/status?t=` + Date.now()),
+    fetchSampleModeStatus(),
   ]);
   _toolsStatus = tools;
   _bwStatus = bw;
@@ -1443,6 +1486,7 @@ export async function renderOnboardingWizard() {
   _repoStatus = repo;
 
   _paintStep1(root);
+  _paintSample(root, sample);
   _paintStep2(root);
   _paintStep4(root);
   _paintStep6(root);

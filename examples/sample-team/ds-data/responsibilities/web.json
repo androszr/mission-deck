@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "last_updated": "2026-09-30T16:00:00.000Z"
+  },
+  "months": [
+    "2026-07",
+    "2026-08",
+    "2026-09",
+    "2026-10",
+    "2026-11",
+    "2026-12"
+  ],
+  "groups": [
+    {
+      "id": "grp-28be7b3a",
+      "name": "Web",
+      "areas": [
+        {
+          "id": "area-37afbe67",
+          "name": "Browser support",
+          "description": "Which browsers we test and fix.",
+          "owner": "Jordan Lee",
+          "ratings": {
+            "2026-07": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        },
+        {
+          "id": "area-482aea46",
+          "name": "Accessibility",
+          "description": "Keyboard use, contrast and screen readers.",
+          "owner": "Aiko Tanaka",
+          "ratings": {
+            "2026-07": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

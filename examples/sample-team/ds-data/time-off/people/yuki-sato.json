@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "dateFrom": "2026-07-17",
+      "dateTo": "2026-07-28",
+      "submittedAt": "2026-07-06T09:40:00",
+      "submittedBy": "yuki.sato@northwind.example"
+    },
+    {
+      "dateFrom": "2026-08-17",
+      "dateTo": "2026-08-17",
+      "submittedAt": "2026-08-01T09:40:00",
+      "submittedBy": "yuki.sato@northwind.example"
+    }
+  ],
+  "name": "Yuki Sato",
+  "slug": "yuki-sato"
+}

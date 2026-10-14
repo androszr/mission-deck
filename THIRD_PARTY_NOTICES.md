@@ -12,10 +12,12 @@ full texts follow.
 | [Inter](https://github.com/rsms/inter) typeface | `fonts/` | SIL Open Font License 1.1 |
 | [ws](https://github.com/websockets/ws) | npm dependency | MIT |
 | [node-pty](https://github.com/microsoft/node-pty) | optional npm dependency | MIT |
+| [React](https://react.dev) and React DOM | npm dependency of `apps/mini-deck/` | MIT |
 | [docx](https://github.com/dolanmiu/docx) | npm dependency of the `vendor-settlements` catalog module | MIT |
 | [mammoth](https://github.com/mwilliamson/mammoth.js) | npm dependency of the `vendor-settlements` catalog module | BSD-2-Clause |
 
-Development-only tools (`eslint`, `lint-staged`, Playwright, GitNexus) are
+Development-only tools (`eslint`, `lint-staged`, Playwright, GitNexus, and for
+`apps/mini-deck/`: Vite, Vitest, TypeScript, typescript-eslint, eslint-plugin-react-hooks, @vitejs/plugin-react) are
 installed by npm on request and are not redistributed in this repository.
 
 The mascot (Pip), the logo and the favicon are original artwork made for this

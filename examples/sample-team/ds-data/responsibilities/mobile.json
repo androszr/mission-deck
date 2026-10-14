@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "last_updated": "2026-09-30T16:00:00.000Z"
+  },
+  "months": [
+    "2026-07",
+    "2026-08",
+    "2026-09",
+    "2026-10",
+    "2026-11",
+    "2026-12"
+  ],
+  "groups": [
+    {
+      "id": "grp-aa69cdee",
+      "name": "Mobile",
+      "areas": [
+        {
+          "id": "area-7e30c7b1",
+          "name": "App releases",
+          "description": "Store submissions and phased rollouts.",
+          "owner": "Yuki Sato",
+          "ratings": {
+            "2026-07": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        },
+        {
+          "id": "area-930c08e7",
+          "name": "Offline mode",
+          "description": "What works without a connection.",
+          "owner": "Sam Rivera",
+          "ratings": {
+            "2026-07": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

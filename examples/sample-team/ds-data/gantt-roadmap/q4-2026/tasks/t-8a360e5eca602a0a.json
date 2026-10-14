@@ -1,0 +1,19 @@
+{
+  "uid": "t-8a360e5eca602a0a",
+  "n": 3,
+  "a": "catalog",
+  "o": 1,
+  "t": "Product variants",
+  "who": [
+    "grace-whitfield",
+    "taylor-kim"
+  ],
+  "s": 1,
+  "l": 8,
+  "ph": null,
+  "gw": false,
+  "ms": false,
+  "createdAt": "2026-06-24T09:00:00.000Z",
+  "updatedAt": "2026-09-20T09:00:00.000Z",
+  "updatedBy": null
+}

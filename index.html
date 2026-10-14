@@ -67,6 +67,9 @@
        on most machines is never, so reserving width for it would flash a bar on
        every load for everybody - see js/stash-helpers.mjs shouldShowStashPill. -->
   <div id="topbar-stash-root" class="app-top-bar__stash"></div>
+  <!-- Sample mode: empty (and zero width) unless "Try it with sample data" is on.
+       js/sample-mode.js paints the badge and its "Leave sample mode" action. -->
+  <div id="topbar-sample-root" class="app-top-bar__sample"></div>
   <div id="topbar-daycycle-root" class="app-top-bar__daycycle">
     <span class="ds-skeleton tb-skel tb-skel--pill tb-skel--pill-daycycle" data-skel="1" aria-hidden="true"></span>
   </div>

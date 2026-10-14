@@ -1,0 +1,97 @@
+{
+  "id": "dt-965d2820",
+  "title": "Faster checkout",
+  "ticket": "NW-103",
+  "rank": 3,
+  "po": "Elena Rossi",
+  "analyst": "Jordan Lee",
+  "designer": "Aiko Tanaka",
+  "architect": "",
+  "ragStatus": "green",
+  "stageStatus": [
+    "preparation",
+    "problem-space",
+    "solution-space",
+    "delivery"
+  ],
+  "discoveryEnd": "2026-08-02",
+  "deliveryEnd": "2026-10-18",
+  "goLiveDate": "2026-11-01",
+  "vmoName": null,
+  "appliesTo": "Borealis",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-230",
+      "summary": "Faster checkout: scope gate start",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Samir Haddad",
+      "timeByPerson": {
+        "Samir Haddad": 39600
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-231",
+      "summary": "Faster checkout: process mapping",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Aiko Tanaka",
+      "timeByPerson": {
+        "Aiko Tanaka": 122400
+      }
+    },
+    {
+      "defId": "research-insights",
+      "key": "NW-232",
+      "summary": "Faster checkout: research insights",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Aiko Tanaka",
+      "timeByPerson": {
+        "Aiko Tanaka": 90000
+      }
+    },
+    {
+      "defId": "goals-metrics",
+      "key": "NW-233",
+      "summary": "Faster checkout: goals metrics",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Samir Haddad",
+      "timeByPerson": {
+        "Samir Haddad": 61200
+      }
+    },
+    {
+      "defId": "requirements-breakdown",
+      "key": "NW-234",
+      "summary": "Faster checkout: requirements breakdown",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Elena Rossi",
+      "timeByPerson": {
+        "Elena Rossi": 57600
+      }
+    },
+    {
+      "defId": "workshops-alignment",
+      "key": "NW-235",
+      "summary": "Faster checkout: workshops alignment",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Samir Haddad",
+      "timeByPerson": {
+        "Samir Haddad": 90000
+      }
+    }
+  ],
+  "comments": [],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-103"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-10-01T08:00:00Z",
+  "members": [
+    { "name": "Ada Lindqvist", "role": "Engineer", "squad": "Atlas" },
+    { "name": "Tomas Rey", "role": "Designer", "squad": "Atlas" },
+    { "name": "Mira Okafor", "role": "Product manager", "squad": "Beacon" },
+    { "name": "Jonas Weil", "role": "Engineer", "squad": "Beacon" },
+    { "name": "Lena Park", "role": "Engineer", "squad": "Comet" },
+    { "name": "Ivo Marsh", "role": "QA", "squad": "Comet" },
+    { "name": "Noor Haddad", "role": "Designer", "squad": "Drift" },
+    { "name": "Saul Becker", "role": "Engineer", "squad": "Drift" },
+    { "name": "Pia Novak", "role": "Engineer", "squad": "Echo" },
+    { "name": "Remy Dale", "role": "Product manager", "squad": "Echo" },
+    { "name": "Kai Duarte", "role": "Engineer", "squad": "Falcon" },
+    { "name": "Wren Ashby", "role": "QA", "squad": "Falcon" }
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "id": "q3-2026",
+  "label": "Q3 2026",
+  "mondayFirst": "2026-07-06",
+  "weeksN": 13,
+  "weekFirstNo": 28,
+  "xmasWeek": null,
+  "sprints": [
+    {
+      "no": 21,
+      "start": "2026-07-01",
+      "days": 14
+    },
+    {
+      "no": 22,
+      "start": "2026-07-15",
+      "days": 14
+    },
+    {
+      "no": 23,
+      "start": "2026-07-29",
+      "days": 14
+    },
+    {
+      "no": 24,
+      "start": "2026-08-12",
+      "days": 14
+    },
+    {
+      "no": 25,
+      "start": "2026-08-26",
+      "days": 14
+    },
+    {
+      "no": 26,
+      "start": "2026-09-09",
+      "days": 14
+    }
+  ],
+  "teamOrder": [
+    "Atlas",
+    "Borealis",
+    "Comet",
+    "Delta",
+    "Echo",
+    "Falcon"
+  ],
+  "teamLabel": {
+    "Atlas": "Atlas",
+    "Borealis": "Borealis",
+    "Comet": "Comet",
+    "Delta": "Delta",
+    "Echo": "Echo",
+    "Falcon": "Falcon"
+  },
+  "roster": [
+    {
+      "id": "alex-morgan",
+      "n": "Alex Morgan",
+      "s": "Alex",
+      "team": "Atlas",
+      "cap": 1
+    },
+    {
+      "id": "sam-rivera",
+      "n": "Sam Rivera",
+      "s": "Sam",
+      "team": "Atlas",
+      "cap": 1
+    },
+    {
+      "id": "priya-raman",
+      "n": "Priya Raman",
+      "s": "Priya",
+      "team": "Atlas",
+      "cap": 1
+    },
+    {
+      "id": "tomas-novak",
+      "n": "Tomas Novak",
+      "s": "Tomas",
+      "team": "Atlas",
+      "cap": 1
+    },
+    {
+      "id": "elena-rossi",
+      "n": "Elena Rossi",
+      "s": "Elena",
+      "team": "Borealis",
+      "cap": 1
+    },
+    {
+      "id": "jordan-lee",
+      "n": "Jordan Lee",
+      "s": "Jordan",
+      "team": "Borealis",
+      "cap": 1
+    },
+    {
+      "id": "aiko-tanaka",
+      "n": "Aiko Tanaka",
+      "s": "Aiko",
+      "team": "Borealis",
+      "cap": 1
+    },
+    {
+      "id": "samir-haddad",
+      "n": "Samir Haddad",
+      "s": "Samir",
+      "team": "Borealis",
+      "cap": 1
+    },
+    {
+      "id": "grace-whitfield",
+      "n": "Grace Whitfield",
+      "s": "Grace",
+      "team": "Comet",
+      "cap": 1
+    },
+    {
+      "id": "taylor-kim",
+      "n": "Taylor Kim",
+      "s": "Taylor",
+      "team": "Comet",
+      "cap": 1
+    },
+    {
+      "id": "ingrid-solberg",
+      "n": "Ingrid Solberg",
+      "s": "Ingrid",
+      "team": "Comet",
+      "cap": 1
+    },
+    {
+      "id": "kofi-mensah",
+      "n": "Kofi Mensah",
+      "s": "Kofi",
+      "team": "Comet",
+      "cap": 1
+    },
+    {
+      "id": "hannah-weiss",
+      "n": "Hannah Weiss",
+      "s": "Hannah",
+      "team": "Delta",
+      "cap": 1
+    },
+    {
+      "id": "dmitri-volkov",
+      "n": "Dmitri Volkov",
+      "s": "Dmitri",
+      "team": "Delta",
+      "cap": 1
+    },
+    {
+      "id": "leila-karimi",
+      "n": "Leila Karimi",
+      "s": "Leila",
+      "team": "Delta",
+      "cap": 1
+    },
+    {
+      "id": "oscar-lindqvist",
+      "n": "Oscar Lindqvist",
+      "s": "Oscar",
+      "team": "Delta",
+      "cap": 1
+    },
+    {
+      "id": "zoe-carter",
+      "n": "Zoe Carter",
+      "s": "Zoe",
+      "team": "Echo",
+      "cap": 1
+    },
+    {
+      "id": "rafael-costa",
+      "n": "Rafael Costa",
+      "s": "Rafael",
+      "team": "Echo",
+      "cap": 1
+    },
+    {
+      "id": "nadia-petrova",
+      "n": "Nadia Petrova",
+      "s": "Nadia",
+      "team": "Echo",
+      "cap": 1
+    },
+    {
+      "id": "jonas-berg",
+      "n": "Jonas Berg",
+      "s": "Jonas",
+      "team": "Echo",
+      "cap": 1
+    },
+    {
+      "id": "amara-diallo",
+      "n": "Amara Diallo",
+      "s": "Amara",
+      "team": "Falcon",
+      "cap": 1
+    },
+    {
+      "id": "felix-moreau",
+      "n": "Felix Moreau",
+      "s": "Felix",
+      "team": "Falcon",
+      "cap": 1
+    },
+    {
+      "id": "yuki-sato",
+      "n": "Yuki Sato",
+      "s": "Yuki",
+      "team": "Falcon",
+      "cap": 1
+    },
+    {
+      "id": "chloe-dubois",
+      "n": "Chloe Dubois",
+      "s": "Chloe",
+      "team": "Falcon",
+      "cap": 1
+    }
+  ]
+}

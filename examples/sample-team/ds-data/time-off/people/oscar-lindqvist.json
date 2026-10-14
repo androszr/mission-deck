@@ -1,0 +1,12 @@
+{
+  "entries": [
+    {
+      "dateFrom": "2026-08-25",
+      "dateTo": "2026-08-29",
+      "submittedAt": "2026-08-07T16:20:00",
+      "submittedBy": "oscar.lindqvist@northwind.example"
+    }
+  ],
+  "name": "Oscar Lindqvist",
+  "slug": "oscar-lindqvist"
+}

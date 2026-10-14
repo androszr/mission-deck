@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "id": "borealis-24",
+  "team": "borealis",
+  "sprintN": 24,
+  "dateFrom": "2026-08-12",
+  "dateTo": "2026-08-26",
+  "datesSource": "computed",
+  "createdAt": "2026-08-11T10:00:00.000Z",
+  "updatedAt": "2026-08-11T10:00:00.000Z",
+  "sections": {
+    "oncall": {
+      "done": true,
+      "dev": "Jordan Lee",
+      "devops": "Samir Haddad",
+      "note": ""
+    },
+    "capacity": {
+      "done": true,
+      "peopleOverride": null,
+      "extraDaysOff": 1,
+      "events": [
+        {
+          "text": "Release on the first day of the sprint",
+          "id": "it-ca4cb9d1"
+        }
+      ],
+      "dependencies": []
+    },
+    "absences": {
+      "done": true,
+      "manual": [
+        {
+          "person": "Aiko Tanaka",
+          "dateFrom": "2026-08-12",
+          "dateTo": "2026-08-17",
+          "reason": "Holiday",
+          "id": "it-50ab4a3d"
+        }
+      ]
+    },
+    "velocity": {
+      "done": true,
+      "override": null,
+      "note": "Average of the last three sprints"
+    },
+    "refinements": {
+      "done": true,
+      "items": [
+        {
+          "key": "BOR-160",
+          "topic": "Autofill company details",
+          "note": "",
+          "id": "it-d0259d66"
+        },
+        {
+          "key": "BOR-161",
+          "topic": "Progress indicator for checkout",
+          "note": "",
+          "id": "it-670c0178"
+        }
+      ],
+      "cross": []
+    },
+    "goal": {
+      "done": true,
+      "goal": "Fix the rounding differences in order totals"
+    },
+    "jira": {
+      "done": true
+    }
+  }
+}

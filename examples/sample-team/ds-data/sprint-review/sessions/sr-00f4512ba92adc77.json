@@ -1,0 +1,198 @@
+{
+  "id": "sr-00f4512ba92adc77",
+  "createdAt": "2026-08-12T08:00:00.000Z",
+  "updatedAt": "2026-08-12T15:00:00.000Z",
+  "reviewDate": "2026-08-12",
+  "sprintN": 23,
+  "sprintName": "Sprint 23",
+  "deadline": "2026-08-07T10:00:00.000Z",
+  "facilitatorPo": "Alex Morgan",
+  "meeting": "team-review",
+  "teamGoals": [
+    {
+      "team": "Atlas",
+      "goal": "Ship the bulk order import for the first ten accounts",
+      "sprint_name": "Atlas Sprint 23"
+    },
+    {
+      "team": "Borealis",
+      "goal": "Roll out saved payment terms to pilot accounts",
+      "sprint_name": "Borealis Sprint 23"
+    },
+    {
+      "team": "Comet",
+      "goal": "Validate imported prices before they go live",
+      "sprint_name": "Comet Sprint 23"
+    },
+    {
+      "team": "Delta",
+      "goal": "Notify buyers when a delivery is delayed",
+      "sprint_name": "Delta Sprint 23"
+    },
+    {
+      "team": "Echo",
+      "goal": "Ship saved filters on the order list",
+      "sprint_name": "Echo Sprint 23"
+    },
+    {
+      "team": "Falcon",
+      "goal": "Record who changed what in an audit log",
+      "sprint_name": "Falcon Sprint 23"
+    }
+  ],
+  "submissions": {
+    "Atlas": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-cbfd5428",
+          "title": "Before and after: page load time",
+          "format": "presentation",
+          "presenters": [
+            "Alex Morgan"
+          ]
+        },
+        {
+          "id": "t-54fa3783",
+          "title": "What we learned from the support tickets",
+          "format": "discussion",
+          "presenters": [
+            "Sam Rivera"
+          ]
+        }
+      ]
+    },
+    "Borealis": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-26fe107b",
+          "title": "Customer feedback in their own words",
+          "format": "discussion",
+          "presenters": [
+            "Jordan Lee"
+          ]
+        },
+        {
+          "id": "t-8afb29f3",
+          "title": "Before and after: page load time",
+          "format": "discussion",
+          "presenters": [
+            "Elena Rossi"
+          ]
+        }
+      ]
+    },
+    "Comet": {
+      "submitted": true,
+      "realizationStatus": "not-achieved",
+      "topics": [
+        {
+          "id": "t-4108e8ca",
+          "title": "Open questions for the next sprint",
+          "format": "discussion",
+          "presenters": [
+            "Grace Whitfield"
+          ]
+        },
+        {
+          "id": "t-2b542fb7",
+          "title": "What we learned from the support tickets",
+          "format": "discussion",
+          "presenters": [
+            "Taylor Kim"
+          ]
+        }
+      ]
+    },
+    "Delta": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-a3d90602",
+          "title": "Customer feedback in their own words",
+          "format": "presentation",
+          "presenters": [
+            "Hannah Weiss"
+          ]
+        },
+        {
+          "id": "t-28bbf649",
+          "title": "A look at the numbers behind the goal",
+          "format": "presentation",
+          "presenters": [
+            "Hannah Weiss"
+          ]
+        }
+      ]
+    },
+    "Echo": {
+      "submitted": true,
+      "realizationStatus": "partial",
+      "topicsProblemSpace": [
+        {
+          "id": "t-3f522091",
+          "title": "A look at the numbers behind the goal",
+          "format": "discussion",
+          "presenters": [
+            "Rafael Costa"
+          ]
+        },
+        {
+          "id": "t-29c950ad",
+          "title": "A look at the numbers behind the goal",
+          "format": "discussion",
+          "presenters": [
+            "Zoe Carter"
+          ]
+        }
+      ],
+      "topicsSolutionSpace": [
+        {
+          "id": "t-843f27da",
+          "title": "Walkthrough of the new settings page",
+          "format": "presentation",
+          "presenters": [
+            "Zoe Carter"
+          ]
+        },
+        {
+          "id": "t-8b37f451",
+          "title": "Walkthrough of the new settings page",
+          "format": "presentation",
+          "presenters": [
+            "Zoe Carter"
+          ]
+        }
+      ]
+    },
+    "Falcon": {
+      "submitted": true,
+      "realizationStatus": "partial",
+      "topics": [
+        {
+          "id": "t-a3316682",
+          "title": "Open questions for the next sprint",
+          "format": "discussion",
+          "presenters": [
+            "Felix Moreau"
+          ]
+        },
+        {
+          "id": "t-83d366cd",
+          "title": "Customer feedback in their own words",
+          "format": "discussion",
+          "presenters": [
+            "Amara Diallo"
+          ]
+        }
+      ]
+    }
+  },
+  "cardsSentAt": "2026-08-12T09:30:00.000Z",
+  "confluencePageId": null,
+  "confluenceVersion": null
+}

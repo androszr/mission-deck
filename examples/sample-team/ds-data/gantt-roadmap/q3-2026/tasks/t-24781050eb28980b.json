@@ -1,0 +1,19 @@
+{
+  "uid": "t-24781050eb28980b",
+  "n": 8,
+  "a": "search",
+  "o": 1,
+  "t": "Typo tolerance",
+  "who": [
+    "zoe-carter",
+    "rafael-costa"
+  ],
+  "s": 1,
+  "l": 5,
+  "ph": null,
+  "gw": false,
+  "ms": false,
+  "createdAt": "2026-06-24T09:00:00.000Z",
+  "updatedAt": "2026-09-20T09:00:00.000Z",
+  "updatedBy": null
+}

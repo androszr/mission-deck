@@ -1,0 +1,19 @@
+{
+  "uid": "t-0f7bdaf11602a3d2",
+  "n": 6,
+  "a": "platform",
+  "o": 1,
+  "t": "Partner sandbox",
+  "who": [
+    "amara-diallo",
+    "felix-moreau"
+  ],
+  "s": 1,
+  "l": 7,
+  "ph": null,
+  "gw": false,
+  "ms": false,
+  "createdAt": "2026-06-24T09:00:00.000Z",
+  "updatedAt": "2026-09-20T09:00:00.000Z",
+  "updatedBy": null
+}

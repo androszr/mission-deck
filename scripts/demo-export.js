@@ -12,6 +12,11 @@
 // illustrations, fonts and screenshots - every URL rewritten to that flat dir.
 //
 //   node scripts/demo-export.js --out <abs prototype dir> [--dry-run] [--json]
+//   node scripts/demo-export.js --site <dir> [--dry-run] [--json]
+//
+// --site writes the same flat bundle as a plain static website (index.html, a
+// 404 redirect, robots.txt, Open Graph tags and image) for GitHub Pages. It
+// shares the collection and rewriting code with --out, so they cannot drift.
 //
 // Rules this script holds (docs/architecture/automation.md, prototypes.md):
 //   - FLAT assets/: _protoCopyAssets copies files only, never a subdirectory,
@@ -39,13 +44,19 @@ demo-export.js - export demo/ as a prototype directory in team data
 
 Usage:
   node scripts/demo-export.js --out <abs prototype dir> [--dry-run] [--json]
+  node scripts/demo-export.js --site <dir> [--dry-run] [--json]
 
   --out       absolute path of an EXISTING prototype directory (it must hold
               spec.json - create the prototype in Design > Prototypy first)
+  --site      write a static website into <dir> (created if missing; a
+              non-empty dir must come from a previous --site run). Cannot be
+              combined with --out
   --dry-run   print the plan (counts, bytes, files to delete), write nothing
   --json      machine-readable envelope
 
 Writes index.tsx, styles.css, spec.json (merged) and a flat assets/ directory.
+With --site it writes index.html, demo__index.html (alias), 404.html,
+robots.txt, demo-og.png and the flat files at the top of <dir>.
 Never publishes and never runs git.
 
 Exit: 0 ok, 1 export refused, 2 usage or internal error.
@@ -57,6 +68,14 @@ const SHELL_HTML = 'index.html';
 const MANIFEST = 'demo__manifest.json';
 const PAGE_NAME = 'demo__index.html';
 const SHELL_NAME = 'host__index.html';
+
+// Site mode (--site): the public page and its link-preview card.
+const SITE_URL = 'https://androszr.github.io/mission-deck/';
+const SITE_REPO_URL = 'https://github.com/androszr/mission-deck';
+const SITE_OG_SOURCE = 'assets/demo-og.png';
+const SITE_OG_NAME = 'demo-og.png';
+const SITE_TITLE = 'Mission Deck - try the demo';
+const SITE_DESCRIPTION = 'A click-through tour of Mission Deck, the local cockpit a product team grows itself. No install, no account.';
 
 // Directories copied by token harvest (a name must appear in exported text).
 const HARVEST_DIRS = ['assets/icons/ds'];
@@ -399,7 +418,12 @@ function rewriteHtml(src, fileRel, nameOf, opts) {
   text = _splice(text, edits);
   if (o.standaloneShell) {
     if (!/<html\b/.test(text)) throw new ExportError('No <html> tag in ' + fileRel);
-    text = text.replace(/<html\b([^>]*)>/, (m, attrs) => '<html' + attrs + ' data-demo-shell="' + o.standaloneShell + '">');
+    const siteAttr = o.site ? ' data-demo-site="1"' : '';
+    text = text.replace(/<html\b([^>]*)>/, (m, attrs) => '<html' + attrs + ' data-demo-shell="' + o.standaloneShell + '"' + siteAttr + '>');
+  }
+  if (o.openGraph) {
+    if (!/<\/head>/.test(text)) throw new ExportError('No </head> tag in ' + fileRel);
+    text = text.replace('</head>', o.openGraph + '</head>');
   }
   return text;
 }
@@ -580,22 +604,27 @@ function _readJson(p) {
  * Everything the run would write, in memory, without writing.
  * @param {{out: string, root?: string, today?: string}} opts
  */
-async function planExport(opts) {
-  const root = opts.root || R.ROOT;
-  const out = opts.out;
-  const { id, slug } = _checkOut(out);
+/**
+ * Collect, rewrite and leftover-check every exported text file.
+ * @param {string} root repo root
+ * @param {{site?: boolean}} [mode]
+ * @returns {Map<string, Buffer>} 'assets/<name>' -> bytes (sorted by source path)
+ */
+function buildAssetFiles(root, mode) {
   const { names, texts, sources } = collectGraph(root);
   const nameOf = (rel) => names.get(rel);
-
-  const files = new Map(); // 'assets/<name>' | 'index.tsx' | 'styles.css' -> Buffer
+  const files = new Map();
   for (const [rel, name] of names) {
     let bytes = sources.get(rel);
     if (texts.includes(rel)) {
       const src = bytes.toString('utf8');
       const ext = posix.extname(rel);
       let text;
-      if (rel === ENTRY_HTML) text = rewriteHtml(src, rel, nameOf, { standaloneShell: './' + SHELL_NAME });
-      else if (rel === SHELL_HTML) text = rewriteHtml(src, rel, nameOf, { stripScripts: true });
+      if (rel === ENTRY_HTML) {
+        const o = { standaloneShell: './' + SHELL_NAME };
+        if (mode && mode.site) { o.site = true; o.openGraph = _openGraphTags(); }
+        text = rewriteHtml(src, rel, nameOf, o);
+      } else if (rel === SHELL_HTML) text = rewriteHtml(src, rel, nameOf, { stripScripts: true });
       else if (ext === '.html') text = rewriteHtml(src, rel, nameOf);
       else if (ext === '.css') text = rewriteCss(src, rel, nameOf);
       else text = rewriteJs(src, rel, nameOf);
@@ -608,6 +637,117 @@ async function planExport(opts) {
   if (names.get(ENTRY_HTML) !== PAGE_NAME || names.get(SHELL_HTML) !== SHELL_NAME) {
     throw new ExportError('Unexpected demo page names in assets/', 2);
   }
+  return files;
+}
+
+function _openGraphTags() {
+  const img = SITE_URL + SITE_OG_NAME;
+  const meta = (attr, key, val) => '  <meta ' + attr + '="' + key + '" content="' + val + '">\n';
+  return '  <meta name="description" content="' + SITE_DESCRIPTION + '">\n'
+    + meta('property', 'og:type', 'website')
+    + meta('property', 'og:site_name', 'Mission Deck')
+    + meta('property', 'og:title', SITE_TITLE)
+    + meta('property', 'og:description', SITE_DESCRIPTION)
+    + meta('property', 'og:url', SITE_URL)
+    + meta('property', 'og:image', img)
+    + meta('property', 'og:image:width', '1200')
+    + meta('property', 'og:image:height', '630')
+    + meta('name', 'twitter:card', 'summary_large_image')
+    + meta('name', 'twitter:title', SITE_TITLE)
+    + meta('name', 'twitter:description', SITE_DESCRIPTION)
+    + meta('name', 'twitter:image', img);
+}
+
+// Absolute PATH on the host (not a relative URL): a relative target would
+// resolve under the missing URL's own directory and loop on a nested 404.
+const SITE_INDEX_PATH = new URL(SITE_URL).pathname + 'index.html';
+const SITE_404 = '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>Mission Deck demo</title>\n'
+  + '  <meta http-equiv="refresh" content="0; url=' + SITE_INDEX_PATH + '">\n'
+  + '  <script>location.replace(' + JSON.stringify(SITE_INDEX_PATH) + ' + location.hash);</script>\n'
+  + '</head>\n<body>\n  <p>Taking you to the <a href="' + SITE_INDEX_PATH + '">Mission Deck demo</a>.</p>\n</body>\n</html>\n';
+
+const SITE_ROBOTS = 'User-agent: *\nAllow: /\n';
+
+/** Add a site extra; a name already taken by an exported file is a collision. */
+function addSiteFile(files, name, buf) {
+  if (files.has(name)) throw new ExportError('Name collision in the site root: ' + name);
+  files.set(name, buf);
+}
+
+/**
+ * Everything a --site run would write, in memory.
+ * @param {{site: string, root?: string}} opts
+ */
+function planSite(opts) {
+  const root = opts.root || R.ROOT;
+  const site = opts.site;
+  if (!site || typeof site !== 'string') throw new ExportError('--site needs a directory', 2);
+  const assets = buildAssetFiles(root, { site: true });
+  const files = new Map();
+  for (const [k, v] of assets) files.set(k.slice('assets/'.length), v);
+  const page = files.get(PAGE_NAME);
+  addSiteFile(files, 'index.html', page);
+  addSiteFile(files, '404.html', Buffer.from(SITE_404, 'utf8'));
+  addSiteFile(files, 'robots.txt', Buffer.from(SITE_ROBOTS, 'utf8'));
+  addSiteFile(files, SITE_OG_NAME, _read(root, SITE_OG_SOURCE));
+
+  const keys = [...files.keys()].sort();
+  const sourceSha256 = sha256(keys.map((k) => k + '\t' + sha256(files.get(k)) + '\n').join(''));
+  const manifest = { generatedBy: 'scripts/demo-export.js --site', site: true, sourceSha256, files: keys };
+  files.set(MANIFEST, Buffer.from(JSON.stringify(manifest, null, 2) + '\n', 'utf8'));
+
+  const prev = _readJson(path.join(site, MANIFEST));
+  const keep = new Set(keys);
+  const deleted = (prev && prev.site === true && Array.isArray(prev.files) ? prev.files : [])
+    .filter((f) => typeof f === 'string' && /^[^/\\]+$/.test(f) && !f.startsWith('.') && f !== MANIFEST && !keep.has(f))
+    .sort();
+  let bytes = 0;
+  for (const b of files.values()) bytes += b.length;
+  return { site, files, sourceSha256, deleted, bytes };
+}
+
+/** A --site target is fine when missing, empty, or made by a previous --site run. */
+function _checkSite(site) {
+  if (!fs.existsSync(site)) return;
+  if (!fs.statSync(site).isDirectory()) throw new ExportError('--site target is not a directory: ' + site, 2);
+  if (fs.readdirSync(site).length === 0) return;
+  const prev = _readJson(path.join(site, MANIFEST));
+  if (!prev || prev.site !== true) {
+    throw new ExportError('Refusing a non-empty directory that a previous --site run did not produce: ' + site, 2);
+  }
+}
+
+/**
+ * Plan, then write the site atomically (manifest last), then delete what the
+ * previous run owned and this one no longer produces.
+ * @param {{site: string, dryRun?: boolean, root?: string}} opts
+ */
+async function runSite(opts) {
+  const site = path.resolve(opts.site);
+  _checkSite(site);
+  const plan = planSite(Object.assign({}, opts, { site }));
+  const written = [];
+  if (!opts.dryRun) {
+    fs.mkdirSync(site, { recursive: true });
+    const order = [...plan.files.keys()].filter((k) => k !== MANIFEST).sort();
+    order.push(MANIFEST);
+    for (const k of order) if (_writeAtomic(path.join(site, k), plan.files.get(k))) written.push(k);
+    for (const f of plan.deleted) {
+      const abs = path.join(site, f);
+      if (fs.existsSync(abs)) fs.unlinkSync(abs);
+    }
+  }
+  return {
+    site, files: [...plan.files.keys()].sort(), bytes: plan.bytes,
+    sourceSha256: plan.sourceSha256, deleted: plan.deleted, written,
+  };
+}
+
+async function planExport(opts) {
+  const root = opts.root || R.ROOT;
+  const out = opts.out;
+  const { id, slug } = _checkOut(out);
+  const files = buildAssetFiles(root); // 'assets/<name>' | 'index.tsx' | 'styles.css' -> Buffer
 
   const tsx = fs.readFileSync(path.join(root, TEMPLATE_DIR, 'index.tsx'), 'utf8').split('{{PROTO_SLUG}}').join(slug);
   files.set('index.tsx', Buffer.from(tsx, 'utf8'));
@@ -686,9 +826,41 @@ function _kindOf(name) {
   return 'other';
 }
 
+async function mainSite(flags) {
+  let result;
+  try {
+    result = await runSite({ site: String(flags.site), dryRun: !!flags['dry-run'] });
+  } catch (e) {
+    if (!(e instanceof ExportError)) R.usageError('demo-export: ' + (e && e.stack ? e.stack : e));
+    if (e.code === 2) R.usageError(e.message);
+    const rep = new R.Report('demo-export', { site: String(flags.site) });
+    rep.block({ rule: 'demo-export', message: e.message });
+    rep.emit(flags, 'DEMO-EXPORT');
+    return;
+  }
+  const counts = {};
+  for (const f of result.files) {
+    const k = _kindOf(f);
+    counts[k] = (counts[k] || 0) + 1;
+  }
+  const rep = new R.Report('demo-export', {
+    site: result.site, dryRun: !!flags['dry-run'], files: result.files.length, bytes: result.bytes,
+    sourceSha256: result.sourceSha256, deleted: result.deleted, written: result.written.length,
+  });
+  rep.info('Files by kind: ' + Object.keys(counts).sort().map((k) => k + '=' + counts[k]).join(', '));
+  if (result.deleted.length) rep.info('To delete: ' + result.deleted.join(', '));
+  rep.emit(flags, 'DEMO-EXPORT');
+}
+
 async function main() {
   const { flags } = R.parseArgs(process.argv.slice(2), { booleans: ['dry-run'] });
   if (flags.help) R.showHelp(HELP);
+  if (flags.site !== undefined && flags.out !== undefined) R.usageError('--site and --out cannot be combined');
+  if (flags.site !== undefined) {
+    if (flags.site === true || !flags.site) R.usageError('--site needs a directory');
+    await mainSite(flags);
+    return;
+  }
   if (!flags.out || flags.out === true) R.usageError('The prototype directory must exist and have a spec.json - create the prototype via Design > Prototypes > Add prototype (missing --out)');
   let result;
   try {
@@ -711,7 +883,7 @@ async function main() {
     files: result.files.length, bytes: result.bytes, sourceSha256: result.sourceSha256,
     deleted: result.deleted, written: result.written.length,
   });
-  rep.info('Pliki wg rodzaju: ' + Object.keys(counts).sort().map((k) => k + '=' + counts[k]).join(', '));
+  rep.info('Files by kind: ' + Object.keys(counts).sort().map((k) => k + '=' + counts[k]).join(', '));
   if (result.deleted.length) rep.info('To delete: ' + result.deleted.join(', '));
   rep.emit(flags, 'DEMO-EXPORT');
 }
@@ -734,6 +906,12 @@ if (require.main === module) {
     mergeSpec,
     planExport,
     runExport,
+    planSite,
+    addSiteFile,
+    runSite,
+    SITE_URL,
+    SITE_REPO_URL,
+    SITE_INDEX_PATH,
     LEFTOVER_TOKENS,
   };
 }

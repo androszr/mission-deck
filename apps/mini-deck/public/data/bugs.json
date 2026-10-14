@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-10-01T08:00:00Z",
+  "bugs": [
+    { "id": "BUG-101", "title": "Search returns stale results after rename", "squad": "Comet", "severity": "high", "status": "open", "openDays": 3 },
+    { "id": "BUG-102", "title": "Export button disabled on empty filters", "squad": "Beacon", "severity": "low", "status": "open", "openDays": 9 },
+    { "id": "BUG-103", "title": "Dark mode flashes white on first load", "squad": "Echo", "severity": "medium", "status": "in progress", "openDays": 5 },
+    { "id": "BUG-104", "title": "Checklist progress not saved offline", "squad": "Atlas", "severity": "high", "status": "in progress", "openDays": 2 },
+    { "id": "BUG-105", "title": "Invoice total off by one cent in preview", "squad": "Falcon", "severity": "critical", "status": "open", "openDays": 1 },
+    { "id": "BUG-106", "title": "Digest email sent twice", "squad": "Drift", "severity": "medium", "status": "open", "openDays": 6 }
+  ]
+}

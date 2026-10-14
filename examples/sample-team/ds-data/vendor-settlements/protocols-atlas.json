@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "last_updated": "2026-09-30T16:00:00.000Z",
+    "total_orders": 2
+  },
+  "protocols": [
+    {
+      "id": "pr-a14a7522",
+      "po_number": "PO-2026-014",
+      "protocol_number": "Order editing support - 2026-07",
+      "vendor": "Acme Ltd",
+      "amount": 21840,
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-a14a7522",
+      "invoice_number": "INV-ACM-202607",
+      "accepted_on": "2026-08-05",
+      "status": "accepted",
+      "status_manual": false,
+      "created_on": "2026-08-01",
+      "settlement_month": "2026-07",
+      "updated_at": "2026-08-05T10:00:00.000Z"
+    },
+    {
+      "id": "pr-827821dc",
+      "po_number": "PO-2026-014",
+      "protocol_number": "Order editing support - 2026-08",
+      "vendor": "Acme Ltd",
+      "amount": 22080,
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-827821dc",
+      "invoice_number": "INV-ACM-202608",
+      "accepted_on": "2026-09-05",
+      "status": "accepted",
+      "status_manual": false,
+      "created_on": "2026-09-01",
+      "settlement_month": "2026-08",
+      "updated_at": "2026-09-05T10:00:00.000Z"
+    },
+    {
+      "id": "pr-15614022",
+      "po_number": "PO-2026-014",
+      "protocol_number": "Order editing support - 2026-09",
+      "vendor": "Acme Ltd",
+      "amount": 20240,
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-15614022",
+      "invoice_number": "",
+      "accepted_on": null,
+      "status": "new",
+      "status_manual": false,
+      "created_on": "2026-09-30",
+      "settlement_month": "2026-09",
+      "updated_at": "2026-10-01T10:00:00.000Z"
+    },
+    {
+      "id": "pr-9590bff9",
+      "po_number": "PO-2026-027",
+      "protocol_number": "Catalog import development - 2026-07",
+      "vendor": "Initech",
+      "amount": 23520,
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-9590bff9",
+      "invoice_number": "INV-INI-202607",
+      "accepted_on": "2026-08-05",
+      "status": "accepted",
+      "status_manual": false,
+      "created_on": "2026-08-01",
+      "settlement_month": "2026-07",
+      "updated_at": "2026-08-05T10:00:00.000Z"
+    },
+    {
+      "id": "pr-faa3479b",
+      "po_number": "PO-2026-027",
+      "protocol_number": "Catalog import development - 2026-08",
+      "vendor": "Initech",
+      "amount": 23840,
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-faa3479b",
+      "invoice_number": "INV-INI-202608",
+      "accepted_on": null,
+      "status": "overdue",
+      "status_manual": false,
+      "created_on": "2026-09-01",
+      "settlement_month": "2026-08",
+      "updated_at": "2026-09-01T10:00:00.000Z"
+    },
+    {
+      "id": "pr-0e818702",
+      "po_number": "PO-2026-027",
+      "protocol_number": "Catalog import development - 2026-09",
+      "vendor": "Initech",
+      "amount": 21920,
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-0e818702",
+      "invoice_number": "",
+      "accepted_on": null,
+      "status": "new",
+      "status_manual": false,
+      "created_on": "2026-09-30",
+      "settlement_month": "2026-09",
+      "updated_at": "2026-10-01T10:00:00.000Z"
+    }
+  ],
+  "orders": [
+    {
+      "vendors": [
+        {
+          "po_number": "PO-2026-014",
+          "name": "Acme Ltd"
+        },
+        {
+          "po_number": "PO-2026-027",
+          "name": "Initech"
+        }
+      ]
+    }
+  ]
+}

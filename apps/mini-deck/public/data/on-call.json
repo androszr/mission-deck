@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-10-01T08:00:00Z",
+  "rotations": [
+    { "squad": "Atlas", "primary": "Ada Lindqvist", "secondary": "Tomas Rey", "from": "2026-10-05", "to": "2026-10-12" },
+    { "squad": "Beacon", "primary": "Mira Okafor", "secondary": "Jonas Weil", "from": "2026-10-05", "to": "2026-10-12" },
+    { "squad": "Comet", "primary": "Lena Park", "secondary": "Ivo Marsh", "from": "2026-10-05", "to": "2026-10-12" },
+    { "squad": "Drift", "primary": "Noor Haddad", "secondary": "Saul Becker", "from": "2026-10-05", "to": "2026-10-12" },
+    { "squad": "Echo", "primary": "Pia Novak", "secondary": "Remy Dale", "from": "2026-10-05", "to": "2026-10-12" },
+    { "squad": "Falcon", "primary": "Kai Duarte", "secondary": "Wren Ashby", "from": "2026-10-05", "to": "2026-10-12" }
+  ]
+}

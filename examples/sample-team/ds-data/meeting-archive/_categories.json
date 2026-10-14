@@ -1,0 +1,16 @@
+{
+  "categories": [
+    {
+      "id": "review",
+      "name": "Reviews"
+    },
+    {
+      "id": "planning",
+      "name": "Planning"
+    },
+    {
+      "id": "retro",
+      "name": "Retrospectives"
+    }
+  ]
+}

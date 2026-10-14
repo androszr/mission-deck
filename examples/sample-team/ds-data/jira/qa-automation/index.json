@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "generated_at": "2026-09-30T18:00:00+02:00",
+    "shard_to_module": {
+      "orders": "orders",
+      "checkout": "checkout",
+      "warehouse": "warehouse",
+      "catalog": "catalog",
+      "stock": "stock",
+      "deliveries": "deliveries",
+      "labels": "labels"
+    },
+    "aggregates": {
+      "aggregate": {
+        "total": 166,
+        "active_total": 154,
+        "automated": 65,
+        "coverage_pct": 42.21
+      },
+      "bugs_found": {
+        "total": 5,
+        "closed": 2,
+        "cancelled": 1,
+        "list": [
+          {
+            "key": "ATL-4410",
+            "summary": "Order total not refreshed after quantity edit",
+            "status": "Closed",
+            "labels": [],
+            "updated": "2026-09-10T09:00:00.000+0200",
+            "test_ref": "QA-740"
+          },
+          {
+            "key": "BOR-4411",
+            "summary": "Coupon removed when changing address",
+            "status": "Open",
+            "labels": [],
+            "updated": "2026-09-13T09:00:00.000+0200",
+            "test_ref": "QA-760"
+          },
+          {
+            "key": "CMT-4412",
+            "summary": "Duplicate product after a re-import",
+            "status": "Closed",
+            "labels": [],
+            "updated": "2026-09-16T09:00:00.000+0200",
+            "test_ref": "QA-790"
+          },
+          {
+            "key": "DLT-4413",
+            "summary": "Slot picker ignores the cut-off time",
+            "status": "In Progress",
+            "labels": [],
+            "updated": "2026-09-19T09:00:00.000+0200",
+            "test_ref": "QA-820"
+          },
+          {
+            "key": "FAL-4414",
+            "summary": "Rate limit header missing on errors",
+            "status": "Cancelled",
+            "labels": [],
+            "updated": "2026-09-22T09:00:00.000+0200",
+            "test_ref": "QA-840"
+          }
+        ]
+      },
+      "estimates": {
+        "automated": {
+          "count": 55,
+          "minutes": 1335,
+          "hours": 22.3,
+          "md": 2.8
+        },
+        "all": {
+          "count": 129,
+          "minutes": 3270,
+          "hours": 54.5,
+          "md": 6.8
+        }
+      },
+      "test_runs": {
+        "meta": {
+          "window_days": 7,
+          "prefix": "[AUTO]"
+        },
+        "total_runs": 39,
+        "total_executions": 520
+      }
+    },
+    "schema_version": 1,
+    "shard_count": 7,
+    "last_updated": "2026-09-30T16:00:00.000Z"
+  },
+  "keys": [
+    "catalog",
+    "checkout",
+    "deliveries",
+    "labels",
+    "orders",
+    "stock",
+    "warehouse"
+  ]
+}

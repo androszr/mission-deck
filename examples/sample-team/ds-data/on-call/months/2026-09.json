@@ -1,0 +1,1207 @@
+{
+  "month": "2026-09",
+  "generated_at": "2026-09-30T16:00:00.000Z",
+  "source_version": 12,
+  "entries": [
+    {
+      "date": "2026-09-01",
+      "weekday": "Tue",
+      "column": "inventory",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-01",
+      "weekday": "Tue",
+      "column": "orders",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-01",
+      "weekday": "Tue",
+      "column": "platform",
+      "person_raw": "Priya Raman",
+      "person": "Priya Raman",
+      "person_slug": "priya-raman",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-01",
+      "weekday": "Tue",
+      "column": "devops",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-02",
+      "weekday": "Wed",
+      "column": "inventory",
+      "person_raw": "Samir Haddad",
+      "person": "Samir Haddad",
+      "person_slug": "samir-haddad",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-02",
+      "weekday": "Wed",
+      "column": "orders",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-02",
+      "weekday": "Wed",
+      "column": "platform",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-02",
+      "weekday": "Wed",
+      "column": "devops",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-03",
+      "weekday": "Thu",
+      "column": "inventory",
+      "person_raw": "Samir Haddad",
+      "person": "Samir Haddad",
+      "person_slug": "samir-haddad",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-03",
+      "weekday": "Thu",
+      "column": "orders",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-03",
+      "weekday": "Thu",
+      "column": "platform",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-03",
+      "weekday": "Thu",
+      "column": "devops",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-04",
+      "weekday": "Fri",
+      "column": "inventory",
+      "person_raw": "Samir Haddad",
+      "person": "Samir Haddad",
+      "person_slug": "samir-haddad",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-04",
+      "weekday": "Fri",
+      "column": "orders",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-04",
+      "weekday": "Fri",
+      "column": "platform",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-04",
+      "weekday": "Fri",
+      "column": "devops",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-05",
+      "weekday": "Sat",
+      "column": "inventory",
+      "person_raw": "Samir Haddad",
+      "person": "Samir Haddad",
+      "person_slug": "samir-haddad",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-05",
+      "weekday": "Sat",
+      "column": "orders",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-05",
+      "weekday": "Sat",
+      "column": "platform",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-05",
+      "weekday": "Sat",
+      "column": "devops",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-06",
+      "weekday": "Sun",
+      "column": "inventory",
+      "person_raw": "Samir Haddad",
+      "person": "Samir Haddad",
+      "person_slug": "samir-haddad",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-06",
+      "weekday": "Sun",
+      "column": "orders",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-06",
+      "weekday": "Sun",
+      "column": "platform",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-06",
+      "weekday": "Sun",
+      "column": "devops",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-07",
+      "weekday": "Mon",
+      "column": "inventory",
+      "person_raw": "Samir Haddad",
+      "person": "Samir Haddad",
+      "person_slug": "samir-haddad",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-07",
+      "weekday": "Mon",
+      "column": "orders",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-07",
+      "weekday": "Mon",
+      "column": "platform",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-07",
+      "weekday": "Mon",
+      "column": "devops",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-08",
+      "weekday": "Tue",
+      "column": "inventory",
+      "person_raw": "Samir Haddad",
+      "person": "Samir Haddad",
+      "person_slug": "samir-haddad",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-08",
+      "weekday": "Tue",
+      "column": "orders",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-08",
+      "weekday": "Tue",
+      "column": "platform",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-08",
+      "weekday": "Tue",
+      "column": "devops",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-09",
+      "weekday": "Wed",
+      "column": "inventory",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-09",
+      "weekday": "Wed",
+      "column": "orders",
+      "person_raw": "Felix Moreau",
+      "person": "Felix Moreau",
+      "person_slug": "felix-moreau",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-09",
+      "weekday": "Wed",
+      "column": "platform",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-09",
+      "weekday": "Wed",
+      "column": "devops",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-10",
+      "weekday": "Thu",
+      "column": "inventory",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-10",
+      "weekday": "Thu",
+      "column": "orders",
+      "person_raw": "Felix Moreau",
+      "person": "Felix Moreau",
+      "person_slug": "felix-moreau",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-10",
+      "weekday": "Thu",
+      "column": "platform",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-10",
+      "weekday": "Thu",
+      "column": "devops",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-11",
+      "weekday": "Fri",
+      "column": "inventory",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-11",
+      "weekday": "Fri",
+      "column": "orders",
+      "person_raw": "Felix Moreau",
+      "person": "Felix Moreau",
+      "person_slug": "felix-moreau",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-11",
+      "weekday": "Fri",
+      "column": "platform",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-11",
+      "weekday": "Fri",
+      "column": "devops",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-12",
+      "weekday": "Sat",
+      "column": "inventory",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-12",
+      "weekday": "Sat",
+      "column": "orders",
+      "person_raw": "Felix Moreau",
+      "person": "Felix Moreau",
+      "person_slug": "felix-moreau",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-12",
+      "weekday": "Sat",
+      "column": "platform",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-12",
+      "weekday": "Sat",
+      "column": "devops",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-13",
+      "weekday": "Sun",
+      "column": "inventory",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-13",
+      "weekday": "Sun",
+      "column": "orders",
+      "person_raw": "Felix Moreau",
+      "person": "Felix Moreau",
+      "person_slug": "felix-moreau",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-13",
+      "weekday": "Sun",
+      "column": "platform",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-13",
+      "weekday": "Sun",
+      "column": "devops",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-14",
+      "weekday": "Mon",
+      "column": "inventory",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-14",
+      "weekday": "Mon",
+      "column": "orders",
+      "person_raw": "Felix Moreau",
+      "person": "Felix Moreau",
+      "person_slug": "felix-moreau",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-14",
+      "weekday": "Mon",
+      "column": "platform",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-14",
+      "weekday": "Mon",
+      "column": "devops",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-15",
+      "weekday": "Tue",
+      "column": "inventory",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-15",
+      "weekday": "Tue",
+      "column": "orders",
+      "person_raw": "Felix Moreau",
+      "person": "Felix Moreau",
+      "person_slug": "felix-moreau",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-15",
+      "weekday": "Tue",
+      "column": "platform",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-15",
+      "weekday": "Tue",
+      "column": "devops",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-16",
+      "weekday": "Wed",
+      "column": "inventory",
+      "person_raw": "Nadia Petrova",
+      "person": "Nadia Petrova",
+      "person_slug": "nadia-petrova",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-16",
+      "weekday": "Wed",
+      "column": "orders",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-16",
+      "weekday": "Wed",
+      "column": "platform",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-16",
+      "weekday": "Wed",
+      "column": "devops",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-17",
+      "weekday": "Thu",
+      "column": "inventory",
+      "person_raw": "Nadia Petrova",
+      "person": "Nadia Petrova",
+      "person_slug": "nadia-petrova",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-17",
+      "weekday": "Thu",
+      "column": "orders",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-17",
+      "weekday": "Thu",
+      "column": "platform",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-17",
+      "weekday": "Thu",
+      "column": "devops",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-18",
+      "weekday": "Fri",
+      "column": "inventory",
+      "person_raw": "Nadia Petrova",
+      "person": "Nadia Petrova",
+      "person_slug": "nadia-petrova",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-18",
+      "weekday": "Fri",
+      "column": "orders",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-18",
+      "weekday": "Fri",
+      "column": "platform",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-18",
+      "weekday": "Fri",
+      "column": "devops",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-19",
+      "weekday": "Sat",
+      "column": "inventory",
+      "person_raw": "Nadia Petrova",
+      "person": "Nadia Petrova",
+      "person_slug": "nadia-petrova",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-19",
+      "weekday": "Sat",
+      "column": "orders",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-19",
+      "weekday": "Sat",
+      "column": "platform",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-19",
+      "weekday": "Sat",
+      "column": "devops",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-20",
+      "weekday": "Sun",
+      "column": "inventory",
+      "person_raw": "Nadia Petrova",
+      "person": "Nadia Petrova",
+      "person_slug": "nadia-petrova",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-20",
+      "weekday": "Sun",
+      "column": "orders",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-20",
+      "weekday": "Sun",
+      "column": "platform",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-20",
+      "weekday": "Sun",
+      "column": "devops",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-21",
+      "weekday": "Mon",
+      "column": "inventory",
+      "person_raw": "Nadia Petrova",
+      "person": "Nadia Petrova",
+      "person_slug": "nadia-petrova",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-21",
+      "weekday": "Mon",
+      "column": "orders",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-21",
+      "weekday": "Mon",
+      "column": "platform",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-21",
+      "weekday": "Mon",
+      "column": "devops",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-22",
+      "weekday": "Tue",
+      "column": "inventory",
+      "person_raw": "Nadia Petrova",
+      "person": "Nadia Petrova",
+      "person_slug": "nadia-petrova",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-22",
+      "weekday": "Tue",
+      "column": "orders",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-22",
+      "weekday": "Tue",
+      "column": "platform",
+      "person_raw": "Ingrid Solberg",
+      "person": "Ingrid Solberg",
+      "person_slug": "ingrid-solberg",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-22",
+      "weekday": "Tue",
+      "column": "devops",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-23",
+      "weekday": "Wed",
+      "column": "inventory",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-23",
+      "weekday": "Wed",
+      "column": "orders",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-23",
+      "weekday": "Wed",
+      "column": "platform",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-23",
+      "weekday": "Wed",
+      "column": "devops",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-24",
+      "weekday": "Thu",
+      "column": "inventory",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-24",
+      "weekday": "Thu",
+      "column": "orders",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-24",
+      "weekday": "Thu",
+      "column": "platform",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-24",
+      "weekday": "Thu",
+      "column": "devops",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-25",
+      "weekday": "Fri",
+      "column": "inventory",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-25",
+      "weekday": "Fri",
+      "column": "orders",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-25",
+      "weekday": "Fri",
+      "column": "platform",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-25",
+      "weekday": "Fri",
+      "column": "devops",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-26",
+      "weekday": "Sat",
+      "column": "inventory",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-26",
+      "weekday": "Sat",
+      "column": "orders",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-26",
+      "weekday": "Sat",
+      "column": "platform",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-26",
+      "weekday": "Sat",
+      "column": "devops",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-27",
+      "weekday": "Sun",
+      "column": "inventory",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-27",
+      "weekday": "Sun",
+      "column": "orders",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-27",
+      "weekday": "Sun",
+      "column": "platform",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-27",
+      "weekday": "Sun",
+      "column": "devops",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-28",
+      "weekday": "Mon",
+      "column": "inventory",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-28",
+      "weekday": "Mon",
+      "column": "orders",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-28",
+      "weekday": "Mon",
+      "column": "platform",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-28",
+      "weekday": "Mon",
+      "column": "devops",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-29",
+      "weekday": "Tue",
+      "column": "inventory",
+      "person_raw": "Sam Rivera",
+      "person": "Sam Rivera",
+      "person_slug": "sam-rivera",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-29",
+      "weekday": "Tue",
+      "column": "orders",
+      "person_raw": "Jordan Lee",
+      "person": "Jordan Lee",
+      "person_slug": "jordan-lee",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-29",
+      "weekday": "Tue",
+      "column": "platform",
+      "person_raw": "Dmitri Volkov",
+      "person": "Dmitri Volkov",
+      "person_slug": "dmitri-volkov",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-29",
+      "weekday": "Tue",
+      "column": "devops",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-30",
+      "weekday": "Wed",
+      "column": "inventory",
+      "person_raw": "Samir Haddad",
+      "person": "Samir Haddad",
+      "person_slug": "samir-haddad",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-30",
+      "weekday": "Wed",
+      "column": "orders",
+      "person_raw": "Taylor Kim",
+      "person": "Taylor Kim",
+      "person_slug": "taylor-kim",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-30",
+      "weekday": "Wed",
+      "column": "platform",
+      "person_raw": "Rafael Costa",
+      "person": "Rafael Costa",
+      "person_slug": "rafael-costa",
+      "matched": true,
+      "note": ""
+    },
+    {
+      "date": "2026-09-30",
+      "weekday": "Wed",
+      "column": "devops",
+      "person_raw": "Nadia Petrova",
+      "person": "Nadia Petrova",
+      "person_slug": "nadia-petrova",
+      "matched": true,
+      "note": ""
+    }
+  ]
+}

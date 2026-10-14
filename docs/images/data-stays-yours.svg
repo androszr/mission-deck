@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 220" width="960" height="220" role="img" aria-labelledby="t d">
+  <title id="t">Your data stays yours</title>
+  <desc id="d">Readable files stay on your laptop. Only scrambled copies, with unreadable names, are sent to the shared git repository. The key never leaves your machine.</desc>
+  <rect width="960" height="220" rx="16" fill="hsl(30 30% 97%)"/>
+  <rect x="30" y="40" width="270" height="140" rx="12" fill="hsl(0 0% 100%)" stroke="hsl(25 60% 40%)" stroke-width="2"/>
+  <text x="165" y="80" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="hsl(0 0% 15%)">Your laptop</text>
+  <text x="165" y="115" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="hsl(0 0% 30%)">Readable files</text>
+  <text x="165" y="145" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="hsl(0 0% 30%)">and your secret key</text>
+  <path d="M310 110 H650" stroke="hsl(25 60% 40%)" stroke-width="3" fill="none"/>
+  <path d="M640 98 L660 110 L640 122 Z" fill="hsl(25 60% 40%)"/>
+  <rect x="385" y="86" width="190" height="48" rx="24" fill="hsl(25 60% 40%)"/>
+  <text x="480" y="117" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="hsl(0 0% 100%)">Scrambled on send</text>
+  <rect x="660" y="40" width="270" height="140" rx="12" fill="hsl(0 0% 100%)" stroke="hsl(0 0% 45%)" stroke-width="2"/>
+  <text x="795" y="80" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="hsl(0 0% 15%)">Shared git repository</text>
+  <text x="795" y="115" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="hsl(0 0% 30%)">Unreadable files,</text>
+  <text x="795" y="145" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="hsl(0 0% 30%)">unreadable names</text>
+</svg>

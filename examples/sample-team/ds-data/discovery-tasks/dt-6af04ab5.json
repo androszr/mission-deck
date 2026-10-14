@@ -1,0 +1,97 @@
+{
+  "id": "dt-6af04ab5",
+  "title": "Search relevance",
+  "ticket": "NW-109",
+  "rank": 9,
+  "po": "Zoe Carter",
+  "analyst": "Rafael Costa",
+  "designer": "Aiko Tanaka",
+  "architect": "",
+  "ragStatus": "green",
+  "stageStatus": [
+    "preparation",
+    "problem-space",
+    "solution-space",
+    "delivery"
+  ],
+  "discoveryEnd": "2026-08-26",
+  "deliveryEnd": "2026-10-28",
+  "goLiveDate": "2026-11-11",
+  "vmoName": null,
+  "appliesTo": "Echo",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-290",
+      "summary": "Search relevance: scope gate start",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Nadia Petrova",
+      "timeByPerson": {
+        "Nadia Petrova": 136800
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-291",
+      "summary": "Search relevance: process mapping",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Jonas Berg",
+      "timeByPerson": {
+        "Jonas Berg": 86400
+      }
+    },
+    {
+      "defId": "research-insights",
+      "key": "NW-292",
+      "summary": "Search relevance: research insights",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Nadia Petrova",
+      "timeByPerson": {
+        "Nadia Petrova": 25200
+      }
+    },
+    {
+      "defId": "goals-metrics",
+      "key": "NW-293",
+      "summary": "Search relevance: goals metrics",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Rafael Costa",
+      "timeByPerson": {
+        "Rafael Costa": 79200
+      }
+    },
+    {
+      "defId": "requirements-breakdown",
+      "key": "NW-294",
+      "summary": "Search relevance: requirements breakdown",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Rafael Costa",
+      "timeByPerson": {
+        "Rafael Costa": 136800
+      }
+    },
+    {
+      "defId": "workshops-alignment",
+      "key": "NW-295",
+      "summary": "Search relevance: workshops alignment",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Nadia Petrova",
+      "timeByPerson": {
+        "Nadia Petrova": 54000
+      }
+    }
+  ],
+  "comments": [],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-109"
+    }
+  ]
+}

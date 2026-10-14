@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "dateFrom": "2026-08-04",
+      "dateTo": "2026-08-04",
+      "submittedAt": "2026-07-27T13:05:00",
+      "submittedBy": "ingrid.solberg@northwind.example"
+    },
+    {
+      "dateFrom": "2026-08-24",
+      "dateTo": "2026-09-04",
+      "submittedAt": "2026-08-02T13:05:00",
+      "submittedBy": "ingrid.solberg@northwind.example"
+    }
+  ],
+  "name": "Ingrid Solberg",
+  "slug": "ingrid-solberg"
+}

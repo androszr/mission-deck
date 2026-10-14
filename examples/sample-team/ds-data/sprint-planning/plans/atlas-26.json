@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "id": "atlas-26",
+  "team": "atlas",
+  "sprintN": 26,
+  "dateFrom": "2026-09-09",
+  "dateTo": "2026-09-23",
+  "datesSource": "computed",
+  "createdAt": "2026-09-08T10:00:00.000Z",
+  "updatedAt": "2026-09-08T10:00:00.000Z",
+  "sections": {
+    "oncall": {
+      "done": true,
+      "dev": "Sam Rivera",
+      "devops": "Priya Raman",
+      "note": ""
+    },
+    "capacity": {
+      "done": true,
+      "peopleOverride": null,
+      "extraDaysOff": 0,
+      "events": [
+        {
+          "text": "Quarter review on the last day",
+          "id": "it-9f36c3d3"
+        }
+      ],
+      "dependencies": []
+    },
+    "absences": {
+      "done": true,
+      "manual": [
+        {
+          "person": "Sam Rivera",
+          "dateFrom": "2026-09-09",
+          "dateTo": "2026-09-10",
+          "reason": "Holiday",
+          "id": "it-7a9258c7"
+        },
+        {
+          "person": "Priya Raman",
+          "dateFrom": "2026-09-09",
+          "dateTo": "2026-09-14",
+          "reason": "Holiday",
+          "id": "it-e836ef8c"
+        },
+        {
+          "person": "Tomas Novak",
+          "dateFrom": "2026-09-18",
+          "dateTo": "2026-09-18",
+          "reason": "Holiday",
+          "id": "it-a76e8057"
+        }
+      ]
+    },
+    "velocity": {
+      "done": true,
+      "override": null,
+      "note": "Average of the last three sprints"
+    },
+    "refinements": {
+      "done": true,
+      "items": [
+        {
+          "key": "ATL-200",
+          "topic": "Reorder button on past orders",
+          "note": "",
+          "id": "it-06d267ed"
+        },
+        {
+          "key": "ATL-201",
+          "topic": "Import orders from a CSV file",
+          "note": "",
+          "id": "it-8a80ee2d"
+        }
+      ],
+      "cross": []
+    },
+    "goal": {
+      "done": true,
+      "goal": "Harden order editing after the first customer feedback"
+    },
+    "jira": {
+      "done": false
+    }
+  }
+}

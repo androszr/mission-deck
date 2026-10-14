@@ -89,3 +89,17 @@ test('lint:fix never rewrites a module author\'s files', () => {
   // modules/ would silently edit code this repo does not own.
   assert.ok(!REACHES_MODULES.test(pkg.scripts['lint:fix']), 'lint:fix must not reach modules/');
 });
+
+test('the core gates never reach apps/', () => {
+  // apps/ holds standalone workspaces (Mini Deck) with their own dependencies.
+  // They are gated by test:apps / lint:apps / build:apps, never by the core run.
+  const REACHES_APPS = /(^|[\s"'([{=])apps\//;
+  for (const name of [...GATE_SCRIPTS, 'test', 'lint:fix', 'lint:modules']) {
+    assert.ok(!REACHES_APPS.test(pkg.scripts[name] || ''), `npm run ${name} must not reach apps/`);
+  }
+  for (const name of ['lint:apps', 'test:apps', 'build:apps']) {
+    assert.match(pkg.scripts[name] || '', /--prefix apps\/mini-deck/, `${name} must run inside apps/mini-deck`);
+  }
+  const runner = fs.readFileSync(path.join(ROOT, 'scripts/test-unit-js.js'), 'utf8');
+  assert.ok(!/apps\//.test(runner), 'the unit-test runner must not scan apps/');
+});

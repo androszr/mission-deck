@@ -1,0 +1,102 @@
+{
+  "id": "dt-38e0d0ff",
+  "title": "Saved filters",
+  "ticket": "NW-110",
+  "rank": 10,
+  "po": "Zoe Carter",
+  "analyst": "Rafael Costa",
+  "designer": "Aiko Tanaka",
+  "architect": "",
+  "ragStatus": "amber",
+  "stageStatus": [
+    "preparation",
+    "problem-space",
+    "solution-space"
+  ],
+  "discoveryEnd": "2026-08-30",
+  "deliveryEnd": "2026-11-08",
+  "goLiveDate": "2026-11-22",
+  "vmoName": null,
+  "appliesTo": "Echo",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-300",
+      "summary": "Saved filters: scope gate start",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Rafael Costa",
+      "timeByPerson": {
+        "Rafael Costa": 115200
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-301",
+      "summary": "Saved filters: process mapping",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Nadia Petrova",
+      "timeByPerson": {
+        "Nadia Petrova": 108000
+      }
+    },
+    {
+      "defId": "research-insights",
+      "key": "NW-302",
+      "summary": "Saved filters: research insights",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Nadia Petrova",
+      "timeByPerson": {
+        "Nadia Petrova": 144000
+      }
+    },
+    {
+      "defId": "goals-metrics",
+      "key": "NW-303",
+      "summary": "Saved filters: goals metrics",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Zoe Carter",
+      "timeByPerson": {
+        "Zoe Carter": 115200
+      }
+    },
+    {
+      "defId": "requirements-breakdown",
+      "key": "NW-304",
+      "summary": "Saved filters: requirements breakdown",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Nadia Petrova",
+      "timeByPerson": {
+        "Nadia Petrova": 18000
+      }
+    },
+    {
+      "defId": "workshops-alignment",
+      "key": "NW-305",
+      "summary": "Saved filters: workshops alignment",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Rafael Costa",
+      "timeByPerson": {
+        "Rafael Costa": 126000
+      }
+    }
+  ],
+  "comments": [
+    {
+      "author": "Zoe Carter",
+      "date": "2026-09-15",
+      "text": "Depends on NW-109 (search relevance) shipping first."
+    }
+  ],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-110"
+    }
+  ]
+}

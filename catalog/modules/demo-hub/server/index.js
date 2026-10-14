@@ -58,8 +58,12 @@ const FIELD_SEP = '\x1f';
 const LOG_FORMAT = '%H%x1f%aI%x1f%s';
 
 module.exports = function register(ctx) {
-  const repoDir = path.join(ctx.rootDir, 'data-sub-repositories', REPO_DIRNAME);
-  const mirrorDir = path.join(ctx.rootDir, 'data-sub-repositories', MIRROR_DIRNAME);
+  // The team data directory comes from the host (it follows DATA_TIER_0_DIR and
+  // sample mode); the default layout is only the fallback of an older host.
+  const hostDir = ctx.dataTier0Dir
+    || (typeof ctx.dataRepoDir === 'function' ? ctx.dataRepoDir('data-tier-0') : null);
+  const repoDir = hostDir || path.join(ctx.rootDir, 'data-sub-repositories', REPO_DIRNAME);
+  const mirrorDir = hostDir ? hostDir + '-encrypted' : path.join(ctx.rootDir, 'data-sub-repositories', MIRROR_DIRNAME);
   const moduleDir = path.join(repoDir, MODULE_SUBDIR);
   const noteFile = path.join(moduleDir, NOTE_FILENAME);
   const withLock = ctx.makeLock();

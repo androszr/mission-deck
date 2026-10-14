@@ -1,0 +1,20 @@
+{
+  "stores": {
+    "CEN121": {
+      "imported_at": "2026-09-24T10:00:00.000Z",
+      "source": "xlsx"
+    },
+    "CEN129": {
+      "imported_at": "2026-09-24T10:00:00.000Z",
+      "source": "xlsx"
+    },
+    "CEN145": {
+      "imported_at": "2026-09-24T10:00:00.000Z",
+      "source": "xlsx"
+    },
+    "CEN153": {
+      "imported_at": "2026-09-24T10:00:00.000Z",
+      "source": "xlsx"
+    }
+  }
+}

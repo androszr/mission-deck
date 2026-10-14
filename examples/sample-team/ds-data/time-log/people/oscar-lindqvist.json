@@ -1,0 +1,229 @@
+{
+  "slug": "oscar-lindqvist",
+  "name": "Oscar Lindqvist",
+  "display_short": "O. Lindqvist",
+  "email": "oscar.lindqvist@northwind.example",
+  "team": "Delta",
+  "logged_days_count": 8,
+  "miss_days_count": 2,
+  "days": [
+    {
+      "date": "2026-09-29",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "DLT-202",
+          "summary": "Label printing from the warehouse view",
+          "hours": 2.5,
+          "logged_at": "2026-09-29T17:49:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-201",
+          "summary": "Carrier connector for the second carrier",
+          "hours": 5,
+          "logged_at": "2026-09-29T17:45:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-27",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-26",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-25",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-24",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "DLT-201",
+          "summary": "Carrier connector for the second carrier",
+          "hours": 5,
+          "logged_at": "2026-09-24T17:55:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-202",
+          "summary": "Label printing from the warehouse view",
+          "hours": 3,
+          "logged_at": "2026-09-24T17:48:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "DLT-200",
+          "summary": "Carrier connector for the first carrier",
+          "hours": 4.5,
+          "logged_at": "2026-09-23T17:27:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-203",
+          "summary": "Partial delivery handling",
+          "hours": 3.5,
+          "logged_at": "2026-09-23T17:12:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "DLT-202",
+          "summary": "Label printing from the warehouse view",
+          "hours": 3,
+          "logged_at": "2026-09-22T17:24:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-200",
+          "summary": "Carrier connector for the first carrier",
+          "hours": 5,
+          "logged_at": "2026-09-22T17:29:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-21",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "DLT-200",
+          "summary": "Carrier connector for the first carrier",
+          "hours": 7.5,
+          "logged_at": "2026-09-21T17:33:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-20",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-19",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-18",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "DLT-200",
+          "summary": "Carrier connector for the first carrier",
+          "hours": 8.5,
+          "logged_at": "2026-09-18T17:46:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "DLT-203",
+          "summary": "Partial delivery handling",
+          "hours": 4,
+          "logged_at": "2026-09-17T17:19:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-200",
+          "summary": "Carrier connector for the first carrier",
+          "hours": 3.5,
+          "logged_at": "2026-09-17T17:22:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "DLT-203",
+          "summary": "Partial delivery handling",
+          "hours": 4,
+          "logged_at": "2026-09-16T17:41:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-202",
+          "summary": "Label printing from the warehouse view",
+          "hours": 4,
+          "logged_at": "2026-09-16T17:19:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "uid": "t-0ba641dddf3cb66a",
+  "n": 5,
+  "a": "catalog",
+  "o": 1,
+  "t": "Catalog import pipeline",
+  "who": [
+    "grace-whitfield",
+    "taylor-kim"
+  ],
+  "s": 2,
+  "l": 11,
+  "ph": [
+    {
+      "n": "Parser",
+      "s": 2,
+      "l": 4
+    },
+    {
+      "n": "Validation",
+      "s": 6,
+      "l": 4
+    },
+    {
+      "n": "Preview",
+      "s": 10,
+      "l": 3
+    }
+  ],
+  "gw": false,
+  "ms": false,
+  "createdAt": "2026-06-24T09:00:00.000Z",
+  "updatedAt": "2026-09-20T09:00:00.000Z",
+  "updatedBy": null
+}

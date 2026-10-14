@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mission Deck - every screen is a module</title>
+<link rel="stylesheet" href="poster.css">
+<style>
+  .grid { position: absolute; left: 72px; right: 72px; top: 390px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px 28px; }
+  .tile .window { box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45); }
+  .tile .window-bar { height: 26px; padding: 0 10px; gap: 6px; }
+  .tile .window-bar span { width: 9px; height: 9px; }
+  .tile img { height: 250px; object-fit: cover; object-position: center top; }
+  .tile p { margin-top: 10px; font-size: 20px; color: var(--muted); }
+  .tile p strong { color: var(--text); font-weight: 600; }
+</style>
+</head>
+<body>
+  <p class="prompt"><b>~/mission-deck$</b> <i>ls catalog/modules | wc -l</i> &nbsp;23</p>
+  <h1>Every screen is <em>a module.</em></h1>
+  <p class="lede">Sprints, bugs, the roadmap, on-call, time and the team are each a
+    small folder. <strong>Install the ones you need, change any of them, or add
+    your own.</strong></p>
+
+  <div class="grid">
+    <div class="tile"><div class="window"><div class="window-bar"><span></span><span></span><span></span></div><img src="../../sprint-stats.png" alt=""></div><p><strong>Sprint stats</strong> - goals and progress per squad</p></div>
+    <div class="tile"><div class="window"><div class="window-bar"><span></span><span></span><span></span></div><img src="../../prod-bugs.png" alt=""></div><p><strong>Prod bugs</strong> - open bugs by area</p></div>
+    <div class="tile"><div class="window"><div class="window-bar"><span></span><span></span><span></span></div><img src="../../gantt-roadmap.png" alt=""></div><p><strong>Roadmap</strong> - initiatives on a timeline</p></div>
+    <div class="tile"><div class="window"><div class="window-bar"><span></span><span></span><span></span></div><img src="../../team-directory.png" alt=""></div><p><strong>Team directory</strong> - who is who</p></div>
+  </div>
+
+  <div class="footer">
+    <div class="wordmark"><b>MISSION</b> DECK</div>
+    <div class="chips"><span class="chip">23 modules in the catalog</span></div>
+  </div>
+</body>
+</html>

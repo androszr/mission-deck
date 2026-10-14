@@ -1,0 +1,93 @@
+{
+  "id": "dt-35f8610a",
+  "title": "Product variants",
+  "ticket": "NW-106",
+  "rank": 6,
+  "po": "Grace Whitfield",
+  "analyst": "Taylor Kim",
+  "designer": "Aiko Tanaka",
+  "architect": "",
+  "ragStatus": "green",
+  "stageStatus": [
+    "preparation",
+    "problem-space"
+  ],
+  "discoveryEnd": "2026-08-14",
+  "deliveryEnd": "2026-10-23",
+  "goLiveDate": "2026-11-06",
+  "vmoName": null,
+  "appliesTo": "Comet",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-260",
+      "summary": "Product variants: scope gate start",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Taylor Kim",
+      "timeByPerson": {
+        "Taylor Kim": 39600
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-261",
+      "summary": "Product variants: process mapping",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Kofi Mensah",
+      "timeByPerson": {
+        "Kofi Mensah": 86400
+      }
+    },
+    {
+      "defId": "research-insights",
+      "key": "NW-262",
+      "summary": "Product variants: research insights",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Kofi Mensah",
+      "timeByPerson": {
+        "Kofi Mensah": 97200
+      }
+    },
+    {
+      "defId": "goals-metrics",
+      "key": "NW-263",
+      "summary": "Product variants: goals metrics",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Kofi Mensah",
+      "timeByPerson": {
+        "Kofi Mensah": 136800
+      }
+    },
+    {
+      "defId": "requirements-breakdown",
+      "key": "NW-264",
+      "summary": "Product variants: requirements breakdown",
+      "statusName": "In Progress",
+      "statusCategory": "indeterminate",
+      "assignee": "Kofi Mensah",
+      "timeByPerson": {
+        "Kofi Mensah": 136800
+      }
+    },
+    {
+      "defId": "workshops-alignment",
+      "key": "NW-265",
+      "summary": "Product variants: workshops alignment",
+      "statusName": "To Do",
+      "statusCategory": "new",
+      "assignee": "Kofi Mensah",
+      "timeByPerson": {}
+    }
+  ],
+  "comments": [],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-106"
+    }
+  ]
+}

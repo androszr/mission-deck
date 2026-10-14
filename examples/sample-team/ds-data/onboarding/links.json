@@ -1,0 +1,35 @@
+{
+  "links": [
+    {
+      "id": "link-1000",
+      "title": "Team handbook",
+      "url": "https://wiki.example.com/northwind/handbook",
+      "description": "How we work, in ten pages."
+    },
+    {
+      "id": "link-1001",
+      "title": "Product tour",
+      "url": "https://wiki.example.com/northwind/product-tour",
+      "description": "A guided walk through the product."
+    },
+    {
+      "id": "link-1002",
+      "title": "Architecture overview",
+      "url": "https://wiki.example.com/northwind/architecture",
+      "description": "The big picture of the system."
+    },
+    {
+      "id": "link-1003",
+      "title": "Support playbook",
+      "url": "https://wiki.example.com/northwind/support",
+      "description": "How to answer the most common questions."
+    },
+    {
+      "id": "link-1004",
+      "title": "Sprint review calendar",
+      "url": "view://sprint-review-main",
+      "description": "Open the sprint review in Mission Deck."
+    }
+  ],
+  "generated_at": "2026-09-30T16:00:00.000Z"
+}

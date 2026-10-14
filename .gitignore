@@ -13,10 +13,12 @@ plans/*
 data-sub-repositories/
 
 # Local app cache (PID, version, logs)
-data/
+/data/
 
 # Node
 node_modules/
+apps/*/node_modules/
+apps/*/dist/
 
 # GitNexus index (npm run setup) - local, everyone has their own
 .gitnexus/
@@ -59,3 +61,6 @@ node_modules/
 # Python bytecode
 __pycache__/
 *.pyc
+
+# Static demo site built by scripts/demo-export.js --site _site
+/_site/

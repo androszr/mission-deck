@@ -1,0 +1,243 @@
+{
+  "sprint": 22,
+  "sprintName": "Sprint 22",
+  "dateRange": {
+    "startDate": "2026-07-15",
+    "endDate": "2026-07-28"
+  },
+  "dateRangeDisplay": "15.07-28.07",
+  "fetchedAt": "2026-09-30T08:00:00",
+  "areas": {
+    "orders": {
+      "bugs": 5,
+      "bugFixTime": 17,
+      "resolvedCount": 2,
+      "createdCount": 2,
+      "openBugs": [
+        {
+          "key": "ATL-4001",
+          "summary": "Duplicate confirmation email after a quick double click",
+          "status": "Open",
+          "priority": "Critical",
+          "created": "2026-07-04"
+        },
+        {
+          "key": "ATL-4003",
+          "summary": "Order total shows the old price after an edit",
+          "status": "Open",
+          "priority": "Medium",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "ATL-4005",
+          "summary": "Wrong currency symbol on the order PDF",
+          "status": "Open",
+          "priority": "Low",
+          "created": "2026-07-04"
+        },
+        {
+          "key": "ATL-4028",
+          "summary": "Reorder button disabled for archived products",
+          "status": "Open",
+          "priority": "Low",
+          "created": "2026-07-27"
+        },
+        {
+          "key": "ATL-4029",
+          "summary": "Cancelled order still appears in the open list",
+          "status": "New",
+          "priority": "Medium",
+          "created": "2026-07-22"
+        }
+      ],
+      "resolvedBugs": [
+        {
+          "key": "ATL-4004",
+          "summary": "CSV export cuts off long product names",
+          "status": "Done",
+          "priority": "Critical",
+          "created": "2026-07-03",
+          "resolved": "2026-07-18",
+          "fixDays": 15
+        },
+        {
+          "key": "ATL-4022",
+          "summary": "Edit dialog opens twice on slow connections",
+          "status": "Done",
+          "priority": "Low",
+          "created": "2026-07-03",
+          "resolved": "2026-07-22",
+          "fixDays": 19
+        }
+      ]
+    },
+    "otherModules": {
+      "bugs": 7,
+      "bugFixTime": 18,
+      "resolvedCount": 2,
+      "createdCount": 2,
+      "openBugs": [
+        {
+          "key": "CMT-4006",
+          "summary": "Variant picker resets after adding to the order",
+          "status": "Open",
+          "priority": "Low",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "CMT-4009",
+          "summary": "Label print preview is blank in one browser",
+          "status": "Open",
+          "priority": "Low",
+          "created": "2026-07-03"
+        },
+        {
+          "key": "CMT-4011",
+          "summary": "Category tree collapses after saving",
+          "status": "In Progress",
+          "priority": "Medium",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "CMT-4012",
+          "summary": "Partial delivery marked as complete",
+          "status": "Blocked",
+          "priority": "Low",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "CMT-4025",
+          "summary": "Synonym list ignores capital letters",
+          "status": "In Progress",
+          "priority": "Critical",
+          "created": "2026-07-13"
+        },
+        {
+          "key": "CMT-4030",
+          "summary": "Carrier name missing in the tracking email",
+          "status": "Open",
+          "priority": "Critical",
+          "created": "2026-07-19"
+        },
+        {
+          "key": "CMT-4031",
+          "summary": "Delivery slot shows the wrong weekday",
+          "status": "Blocked",
+          "priority": "Low",
+          "created": "2026-07-23"
+        }
+      ],
+      "resolvedBugs": [
+        {
+          "key": "CMT-4024",
+          "summary": "Price shown without tax for one account type",
+          "status": "Done",
+          "priority": "Low",
+          "created": "2026-07-05",
+          "resolved": "2026-07-17",
+          "fixDays": 12
+        },
+        {
+          "key": "CMT-4008",
+          "summary": "Imported image is shown rotated",
+          "status": "Done",
+          "priority": "Medium",
+          "created": "2026-07-01",
+          "resolved": "2026-07-25",
+          "fixDays": 24
+        }
+      ]
+    },
+    "platform": {
+      "bugs": 9,
+      "bugFixTime": 20,
+      "resolvedCount": 2,
+      "createdCount": 2,
+      "openBugs": [
+        {
+          "key": "FAL-4013",
+          "summary": "Sandbox keys expire after one day instead of seven",
+          "status": "Open",
+          "priority": "High",
+          "created": "2026-07-01"
+        },
+        {
+          "key": "FAL-4017",
+          "summary": "Webhook retried more often than configured",
+          "status": "Open",
+          "priority": "Critical",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "FAL-4018",
+          "summary": "API returns 500 for an empty filter list",
+          "status": "Open",
+          "priority": "Medium",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "FAL-4020",
+          "summary": "Gateway health check reports healthy during a restart",
+          "status": "Blocked",
+          "priority": "Medium",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "FAL-4021",
+          "summary": "Duplicate webhook after a manual retry",
+          "status": "In Progress",
+          "priority": "Medium",
+          "created": "2026-07-04"
+        },
+        {
+          "key": "FAL-4026",
+          "summary": "Slow query on the audit log search",
+          "status": "Open",
+          "priority": "Low",
+          "created": "2026-07-08"
+        },
+        {
+          "key": "FAL-4027",
+          "summary": "Wrong content type on the error page",
+          "status": "In Progress",
+          "priority": "Critical",
+          "created": "2026-07-11"
+        },
+        {
+          "key": "FAL-4032",
+          "summary": "Queue worker stops after a long job",
+          "status": "Open",
+          "priority": "Critical",
+          "created": "2026-07-16"
+        },
+        {
+          "key": "FAL-4033",
+          "summary": "Sandbox keys expire after one day instead of seven (2)",
+          "status": "Blocked",
+          "priority": "High",
+          "created": "2026-07-15"
+        }
+      ],
+      "resolvedBugs": [
+        {
+          "key": "FAL-4015",
+          "summary": "Pagination cursor repeats the last item",
+          "status": "Done",
+          "priority": "High",
+          "created": "2026-07-03",
+          "resolved": "2026-07-23",
+          "fixDays": 20
+        },
+        {
+          "key": "FAL-4019",
+          "summary": "Rate limit header missing on error responses",
+          "status": "Done",
+          "priority": "High",
+          "created": "2026-07-01",
+          "resolved": "2026-07-21",
+          "fixDays": 20
+        }
+      ]
+    }
+  }
+}

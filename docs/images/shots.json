@@ -1,0 +1,170 @@
+{
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "theme": "light",
+  "everyShot": [
+    {
+      "waitMs": 1500
+    },
+    {
+      "clickIfPresent": "#infra-banner .app-update-banner__dismiss"
+    },
+    {
+      "waitMs": 300
+    }
+  ],
+  "dashboardLayout": [
+    {
+      "module": "sprint-stats",
+      "widget": "latest-sprint",
+      "variant": "m2"
+    },
+    {
+      "module": "prod-bugs",
+      "widget": "open-bugs",
+      "variant": "m2"
+    },
+    {
+      "module": "roadmap",
+      "widget": "top-initiatives",
+      "variant": "m2"
+    },
+    {
+      "module": "team-directory",
+      "widget": "teams",
+      "variant": "m2"
+    },
+    {
+      "module": "meeting-archive",
+      "widget": "recent-meetings",
+      "variant": "m2"
+    },
+    {
+      "module": "knowledge-base",
+      "widget": "knowledge-new",
+      "variant": "m2"
+    }
+  ],
+  "shots": [
+    {
+      "id": "dashboard",
+      "file": "dashboard.png",
+      "hash": "dashboard",
+      "settleMs": 2500
+    },
+    {
+      "id": "wizard",
+      "file": "wizard.png",
+      "hash": "onboarding-wizard",
+      "settleMs": 1500
+    },
+    {
+      "id": "wizard-sample",
+      "file": "wizard-sample.png",
+      "hash": "onboarding-wizard",
+      "selector": ".obw-step-card",
+      "settleMs": 1500
+    },
+    {
+      "id": "sprint-stats",
+      "file": "sprint-stats.png",
+      "hash": "sprint-stats-main",
+      "settleMs": 1500
+    },
+    {
+      "id": "roadmap",
+      "file": "roadmap.png",
+      "hash": "roadmap-main",
+      "settleMs": 1500
+    },
+    {
+      "id": "time-log",
+      "file": "time-log.png",
+      "hash": "time-log-main",
+      "settleMs": 1500
+    },
+    {
+      "id": "prod-bugs",
+      "file": "prod-bugs.png",
+      "hash": "prod-bugs-main",
+      "settleMs": 1500
+    },
+    {
+      "id": "costs",
+      "file": "costs.png",
+      "hash": "costs-main",
+      "settleMs": 1500,
+      "actions": [
+        {
+          "hide": ".ds-callout--warning"
+        }
+      ]
+    },
+    {
+      "id": "on-call",
+      "file": "on-call.png",
+      "hash": "on-call-main",
+      "settleMs": 1500
+    },
+    {
+      "id": "knowledge-base",
+      "file": "knowledge-base.png",
+      "hash": "knowledge-base-list",
+      "settleMs": 1500
+    },
+    {
+      "id": "meeting-archive",
+      "file": "meeting-archive.png",
+      "hash": "meeting-archive-main",
+      "settleMs": 1500
+    },
+    {
+      "id": "team-directory",
+      "file": "team-directory.png",
+      "hash": "team-directory-main",
+      "settleMs": 1500
+    },
+    {
+      "id": "vendor-settlements",
+      "file": "vendor-settlements.png",
+      "hash": "vendor-settlements-main",
+      "settleMs": 1500
+    },
+    {
+      "id": "gantt-roadmap",
+      "file": "gantt-roadmap.png",
+      "hash": "gantt-roadmap-main",
+      "settleMs": 1500
+    },
+    {
+      "id": "catalog",
+      "file": "catalog.png",
+      "hash": "settings/modules",
+      "settleMs": 2000,
+      "viewport": {
+        "width": 1280,
+        "height": 1300
+      },
+      "clip": {
+        "x": 300,
+        "y": 850,
+        "width": 980,
+        "height": 300
+      }
+    },
+    {
+      "id": "academy",
+      "file": "academy.png",
+      "hash": "academy",
+      "settleMs": 1500
+    },
+    {
+      "id": "skills",
+      "file": "skills.png",
+      "hash": "settings/skills",
+      "settleMs": 1500
+    }
+  ]
+}

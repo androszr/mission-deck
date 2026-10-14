@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "id": "borealis-23",
+  "team": "borealis",
+  "sprintN": 23,
+  "dateFrom": "2026-07-29",
+  "dateTo": "2026-08-12",
+  "datesSource": "computed",
+  "createdAt": "2026-07-28T10:00:00.000Z",
+  "updatedAt": "2026-07-28T10:00:00.000Z",
+  "sections": {
+    "oncall": {
+      "done": true,
+      "dev": "Jordan Lee",
+      "devops": "Samir Haddad",
+      "note": ""
+    },
+    "capacity": {
+      "done": true,
+      "peopleOverride": null,
+      "extraDaysOff": 0,
+      "events": [
+        {
+          "text": "Quarter review on the last day",
+          "id": "it-bf088fa1"
+        }
+      ],
+      "dependencies": []
+    },
+    "absences": {
+      "done": true,
+      "manual": [
+        {
+          "person": "Elena Rossi",
+          "dateFrom": "2026-08-04",
+          "dateTo": "2026-08-09",
+          "reason": "Holiday",
+          "id": "it-7119f671"
+        },
+        {
+          "person": "Jordan Lee",
+          "dateFrom": "2026-07-29",
+          "dateTo": "2026-08-05",
+          "reason": "Holiday",
+          "id": "it-1c568ea7"
+        },
+        {
+          "person": "Aiko Tanaka",
+          "dateFrom": "2026-08-04",
+          "dateTo": "2026-08-04",
+          "reason": "Holiday",
+          "id": "it-c747b275"
+        },
+        {
+          "person": "Aiko Tanaka",
+          "dateFrom": "2026-08-06",
+          "dateTo": "2026-08-11",
+          "reason": "Holiday",
+          "id": "it-5cb6a0fb"
+        },
+        {
+          "person": "Samir Haddad",
+          "dateFrom": "2026-07-29",
+          "dateTo": "2026-08-04",
+          "reason": "Holiday",
+          "id": "it-0c433b24"
+        }
+      ]
+    },
+    "velocity": {
+      "done": true,
+      "override": null,
+      "note": "Average of the last three sprints"
+    },
+    "refinements": {
+      "done": true,
+      "items": [
+        {
+          "key": "BOR-140",
+          "topic": "Mobile layout of the payment step",
+          "note": "",
+          "id": "it-ab0c55da"
+        },
+        {
+          "key": "BOR-141",
+          "topic": "Retry a failed payment",
+          "note": "",
+          "id": "it-beb03fdb"
+        }
+      ],
+      "cross": []
+    },
+    "goal": {
+      "done": true,
+      "goal": "Roll out saved payment terms to pilot accounts"
+    },
+    "jira": {
+      "done": true
+    }
+  }
+}

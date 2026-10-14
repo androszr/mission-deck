@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "id": "borealis-25",
+  "team": "borealis",
+  "sprintN": 25,
+  "dateFrom": "2026-08-26",
+  "dateTo": "2026-09-09",
+  "datesSource": "computed",
+  "createdAt": "2026-08-25T10:00:00.000Z",
+  "updatedAt": "2026-08-25T10:00:00.000Z",
+  "sections": {
+    "oncall": {
+      "done": true,
+      "dev": "Jordan Lee",
+      "devops": "Samir Haddad",
+      "note": ""
+    },
+    "capacity": {
+      "done": true,
+      "peopleOverride": null,
+      "extraDaysOff": 0,
+      "events": [
+        {
+          "text": "Quarter review on the last day",
+          "id": "it-9551f1d9"
+        }
+      ],
+      "dependencies": []
+    },
+    "absences": {
+      "done": true,
+      "manual": []
+    },
+    "velocity": {
+      "done": true,
+      "override": null,
+      "note": "Average of the last three sprints"
+    },
+    "refinements": {
+      "done": true,
+      "items": [
+        {
+          "key": "BOR-180",
+          "topic": "Collapse checkout into three steps",
+          "note": "",
+          "id": "it-f78f6148"
+        },
+        {
+          "key": "BOR-181",
+          "topic": "Remember the delivery address",
+          "note": "",
+          "id": "it-ac7c90d4"
+        }
+      ],
+      "cross": []
+    },
+    "goal": {
+      "done": true,
+      "goal": "Add the order summary email"
+    },
+    "jira": {
+      "done": true
+    }
+  }
+}

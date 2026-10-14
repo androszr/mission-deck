@@ -1,0 +1,235 @@
+{
+  "slug": "kofi-mensah",
+  "name": "Kofi Mensah",
+  "display_short": "K. Mensah",
+  "email": "kofi.mensah@northwind.example",
+  "team": "Comet",
+  "logged_days_count": 7,
+  "miss_days_count": 3,
+  "days": [
+    {
+      "date": "2026-09-29",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "CMT-201",
+          "summary": "Plain-language import errors",
+          "hours": 3.5,
+          "logged_at": "2026-09-29T17:25:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-200",
+          "summary": "Import product images from a zip",
+          "hours": 4.5,
+          "logged_at": "2026-09-29T17:29:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-27",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-26",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-25",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "CMT-202",
+          "summary": "Bulk edit product categories",
+          "hours": 3,
+          "logged_at": "2026-09-25T17:45:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-211",
+          "summary": "Price sanity check on import",
+          "hours": 5,
+          "logged_at": "2026-09-25T17:36:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-23",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "CMT-200",
+          "summary": "Import product images from a zip",
+          "hours": 3.5,
+          "logged_at": "2026-09-23T17:40:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-203",
+          "summary": "Duplicate detection by product code",
+          "hours": 3,
+          "logged_at": "2026-09-23T17:48:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-202",
+          "summary": "Bulk edit product categories",
+          "hours": 1.5,
+          "logged_at": "2026-09-23T17:57:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-21",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "CMT-211",
+          "summary": "Price sanity check on import",
+          "hours": 7.5,
+          "logged_at": "2026-09-21T17:55:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-20",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-19",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-18",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "CMT-200",
+          "summary": "Import product images from a zip",
+          "hours": 5,
+          "logged_at": "2026-09-18T17:47:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-201",
+          "summary": "Plain-language import errors",
+          "hours": 2.5,
+          "logged_at": "2026-09-18T17:21:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-211",
+          "summary": "Price sanity check on import",
+          "hours": 0.5,
+          "logged_at": "2026-09-18T17:28:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "CMT-200",
+          "summary": "Import product images from a zip",
+          "hours": 4.5,
+          "logged_at": "2026-09-17T17:26:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-203",
+          "summary": "Duplicate detection by product code",
+          "hours": 2.5,
+          "logged_at": "2026-09-17T17:18:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-201",
+          "summary": "Plain-language import errors",
+          "hours": 0.5,
+          "logged_at": "2026-09-17T17:14:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "CMT-203",
+          "summary": "Duplicate detection by product code",
+          "hours": 8.5,
+          "logged_at": "2026-09-16T17:58:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    }
+  ]
+}

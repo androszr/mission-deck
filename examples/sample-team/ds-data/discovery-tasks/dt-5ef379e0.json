@@ -1,0 +1,99 @@
+{
+  "id": "dt-5ef379e0",
+  "title": "Public API v2",
+  "ticket": "NW-111",
+  "rank": 11,
+  "po": "Amara Diallo",
+  "analyst": "Felix Moreau",
+  "designer": "Yuki Sato",
+  "architect": "",
+  "ragStatus": "red",
+  "stageStatus": [
+    "preparation",
+    "problem-space"
+  ],
+  "discoveryEnd": "2026-09-03",
+  "deliveryEnd": "2026-11-19",
+  "goLiveDate": "2026-11-03",
+  "vmoName": null,
+  "appliesTo": "Falcon",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-310",
+      "summary": "Public API v2: scope gate start",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Yuki Sato",
+      "timeByPerson": {
+        "Yuki Sato": 39600
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-311",
+      "summary": "Public API v2: process mapping",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Amara Diallo",
+      "timeByPerson": {
+        "Amara Diallo": 39600
+      }
+    },
+    {
+      "defId": "research-insights",
+      "key": "NW-312",
+      "summary": "Public API v2: research insights",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Amara Diallo",
+      "timeByPerson": {
+        "Amara Diallo": 86400
+      }
+    },
+    {
+      "defId": "goals-metrics",
+      "key": "NW-313",
+      "summary": "Public API v2: goals metrics",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Chloe Dubois",
+      "timeByPerson": {
+        "Chloe Dubois": 57600
+      }
+    },
+    {
+      "defId": "requirements-breakdown",
+      "key": "NW-314",
+      "summary": "Public API v2: requirements breakdown",
+      "statusName": "In Progress",
+      "statusCategory": "indeterminate",
+      "assignee": "Chloe Dubois",
+      "timeByPerson": {
+        "Chloe Dubois": 90000
+      }
+    },
+    {
+      "defId": "workshops-alignment",
+      "key": "NW-315",
+      "summary": "Public API v2: workshops alignment",
+      "statusName": "To Do",
+      "statusCategory": "new",
+      "assignee": "Chloe Dubois",
+      "timeByPerson": {}
+    }
+  ],
+  "comments": [
+    {
+      "author": "Amara Diallo",
+      "date": "2026-09-02",
+      "text": "Slipping: the go-live date moves by about three weeks. Needs one more engineer for two sprints."
+    }
+  ],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-111"
+    }
+  ]
+}

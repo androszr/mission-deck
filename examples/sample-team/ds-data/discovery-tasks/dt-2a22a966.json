@@ -1,0 +1,70 @@
+{
+  "id": "dt-2a22a966",
+  "title": "Audit log",
+  "ticket": "NW-112",
+  "rank": 12,
+  "po": "Amara Diallo",
+  "analyst": "Felix Moreau",
+  "designer": "Yuki Sato",
+  "architect": "",
+  "ragStatus": "green",
+  "stageStatus": [
+    "preparation"
+  ],
+  "discoveryEnd": "2026-09-07",
+  "deliveryEnd": "2026-11-02",
+  "goLiveDate": "2026-11-16",
+  "vmoName": null,
+  "appliesTo": "Falcon",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-320",
+      "summary": "Audit log: scope gate start",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Chloe Dubois",
+      "timeByPerson": {
+        "Chloe Dubois": 68400
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-321",
+      "summary": "Audit log: process mapping",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Yuki Sato",
+      "timeByPerson": {
+        "Yuki Sato": 54000
+      }
+    },
+    {
+      "defId": "research-insights",
+      "key": "NW-322",
+      "summary": "Audit log: research insights",
+      "statusName": "In Progress",
+      "statusCategory": "indeterminate",
+      "assignee": "Amara Diallo",
+      "timeByPerson": {
+        "Amara Diallo": 32400
+      }
+    },
+    {
+      "defId": "goals-metrics",
+      "key": "NW-323",
+      "summary": "Audit log: goals metrics",
+      "statusName": "To Do",
+      "statusCategory": "new",
+      "assignee": "Felix Moreau",
+      "timeByPerson": {}
+    }
+  ],
+  "comments": [],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-112"
+    }
+  ]
+}

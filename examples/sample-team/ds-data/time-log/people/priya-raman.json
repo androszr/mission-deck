@@ -1,0 +1,266 @@
+{
+  "slug": "priya-raman",
+  "name": "Priya Raman",
+  "display_short": "P. Raman",
+  "email": "priya.raman@northwind.example",
+  "team": "Atlas",
+  "logged_days_count": 10,
+  "miss_days_count": 0,
+  "days": [
+    {
+      "date": "2026-09-29",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "ATL-202",
+          "summary": "Validation messages for the import",
+          "hours": 7.5,
+          "logged_at": "2026-09-29T17:57:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "ATL-201",
+          "summary": "Import orders from a CSV file",
+          "hours": 5,
+          "logged_at": "2026-09-28T17:48:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-202",
+          "summary": "Validation messages for the import",
+          "hours": 2,
+          "logged_at": "2026-09-28T17:32:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-206",
+          "summary": "Keyboard shortcuts on the order list",
+          "hours": 0.5,
+          "logged_at": "2026-09-28T17:41:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-27",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-26",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-25",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "ATL-201",
+          "summary": "Import orders from a CSV file",
+          "hours": 7.5,
+          "logged_at": "2026-09-25T17:49:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "ATL-206",
+          "summary": "Keyboard shortcuts on the order list",
+          "hours": 3.5,
+          "logged_at": "2026-09-24T17:44:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-201",
+          "summary": "Import orders from a CSV file",
+          "hours": 2.5,
+          "logged_at": "2026-09-24T17:18:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-202",
+          "summary": "Validation messages for the import",
+          "hours": 2.5,
+          "logged_at": "2026-09-24T17:45:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "ATL-200",
+          "summary": "Reorder button on past orders",
+          "hours": 7.5,
+          "logged_at": "2026-09-23T17:44:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "ATL-201",
+          "summary": "Import orders from a CSV file",
+          "hours": 3.5,
+          "logged_at": "2026-09-22T17:36:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-200",
+          "summary": "Reorder button on past orders",
+          "hours": 4,
+          "logged_at": "2026-09-22T17:59:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-21",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "ATL-201",
+          "summary": "Import orders from a CSV file",
+          "hours": 2,
+          "logged_at": "2026-09-21T17:26:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-206",
+          "summary": "Keyboard shortcuts on the order list",
+          "hours": 6,
+          "logged_at": "2026-09-21T17:17:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-20",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-19",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-18",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "ATL-200",
+          "summary": "Reorder button on past orders",
+          "hours": 3.5,
+          "logged_at": "2026-09-18T17:10:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-201",
+          "summary": "Import orders from a CSV file",
+          "hours": 3,
+          "logged_at": "2026-09-18T17:18:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-206",
+          "summary": "Keyboard shortcuts on the order list",
+          "hours": 1.5,
+          "logged_at": "2026-09-18T17:18:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "ATL-202",
+          "summary": "Validation messages for the import",
+          "hours": 2.5,
+          "logged_at": "2026-09-17T17:39:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-200",
+          "summary": "Reorder button on past orders",
+          "hours": 5.5,
+          "logged_at": "2026-09-17T17:59:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "ATL-201",
+          "summary": "Import orders from a CSV file",
+          "hours": 7.5,
+          "logged_at": "2026-09-16T17:38:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    }
+  ]
+}

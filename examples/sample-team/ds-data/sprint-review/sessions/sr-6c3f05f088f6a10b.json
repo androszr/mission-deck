@@ -1,0 +1,198 @@
+{
+  "id": "sr-6c3f05f088f6a10b",
+  "createdAt": "2026-09-23T08:00:00.000Z",
+  "updatedAt": "2026-09-23T15:00:00.000Z",
+  "reviewDate": "2026-09-23",
+  "sprintN": 26,
+  "sprintName": "Sprint 26",
+  "deadline": "2026-09-18T10:00:00.000Z",
+  "facilitatorPo": "Alex Morgan",
+  "meeting": "team-review",
+  "teamGoals": [
+    {
+      "team": "Atlas",
+      "goal": "Harden order editing after the first customer feedback",
+      "sprint_name": "Atlas Sprint 26"
+    },
+    {
+      "team": "Borealis",
+      "goal": "Stabilise checkout after the August release",
+      "sprint_name": "Borealis Sprint 26"
+    },
+    {
+      "team": "Comet",
+      "goal": "Reach a clean import for the largest supplier file",
+      "sprint_name": "Comet Sprint 26"
+    },
+    {
+      "team": "Delta",
+      "goal": "Handle partial deliveries end to end",
+      "sprint_name": "Delta Sprint 26"
+    },
+    {
+      "team": "Echo",
+      "goal": "Cut zero-result searches by a third",
+      "sprint_name": "Echo Sprint 26"
+    },
+    {
+      "team": "Falcon",
+      "goal": "Reach the agreed uptime for the API gateway",
+      "sprint_name": "Falcon Sprint 26"
+    }
+  ],
+  "submissions": {
+    "Atlas": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-e0b2e46f",
+          "title": "Before and after: page load time",
+          "format": "discussion",
+          "presenters": [
+            "Sam Rivera"
+          ]
+        },
+        {
+          "id": "t-8c30c1e5",
+          "title": "The one thing that did not work and why",
+          "format": "presentation",
+          "presenters": [
+            "Sam Rivera"
+          ]
+        }
+      ]
+    },
+    "Borealis": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-dff545ae",
+          "title": "Customer feedback in their own words",
+          "format": "presentation",
+          "presenters": [
+            "Jordan Lee"
+          ]
+        },
+        {
+          "id": "t-88a195ae",
+          "title": "The one thing that did not work and why",
+          "format": "discussion",
+          "presenters": [
+            "Jordan Lee"
+          ]
+        }
+      ]
+    },
+    "Comet": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-d50faf71",
+          "title": "Walkthrough of the new settings page",
+          "format": "presentation",
+          "presenters": [
+            "Taylor Kim"
+          ]
+        },
+        {
+          "id": "t-60c085f8",
+          "title": "Customer feedback in their own words",
+          "format": "discussion",
+          "presenters": [
+            "Taylor Kim"
+          ]
+        }
+      ]
+    },
+    "Delta": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-5739ea31",
+          "title": "What we learned from the support tickets",
+          "format": "presentation",
+          "presenters": [
+            "Dmitri Volkov"
+          ]
+        },
+        {
+          "id": "t-da166d6b",
+          "title": "Open questions for the next sprint",
+          "format": "presentation",
+          "presenters": [
+            "Dmitri Volkov"
+          ]
+        }
+      ]
+    },
+    "Echo": {
+      "submitted": true,
+      "realizationStatus": "partial",
+      "topicsProblemSpace": [
+        {
+          "id": "t-f4188fbf",
+          "title": "Walkthrough of the new settings page",
+          "format": "presentation",
+          "presenters": [
+            "Rafael Costa"
+          ]
+        },
+        {
+          "id": "t-728a20dc",
+          "title": "Before and after: page load time",
+          "format": "discussion",
+          "presenters": [
+            "Zoe Carter"
+          ]
+        }
+      ],
+      "topicsSolutionSpace": [
+        {
+          "id": "t-c11a6603",
+          "title": "Before and after: page load time",
+          "format": "presentation",
+          "presenters": [
+            "Rafael Costa"
+          ]
+        },
+        {
+          "id": "t-821a1dbd",
+          "title": "A look at the numbers behind the goal",
+          "format": "presentation",
+          "presenters": [
+            "Rafael Costa"
+          ]
+        }
+      ]
+    },
+    "Falcon": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-0192532e",
+          "title": "Open questions for the next sprint",
+          "format": "discussion",
+          "presenters": [
+            "Amara Diallo"
+          ]
+        },
+        {
+          "id": "t-07c55dde",
+          "title": "Customer feedback in their own words",
+          "format": "discussion",
+          "presenters": [
+            "Amara Diallo"
+          ]
+        }
+      ]
+    }
+  },
+  "cardsSentAt": "2026-09-23T09:30:00.000Z",
+  "confluencePageId": null,
+  "confluenceVersion": null
+}

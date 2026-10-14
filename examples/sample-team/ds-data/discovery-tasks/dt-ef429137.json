@@ -1,0 +1,93 @@
+{
+  "id": "dt-ef429137",
+  "title": "Saved payment terms",
+  "ticket": "NW-104",
+  "rank": 4,
+  "po": "Elena Rossi",
+  "analyst": "Jordan Lee",
+  "designer": "Aiko Tanaka",
+  "architect": "",
+  "ragStatus": "amber",
+  "stageStatus": [
+    "preparation",
+    "problem-space"
+  ],
+  "discoveryEnd": "2026-08-06",
+  "deliveryEnd": "2026-10-01",
+  "goLiveDate": "2026-10-15",
+  "vmoName": null,
+  "appliesTo": "Borealis",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-240",
+      "summary": "Saved payment terms: scope gate start",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Samir Haddad",
+      "timeByPerson": {
+        "Samir Haddad": 79200
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-241",
+      "summary": "Saved payment terms: process mapping",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Jordan Lee",
+      "timeByPerson": {
+        "Jordan Lee": 21600
+      }
+    },
+    {
+      "defId": "research-insights",
+      "key": "NW-242",
+      "summary": "Saved payment terms: research insights",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Samir Haddad",
+      "timeByPerson": {
+        "Samir Haddad": 111600
+      }
+    },
+    {
+      "defId": "goals-metrics",
+      "key": "NW-243",
+      "summary": "Saved payment terms: goals metrics",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Aiko Tanaka",
+      "timeByPerson": {
+        "Aiko Tanaka": 100800
+      }
+    },
+    {
+      "defId": "requirements-breakdown",
+      "key": "NW-244",
+      "summary": "Saved payment terms: requirements breakdown",
+      "statusName": "In Progress",
+      "statusCategory": "indeterminate",
+      "assignee": "Elena Rossi",
+      "timeByPerson": {
+        "Elena Rossi": 79200
+      }
+    },
+    {
+      "defId": "workshops-alignment",
+      "key": "NW-245",
+      "summary": "Saved payment terms: workshops alignment",
+      "statusName": "To Do",
+      "statusCategory": "new",
+      "assignee": "Jordan Lee",
+      "timeByPerson": {}
+    }
+  ],
+  "comments": [],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-104"
+    }
+  ]
+}

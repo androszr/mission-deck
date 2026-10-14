@@ -1,0 +1,256 @@
+{
+  "slug": "taylor-kim",
+  "name": "Taylor Kim",
+  "display_short": "T. Kim",
+  "email": "taylor.kim@northwind.example",
+  "team": "Comet",
+  "logged_days_count": 7,
+  "miss_days_count": 3,
+  "days": [
+    {
+      "date": "2026-09-29",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "CMT-201",
+          "summary": "Plain-language import errors",
+          "hours": 5,
+          "logged_at": "2026-09-29T17:52:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-205",
+          "summary": "Unit conversion for packs",
+          "hours": 3.5,
+          "logged_at": "2026-09-29T17:21:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "CMT-202",
+          "summary": "Bulk edit product categories",
+          "hours": 2.5,
+          "logged_at": "2026-09-28T17:22:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-201",
+          "summary": "Plain-language import errors",
+          "hours": 5,
+          "logged_at": "2026-09-28T17:33:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-27",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-26",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-25",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-24",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "CMT-201",
+          "summary": "Plain-language import errors",
+          "hours": 3.5,
+          "logged_at": "2026-09-24T17:20:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-200",
+          "summary": "Import product images from a zip",
+          "hours": 4,
+          "logged_at": "2026-09-24T17:33:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "CMT-205",
+          "summary": "Unit conversion for packs",
+          "hours": 3.5,
+          "logged_at": "2026-09-23T17:36:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-201",
+          "summary": "Plain-language import errors",
+          "hours": 4.5,
+          "logged_at": "2026-09-23T17:12:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-200",
+          "summary": "Import product images from a zip",
+          "hours": 0.5,
+          "logged_at": "2026-09-23T17:41:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "CMT-205",
+          "summary": "Unit conversion for packs",
+          "hours": 2.5,
+          "logged_at": "2026-09-22T17:47:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-201",
+          "summary": "Plain-language import errors",
+          "hours": 4,
+          "logged_at": "2026-09-22T17:21:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-209",
+          "summary": "Parse supplier CSV with semicolons",
+          "hours": 1,
+          "logged_at": "2026-09-22T17:47:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-21",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-20",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-19",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-18",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "CMT-202",
+          "summary": "Bulk edit product categories",
+          "hours": 3.5,
+          "logged_at": "2026-09-18T17:44:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-209",
+          "summary": "Parse supplier CSV with semicolons",
+          "hours": 2,
+          "logged_at": "2026-09-18T17:25:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-201",
+          "summary": "Plain-language import errors",
+          "hours": 2.5,
+          "logged_at": "2026-09-18T17:51:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "CMT-205",
+          "summary": "Unit conversion for packs",
+          "hours": 5,
+          "logged_at": "2026-09-17T17:51:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-209",
+          "summary": "Parse supplier CSV with semicolons",
+          "hours": 2,
+          "logged_at": "2026-09-17T17:55:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "CMT-202",
+          "summary": "Bulk edit product categories",
+          "hours": 0.5,
+          "logged_at": "2026-09-17T17:40:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    }
+  ]
+}

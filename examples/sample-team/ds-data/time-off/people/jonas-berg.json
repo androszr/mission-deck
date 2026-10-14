@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "dateFrom": "2026-08-14",
+      "dateTo": "2026-08-14",
+      "submittedAt": "2026-07-16T08:12:00",
+      "submittedBy": "jonas.berg@northwind.example"
+    },
+    {
+      "dateFrom": "2026-09-04",
+      "dateTo": "2026-09-09",
+      "submittedAt": "2026-08-21T09:40:00",
+      "submittedBy": "jonas.berg@northwind.example"
+    }
+  ],
+  "name": "Jonas Berg",
+  "slug": "jonas-berg"
+}

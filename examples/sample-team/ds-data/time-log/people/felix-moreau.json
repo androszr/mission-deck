@@ -1,0 +1,272 @@
+{
+  "slug": "felix-moreau",
+  "name": "Felix Moreau",
+  "display_short": "F. Moreau",
+  "email": "felix.moreau@northwind.example",
+  "team": "Falcon",
+  "logged_days_count": 9,
+  "miss_days_count": 1,
+  "days": [
+    {
+      "date": "2026-09-29",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "FAL-200",
+          "summary": "Audit log storage",
+          "hours": 2.5,
+          "logged_at": "2026-09-29T17:20:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "FAL-202",
+          "summary": "Queue migration for background jobs",
+          "hours": 5,
+          "logged_at": "2026-09-29T17:53:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "FAL-205",
+          "summary": "API gateway health checks",
+          "hours": 2,
+          "logged_at": "2026-09-28T17:47:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "FAL-201",
+          "summary": "Audit log viewer",
+          "hours": 2,
+          "logged_at": "2026-09-28T17:16:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "FAL-202",
+          "summary": "Queue migration for background jobs",
+          "hours": 4,
+          "logged_at": "2026-09-28T17:38:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-27",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-26",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-25",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "FAL-205",
+          "summary": "API gateway health checks",
+          "hours": 2,
+          "logged_at": "2026-09-25T17:39:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "FAL-200",
+          "summary": "Audit log storage",
+          "hours": 4,
+          "logged_at": "2026-09-25T17:41:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "FAL-202",
+          "summary": "Queue migration for background jobs",
+          "hours": 2.5,
+          "logged_at": "2026-09-25T17:27:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "FAL-201",
+          "summary": "Audit log viewer",
+          "hours": 2.5,
+          "logged_at": "2026-09-24T17:22:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "FAL-200",
+          "summary": "Audit log storage",
+          "hours": 5,
+          "logged_at": "2026-09-24T17:48:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "FAL-201",
+          "summary": "Audit log viewer",
+          "hours": 8,
+          "logged_at": "2026-09-23T17:24:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "FAL-205",
+          "summary": "API gateway health checks",
+          "hours": 8,
+          "logged_at": "2026-09-22T17:13:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-21",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "FAL-201",
+          "summary": "Audit log viewer",
+          "hours": 5,
+          "logged_at": "2026-09-21T17:22:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "FAL-200",
+          "summary": "Audit log storage",
+          "hours": 2,
+          "logged_at": "2026-09-21T17:50:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "FAL-202",
+          "summary": "Queue migration for background jobs",
+          "hours": 0.5,
+          "logged_at": "2026-09-21T17:24:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-20",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-19",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-18",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "FAL-205",
+          "summary": "API gateway health checks",
+          "hours": 4,
+          "logged_at": "2026-09-18T17:17:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "FAL-201",
+          "summary": "Audit log viewer",
+          "hours": 4,
+          "logged_at": "2026-09-18T17:34:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "FAL-201",
+          "summary": "Audit log viewer",
+          "hours": 3,
+          "logged_at": "2026-09-17T17:33:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "FAL-200",
+          "summary": "Audit log storage",
+          "hours": 2.5,
+          "logged_at": "2026-09-17T17:23:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "FAL-205",
+          "summary": "API gateway health checks",
+          "hours": 2.5,
+          "logged_at": "2026-09-17T17:40:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "sprint": 21,
+  "sprintName": "Sprint 21",
+  "dateRange": {
+    "startDate": "2026-07-01",
+    "endDate": "2026-07-14"
+  },
+  "dateRangeDisplay": "01.07-14.07",
+  "fetchedAt": "2026-09-30T08:00:00",
+  "areas": {
+    "orders": {
+      "bugs": 5,
+      "bugFixTime": 6,
+      "resolvedCount": 2,
+      "createdCount": 2,
+      "openBugs": [
+        {
+          "key": "ATL-4001",
+          "summary": "Duplicate confirmation email after a quick double click",
+          "status": "Open",
+          "priority": "Critical",
+          "created": "2026-07-04"
+        },
+        {
+          "key": "ATL-4003",
+          "summary": "Order total shows the old price after an edit",
+          "status": "Open",
+          "priority": "Medium",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "ATL-4004",
+          "summary": "CSV export cuts off long product names",
+          "status": "New",
+          "priority": "Critical",
+          "created": "2026-07-03"
+        },
+        {
+          "key": "ATL-4005",
+          "summary": "Wrong currency symbol on the order PDF",
+          "status": "Open",
+          "priority": "Low",
+          "created": "2026-07-04"
+        },
+        {
+          "key": "ATL-4022",
+          "summary": "Edit dialog opens twice on slow connections",
+          "status": "New",
+          "priority": "Low",
+          "created": "2026-07-03"
+        }
+      ],
+      "resolvedBugs": [
+        {
+          "key": "ATL-4002",
+          "summary": "Order history filter forgets the date range",
+          "status": "Done",
+          "priority": "Medium",
+          "created": "2026-07-01",
+          "resolved": "2026-07-12",
+          "fixDays": 11
+        },
+        {
+          "key": "ATL-4023",
+          "summary": "Bulk import skips the last row of a file",
+          "status": "Done",
+          "priority": "Critical",
+          "created": "2026-07-14",
+          "resolved": "2026-07-14",
+          "fixDays": 0
+        }
+      ]
+    },
+    "otherModules": {
+      "bugs": 7,
+      "bugFixTime": 9,
+      "resolvedCount": 2,
+      "createdCount": 2,
+      "openBugs": [
+        {
+          "key": "CMT-4006",
+          "summary": "Variant picker resets after adding to the order",
+          "status": "Open",
+          "priority": "Low",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "CMT-4008",
+          "summary": "Imported image is shown rotated",
+          "status": "Blocked",
+          "priority": "Medium",
+          "created": "2026-07-01"
+        },
+        {
+          "key": "CMT-4009",
+          "summary": "Label print preview is blank in one browser",
+          "status": "Open",
+          "priority": "Low",
+          "created": "2026-07-03"
+        },
+        {
+          "key": "CMT-4011",
+          "summary": "Category tree collapses after saving",
+          "status": "In Progress",
+          "priority": "Medium",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "CMT-4012",
+          "summary": "Partial delivery marked as complete",
+          "status": "Blocked",
+          "priority": "Low",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "CMT-4024",
+          "summary": "Price shown without tax for one account type",
+          "status": "In Progress",
+          "priority": "Low",
+          "created": "2026-07-05"
+        },
+        {
+          "key": "CMT-4025",
+          "summary": "Synonym list ignores capital letters",
+          "status": "In Progress",
+          "priority": "Critical",
+          "created": "2026-07-13"
+        }
+      ],
+      "resolvedBugs": [
+        {
+          "key": "CMT-4007",
+          "summary": "Search ignores the exact product code on the second page",
+          "status": "Done",
+          "priority": "High",
+          "created": "2026-07-04",
+          "resolved": "2026-07-10",
+          "fixDays": 6
+        },
+        {
+          "key": "CMT-4010",
+          "summary": "Typo tolerance returns unrelated products",
+          "status": "Done",
+          "priority": "Critical",
+          "created": "2026-07-02",
+          "resolved": "2026-07-13",
+          "fixDays": 11
+        }
+      ]
+    },
+    "platform": {
+      "bugs": 9,
+      "bugFixTime": 2,
+      "resolvedCount": 2,
+      "createdCount": 2,
+      "openBugs": [
+        {
+          "key": "FAL-4013",
+          "summary": "Sandbox keys expire after one day instead of seven",
+          "status": "Open",
+          "priority": "High",
+          "created": "2026-07-01"
+        },
+        {
+          "key": "FAL-4015",
+          "summary": "Pagination cursor repeats the last item",
+          "status": "In Progress",
+          "priority": "High",
+          "created": "2026-07-03"
+        },
+        {
+          "key": "FAL-4017",
+          "summary": "Webhook retried more often than configured",
+          "status": "Open",
+          "priority": "Critical",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "FAL-4018",
+          "summary": "API returns 500 for an empty filter list",
+          "status": "Open",
+          "priority": "Medium",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "FAL-4019",
+          "summary": "Rate limit header missing on error responses",
+          "status": "In Progress",
+          "priority": "High",
+          "created": "2026-07-01"
+        },
+        {
+          "key": "FAL-4020",
+          "summary": "Gateway health check reports healthy during a restart",
+          "status": "Blocked",
+          "priority": "Medium",
+          "created": "2026-07-02"
+        },
+        {
+          "key": "FAL-4021",
+          "summary": "Duplicate webhook after a manual retry",
+          "status": "In Progress",
+          "priority": "Medium",
+          "created": "2026-07-04"
+        },
+        {
+          "key": "FAL-4026",
+          "summary": "Slow query on the audit log search",
+          "status": "Open",
+          "priority": "Low",
+          "created": "2026-07-08"
+        },
+        {
+          "key": "FAL-4027",
+          "summary": "Wrong content type on the error page",
+          "status": "In Progress",
+          "priority": "Critical",
+          "created": "2026-07-11"
+        }
+      ],
+      "resolvedBugs": [
+        {
+          "key": "FAL-4016",
+          "summary": "Token refresh fails near midnight UTC",
+          "status": "Done",
+          "priority": "Low",
+          "created": "2026-07-03",
+          "resolved": "2026-07-06",
+          "fixDays": 3
+        },
+        {
+          "key": "FAL-4014",
+          "summary": "Audit log entry missing for key rotation",
+          "status": "Done",
+          "priority": "Medium",
+          "created": "2026-07-03",
+          "resolved": "2026-07-04",
+          "fixDays": 1
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "stores": {
+    "SOU114": {
+      "imported_at": "2026-09-24T10:00:00.000Z",
+      "source": "xlsx"
+    },
+    "SOU138": {
+      "imported_at": "2026-09-24T10:00:00.000Z",
+      "source": "xlsx"
+    }
+  }
+}

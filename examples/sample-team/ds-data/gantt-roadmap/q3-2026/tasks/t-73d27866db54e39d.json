@@ -1,0 +1,19 @@
+{
+  "uid": "t-73d27866db54e39d",
+  "n": 10,
+  "a": "platform",
+  "o": 1,
+  "t": "Public API v2",
+  "who": [
+    "amara-diallo",
+    "felix-moreau"
+  ],
+  "s": 1,
+  "l": 12,
+  "ph": null,
+  "gw": false,
+  "ms": false,
+  "createdAt": "2026-06-24T09:00:00.000Z",
+  "updatedAt": "2026-09-20T09:00:00.000Z",
+  "updatedBy": null
+}

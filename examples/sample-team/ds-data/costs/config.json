@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "members": [
+    {
+      "id": "tm-a53436ba",
+      "name": "Alex Morgan",
+      "email": "alex.morgan@northwind.example",
+      "included": true,
+      "areas": [
+        "atlas"
+      ]
+    },
+    {
+      "id": "tm-ff8edb7a",
+      "name": "Sam Rivera",
+      "email": "sam.rivera@northwind.example",
+      "included": true,
+      "areas": [
+        "atlas"
+      ]
+    },
+    {
+      "id": "tm-a5b6edeb",
+      "name": "Priya Raman",
+      "email": "priya.raman@northwind.example",
+      "included": true,
+      "areas": [
+        "atlas"
+      ]
+    },
+    {
+      "id": "tm-3eed270c",
+      "name": "Tomas Novak",
+      "email": "tomas.novak@northwind.example",
+      "included": true,
+      "areas": [
+        "atlas"
+      ]
+    },
+    {
+      "id": "tm-c65615b8",
+      "name": "Elena Rossi",
+      "email": "elena.rossi@northwind.example",
+      "included": true,
+      "areas": [
+        "borealis"
+      ]
+    },
+    {
+      "id": "tm-5166f085",
+      "name": "Jordan Lee",
+      "email": "jordan.lee@northwind.example",
+      "included": true,
+      "areas": [
+        "borealis"
+      ]
+    },
+    {
+      "id": "tm-82bb5fe5",
+      "name": "Aiko Tanaka",
+      "email": "aiko.tanaka@northwind.example",
+      "included": true,
+      "areas": [
+        "borealis"
+      ]
+    },
+    {
+      "id": "tm-90434164",
+      "name": "Samir Haddad",
+      "email": "samir.haddad@northwind.example",
+      "included": true,
+      "areas": [
+        "borealis"
+      ]
+    },
+    {
+      "id": "tm-721cd2e4",
+      "name": "Grace Whitfield",
+      "email": "grace.whitfield@northwind.example",
+      "included": true,
+      "areas": [
+        "comet"
+      ]
+    },
+    {
+      "id": "tm-ac831da7",
+      "name": "Taylor Kim",
+      "email": "taylor.kim@northwind.example",
+      "included": true,
+      "areas": [
+        "comet"
+      ]
+    },
+    {
+      "id": "tm-d528a830",
+      "name": "Ingrid Solberg",
+      "email": "ingrid.solberg@northwind.example",
+      "included": true,
+      "areas": [
+        "comet"
+      ]
+    },
+    {
+      "id": "tm-382e143c",
+      "name": "Kofi Mensah",
+      "email": "kofi.mensah@northwind.example",
+      "included": true,
+      "areas": [
+        "comet"
+      ]
+    },
+    {
+      "id": "tm-f0d84edd",
+      "name": "Hannah Weiss",
+      "email": "hannah.weiss@northwind.example",
+      "included": true,
+      "areas": [
+        "delta"
+      ]
+    },
+    {
+      "id": "tm-7d666f3d",
+      "name": "Dmitri Volkov",
+      "email": "dmitri.volkov@northwind.example",
+      "included": true,
+      "areas": [
+        "delta"
+      ]
+    },
+    {
+      "id": "tm-19ca76b7",
+      "name": "Leila Karimi",
+      "email": "leila.karimi@northwind.example",
+      "included": true,
+      "areas": [
+        "delta"
+      ]
+    },
+    {
+      "id": "tm-4c799a1a",
+      "name": "Oscar Lindqvist",
+      "email": "oscar.lindqvist@northwind.example",
+      "included": true,
+      "areas": [
+        "delta"
+      ]
+    },
+    {
+      "id": "tm-cd75dd16",
+      "name": "Zoe Carter",
+      "email": "zoe.carter@northwind.example",
+      "included": true,
+      "areas": []
+    },
+    {
+      "id": "tm-36b6925e",
+      "name": "Rafael Costa",
+      "email": "rafael.costa@northwind.example",
+      "included": true,
+      "areas": []
+    },
+    {
+      "id": "tm-387d9ac6",
+      "name": "Nadia Petrova",
+      "email": "nadia.petrova@northwind.example",
+      "included": true,
+      "areas": []
+    },
+    {
+      "id": "tm-2cadcb76",
+      "name": "Jonas Berg",
+      "email": "jonas.berg@northwind.example",
+      "included": true,
+      "areas": []
+    },
+    {
+      "id": "tm-ed9ee12d",
+      "name": "Amara Diallo",
+      "email": "amara.diallo@northwind.example",
+      "included": true,
+      "areas": []
+    },
+    {
+      "id": "tm-baf7bda0",
+      "name": "Felix Moreau",
+      "email": "felix.moreau@northwind.example",
+      "included": true,
+      "areas": []
+    },
+    {
+      "id": "tm-12b75c19",
+      "name": "Yuki Sato",
+      "email": "yuki.sato@northwind.example",
+      "included": true,
+      "areas": []
+    },
+    {
+      "id": "tm-de3a65e7",
+      "name": "Chloe Dubois",
+      "email": "chloe.dubois@northwind.example",
+      "included": true,
+      "areas": []
+    },
+    {
+      "id": "ext-1",
+      "name": "Wei Zhang",
+      "email": "wei.zhang@acmeltd.example",
+      "included": true,
+      "external": true,
+      "company": "Acme Ltd",
+      "areas": [
+        "atlas"
+      ]
+    },
+    {
+      "id": "ext-2",
+      "name": "Marta Kowal",
+      "email": "marta.kowal@globex.example",
+      "included": true,
+      "external": true,
+      "company": "Globex",
+      "areas": [
+        "borealis"
+      ]
+    },
+    {
+      "id": "ext-3",
+      "name": "Ben Hartley",
+      "email": "ben.hartley@initech.example",
+      "included": true,
+      "external": true,
+      "company": "Initech",
+      "areas": [
+        "comet"
+      ]
+    }
+  ]
+}

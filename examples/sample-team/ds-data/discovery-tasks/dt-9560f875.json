@@ -1,0 +1,96 @@
+{
+  "id": "dt-9560f875",
+  "title": "Order editing after checkout",
+  "ticket": "NW-101",
+  "rank": 1,
+  "po": "Alex Morgan",
+  "analyst": "Sam Rivera",
+  "designer": "Aiko Tanaka",
+  "architect": "",
+  "ragStatus": "green",
+  "stageStatus": [
+    "preparation",
+    "problem-space",
+    "solution-space"
+  ],
+  "discoveryEnd": "2026-07-25",
+  "deliveryEnd": "2026-09-26",
+  "goLiveDate": "2026-10-10",
+  "vmoName": null,
+  "appliesTo": "Atlas",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-210",
+      "summary": "Order editing after checkout: scope gate start",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Alex Morgan",
+      "timeByPerson": {
+        "Alex Morgan": 100800
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-211",
+      "summary": "Order editing after checkout: process mapping",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Tomas Novak",
+      "timeByPerson": {
+        "Tomas Novak": 61200
+      }
+    },
+    {
+      "defId": "research-insights",
+      "key": "NW-212",
+      "summary": "Order editing after checkout: research insights",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Priya Raman",
+      "timeByPerson": {
+        "Priya Raman": 82800
+      }
+    },
+    {
+      "defId": "goals-metrics",
+      "key": "NW-213",
+      "summary": "Order editing after checkout: goals metrics",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Tomas Novak",
+      "timeByPerson": {
+        "Tomas Novak": 54000
+      }
+    },
+    {
+      "defId": "requirements-breakdown",
+      "key": "NW-214",
+      "summary": "Order editing after checkout: requirements breakdown",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Sam Rivera",
+      "timeByPerson": {
+        "Sam Rivera": 46800
+      }
+    },
+    {
+      "defId": "workshops-alignment",
+      "key": "NW-215",
+      "summary": "Order editing after checkout: workshops alignment",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Tomas Novak",
+      "timeByPerson": {
+        "Tomas Novak": 72000
+      }
+    }
+  ],
+  "comments": [],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-101"
+    }
+  ]
+}

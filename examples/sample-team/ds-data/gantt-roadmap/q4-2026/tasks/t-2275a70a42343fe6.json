@@ -1,0 +1,19 @@
+{
+  "uid": "t-2275a70a42343fe6",
+  "n": 2,
+  "a": "checkout",
+  "o": 1,
+  "t": "Payment terms rollout",
+  "who": [
+    "elena-rossi",
+    "jordan-lee"
+  ],
+  "s": 2,
+  "l": 6,
+  "ph": null,
+  "gw": false,
+  "ms": false,
+  "createdAt": "2026-06-24T09:00:00.000Z",
+  "updatedAt": "2026-09-20T09:00:00.000Z",
+  "updatedBy": null
+}

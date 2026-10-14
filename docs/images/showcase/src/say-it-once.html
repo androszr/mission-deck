@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mission Deck - say it once, ship a screen</title>
+<link rel="stylesheet" href="poster.css">
+<style>
+  .cols { position: absolute; left: 72px; right: 72px; top: 400px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .term { border: 1px solid var(--line); border-radius: 12px; background: #0f0c0a; font-family: var(--mono); font-size: 19px; line-height: 1.6; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); }
+  .term header { height: 32px; display: flex; align-items: center; gap: 7px; padding: 0 12px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+  .term header span { width: 10px; height: 10px; border-radius: 50%; background: #4a3d33; }
+  .term header em { font-style: normal; margin-left: 8px; }
+  .term pre { padding: 16px 18px; white-space: pre-wrap; font-family: inherit; color: var(--text); }
+  .term .p { color: var(--accent); }
+  .term .m { color: var(--muted); }
+  .term .ok { color: #8fd18a; }
+  .shots { display: flex; flex-direction: column; gap: 22px; }
+  .shots .window img { height: 210px; object-fit: cover; object-position: left top; }
+  .left .steps { margin-top: 36px; }
+</style>
+</head>
+<body>
+  <p class="prompt"><b>~/mission-deck$</b> <i>claude</i></p>
+  <h1>Say it once. <em>Ship a screen.</em></h1>
+  <p class="lede">Anybody on the team can add a screen. <strong>Describe it in a
+    sentence, Claude Code builds it as a module</strong>, and one button shares it
+    with the rest of the team.</p>
+
+  <div class="cols">
+    <div class="left">
+      <div class="term">
+        <header><span></span><span></span><span></span><em>claude - mission-deck</em></header>
+<pre><span class="p">&gt;</span> a page with this week's releases
+  and who ships each one
+
+<span class="m">* planning the module...</span>
+<span class="m">* writing modules/release-calendar</span>
+<span class="ok">done</span> - open Activity &gt; Releases</pre>
+      </div>
+      <ol class="steps">
+        <li><span class="n">1</span><span><strong>A sentence</strong> becomes a plan, then a module.</span></li>
+        <li><span class="n">2</span><span><strong>Your module</strong> lives beside the core and never breaks it.</span></li>
+        <li><span class="n">3</span><span><strong>Publish</strong> puts it in the team's catalog.</span></li>
+      </ol>
+    </div>
+    <div class="shots">
+      <div class="window"><div class="window-bar"><span></span><span></span><span></span><em>Academy</em></div><img src="../../academy.png" alt=""></div>
+      <div class="window"><div class="window-bar"><span></span><span></span><span></span><em>Module catalog</em></div><img src="../../catalog.png" alt=""></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="wordmark"><b>MISSION</b> DECK</div>
+    <div class="dots">Claude Code inside</div>
+  </div>
+</body>
+</html>

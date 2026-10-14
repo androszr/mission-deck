@@ -1,0 +1,19 @@
+{
+  "uid": "t-7f17c058eb8b42c7",
+  "n": 1,
+  "a": "orders",
+  "o": 1,
+  "t": "Customer portal for returns",
+  "who": [
+    "alex-morgan",
+    "sam-rivera"
+  ],
+  "s": 1,
+  "l": 9,
+  "ph": null,
+  "gw": false,
+  "ms": false,
+  "createdAt": "2026-06-24T09:00:00.000Z",
+  "updatedAt": "2026-09-20T09:00:00.000Z",
+  "updatedBy": null
+}

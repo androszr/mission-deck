@@ -1,0 +1,211 @@
+{
+  "src": "platform",
+  "sprint_n": 21,
+  "phase": "END",
+  "teams": [
+    {
+      "src": "platform",
+      "team": "Delta",
+      "unit": "MD",
+      "sprint_n": 21,
+      "sprint_id": 9021,
+      "sprint_name": "Delta Sprint 21",
+      "state": "closed",
+      "phase": "END",
+      "start": "2026-07-01T09:00:00.000+02:00",
+      "end": "2026-07-15T09:00:00.000+02:00",
+      "goal": "Delta: Show live delivery status on the order page",
+      "summary": {
+        "committed": 29,
+        "done": 27,
+        "wip": 2,
+        "todo": 0,
+        "dropped": 0,
+        "added": 0,
+        "total_issues": 6,
+        "completion_pct": 93
+      },
+      "persons": [
+        {
+          "name": "Hannah Weiss",
+          "committed": 16,
+          "done": 16,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 10
+        },
+        {
+          "name": "Dmitri Volkov",
+          "committed": 4,
+          "done": 3,
+          "wip": 1,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 75,
+          "days_with_work": 10
+        },
+        {
+          "name": "Leila Karimi",
+          "committed": 8,
+          "done": 8,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 10
+        },
+        {
+          "name": "Oscar Lindqvist",
+          "committed": 1,
+          "done": 0,
+          "wip": 1,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 0,
+          "days_with_work": 10
+        }
+      ],
+      "issues": [
+        {
+          "key": "DLT-100",
+          "summary": "Delivery status timeline",
+          "type": "Story",
+          "assignee": "Hannah Weiss",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 8,
+          "spent_h": null
+        },
+        {
+          "key": "DLT-101",
+          "summary": "Slot picker for delivery dates",
+          "type": "Story",
+          "assignee": "Dmitri Volkov",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 3,
+          "spent_h": null
+        },
+        {
+          "key": "DLT-102",
+          "summary": "Delay notification email",
+          "type": "Task",
+          "assignee": "Leila Karimi",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 8,
+          "spent_h": null
+        },
+        {
+          "key": "DLT-103",
+          "summary": "Carrier connector for the first carrier",
+          "type": "Story",
+          "assignee": "Oscar Lindqvist",
+          "status_bucket": "wip",
+          "status_label": "In Progress",
+          "estimate": 1,
+          "spent_h": null
+        },
+        {
+          "key": "DLT-104",
+          "summary": "Carrier connector for the second carrier",
+          "type": "Story",
+          "assignee": "Hannah Weiss",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 8,
+          "spent_h": null
+        },
+        {
+          "key": "DLT-105",
+          "summary": "Label printing from the warehouse view",
+          "type": "Bug",
+          "assignee": "Dmitri Volkov",
+          "status_bucket": "wip",
+          "status_label": "In Progress",
+          "estimate": 1,
+          "spent_h": null
+        }
+      ],
+      "burndown": [
+        {
+          "day_n": 0,
+          "date": "2026-07-01",
+          "remaining": 29
+        },
+        {
+          "day_n": 1,
+          "date": "2026-07-02",
+          "remaining": 27
+        },
+        {
+          "day_n": 2,
+          "date": "2026-07-03",
+          "remaining": 24
+        },
+        {
+          "day_n": 3,
+          "date": "2026-07-04",
+          "remaining": 24
+        },
+        {
+          "day_n": 4,
+          "date": "2026-07-05",
+          "remaining": 21
+        },
+        {
+          "day_n": 5,
+          "date": "2026-07-06",
+          "remaining": 18
+        },
+        {
+          "day_n": 6,
+          "date": "2026-07-07",
+          "remaining": 16
+        },
+        {
+          "day_n": 7,
+          "date": "2026-07-08",
+          "remaining": 15
+        },
+        {
+          "day_n": 8,
+          "date": "2026-07-09",
+          "remaining": 12
+        },
+        {
+          "day_n": 9,
+          "date": "2026-07-10",
+          "remaining": 10
+        },
+        {
+          "day_n": 10,
+          "date": "2026-07-11",
+          "remaining": 8
+        },
+        {
+          "day_n": 11,
+          "date": "2026-07-12",
+          "remaining": 7
+        },
+        {
+          "day_n": 12,
+          "date": "2026-07-13",
+          "remaining": 4
+        },
+        {
+          "day_n": 13,
+          "date": "2026-07-14",
+          "remaining": 2
+        }
+      ],
+      "extra": {}
+    }
+  ]
+}

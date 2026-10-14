@@ -1,0 +1,112 @@
+{
+  "team_rates": [
+    {
+      "name": "Alex Morgan",
+      "daily_rate": 560
+    },
+    {
+      "name": "Sam Rivera",
+      "daily_rate": 520
+    },
+    {
+      "name": "Priya Raman",
+      "daily_rate": 520
+    },
+    {
+      "name": "Tomas Novak",
+      "daily_rate": 440
+    },
+    {
+      "name": "Elena Rossi",
+      "daily_rate": 560
+    },
+    {
+      "name": "Jordan Lee",
+      "daily_rate": 520
+    },
+    {
+      "name": "Aiko Tanaka",
+      "daily_rate": 480
+    },
+    {
+      "name": "Samir Haddad",
+      "daily_rate": 520
+    },
+    {
+      "name": "Grace Whitfield",
+      "daily_rate": 560
+    },
+    {
+      "name": "Taylor Kim",
+      "daily_rate": 520
+    },
+    {
+      "name": "Ingrid Solberg",
+      "daily_rate": 520
+    },
+    {
+      "name": "Kofi Mensah",
+      "daily_rate": 440
+    },
+    {
+      "name": "Hannah Weiss",
+      "daily_rate": 560
+    },
+    {
+      "name": "Dmitri Volkov",
+      "daily_rate": 520
+    },
+    {
+      "name": "Leila Karimi",
+      "daily_rate": 480
+    },
+    {
+      "name": "Oscar Lindqvist",
+      "daily_rate": 520
+    },
+    {
+      "name": "Zoe Carter",
+      "daily_rate": 560
+    },
+    {
+      "name": "Rafael Costa",
+      "daily_rate": 520
+    },
+    {
+      "name": "Nadia Petrova",
+      "daily_rate": 520
+    },
+    {
+      "name": "Jonas Berg",
+      "daily_rate": 440
+    },
+    {
+      "name": "Amara Diallo",
+      "daily_rate": 560
+    },
+    {
+      "name": "Felix Moreau",
+      "daily_rate": 520
+    },
+    {
+      "name": "Yuki Sato",
+      "daily_rate": 480
+    },
+    {
+      "name": "Chloe Dubois",
+      "daily_rate": 520
+    },
+    {
+      "name": "Wei Zhang",
+      "daily_rate": 520
+    },
+    {
+      "name": "Marta Kowal",
+      "daily_rate": 480
+    },
+    {
+      "name": "Ben Hartley",
+      "daily_rate": 560
+    }
+  ]
+}

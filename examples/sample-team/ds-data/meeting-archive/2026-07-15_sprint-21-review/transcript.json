@@ -1,0 +1,28 @@
+{
+  "segments": [
+    {
+      "speaker_id": "Alex Morgan",
+      "start": 5,
+      "end": 25,
+      "text": "We closed the order editing flow this sprint. Two pilot accounts are already using it."
+    },
+    {
+      "speaker_id": "Elena Rossi",
+      "start": 63,
+      "end": 83,
+      "text": "Checkout is down to three steps in the test environment. We still need the address memory."
+    },
+    {
+      "speaker_id": "Grace Whitfield",
+      "start": 116,
+      "end": 136,
+      "text": "The import did not make it. The largest supplier file is three times bigger than we planned for."
+    },
+    {
+      "speaker_id": "Hannah Weiss",
+      "start": 147,
+      "end": 167,
+      "text": "Then let us look at the file sizes together before the next sprint starts."
+    }
+  ]
+}

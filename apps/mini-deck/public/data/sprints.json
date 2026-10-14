@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-10-01T08:00:00Z",
+  "sprints": [
+    { "id": "atl-41", "name": "Sprint 41", "squad": "Atlas", "start": "2026-09-28", "end": "2026-10-09", "committed": 34, "done": 29, "goal": "Ship the onboarding checklist" },
+    { "id": "bea-41", "name": "Sprint 41", "squad": "Beacon", "start": "2026-09-28", "end": "2026-10-09", "committed": 28, "done": 28, "goal": "Retire the legacy export" },
+    { "id": "cor-41", "name": "Sprint 41", "squad": "Comet", "start": "2026-09-28", "end": "2026-10-09", "committed": 31, "done": 19, "goal": "Faster search results" },
+    { "id": "dri-41", "name": "Sprint 41", "squad": "Drift", "start": "2026-09-28", "end": "2026-10-09", "committed": 22, "done": 20, "goal": "Notification settings" },
+    { "id": "eco-41", "name": "Sprint 41", "squad": "Echo", "start": "2026-09-28", "end": "2026-10-09", "committed": 26, "done": 17, "goal": "Dark mode polish" },
+    { "id": "fal-41", "name": "Sprint 41", "squad": "Falcon", "start": "2026-09-28", "end": "2026-10-09", "committed": 30, "done": 30, "goal": "Billing page rewrite" }
+  ]
+}

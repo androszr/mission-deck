@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "last_updated": "2026-09-30T16:00:00.000Z",
+    "total_orders": 1
+  },
+  "protocols": [
+    {
+      "id": "pr-378ba6c3",
+      "po_number": "PO-2026-021",
+      "protocol_number": "Checkout optimisation - 2026-07",
+      "vendor": "Globex",
+      "amount": 10080,
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-378ba6c3",
+      "invoice_number": "INV-GLO-202607",
+      "accepted_on": "2026-08-05",
+      "status": "accepted",
+      "status_manual": false,
+      "created_on": "2026-08-01",
+      "settlement_month": "2026-07",
+      "updated_at": "2026-08-05T10:00:00.000Z"
+    },
+    {
+      "id": "pr-f50bbee6",
+      "po_number": "PO-2026-021",
+      "protocol_number": "Checkout optimisation - 2026-08",
+      "vendor": "Globex",
+      "amount": 9760,
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-f50bbee6",
+      "invoice_number": "INV-GLO-202608",
+      "accepted_on": "2026-09-05",
+      "status": "accepted",
+      "status_manual": false,
+      "created_on": "2026-09-01",
+      "settlement_month": "2026-08",
+      "updated_at": "2026-09-05T10:00:00.000Z"
+    },
+    {
+      "id": "pr-21c0efb1",
+      "po_number": "PO-2026-021",
+      "protocol_number": "Checkout optimisation - 2026-09",
+      "vendor": "Globex",
+      "amount": 8480,
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-21c0efb1",
+      "invoice_number": "",
+      "accepted_on": null,
+      "status": "new",
+      "status_manual": false,
+      "created_on": "2026-09-30",
+      "settlement_month": "2026-09",
+      "updated_at": "2026-10-01T10:00:00.000Z"
+    }
+  ],
+  "orders": [
+    {
+      "vendors": [
+        {
+          "po_number": "PO-2026-021",
+          "name": "Globex"
+        }
+      ]
+    }
+  ]
+}

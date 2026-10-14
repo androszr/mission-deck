@@ -1,0 +1,1177 @@
+{
+  "src": "main",
+  "sprint_n": 22,
+  "phase": "END",
+  "teams": [
+    {
+      "src": "main",
+      "team": "Atlas",
+      "unit": "SP",
+      "sprint_n": 22,
+      "sprint_id": 2200,
+      "sprint_name": "Atlas Sprint 22",
+      "state": "closed",
+      "phase": "END",
+      "start": "2026-07-15T09:00:00.000+02:00",
+      "end": "2026-07-29T09:00:00.000+02:00",
+      "goal": "Atlas: Show the order history on one screen",
+      "summary": {
+        "committed": 34,
+        "done": 31,
+        "wip": 0,
+        "todo": 3,
+        "dropped": 0,
+        "added": 3,
+        "total_issues": 9,
+        "completion_pct": 91
+      },
+      "persons": [
+        {
+          "name": "Alex Morgan",
+          "committed": 10,
+          "done": 10,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 3
+        },
+        {
+          "name": "Sam Rivera",
+          "committed": 8,
+          "done": 8,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 9
+        },
+        {
+          "name": "Priya Raman",
+          "committed": 8,
+          "done": 5,
+          "wip": 0,
+          "todo": 3,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 63,
+          "days_with_work": 9
+        },
+        {
+          "name": "Tomas Novak",
+          "committed": 8,
+          "done": 8,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 10
+        }
+      ],
+      "issues": [
+        {
+          "key": "ATL-120",
+          "summary": "Reorder button on past orders",
+          "type": "Story",
+          "assignee": "Alex Morgan",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 1,
+          "spent_h": null
+        },
+        {
+          "key": "ATL-121",
+          "summary": "Import orders from a CSV file",
+          "type": "Story",
+          "assignee": "Sam Rivera",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 3,
+          "spent_h": null
+        },
+        {
+          "key": "ATL-122",
+          "summary": "Validation messages for the import",
+          "type": "Task",
+          "assignee": "Priya Raman",
+          "status_bucket": "todo",
+          "status_label": "To Do",
+          "estimate": 3,
+          "spent_h": null
+        },
+        {
+          "key": "ATL-123",
+          "summary": "Order detail page loads slowly",
+          "type": "Story",
+          "assignee": "Tomas Novak",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "ATL-124",
+          "summary": "Totals recalculated after an edit",
+          "type": "Story",
+          "assignee": "Alex Morgan",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "ATL-125",
+          "summary": "Export the order list to CSV",
+          "type": "Story",
+          "assignee": "Sam Rivera",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "ATL-126",
+          "summary": "Keyboard shortcuts on the order list",
+          "type": "Story",
+          "assignee": "Priya Raman",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "ATL-127",
+          "summary": "Audit trail for order edits",
+          "type": "Story",
+          "assignee": "Tomas Novak",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 3,
+          "spent_h": null
+        },
+        {
+          "key": "ATL-128",
+          "summary": "Empty state for new accounts",
+          "type": "Story",
+          "assignee": "Alex Morgan",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 4,
+          "spent_h": null
+        }
+      ],
+      "burndown": [
+        {
+          "day_n": 0,
+          "date": "2026-07-15",
+          "remaining": 34
+        },
+        {
+          "day_n": 1,
+          "date": "2026-07-16",
+          "remaining": 32
+        },
+        {
+          "day_n": 2,
+          "date": "2026-07-17",
+          "remaining": 30
+        },
+        {
+          "day_n": 3,
+          "date": "2026-07-18",
+          "remaining": 27
+        },
+        {
+          "day_n": 4,
+          "date": "2026-07-19",
+          "remaining": 25
+        },
+        {
+          "day_n": 5,
+          "date": "2026-07-20",
+          "remaining": 22
+        },
+        {
+          "day_n": 6,
+          "date": "2026-07-21",
+          "remaining": 19
+        },
+        {
+          "day_n": 7,
+          "date": "2026-07-22",
+          "remaining": 17
+        },
+        {
+          "day_n": 8,
+          "date": "2026-07-23",
+          "remaining": 14
+        },
+        {
+          "day_n": 9,
+          "date": "2026-07-24",
+          "remaining": 13
+        },
+        {
+          "day_n": 10,
+          "date": "2026-07-25",
+          "remaining": 10
+        },
+        {
+          "day_n": 11,
+          "date": "2026-07-26",
+          "remaining": 8
+        },
+        {
+          "day_n": 12,
+          "date": "2026-07-27",
+          "remaining": 6
+        },
+        {
+          "day_n": 13,
+          "date": "2026-07-28",
+          "remaining": 3
+        }
+      ],
+      "extra": {}
+    },
+    {
+      "src": "main",
+      "team": "Borealis",
+      "unit": "SP",
+      "sprint_n": 22,
+      "sprint_id": 2201,
+      "sprint_name": "Borealis Sprint 22",
+      "state": "closed",
+      "phase": "END",
+      "start": "2026-07-15T09:00:00.000+02:00",
+      "end": "2026-07-29T09:00:00.000+02:00",
+      "goal": "Borealis: Remember the delivery address per account",
+      "summary": {
+        "committed": 30,
+        "done": 26,
+        "wip": 1,
+        "todo": 3,
+        "dropped": 0,
+        "added": 0,
+        "total_issues": 10,
+        "completion_pct": 87
+      },
+      "persons": [
+        {
+          "name": "Elena Rossi",
+          "committed": 8,
+          "done": 7,
+          "wip": 1,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 88,
+          "days_with_work": 10
+        },
+        {
+          "name": "Jordan Lee",
+          "committed": 10,
+          "done": 7,
+          "wip": 0,
+          "todo": 3,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 70,
+          "days_with_work": 8
+        },
+        {
+          "name": "Aiko Tanaka",
+          "committed": 8,
+          "done": 8,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 10
+        },
+        {
+          "name": "Samir Haddad",
+          "committed": 4,
+          "done": 4,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 8
+        }
+      ],
+      "issues": [
+        {
+          "key": "BOR-120",
+          "summary": "Order summary email template",
+          "type": "Story",
+          "assignee": "Elena Rossi",
+          "status_bucket": "wip",
+          "status_label": "In Progress",
+          "estimate": 1,
+          "spent_h": null
+        },
+        {
+          "key": "BOR-121",
+          "summary": "Fix rounding in the daily totals",
+          "type": "Story",
+          "assignee": "Jordan Lee",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 2,
+          "spent_h": null
+        },
+        {
+          "key": "BOR-122",
+          "summary": "Coupon field on the last step",
+          "type": "Story",
+          "assignee": "Aiko Tanaka",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "BOR-123",
+          "summary": "Mobile layout of the payment step",
+          "type": "Task",
+          "assignee": "Samir Haddad",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 3,
+          "spent_h": null
+        },
+        {
+          "key": "BOR-124",
+          "summary": "Retry a failed payment",
+          "type": "Story",
+          "assignee": "Elena Rossi",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 2,
+          "spent_h": null
+        },
+        {
+          "key": "BOR-125",
+          "summary": "Show tax per line item",
+          "type": "Story",
+          "assignee": "Jordan Lee",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "BOR-126",
+          "summary": "Autofill company details",
+          "type": "Story",
+          "assignee": "Aiko Tanaka",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 3,
+          "spent_h": null
+        },
+        {
+          "key": "BOR-127",
+          "summary": "Progress indicator for checkout",
+          "type": "Task",
+          "assignee": "Samir Haddad",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 1,
+          "spent_h": null
+        },
+        {
+          "key": "BOR-128",
+          "summary": "Error message when stock runs out",
+          "type": "Story",
+          "assignee": "Elena Rossi",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "BOR-129",
+          "summary": "Collapse checkout into three steps",
+          "type": "Story",
+          "assignee": "Jordan Lee",
+          "status_bucket": "todo",
+          "status_label": "To Do",
+          "estimate": 3,
+          "spent_h": null
+        }
+      ],
+      "burndown": [
+        {
+          "day_n": 0,
+          "date": "2026-07-15",
+          "remaining": 30
+        },
+        {
+          "day_n": 1,
+          "date": "2026-07-16",
+          "remaining": 29
+        },
+        {
+          "day_n": 2,
+          "date": "2026-07-17",
+          "remaining": 27
+        },
+        {
+          "day_n": 3,
+          "date": "2026-07-18",
+          "remaining": 24
+        },
+        {
+          "day_n": 4,
+          "date": "2026-07-19",
+          "remaining": 22
+        },
+        {
+          "day_n": 5,
+          "date": "2026-07-20",
+          "remaining": 21
+        },
+        {
+          "day_n": 6,
+          "date": "2026-07-21",
+          "remaining": 18
+        },
+        {
+          "day_n": 7,
+          "date": "2026-07-22",
+          "remaining": 16
+        },
+        {
+          "day_n": 8,
+          "date": "2026-07-23",
+          "remaining": 14
+        },
+        {
+          "day_n": 9,
+          "date": "2026-07-24",
+          "remaining": 13
+        },
+        {
+          "day_n": 10,
+          "date": "2026-07-25",
+          "remaining": 10
+        },
+        {
+          "day_n": 11,
+          "date": "2026-07-26",
+          "remaining": 8
+        },
+        {
+          "day_n": 12,
+          "date": "2026-07-27",
+          "remaining": 6
+        },
+        {
+          "day_n": 13,
+          "date": "2026-07-28",
+          "remaining": 4
+        }
+      ],
+      "extra": {}
+    },
+    {
+      "src": "main",
+      "team": "Comet",
+      "unit": "SP",
+      "sprint_n": 22,
+      "sprint_id": 2202,
+      "sprint_name": "Comet Sprint 22",
+      "state": "closed",
+      "phase": "END",
+      "start": "2026-07-15T09:00:00.000+02:00",
+      "end": "2026-07-29T09:00:00.000+02:00",
+      "goal": "Comet: Model product variants for size and colour",
+      "summary": {
+        "committed": 40,
+        "done": 34,
+        "wip": 4,
+        "todo": 2,
+        "dropped": 0,
+        "added": 0,
+        "total_issues": 10,
+        "completion_pct": 85
+      },
+      "persons": [
+        {
+          "name": "Grace Whitfield",
+          "committed": 6,
+          "done": 0,
+          "wip": 4,
+          "todo": 2,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 0,
+          "days_with_work": 10
+        },
+        {
+          "name": "Taylor Kim",
+          "committed": 11,
+          "done": 11,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 6
+        },
+        {
+          "name": "Ingrid Solberg",
+          "committed": 13,
+          "done": 13,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 10
+        },
+        {
+          "name": "Kofi Mensah",
+          "committed": 10,
+          "done": 10,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 10
+        }
+      ],
+      "issues": [
+        {
+          "key": "CMT-120",
+          "summary": "Import product images from a zip",
+          "type": "Story",
+          "assignee": "Grace Whitfield",
+          "status_bucket": "wip",
+          "status_label": "In Progress",
+          "estimate": 2,
+          "spent_h": null
+        },
+        {
+          "key": "CMT-121",
+          "summary": "Plain-language import errors",
+          "type": "Task",
+          "assignee": "Taylor Kim",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "CMT-122",
+          "summary": "Bulk edit product categories",
+          "type": "Story",
+          "assignee": "Ingrid Solberg",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "CMT-123",
+          "summary": "Duplicate detection by product code",
+          "type": "Story",
+          "assignee": "Kofi Mensah",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "CMT-124",
+          "summary": "Preview an import before publishing",
+          "type": "Task",
+          "assignee": "Grace Whitfield",
+          "status_bucket": "wip",
+          "status_label": "In Progress",
+          "estimate": 2,
+          "spent_h": null
+        },
+        {
+          "key": "CMT-125",
+          "summary": "Unit conversion for packs",
+          "type": "Task",
+          "assignee": "Taylor Kim",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 3,
+          "spent_h": null
+        },
+        {
+          "key": "CMT-126",
+          "summary": "Archive discontinued products",
+          "type": "Task",
+          "assignee": "Ingrid Solberg",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 8,
+          "spent_h": null
+        },
+        {
+          "key": "CMT-127",
+          "summary": "Import progress bar",
+          "type": "Bug",
+          "assignee": "Kofi Mensah",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "CMT-128",
+          "summary": "Template download for suppliers",
+          "type": "Story",
+          "assignee": "Grace Whitfield",
+          "status_bucket": "todo",
+          "status_label": "To Do",
+          "estimate": 2,
+          "spent_h": null
+        },
+        {
+          "key": "CMT-129",
+          "summary": "Parse supplier CSV with semicolons",
+          "type": "Task",
+          "assignee": "Taylor Kim",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 3,
+          "spent_h": null
+        }
+      ],
+      "burndown": [
+        {
+          "day_n": 0,
+          "date": "2026-07-15",
+          "remaining": 40
+        },
+        {
+          "day_n": 1,
+          "date": "2026-07-16",
+          "remaining": 37
+        },
+        {
+          "day_n": 2,
+          "date": "2026-07-17",
+          "remaining": 35
+        },
+        {
+          "day_n": 3,
+          "date": "2026-07-18",
+          "remaining": 32
+        },
+        {
+          "day_n": 4,
+          "date": "2026-07-19",
+          "remaining": 29
+        },
+        {
+          "day_n": 5,
+          "date": "2026-07-20",
+          "remaining": 28
+        },
+        {
+          "day_n": 6,
+          "date": "2026-07-21",
+          "remaining": 24
+        },
+        {
+          "day_n": 7,
+          "date": "2026-07-22",
+          "remaining": 21
+        },
+        {
+          "day_n": 8,
+          "date": "2026-07-23",
+          "remaining": 19
+        },
+        {
+          "day_n": 9,
+          "date": "2026-07-24",
+          "remaining": 16
+        },
+        {
+          "day_n": 10,
+          "date": "2026-07-25",
+          "remaining": 14
+        },
+        {
+          "day_n": 11,
+          "date": "2026-07-26",
+          "remaining": 12
+        },
+        {
+          "day_n": 12,
+          "date": "2026-07-27",
+          "remaining": 8
+        },
+        {
+          "day_n": 13,
+          "date": "2026-07-28",
+          "remaining": 6
+        }
+      ],
+      "extra": {}
+    },
+    {
+      "src": "main",
+      "team": "Echo",
+      "unit": "SP",
+      "sprint_n": 22,
+      "sprint_id": 2204,
+      "sprint_name": "Echo Sprint 22",
+      "state": "closed",
+      "phase": "END",
+      "start": "2026-07-15T09:00:00.000+02:00",
+      "end": "2026-07-29T09:00:00.000+02:00",
+      "goal": "Echo: Add typo tolerance to product search",
+      "summary": {
+        "committed": 34,
+        "done": 30,
+        "wip": 4,
+        "todo": 0,
+        "dropped": 0,
+        "added": 3,
+        "total_issues": 8,
+        "completion_pct": 88
+      },
+      "persons": [
+        {
+          "name": "Zoe Carter",
+          "committed": 9,
+          "done": 9,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 10
+        },
+        {
+          "name": "Rafael Costa",
+          "committed": 8,
+          "done": 8,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 10
+        },
+        {
+          "name": "Nadia Petrova",
+          "committed": 6,
+          "done": 5,
+          "wip": 1,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 83,
+          "days_with_work": 7
+        },
+        {
+          "name": "Jonas Berg",
+          "committed": 11,
+          "done": 8,
+          "wip": 3,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 73,
+          "days_with_work": 10
+        }
+      ],
+      "issues": [
+        {
+          "key": "ECH-120",
+          "summary": "Daily search quality report",
+          "type": "Bug",
+          "assignee": "Zoe Carter",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 8,
+          "spent_h": null
+        },
+        {
+          "key": "ECH-121",
+          "summary": "Synonym list for frequent queries",
+          "type": "Story",
+          "assignee": "Rafael Costa",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "ECH-122",
+          "summary": "Zero-result page with suggestions",
+          "type": "Story",
+          "assignee": "Nadia Petrova",
+          "status_bucket": "wip",
+          "status_label": "In Progress",
+          "estimate": 1,
+          "spent_h": null
+        },
+        {
+          "key": "ECH-123",
+          "summary": "Search as you type",
+          "type": "Story",
+          "assignee": "Jonas Berg",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 8,
+          "spent_h": null
+        },
+        {
+          "key": "ECH-124",
+          "summary": "Highlight matches in results",
+          "type": "Story",
+          "assignee": "Zoe Carter",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 1,
+          "spent_h": null
+        },
+        {
+          "key": "ECH-125",
+          "summary": "Filter by availability",
+          "type": "Story",
+          "assignee": "Rafael Costa",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 3,
+          "spent_h": null
+        },
+        {
+          "key": "ECH-126",
+          "summary": "Recent searches per user",
+          "type": "Story",
+          "assignee": "Nadia Petrova",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "ECH-127",
+          "summary": "Boost best sellers",
+          "type": "Story",
+          "assignee": "Jonas Berg",
+          "status_bucket": "wip",
+          "status_label": "In Progress",
+          "estimate": 3,
+          "spent_h": null
+        }
+      ],
+      "burndown": [
+        {
+          "day_n": 0,
+          "date": "2026-07-15",
+          "remaining": 34
+        },
+        {
+          "day_n": 1,
+          "date": "2026-07-16",
+          "remaining": 32
+        },
+        {
+          "day_n": 2,
+          "date": "2026-07-17",
+          "remaining": 29
+        },
+        {
+          "day_n": 3,
+          "date": "2026-07-18",
+          "remaining": 27
+        },
+        {
+          "day_n": 4,
+          "date": "2026-07-19",
+          "remaining": 24
+        },
+        {
+          "day_n": 5,
+          "date": "2026-07-20",
+          "remaining": 22
+        },
+        {
+          "day_n": 6,
+          "date": "2026-07-21",
+          "remaining": 20
+        },
+        {
+          "day_n": 7,
+          "date": "2026-07-22",
+          "remaining": 19
+        },
+        {
+          "day_n": 8,
+          "date": "2026-07-23",
+          "remaining": 16
+        },
+        {
+          "day_n": 9,
+          "date": "2026-07-24",
+          "remaining": 14
+        },
+        {
+          "day_n": 10,
+          "date": "2026-07-25",
+          "remaining": 12
+        },
+        {
+          "day_n": 11,
+          "date": "2026-07-26",
+          "remaining": 8
+        },
+        {
+          "day_n": 12,
+          "date": "2026-07-27",
+          "remaining": 6
+        },
+        {
+          "day_n": 13,
+          "date": "2026-07-28",
+          "remaining": 4
+        }
+      ],
+      "extra": {}
+    },
+    {
+      "src": "main",
+      "team": "Falcon",
+      "unit": "SP",
+      "sprint_n": 22,
+      "sprint_id": 2205,
+      "sprint_name": "Falcon Sprint 22",
+      "state": "closed",
+      "phase": "END",
+      "start": "2026-07-15T09:00:00.000+02:00",
+      "end": "2026-07-29T09:00:00.000+02:00",
+      "goal": "Falcon: Add rate limits and clear error codes",
+      "summary": {
+        "committed": 26,
+        "done": 23,
+        "wip": 2,
+        "todo": 1,
+        "dropped": 0,
+        "added": 3,
+        "total_issues": 8,
+        "completion_pct": 88
+      },
+      "persons": [
+        {
+          "name": "Amara Diallo",
+          "committed": 4,
+          "done": 4,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 10
+        },
+        {
+          "name": "Felix Moreau",
+          "committed": 3,
+          "done": 2,
+          "wip": 0,
+          "todo": 1,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 67,
+          "days_with_work": 9
+        },
+        {
+          "name": "Yuki Sato",
+          "committed": 7,
+          "done": 5,
+          "wip": 2,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 71,
+          "days_with_work": 2
+        },
+        {
+          "name": "Chloe Dubois",
+          "committed": 12,
+          "done": 12,
+          "wip": 0,
+          "todo": 0,
+          "dropped": 0,
+          "added": 0,
+          "completion_pct": 100,
+          "days_with_work": 2
+        }
+      ],
+      "issues": [
+        {
+          "key": "FAL-120",
+          "summary": "Audit log storage",
+          "type": "Story",
+          "assignee": "Amara Diallo",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 3,
+          "spent_h": null
+        },
+        {
+          "key": "FAL-121",
+          "summary": "Audit log viewer",
+          "type": "Story",
+          "assignee": "Felix Moreau",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 2,
+          "spent_h": null
+        },
+        {
+          "key": "FAL-122",
+          "summary": "Queue migration for background jobs",
+          "type": "Bug",
+          "assignee": "Yuki Sato",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "FAL-123",
+          "summary": "API reference with examples",
+          "type": "Story",
+          "assignee": "Chloe Dubois",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 5,
+          "spent_h": null
+        },
+        {
+          "key": "FAL-124",
+          "summary": "Webhook delivery retries",
+          "type": "Task",
+          "assignee": "Amara Diallo",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 1,
+          "spent_h": null
+        },
+        {
+          "key": "FAL-125",
+          "summary": "API gateway health checks",
+          "type": "Story",
+          "assignee": "Felix Moreau",
+          "status_bucket": "todo",
+          "status_label": "To Do",
+          "estimate": 1,
+          "spent_h": null
+        },
+        {
+          "key": "FAL-126",
+          "summary": "Key rotation without downtime",
+          "type": "Bug",
+          "assignee": "Yuki Sato",
+          "status_bucket": "wip",
+          "status_label": "In Progress",
+          "estimate": 2,
+          "spent_h": null
+        },
+        {
+          "key": "FAL-127",
+          "summary": "Pagination for list endpoints",
+          "type": "Story",
+          "assignee": "Chloe Dubois",
+          "status_bucket": "done",
+          "status_label": "Done",
+          "estimate": 7,
+          "spent_h": null
+        }
+      ],
+      "burndown": [
+        {
+          "day_n": 0,
+          "date": "2026-07-15",
+          "remaining": 26
+        },
+        {
+          "day_n": 1,
+          "date": "2026-07-16",
+          "remaining": 25
+        },
+        {
+          "day_n": 2,
+          "date": "2026-07-17",
+          "remaining": 23
+        },
+        {
+          "day_n": 3,
+          "date": "2026-07-18",
+          "remaining": 20
+        },
+        {
+          "day_n": 4,
+          "date": "2026-07-19",
+          "remaining": 20
+        },
+        {
+          "day_n": 5,
+          "date": "2026-07-20",
+          "remaining": 17
+        },
+        {
+          "day_n": 6,
+          "date": "2026-07-21",
+          "remaining": 16
+        },
+        {
+          "day_n": 7,
+          "date": "2026-07-22",
+          "remaining": 13
+        },
+        {
+          "day_n": 8,
+          "date": "2026-07-23",
+          "remaining": 11
+        },
+        {
+          "day_n": 9,
+          "date": "2026-07-24",
+          "remaining": 10
+        },
+        {
+          "day_n": 10,
+          "date": "2026-07-25",
+          "remaining": 8
+        },
+        {
+          "day_n": 11,
+          "date": "2026-07-26",
+          "remaining": 6
+        },
+        {
+          "day_n": 12,
+          "date": "2026-07-27",
+          "remaining": 5
+        },
+        {
+          "day_n": 13,
+          "date": "2026-07-28",
+          "remaining": 3
+        }
+      ],
+      "extra": {}
+    }
+  ]
+}

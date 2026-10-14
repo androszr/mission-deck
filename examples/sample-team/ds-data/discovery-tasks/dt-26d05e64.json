@@ -1,0 +1,96 @@
+{
+  "id": "dt-26d05e64",
+  "title": "Bulk order import",
+  "ticket": "NW-102",
+  "rank": 2,
+  "po": "Alex Morgan",
+  "analyst": "Sam Rivera",
+  "designer": "Aiko Tanaka",
+  "architect": "",
+  "ragStatus": "green",
+  "stageStatus": [
+    "preparation",
+    "problem-space",
+    "solution-space"
+  ],
+  "discoveryEnd": "2026-07-29",
+  "deliveryEnd": "2026-10-07",
+  "goLiveDate": "2026-10-21",
+  "vmoName": null,
+  "appliesTo": "Atlas",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-220",
+      "summary": "Bulk order import: scope gate start",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Alex Morgan",
+      "timeByPerson": {
+        "Alex Morgan": 54000
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-221",
+      "summary": "Bulk order import: process mapping",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Sam Rivera",
+      "timeByPerson": {
+        "Sam Rivera": 126000
+      }
+    },
+    {
+      "defId": "research-insights",
+      "key": "NW-222",
+      "summary": "Bulk order import: research insights",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Sam Rivera",
+      "timeByPerson": {
+        "Sam Rivera": 28800
+      }
+    },
+    {
+      "defId": "goals-metrics",
+      "key": "NW-223",
+      "summary": "Bulk order import: goals metrics",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Sam Rivera",
+      "timeByPerson": {
+        "Sam Rivera": 64800
+      }
+    },
+    {
+      "defId": "requirements-breakdown",
+      "key": "NW-224",
+      "summary": "Bulk order import: requirements breakdown",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Tomas Novak",
+      "timeByPerson": {
+        "Tomas Novak": 122400
+      }
+    },
+    {
+      "defId": "workshops-alignment",
+      "key": "NW-225",
+      "summary": "Bulk order import: workshops alignment",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Sam Rivera",
+      "timeByPerson": {
+        "Sam Rivera": 115200
+      }
+    }
+  ],
+  "comments": [],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-102"
+    }
+  ]
+}

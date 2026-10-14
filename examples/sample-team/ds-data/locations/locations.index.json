@@ -1,0 +1,550 @@
+{
+  "metadata": {
+    "schema_version": 1,
+    "generated_at": "2026-09-30T16:00:00.000Z",
+    "source_file": "sample-sites.csv",
+    "row_count": 30
+  },
+  "rows": [
+    {
+      "code": "NOR101",
+      "name": "Northwind Partner Harbourton",
+      "status": "Open",
+      "city": "Harbourton",
+      "postal_code": "10387",
+      "street": "85 Green Street",
+      "region": "North",
+      "area": "North A",
+      "district": "District 2",
+      "operator": "Operator B",
+      "manager": "Peter Okonkwo",
+      "partner": "",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "nor101 northwind partner harbourton harbourton 85 green street 10387 north north a district 2 operator b peter okonkwo pilot"
+    },
+    {
+      "code": "NOR109",
+      "name": "Northwind Partner Northfield",
+      "status": "Open",
+      "city": "Northfield",
+      "postal_code": "10340",
+      "street": "58 Church Road",
+      "region": "North",
+      "area": "North A",
+      "district": "District 3",
+      "operator": "Operator C",
+      "manager": "Hugo Becker",
+      "partner": "",
+      "groups": [
+        "Standard"
+      ],
+      "search_text": "nor109 northwind partner northfield northfield 58 church road 10340 north north a district 3 operator c hugo becker standard"
+    },
+    {
+      "code": "NOR117",
+      "name": "Northwind Partner Pinebridge",
+      "status": "Open",
+      "city": "Pinebridge",
+      "postal_code": "10222",
+      "street": "82 High Street",
+      "region": "North",
+      "area": "North A",
+      "district": "District 4",
+      "operator": "Operator D",
+      "manager": "Carl Jensen",
+      "partner": "",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "nor117 northwind partner pinebridge pinebridge 82 high street 10222 north north a district 4 operator d carl jensen pilot"
+    },
+    {
+      "code": "NOR125",
+      "name": "Northwind Partner Coldwater",
+      "status": "Open",
+      "city": "Coldwater",
+      "postal_code": "10551",
+      "street": "52 Market Square",
+      "region": "North",
+      "area": "North B",
+      "district": "District 5",
+      "operator": "Operator E",
+      "manager": "Omar Nasser",
+      "partner": "Partner Blue",
+      "groups": [
+        "Standard"
+      ],
+      "search_text": "nor125 northwind partner coldwater coldwater 52 market square 10551 north north b district 5 operator e omar nasser partner blue standard"
+    },
+    {
+      "code": "NOR133",
+      "name": "Northwind Partner Elmstead",
+      "status": "Open",
+      "city": "Elmstead",
+      "postal_code": "10146",
+      "street": "52 Mill Lane",
+      "region": "North",
+      "area": "North B",
+      "district": "District 1",
+      "operator": "",
+      "manager": "Victor Arnaud",
+      "partner": "",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "nor133 northwind partner elmstead elmstead 52 mill lane 10146 north north b district 1 victor arnaud pilot"
+    },
+    {
+      "code": "SOU106",
+      "name": "Northwind Partner Southgate",
+      "status": "Open",
+      "city": "Southgate",
+      "postal_code": "10120",
+      "street": "45 High Street",
+      "region": "South",
+      "area": "South A",
+      "district": "District 2",
+      "operator": "Operator A",
+      "manager": "Rosa Delgado",
+      "partner": "",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "sou106 northwind partner southgate southgate 45 high street 10120 south south a district 2 operator a rosa delgado pilot"
+    },
+    {
+      "code": "SOU114",
+      "name": "Northwind Partner Sunhaven",
+      "status": "Open",
+      "city": "Sunhaven",
+      "postal_code": "10189",
+      "street": "36 Green Street",
+      "region": "South",
+      "area": "South A",
+      "district": "District 3",
+      "operator": "Operator B",
+      "manager": "Ida Lund",
+      "partner": "",
+      "groups": [
+        "Standard"
+      ],
+      "search_text": "sou114 northwind partner sunhaven sunhaven 36 green street 10189 south south a district 3 operator b ida lund standard"
+    },
+    {
+      "code": "SOU122",
+      "name": "Northwind Partner Olivecross",
+      "status": "Temporarily closed",
+      "city": "Olivecross",
+      "postal_code": "10552",
+      "street": "10 Church Road",
+      "region": "South",
+      "area": "South A",
+      "district": "District 4",
+      "operator": "Operator C",
+      "manager": "Tess Walker",
+      "partner": "Partner Blue",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "sou122 northwind partner olivecross olivecross 10 church road 10552 south south a district 4 operator c tess walker partner blue pilot"
+    },
+    {
+      "code": "SOU130",
+      "name": "Northwind Partner Redmoor",
+      "status": "Open",
+      "city": "Redmoor",
+      "postal_code": "10155",
+      "street": "58 Church Road",
+      "region": "South",
+      "area": "South B",
+      "district": "District 5",
+      "operator": "Operator D",
+      "manager": "",
+      "partner": "",
+      "groups": [
+        "Standard"
+      ],
+      "search_text": "sou130 northwind partner redmoor redmoor 58 church road 10155 south south b district 5 operator d standard"
+    },
+    {
+      "code": "SOU138",
+      "name": "Northwind Partner Fairwick",
+      "status": "Open",
+      "city": "Fairwick",
+      "postal_code": "10296",
+      "street": "101 High Street",
+      "region": "South",
+      "area": "South B",
+      "district": "District 1",
+      "operator": "",
+      "manager": "Lucia Ferrari",
+      "partner": "",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "sou138 northwind partner fairwick fairwick 101 high street 10296 south south b district 1 lucia ferrari pilot"
+    },
+    {
+      "code": "EAS111",
+      "name": "Northwind Partner Eastbourne Park",
+      "status": "Open",
+      "city": "Eastbourne Park",
+      "postal_code": "10608",
+      "street": "69 Market Square",
+      "region": "East",
+      "area": "East A",
+      "district": "District 2",
+      "operator": "Operator F",
+      "manager": "Jun Park",
+      "partner": "",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "eas111 northwind partner eastbourne park eastbourne park 69 market square 10608 east east a district 2 operator f jun park pilot"
+    },
+    {
+      "code": "EAS119",
+      "name": "Northwind Partner Dawnmere",
+      "status": "Open",
+      "city": "Dawnmere",
+      "postal_code": "10389",
+      "street": "115 Mill Lane",
+      "region": "East",
+      "area": "East A",
+      "district": "District 3",
+      "operator": "Operator A",
+      "manager": "Peter Okonkwo",
+      "partner": "Partner Green",
+      "groups": [
+        "Standard"
+      ],
+      "search_text": "eas119 northwind partner dawnmere dawnmere 115 mill lane 10389 east east a district 3 operator a peter okonkwo partner green standard"
+    },
+    {
+      "code": "EAS127",
+      "name": "Northwind Partner Stonebridge",
+      "status": "Open",
+      "city": "Stonebridge",
+      "postal_code": "10250",
+      "street": "76 Green Street",
+      "region": "East",
+      "area": "East A",
+      "district": "District 4",
+      "operator": "Operator B",
+      "manager": "Hugo Becker",
+      "partner": "",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "eas127 northwind partner stonebridge stonebridge 76 green street 10250 east east a district 4 operator b hugo becker pilot"
+    },
+    {
+      "code": "EAS135",
+      "name": "Northwind Partner Kingsmead",
+      "status": "Open",
+      "city": "Kingsmead",
+      "postal_code": "10540",
+      "street": "59 Church Road",
+      "region": "East",
+      "area": "East B",
+      "district": "District 5",
+      "operator": "Operator C",
+      "manager": "Carl Jensen",
+      "partner": "Partner Green",
+      "groups": [
+        "Standard"
+      ],
+      "search_text": "eas135 northwind partner kingsmead kingsmead 59 church road 10540 east east b district 5 operator c carl jensen partner green standard"
+    },
+    {
+      "code": "EAS143",
+      "name": "Northwind Partner Larkfield",
+      "status": "Open",
+      "city": "Larkfield",
+      "postal_code": "10247",
+      "street": "52 Mill Lane",
+      "region": "East",
+      "area": "East B",
+      "district": "District 1",
+      "operator": "",
+      "manager": "Omar Nasser",
+      "partner": "Partner Blue",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "eas143 northwind partner larkfield larkfield 52 mill lane 10247 east east b district 1 omar nasser partner blue pilot"
+    },
+    {
+      "code": "WES116",
+      "name": "Northwind Partner Westvale",
+      "status": "Open",
+      "city": "Westvale",
+      "postal_code": "10884",
+      "street": "71 Church Road",
+      "region": "West",
+      "area": "West A",
+      "district": "District 2",
+      "operator": "Operator E",
+      "manager": "Mei Lin",
+      "partner": "Partner Green",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "wes116 northwind partner westvale westvale 71 church road 10884 west west a district 2 operator e mei lin partner green pilot"
+    },
+    {
+      "code": "WES124",
+      "name": "Northwind Partner Ravenhill",
+      "status": "Open",
+      "city": "Ravenhill",
+      "postal_code": "10186",
+      "street": "90 Harbour Way",
+      "region": "West",
+      "area": "West A",
+      "district": "District 3",
+      "operator": "Operator F",
+      "manager": "Rosa Delgado",
+      "partner": "",
+      "groups": [
+        "Standard"
+      ],
+      "search_text": "wes124 northwind partner ravenhill ravenhill 90 harbour way 10186 west west a district 3 operator f rosa delgado standard"
+    },
+    {
+      "code": "WES132",
+      "name": "Northwind Partner Millford",
+      "status": "Open",
+      "city": "Millford",
+      "postal_code": "10812",
+      "street": "116 Mill Lane",
+      "region": "West",
+      "area": "West A",
+      "district": "District 4",
+      "operator": "Operator A",
+      "manager": "",
+      "partner": "Partner Green",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "wes132 northwind partner millford millford 116 mill lane 10812 west west a district 4 operator a partner green pilot"
+    },
+    {
+      "code": "WES140",
+      "name": "Northwind Partner Oakhurst",
+      "status": "Open",
+      "city": "Oakhurst",
+      "postal_code": "10501",
+      "street": "39 Market Square",
+      "region": "West",
+      "area": "West B",
+      "district": "District 5",
+      "operator": "Operator B",
+      "manager": "Tess Walker",
+      "partner": "Partner Blue",
+      "groups": [
+        "Standard"
+      ],
+      "search_text": "wes140 northwind partner oakhurst oakhurst 39 market square 10501 west west b district 5 operator b tess walker partner blue standard"
+    },
+    {
+      "code": "WES148",
+      "name": "Northwind Partner Seabrook",
+      "status": "Contract signed",
+      "city": "Seabrook",
+      "postal_code": "10878",
+      "street": "67 Market Square",
+      "region": "West",
+      "area": "West B",
+      "district": "District 1",
+      "operator": "",
+      "manager": "Nina Adler",
+      "partner": "Partner Green",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "wes148 northwind partner seabrook seabrook 67 market square 10878 west west b district 1 nina adler partner green pilot"
+    },
+    {
+      "code": "CEN121",
+      "name": "Northwind Partner Midtown",
+      "status": "Open",
+      "city": "Midtown",
+      "postal_code": "10486",
+      "street": "86 Church Road",
+      "region": "Central",
+      "area": "Central A",
+      "district": "District 2",
+      "operator": "Operator D",
+      "manager": "Victor Arnaud",
+      "partner": "Partner Blue",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "cen121 northwind partner midtown midtown 86 church road 10486 central central a district 2 operator d victor arnaud partner blue pilot"
+    },
+    {
+      "code": "CEN129",
+      "name": "Northwind Partner Crossways",
+      "status": "Open",
+      "city": "Crossways",
+      "postal_code": "10207",
+      "street": "1 Park Avenue",
+      "region": "Central",
+      "area": "Central A",
+      "district": "District 3",
+      "operator": "Operator E",
+      "manager": "Jun Park",
+      "partner": "Partner Blue",
+      "groups": [
+        "Standard"
+      ],
+      "search_text": "cen129 northwind partner crossways crossways 1 park avenue 10207 central central a district 3 operator e jun park partner blue standard"
+    },
+    {
+      "code": "CEN137",
+      "name": "Northwind Partner Marketon",
+      "status": "Open",
+      "city": "Marketon",
+      "postal_code": "10732",
+      "street": "114 Church Road",
+      "region": "Central",
+      "area": "Central A",
+      "district": "District 4",
+      "operator": "Operator F",
+      "manager": "Peter Okonkwo",
+      "partner": "",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "cen137 northwind partner marketon marketon 114 church road 10732 central central a district 4 operator f peter okonkwo pilot"
+    },
+    {
+      "code": "CEN145",
+      "name": "Northwind Partner Riverside",
+      "status": "Open",
+      "city": "Riverside",
+      "postal_code": "10235",
+      "street": "71 Station Road",
+      "region": "Central",
+      "area": "Central B",
+      "district": "District 5",
+      "operator": "Operator A",
+      "manager": "Hugo Becker",
+      "partner": "",
+      "groups": [
+        "Standard"
+      ],
+      "search_text": "cen145 northwind partner riverside riverside 71 station road 10235 central central b district 5 operator a hugo becker standard"
+    },
+    {
+      "code": "CEN153",
+      "name": "Northwind Partner Highfield",
+      "status": "Open",
+      "city": "Highfield",
+      "postal_code": "10771",
+      "street": "85 Mill Lane",
+      "region": "Central",
+      "area": "Central B",
+      "district": "District 1",
+      "operator": "",
+      "manager": "Carl Jensen",
+      "partner": "",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "cen153 northwind partner highfield highfield 85 mill lane 10771 central central b district 1 carl jensen pilot"
+    },
+    {
+      "code": "ISL126",
+      "name": "Northwind Partner Port Aster",
+      "status": "Open",
+      "city": "Port Aster",
+      "postal_code": "10802",
+      "street": "39 Market Square",
+      "region": "Islands",
+      "area": "Islands A",
+      "district": "District 2",
+      "operator": "Operator C",
+      "manager": "Lucia Ferrari",
+      "partner": "Partner Blue",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "isl126 northwind partner port aster port aster 39 market square 10802 islands islands a district 2 operator c lucia ferrari partner blue pilot"
+    },
+    {
+      "code": "ISL134",
+      "name": "Northwind Partner Gullrock",
+      "status": "Handover",
+      "city": "Gullrock",
+      "postal_code": "10573",
+      "street": "60 Park Avenue",
+      "region": "Islands",
+      "area": "Islands A",
+      "district": "District 3",
+      "operator": "Operator D",
+      "manager": "",
+      "partner": "Partner Green",
+      "groups": [
+        "Standard"
+      ],
+      "search_text": "isl134 northwind partner gullrock gullrock 60 park avenue 10573 islands islands a district 3 operator d partner green standard"
+    },
+    {
+      "code": "ISL142",
+      "name": "Northwind Partner Bayhaven",
+      "status": "Open",
+      "city": "Bayhaven",
+      "postal_code": "10247",
+      "street": "102 Station Road",
+      "region": "Islands",
+      "area": "Islands A",
+      "district": "District 4",
+      "operator": "Operator E",
+      "manager": "Rosa Delgado",
+      "partner": "",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "isl142 northwind partner bayhaven bayhaven 102 station road 10247 islands islands a district 4 operator e rosa delgado pilot"
+    },
+    {
+      "code": "ISL150",
+      "name": "Northwind Partner Skerry Point",
+      "status": "Open",
+      "city": "Skerry Point",
+      "postal_code": "10354",
+      "street": "32 Station Road",
+      "region": "Islands",
+      "area": "Islands B",
+      "district": "District 5",
+      "operator": "Operator F",
+      "manager": "Ida Lund",
+      "partner": "",
+      "groups": [
+        "Standard"
+      ],
+      "search_text": "isl150 northwind partner skerry point skerry point 32 station road 10354 islands islands b district 5 operator f ida lund standard"
+    },
+    {
+      "code": "ISL158",
+      "name": "Northwind Partner Lowtide",
+      "status": "Closed",
+      "city": "Lowtide",
+      "postal_code": "10439",
+      "street": "54 Mill Lane",
+      "region": "Islands",
+      "area": "Islands B",
+      "district": "District 1",
+      "operator": "",
+      "manager": "Tess Walker",
+      "partner": "Partner Blue",
+      "groups": [
+        "Pilot"
+      ],
+      "search_text": "isl158 northwind partner lowtide lowtide 54 mill lane 10439 islands islands b district 1 tess walker partner blue pilot"
+    }
+  ]
+}

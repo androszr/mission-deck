@@ -34,6 +34,9 @@
     "test:api": "node scripts/run-with-timeout.js 300000 node --test --test-concurrency=1 tests/test_api_*.js",
     "test:api:one": "node scripts/run-api-one.js",
     "test:all": "npm test && npm run test:api",
+    "lint:apps": "npm --prefix apps/mini-deck run lint",
+    "test:apps": "npm --prefix apps/mini-deck test",
+    "build:apps": "npm --prefix apps/mini-deck run build",
     "setup:dev": "npm install --include=dev",
     "prepare": "node scripts/prepare.js",
     "postinstall": "node scripts/postinstall.js"

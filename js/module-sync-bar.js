@@ -29,6 +29,7 @@ import { onSecretsChanged } from './secrets-events.js';
 import { escHtml } from './utils.js';
 import { showToast } from './toast.js';
 import { syncFileRowHtml } from './sync-file-list.js';
+import { fetchSampleModeStatus } from './sample-mode-helpers.mjs';
 
 /** Server TTL for the remote check is 60 s; matching it client-side stops
  * hopping between two module views from costing eight status payloads a
@@ -51,6 +52,14 @@ const _seq = new Map();
 let _lastRefreshed = [];
 
 const BTN_LABEL = 'Open Sync';
+
+/** Sample mode is decided once per page load (entering and leaving it restart
+ * the server and reload the page), so one read serves every module view. */
+let _sampleActive = null;
+async function _inSampleMode() {
+  if (_sampleActive === null) _sampleActive = (await fetchSampleModeStatus()).active;
+  return _sampleActive;
+}
 
 onDataChanged(() => { _dirty = true; });
 
@@ -86,6 +95,16 @@ export async function paintModuleSyncBar(viewId, moduleId) {
   _seq.set(viewId, seq);
 
   try {
+    // Sample mode syncs nothing, so "up to date" and "no access to Team data"
+    // would both be untrue: say what is going on, offer no sync action.
+    if (await _inSampleMode()) {
+      const bar = document.getElementById('msb-' + viewId);
+      if (bar && _seq.get(viewId) === seq) {
+        bar.className = 'ds-callout ds-callout--info msb-bar';
+        bar.innerHTML = '<span class="msb-text">Sample data - a fictional team. Nothing is synced.</span>';
+      }
+      return;
+    }
     const checkDue = Date.now() - _lastRemoteRefreshAt >= MSB_REMOTE_TTL_MS;
 
     // Paint 1: last known state, no network to any remote. The dirty bit is

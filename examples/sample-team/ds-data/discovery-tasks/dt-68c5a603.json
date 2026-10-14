@@ -1,0 +1,46 @@
+{
+  "id": "dt-68c5a603",
+  "title": "Customer portal for returns",
+  "ticket": "NW-113",
+  "rank": 13,
+  "po": "Alex Morgan",
+  "analyst": "Sam Rivera",
+  "designer": "Aiko Tanaka",
+  "architect": "",
+  "ragStatus": "green",
+  "stageStatus": [],
+  "discoveryEnd": "2026-09-11",
+  "deliveryEnd": "2026-11-13",
+  "goLiveDate": "2026-11-27",
+  "vmoName": null,
+  "appliesTo": "Atlas",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-330",
+      "summary": "Customer portal for returns: scope gate start",
+      "statusName": "In Progress",
+      "statusCategory": "indeterminate",
+      "assignee": "Priya Raman",
+      "timeByPerson": {
+        "Priya Raman": 104400
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-331",
+      "summary": "Customer portal for returns: process mapping",
+      "statusName": "To Do",
+      "statusCategory": "new",
+      "assignee": "Tomas Novak",
+      "timeByPerson": {}
+    }
+  ],
+  "comments": [],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-113"
+    }
+  ]
+}

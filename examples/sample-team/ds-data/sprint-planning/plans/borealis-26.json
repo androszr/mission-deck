@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "id": "borealis-26",
+  "team": "borealis",
+  "sprintN": 26,
+  "dateFrom": "2026-09-09",
+  "dateTo": "2026-09-23",
+  "datesSource": "computed",
+  "createdAt": "2026-09-08T10:00:00.000Z",
+  "updatedAt": "2026-09-08T10:00:00.000Z",
+  "sections": {
+    "oncall": {
+      "done": true,
+      "dev": "Jordan Lee",
+      "devops": "Samir Haddad",
+      "note": ""
+    },
+    "capacity": {
+      "done": true,
+      "peopleOverride": null,
+      "extraDaysOff": 0,
+      "events": [
+        {
+          "text": "Quarter review on the last day",
+          "id": "it-9dad3635"
+        }
+      ],
+      "dependencies": []
+    },
+    "absences": {
+      "done": true,
+      "manual": []
+    },
+    "velocity": {
+      "done": true,
+      "override": null,
+      "note": "Average of the last three sprints"
+    },
+    "refinements": {
+      "done": true,
+      "items": [
+        {
+          "key": "BOR-200",
+          "topic": "Order summary email template",
+          "note": "",
+          "id": "it-88b715f9"
+        },
+        {
+          "key": "BOR-201",
+          "topic": "Fix rounding in the daily totals",
+          "note": "",
+          "id": "it-08e6b9f8"
+        }
+      ],
+      "cross": []
+    },
+    "goal": {
+      "done": true,
+      "goal": "Stabilise checkout after the August release"
+    },
+    "jira": {
+      "done": false
+    }
+  }
+}

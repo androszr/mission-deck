@@ -1,0 +1,198 @@
+{
+  "id": "sr-4403f2b168322d3c",
+  "createdAt": "2026-09-09T08:00:00.000Z",
+  "updatedAt": "2026-09-09T15:00:00.000Z",
+  "reviewDate": "2026-09-09",
+  "sprintN": 25,
+  "sprintName": "Sprint 25",
+  "deadline": "2026-09-04T10:00:00.000Z",
+  "facilitatorPo": "Alex Morgan",
+  "meeting": "team-review",
+  "teamGoals": [
+    {
+      "team": "Atlas",
+      "goal": "Add reorder with one click",
+      "sprint_name": "Atlas Sprint 25"
+    },
+    {
+      "team": "Borealis",
+      "goal": "Add the order summary email",
+      "sprint_name": "Borealis Sprint 25"
+    },
+    {
+      "team": "Comet",
+      "goal": "Show import errors in plain language",
+      "sprint_name": "Comet Sprint 25"
+    },
+    {
+      "team": "Delta",
+      "goal": "Print delivery labels in the warehouse view",
+      "sprint_name": "Delta Sprint 25"
+    },
+    {
+      "team": "Echo",
+      "goal": "Tune synonyms for the top fifty queries",
+      "sprint_name": "Echo Sprint 25"
+    },
+    {
+      "team": "Falcon",
+      "goal": "Document the API with runnable examples",
+      "sprint_name": "Falcon Sprint 25"
+    }
+  ],
+  "submissions": {
+    "Atlas": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-a95d9e63",
+          "title": "Walkthrough of the new settings page",
+          "format": "presentation",
+          "presenters": [
+            "Alex Morgan"
+          ]
+        },
+        {
+          "id": "t-a961c7ab",
+          "title": "Before and after: page load time",
+          "format": "presentation",
+          "presenters": [
+            "Alex Morgan"
+          ]
+        }
+      ]
+    },
+    "Borealis": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-8c9651b7",
+          "title": "A look at the numbers behind the goal",
+          "format": "presentation",
+          "presenters": [
+            "Elena Rossi"
+          ]
+        },
+        {
+          "id": "t-736dd28d",
+          "title": "Before and after: page load time",
+          "format": "presentation",
+          "presenters": [
+            "Elena Rossi"
+          ]
+        }
+      ]
+    },
+    "Comet": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-6e25e524",
+          "title": "The one thing that did not work and why",
+          "format": "discussion",
+          "presenters": [
+            "Taylor Kim"
+          ]
+        },
+        {
+          "id": "t-c5bb70f9",
+          "title": "Before and after: page load time",
+          "format": "discussion",
+          "presenters": [
+            "Taylor Kim"
+          ]
+        }
+      ]
+    },
+    "Delta": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-5343e1ba",
+          "title": "Demo of the new flow with two pilot accounts",
+          "format": "discussion",
+          "presenters": [
+            "Hannah Weiss"
+          ]
+        },
+        {
+          "id": "t-99e2c2a6",
+          "title": "Open questions for the next sprint",
+          "format": "discussion",
+          "presenters": [
+            "Dmitri Volkov"
+          ]
+        }
+      ]
+    },
+    "Echo": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topicsProblemSpace": [
+        {
+          "id": "t-cecfcfe2",
+          "title": "Before and after: page load time",
+          "format": "presentation",
+          "presenters": [
+            "Rafael Costa"
+          ]
+        },
+        {
+          "id": "t-05e0125e",
+          "title": "A look at the numbers behind the goal",
+          "format": "presentation",
+          "presenters": [
+            "Rafael Costa"
+          ]
+        }
+      ],
+      "topicsSolutionSpace": [
+        {
+          "id": "t-eb183e05",
+          "title": "The one thing that did not work and why",
+          "format": "presentation",
+          "presenters": [
+            "Zoe Carter"
+          ]
+        },
+        {
+          "id": "t-a5ad5124",
+          "title": "Open questions for the next sprint",
+          "format": "presentation",
+          "presenters": [
+            "Rafael Costa"
+          ]
+        }
+      ]
+    },
+    "Falcon": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-429b60bf",
+          "title": "Customer feedback in their own words",
+          "format": "presentation",
+          "presenters": [
+            "Amara Diallo"
+          ]
+        },
+        {
+          "id": "t-be62269a",
+          "title": "Demo of the new flow with two pilot accounts",
+          "format": "discussion",
+          "presenters": [
+            "Amara Diallo"
+          ]
+        }
+      ]
+    }
+  },
+  "cardsSentAt": "2026-09-09T09:30:00.000Z",
+  "confluencePageId": null,
+  "confluenceVersion": null
+}

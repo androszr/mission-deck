@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "id": "delta-26",
+  "team": "delta",
+  "sprintN": 26,
+  "dateFrom": "2026-09-09",
+  "dateTo": "2026-09-23",
+  "datesSource": "computed",
+  "createdAt": "2026-09-08T10:00:00.000Z",
+  "updatedAt": "2026-09-08T10:00:00.000Z",
+  "sections": {
+    "oncall": {
+      "done": true,
+      "dev": "Dmitri Volkov",
+      "devops": "Oscar Lindqvist",
+      "note": ""
+    },
+    "capacity": {
+      "done": true,
+      "peopleOverride": null,
+      "extraDaysOff": 0,
+      "events": [
+        {
+          "text": "Quarter review on the last day",
+          "id": "it-53c4770f"
+        }
+      ],
+      "dependencies": [
+        {
+          "text": "Carrier test accounts from the vendor",
+          "id": "it-b406e194"
+        }
+      ]
+    },
+    "absences": {
+      "done": true,
+      "manual": []
+    },
+    "velocity": {
+      "done": true,
+      "override": null,
+      "note": "Average of the last three sprints"
+    },
+    "refinements": {
+      "done": true,
+      "items": [
+        {
+          "key": "DLT-200",
+          "topic": "Carrier connector for the first carrier",
+          "note": "",
+          "id": "it-03ecae90"
+        },
+        {
+          "key": "DLT-201",
+          "topic": "Carrier connector for the second carrier",
+          "note": "",
+          "id": "it-f4173673"
+        }
+      ],
+      "cross": []
+    },
+    "goal": {
+      "done": true,
+      "goal": "Handle partial deliveries end to end"
+    },
+    "jira": {
+      "done": false
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "status": "ok",
+  "processed_at": "2026-07-15T18:00:00.000Z",
+  "meeting_date": "2026-07-15",
+  "duration_sec": 3120,
+  "has_transcript": true,
+  "source_transcript": "2026-07-15_sprint-21-review.vtt",
+  "source_file": "2026-07-15_sprint-21-review.mp4"
+}

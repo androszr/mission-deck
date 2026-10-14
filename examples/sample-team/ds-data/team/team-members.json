@@ -1,0 +1,222 @@
+{
+  "generated_at": "2026-09-30T16:00:00.000Z",
+  "source": "sample-team",
+  "team_members": [
+    {
+      "id": "tm-2cadcb76",
+      "first_name": "Jonas",
+      "last_name": "Berg",
+      "role": "QA Engineer",
+      "team": "Echo",
+      "email": "jonas.berg@northwind.example",
+      "avatar": "jonasberg.svg"
+    },
+    {
+      "id": "tm-cd75dd16",
+      "first_name": "Zoe",
+      "last_name": "Carter",
+      "role": "Product Owner",
+      "team": "Echo",
+      "email": "zoe.carter@northwind.example",
+      "avatar": "zoecarter.svg"
+    },
+    {
+      "id": "tm-36b6925e",
+      "first_name": "Rafael",
+      "last_name": "Costa",
+      "role": "Engineer",
+      "team": "Echo",
+      "email": "rafael.costa@northwind.example",
+      "avatar": "rafaelcosta.svg"
+    },
+    {
+      "id": "tm-ed9ee12d",
+      "first_name": "Amara",
+      "last_name": "Diallo",
+      "role": "Product Owner",
+      "team": "Falcon",
+      "email": "amara.diallo@northwind.example",
+      "avatar": "amaradiallo.svg"
+    },
+    {
+      "id": "tm-de3a65e7",
+      "first_name": "Chloe",
+      "last_name": "Dubois",
+      "role": "Engineer",
+      "team": "Falcon",
+      "email": "chloe.dubois@northwind.example",
+      "avatar": "chloedubois.svg"
+    },
+    {
+      "id": "tm-90434164",
+      "first_name": "Samir",
+      "last_name": "Haddad",
+      "role": "Engineer",
+      "team": "Borealis",
+      "email": "samir.haddad@northwind.example",
+      "avatar": "samirhaddad.svg"
+    },
+    {
+      "id": "tm-19ca76b7",
+      "first_name": "Leila",
+      "last_name": "Karimi",
+      "role": "Designer",
+      "team": "Delta",
+      "email": "leila.karimi@northwind.example",
+      "avatar": "leilakarimi.svg"
+    },
+    {
+      "id": "tm-ac831da7",
+      "first_name": "Taylor",
+      "last_name": "Kim",
+      "role": "Engineer",
+      "team": "Comet",
+      "email": "taylor.kim@northwind.example",
+      "avatar": "taylorkim.svg"
+    },
+    {
+      "id": "tm-5166f085",
+      "first_name": "Jordan",
+      "last_name": "Lee",
+      "role": "Engineer",
+      "team": "Borealis",
+      "email": "jordan.lee@northwind.example",
+      "avatar": "jordanlee.svg"
+    },
+    {
+      "id": "tm-4c799a1a",
+      "first_name": "Oscar",
+      "last_name": "Lindqvist",
+      "role": "Engineer",
+      "team": "Delta",
+      "email": "oscar.lindqvist@northwind.example",
+      "avatar": "oscarlindqvist.svg"
+    },
+    {
+      "id": "tm-382e143c",
+      "first_name": "Kofi",
+      "last_name": "Mensah",
+      "role": "QA Engineer",
+      "team": "Comet",
+      "email": "kofi.mensah@northwind.example",
+      "avatar": "kofimensah.svg"
+    },
+    {
+      "id": "tm-baf7bda0",
+      "first_name": "Felix",
+      "last_name": "Moreau",
+      "role": "Engineer",
+      "team": "Falcon",
+      "email": "felix.moreau@northwind.example",
+      "avatar": "felixmoreau.svg"
+    },
+    {
+      "id": "tm-a53436ba",
+      "first_name": "Alex",
+      "last_name": "Morgan",
+      "role": "Product Owner",
+      "team": "Atlas",
+      "email": "alex.morgan@northwind.example",
+      "avatar": "alexmorgan.svg"
+    },
+    {
+      "id": "tm-3eed270c",
+      "first_name": "Tomas",
+      "last_name": "Novak",
+      "role": "QA Engineer",
+      "team": "Atlas",
+      "email": "tomas.novak@northwind.example",
+      "avatar": "tomasnovak.svg"
+    },
+    {
+      "id": "tm-387d9ac6",
+      "first_name": "Nadia",
+      "last_name": "Petrova",
+      "role": "Engineer",
+      "team": "Echo",
+      "email": "nadia.petrova@northwind.example",
+      "avatar": "nadiapetrova.svg"
+    },
+    {
+      "id": "tm-a5b6edeb",
+      "first_name": "Priya",
+      "last_name": "Raman",
+      "role": "Engineer",
+      "team": "Atlas",
+      "email": "priya.raman@northwind.example",
+      "avatar": "priyaraman.svg"
+    },
+    {
+      "id": "tm-ff8edb7a",
+      "first_name": "Sam",
+      "last_name": "Rivera",
+      "role": "Engineer",
+      "team": "Atlas",
+      "email": "sam.rivera@northwind.example",
+      "avatar": "samrivera.svg"
+    },
+    {
+      "id": "tm-c65615b8",
+      "first_name": "Elena",
+      "last_name": "Rossi",
+      "role": "Product Owner",
+      "team": "Borealis",
+      "email": "elena.rossi@northwind.example",
+      "avatar": "elenarossi.svg"
+    },
+    {
+      "id": "tm-12b75c19",
+      "first_name": "Yuki",
+      "last_name": "Sato",
+      "role": "Designer",
+      "team": "Falcon",
+      "email": "yuki.sato@northwind.example",
+      "avatar": "yukisato.svg"
+    },
+    {
+      "id": "tm-d528a830",
+      "first_name": "Ingrid",
+      "last_name": "Solberg",
+      "role": "Engineer",
+      "team": "Comet",
+      "email": "ingrid.solberg@northwind.example",
+      "avatar": "ingridsolberg.svg"
+    },
+    {
+      "id": "tm-82bb5fe5",
+      "first_name": "Aiko",
+      "last_name": "Tanaka",
+      "role": "Designer",
+      "team": "Borealis",
+      "email": "aiko.tanaka@northwind.example",
+      "avatar": "aikotanaka.svg"
+    },
+    {
+      "id": "tm-7d666f3d",
+      "first_name": "Dmitri",
+      "last_name": "Volkov",
+      "role": "Engineer",
+      "team": "Delta",
+      "email": "dmitri.volkov@northwind.example",
+      "avatar": "dmitrivolkov.svg"
+    },
+    {
+      "id": "tm-f0d84edd",
+      "first_name": "Hannah",
+      "last_name": "Weiss",
+      "role": "Product Owner",
+      "team": "Delta",
+      "email": "hannah.weiss@northwind.example",
+      "avatar": "hannahweiss.svg"
+    },
+    {
+      "id": "tm-721cd2e4",
+      "first_name": "Grace",
+      "last_name": "Whitfield",
+      "role": "Product Owner",
+      "team": "Comet",
+      "email": "grace.whitfield@northwind.example",
+      "avatar": "gracewhitfield.svg"
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "id": "sr-85d710ab76530e52",
+  "createdAt": "2026-07-15T08:00:00.000Z",
+  "updatedAt": "2026-07-15T15:00:00.000Z",
+  "reviewDate": "2026-07-15",
+  "sprintN": 21,
+  "sprintName": "Sprint 21",
+  "deadline": "2026-07-10T10:00:00.000Z",
+  "facilitatorPo": "Alex Morgan",
+  "meeting": "team-review",
+  "teamGoals": [
+    {
+      "team": "Atlas",
+      "goal": "Let buyers change quantities on an open order",
+      "sprint_name": "Atlas Sprint 21"
+    },
+    {
+      "team": "Borealis",
+      "goal": "Reduce checkout to three steps",
+      "sprint_name": "Borealis Sprint 21"
+    },
+    {
+      "team": "Comet",
+      "goal": "Import a supplier catalog without manual cleanup",
+      "sprint_name": "Comet Sprint 21"
+    },
+    {
+      "team": "Delta",
+      "goal": "Show live delivery status on the order page",
+      "sprint_name": "Delta Sprint 21"
+    },
+    {
+      "team": "Echo",
+      "goal": "Rank exact product codes first",
+      "sprint_name": "Echo Sprint 21"
+    },
+    {
+      "team": "Falcon",
+      "goal": "Publish the first version of the public API",
+      "sprint_name": "Falcon Sprint 21"
+    }
+  ],
+  "submissions": {
+    "Atlas": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-8ab5fa93",
+          "title": "Walkthrough of the new settings page",
+          "format": "discussion",
+          "presenters": [
+            "Alex Morgan"
+          ]
+        },
+        {
+          "id": "t-94a1bf7f",
+          "title": "Before and after: page load time",
+          "format": "discussion",
+          "presenters": [
+            "Alex Morgan"
+          ]
+        }
+      ]
+    },
+    "Borealis": {
+      "submitted": true,
+      "realizationStatus": "partial",
+      "topics": [
+        {
+          "id": "t-543ba6c1",
+          "title": "What we learned from the support tickets",
+          "format": "presentation",
+          "presenters": [
+            "Elena Rossi"
+          ]
+        },
+        {
+          "id": "t-ab83d12d",
+          "title": "The one thing that did not work and why",
+          "format": "presentation",
+          "presenters": [
+            "Elena Rossi"
+          ]
+        }
+      ]
+    },
+    "Comet": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-44a6e86e",
+          "title": "A look at the numbers behind the goal",
+          "format": "discussion",
+          "presenters": [
+            "Grace Whitfield"
+          ]
+        },
+        {
+          "id": "t-3eaace00",
+          "title": "What we learned from the support tickets",
+          "format": "presentation",
+          "presenters": [
+            "Grace Whitfield"
+          ]
+        }
+      ]
+    },
+    "Delta": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-2f9ce2a6",
+          "title": "Walkthrough of the new settings page",
+          "format": "discussion",
+          "presenters": [
+            "Dmitri Volkov"
+          ]
+        },
+        {
+          "id": "t-b1c69663",
+          "title": "Before and after: page load time",
+          "format": "discussion",
+          "presenters": [
+            "Dmitri Volkov"
+          ]
+        }
+      ]
+    },
+    "Echo": {
+      "submitted": true,
+      "realizationStatus": "partial",
+      "topicsProblemSpace": [
+        {
+          "id": "t-8eea0403",
+          "title": "Walkthrough of the new settings page",
+          "format": "presentation",
+          "presenters": [
+            "Rafael Costa"
+          ]
+        },
+        {
+          "id": "t-94e99c61",
+          "title": "Demo of the new flow with two pilot accounts",
+          "format": "presentation",
+          "presenters": [
+            "Zoe Carter"
+          ]
+        }
+      ],
+      "topicsSolutionSpace": [
+        {
+          "id": "t-90cc3798",
+          "title": "The one thing that did not work and why",
+          "format": "discussion",
+          "presenters": [
+            "Zoe Carter"
+          ]
+        },
+        {
+          "id": "t-e109b1a2",
+          "title": "What we learned from the support tickets",
+          "format": "discussion",
+          "presenters": [
+            "Zoe Carter"
+          ]
+        }
+      ]
+    },
+    "Falcon": {
+      "submitted": true,
+      "realizationStatus": "achieved",
+      "topics": [
+        {
+          "id": "t-2da78995",
+          "title": "Customer feedback in their own words",
+          "format": "presentation",
+          "presenters": [
+            "Amara Diallo"
+          ]
+        },
+        {
+          "id": "t-13f6c886",
+          "title": "The one thing that did not work and why",
+          "format": "discussion",
+          "presenters": [
+            "Amara Diallo"
+          ]
+        }
+      ]
+    }
+  },
+  "cardsSentAt": "2026-07-15T09:30:00.000Z",
+  "confluencePageId": null,
+  "confluenceVersion": null
+}

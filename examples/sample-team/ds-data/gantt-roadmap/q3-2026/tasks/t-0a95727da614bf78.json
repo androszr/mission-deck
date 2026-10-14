@@ -1,0 +1,19 @@
+{
+  "uid": "t-0a95727da614bf78",
+  "n": 3,
+  "a": "checkout",
+  "o": 1,
+  "t": "Three-step checkout",
+  "who": [
+    "elena-rossi",
+    "jordan-lee"
+  ],
+  "s": 1,
+  "l": 6,
+  "ph": null,
+  "gw": false,
+  "ms": false,
+  "createdAt": "2026-06-24T09:00:00.000Z",
+  "updatedAt": "2026-09-20T09:00:00.000Z",
+  "updatedBy": null
+}

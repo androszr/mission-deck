@@ -1,0 +1,46 @@
+{
+  "id": "dt-88dbcf0b",
+  "title": "Partner sandbox",
+  "ticket": "NW-115",
+  "rank": 15,
+  "po": "Amara Diallo",
+  "analyst": "Felix Moreau",
+  "designer": "Yuki Sato",
+  "architect": "",
+  "ragStatus": "green",
+  "stageStatus": [],
+  "discoveryEnd": "2026-09-19",
+  "deliveryEnd": "2026-12-05",
+  "goLiveDate": "2026-12-19",
+  "vmoName": null,
+  "appliesTo": "Falcon",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-350",
+      "summary": "Partner sandbox: scope gate start",
+      "statusName": "In Progress",
+      "statusCategory": "indeterminate",
+      "assignee": "Yuki Sato",
+      "timeByPerson": {
+        "Yuki Sato": 126000
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-351",
+      "summary": "Partner sandbox: process mapping",
+      "statusName": "To Do",
+      "statusCategory": "new",
+      "assignee": "Yuki Sato",
+      "timeByPerson": {}
+    }
+  ],
+  "comments": [],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-115"
+    }
+  ]
+}

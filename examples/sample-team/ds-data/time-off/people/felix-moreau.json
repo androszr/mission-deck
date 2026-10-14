@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "dateFrom": "2026-07-21",
+      "dateTo": "2026-07-21",
+      "submittedAt": "2026-07-01T16:20:00",
+      "submittedBy": "felix.moreau@northwind.example"
+    },
+    {
+      "dateFrom": "2026-08-23",
+      "dateTo": "2026-09-03",
+      "submittedAt": "2026-07-28T16:20:00",
+      "submittedBy": "felix.moreau@northwind.example"
+    }
+  ],
+  "name": "Felix Moreau",
+  "slug": "felix-moreau"
+}

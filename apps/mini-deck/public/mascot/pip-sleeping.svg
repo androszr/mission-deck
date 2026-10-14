@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Pip, sleeping">
+<title>Pip, sleeping</title>
+<style>
+.pp{animation:pp-bob 3.2s ease-in-out infinite;transform-origin:64px 116px}
+.pp-eyes{animation:pp-blink 5s infinite;transform-origin:64px 65px}
+.pp-sprout{animation:pp-sway 4s ease-in-out infinite;transform-origin:64px 31px}
+@keyframes pp-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+@keyframes pp-blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.12)}}
+@keyframes pp-sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
+.pp-z{animation:pp-zz 3s ease-in-out infinite;opacity:0}.pp-z:nth-child(2){animation-delay:1s}.pp-z:nth-child(3){animation-delay:2s}@keyframes pp-zz{0%{opacity:0;transform:translate(0,4px)}30%{opacity:1}100%{opacity:0;transform:translate(6px,-10px)}}.pp{animation-duration:4.5s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<ellipse cx="64" cy="121" rx="32" ry="4" fill="#3b2416" opacity=".12"/><g class="pp"><ellipse cx="49" cy="112" rx="10" ry="6" fill="#f0913f" stroke="#a8561c" stroke-width="3"/><ellipse cx="79" cy="112" rx="10" ry="6" fill="#f0913f" stroke="#a8561c" stroke-width="3"/><ellipse class="" cx="22" cy="80" rx="7" ry="10" transform="rotate(25 22 80)" fill="#ffb867" stroke="#a8561c" stroke-width="3"/><ellipse class="" cx="106" cy="80" rx="7" ry="10" transform="rotate(-25 106 80)" fill="#ffb867" stroke="#a8561c" stroke-width="3"/><path d="M64 30C88 30 106 48 106 72C106 96 88 110 64 110C40 110 22 96 22 72C22 48 40 30 64 30Z" fill="#ffb867" stroke="#a8561c" stroke-width="3.5"/><ellipse cx="64" cy="90" rx="25" ry="16" fill="#ffe3bd"/><g class="pp-sprout"><path d="M64 31C64 25 61 20 56 18" fill="none" stroke="#2f7a4e" stroke-width="3" stroke-linecap="round"/><path d="M57 18C51 12 42 14 40 19C45 23 53 23 57 18Z" fill="#7cd197" stroke="#2f7a4e" stroke-width="2.5" stroke-linejoin="round"/><path d="M60 21C62 14 58 9 54 8C52 13 55 19 60 21Z" fill="#7cd197" stroke="#2f7a4e" stroke-width="2.5" stroke-linejoin="round"/></g><path d="M44 64Q50 70 56 64M72 64Q78 70 84 64" fill="none" stroke="#3b2416" stroke-width="3.2" stroke-linecap="round"/><ellipse cx="39" cy="77" rx="6.5" ry="4" fill="#ff7f73" opacity=".55"/><ellipse cx="89" cy="77" rx="6.5" ry="4" fill="#ff7f73" opacity=".55"/><ellipse cx="64" cy="80" rx="3" ry="2.2" fill="#3b2416" opacity=".8"/></g><g font-family="Inter,system-ui,sans-serif" font-weight="800" fill="#a8561c"><text class="pp-z" x="94" y="34" font-size="12">z</text><text class="pp-z" x="103" y="24" font-size="15">z</text><text class="pp-z" x="113" y="13" font-size="18">Z</text></g>
+</svg>

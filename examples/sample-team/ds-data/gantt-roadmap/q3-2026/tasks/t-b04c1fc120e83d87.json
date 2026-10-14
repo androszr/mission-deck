@@ -1,0 +1,19 @@
+{
+  "uid": "t-b04c1fc120e83d87",
+  "n": 11,
+  "a": "platform",
+  "o": 2,
+  "t": "Audit log",
+  "who": [
+    "amara-diallo",
+    "felix-moreau"
+  ],
+  "s": 9,
+  "l": 5,
+  "ph": null,
+  "gw": false,
+  "ms": false,
+  "createdAt": "2026-06-24T09:00:00.000Z",
+  "updatedAt": "2026-09-20T09:00:00.000Z",
+  "updatedBy": null
+}

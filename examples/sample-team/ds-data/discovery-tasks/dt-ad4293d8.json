@@ -1,0 +1,76 @@
+{
+  "id": "dt-ad4293d8",
+  "title": "Delivery slot booking",
+  "ticket": "NW-108",
+  "rank": 8,
+  "po": "Hannah Weiss",
+  "analyst": "Dmitri Volkov",
+  "designer": "Leila Karimi",
+  "architect": "",
+  "ragStatus": "green",
+  "stageStatus": [
+    "preparation"
+  ],
+  "discoveryEnd": "2026-08-22",
+  "deliveryEnd": "2026-10-17",
+  "goLiveDate": "2026-10-31",
+  "vmoName": null,
+  "appliesTo": "Delta",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-280",
+      "summary": "Delivery slot booking: scope gate start",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Oscar Lindqvist",
+      "timeByPerson": {
+        "Oscar Lindqvist": 72000
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-281",
+      "summary": "Delivery slot booking: process mapping",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Leila Karimi",
+      "timeByPerson": {
+        "Leila Karimi": 126000
+      }
+    },
+    {
+      "defId": "research-insights",
+      "key": "NW-282",
+      "summary": "Delivery slot booking: research insights",
+      "statusName": "In Progress",
+      "statusCategory": "indeterminate",
+      "assignee": "Leila Karimi",
+      "timeByPerson": {
+        "Leila Karimi": 93600
+      }
+    },
+    {
+      "defId": "goals-metrics",
+      "key": "NW-283",
+      "summary": "Delivery slot booking: goals metrics",
+      "statusName": "To Do",
+      "statusCategory": "new",
+      "assignee": "Dmitri Volkov",
+      "timeByPerson": {}
+    }
+  ],
+  "comments": [
+    {
+      "author": "Hannah Weiss",
+      "date": "2026-09-10",
+      "text": "Depends on NW-107 (delivery tracking) for the carrier data."
+    }
+  ],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-108"
+    }
+  ]
+}

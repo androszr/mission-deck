@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "id": "atlas-23",
+  "team": "atlas",
+  "sprintN": 23,
+  "dateFrom": "2026-07-29",
+  "dateTo": "2026-08-12",
+  "datesSource": "computed",
+  "createdAt": "2026-07-28T10:00:00.000Z",
+  "updatedAt": "2026-07-28T10:00:00.000Z",
+  "sections": {
+    "oncall": {
+      "done": true,
+      "dev": "Sam Rivera",
+      "devops": "Priya Raman",
+      "note": ""
+    },
+    "capacity": {
+      "done": true,
+      "peopleOverride": null,
+      "extraDaysOff": 0,
+      "events": [
+        {
+          "text": "Quarter review on the last day",
+          "id": "it-98b6cde7"
+        }
+      ],
+      "dependencies": []
+    },
+    "absences": {
+      "done": true,
+      "manual": [
+        {
+          "person": "Alex Morgan",
+          "dateFrom": "2026-07-29",
+          "dateTo": "2026-07-29",
+          "reason": "Holiday",
+          "id": "it-758b9531"
+        }
+      ]
+    },
+    "velocity": {
+      "done": true,
+      "override": null,
+      "note": "Average of the last three sprints"
+    },
+    "refinements": {
+      "done": true,
+      "items": [
+        {
+          "key": "ATL-140",
+          "topic": "Order detail page loads slowly",
+          "note": "",
+          "id": "it-624ce05b"
+        },
+        {
+          "key": "ATL-141",
+          "topic": "Totals recalculated after an edit",
+          "note": "",
+          "id": "it-f4df6186"
+        }
+      ],
+      "cross": []
+    },
+    "goal": {
+      "done": true,
+      "goal": "Ship the bulk order import for the first ten accounts"
+    },
+    "jira": {
+      "done": true
+    }
+  }
+}

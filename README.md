@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="assets/logo.svg" width="128" height="128" alt="Mission Deck logo">
+  <img src="assets/logo.svg" width="96" height="96" alt="Mission Deck logo">
+  <img src="assets/mascot/pip-wave.svg" width="96" height="96" alt="Pip, the Mission Deck mascot, waving">
 </p>
 
 <h1 align="center">Mission Deck</h1>
@@ -10,189 +11,162 @@
   <img src="https://img.shields.io/badge/agents-Claude%20Code-orange" alt="Claude Code">
 </p>
 
-**A local cockpit your product team grows itself.** Mission Deck runs on your
-own machine at `localhost:3001`: one shared core for the team's roster,
-activity, finance, initiatives, knowledge and design system, plus a catalog of
-modules anybody on the team can build with Claude Code and publish for the
-rest, without touching the core.
+<img src="docs/images/showcase/hero-mission-deck.png" width="880" alt="Mission Deck at a glance: the headline 'A cockpit your product team grows itself', the dashboard with sprint stats, production bugs, the roadmap and the team, and Mini Deck's sprint screen on a phone beside it, all on a made-up team.">
+
+**A cockpit your product team grows itself.** Mission Deck runs on your own
+computer: one place for the team's sprints, bugs, roadmap, time, people and
+documents. Anybody on the team can add a screen of their own with Claude Code
+and share it with the rest.
+
+**[Try the demo](https://androszr.github.io/mission-deck/)** - a click-through
+tour in your browser, no install and no account. Jump straight to a chapter:
+[the guides](https://androszr.github.io/mission-deck/#guides/0),
+[getting started](https://androszr.github.io/mission-deck/#start/0),
+[sprints](https://androszr.github.io/mission-deck/#sprints/0),
+[the roadmap](https://androszr.github.io/mission-deck/#roadmap/0) and
+[the team](https://androszr.github.io/mission-deck/#team/0).
+
+Every picture below is a real screen, taken on a made-up team called
+"Northwind Product" that you can try yourself in one click.
 
 ## Why Mission Deck
 
-**Every team ends up with the same pile of spreadsheets, scripts and
-dashboards.** Mission Deck puts them behind one menu, on your laptop, with no
-server to run and no database to look after.
+<img src="docs/images/showcase/six-tabs-one-deck.png" width="880" alt="Six tabs, one deck: on the left a pile of windows - a spreadsheet, a bug tracker, a chat asking who is on call, a slide deck and a missing wiki page; on the right the Mission Deck dashboard and three numbered points.">
 
-- **Where does the team's stuff live?** In one app with eight fixed drawers -
-  Team, Activity, Finance, Initiatives, Support, Knowledge, Design and Apps.
-  Modules put their pages into those drawers, so the menu does not sprawl.
-- **Who can add a screen?** Anyone. A module is a folder with a manifest, a
-  client and an optional server part. One command scaffolds it, `/new-idea` in
-  Claude Code grows it, and **Publish** puts it in the catalog.
-- **Can I break the shared app?** No. Modules live outside the core's git, and
-  the core updates with one button.
-- **Is the team's data safe in git?** Team data sits in a separate repository
-  and only ever reaches git encrypted, one file per file, names included. The
-  key never leaves your machine.
-- **Do I have to learn the method?** The **Academy** walks you from an empty
-  editor to your first published module, one verified step at a time.
+- **Where does the team's stuff live?** In one app with eight fixed drawers: Team, Activity, Finance, Initiatives, Support, Knowledge, Design and Apps. New screens go into those drawers, so the menu never sprawls.
+- **Who can add a screen?** Anyone. A module is a small folder; Claude Code builds it from a sentence and one button shares it with the team.
+- **Can I break the shared app?** No. Your modules live beside the core, and the core updates with one button.
+- **Do I need a database or a server?** No. It runs on your laptop and keeps plain files.
+- **Do I have to learn a method first?** No. The built-in Academy walks you from an empty editor to your first shared module, one checked step at a time.
 
-## Quick start
+## Get going in five minutes
 
-1. **Get the code.** You need Node.js 24, Git and Python 3.10+. Put it outside
-   OneDrive or iCloud.
+1. **Get the code.** You need Node.js 24, Git and Python 3.10+.
 
    ```bash
    git clone https://github.com/androszr/mission-deck.git && cd mission-deck
-   ```
-
-   **You'll see:** a `mission-deck` folder with `server.js`, `index.html`,
-   `js/`, `catalog/` and `docs/`.
-
-2. **Install.** The default install is the small starter profile; add
-   `--include=dev` when you want to lint, test and commit.
-
-   ```bash
    npm install
-   npm run setup        # optional, once: Chromium for visual checks + the code graph
    ```
 
-   **You'll see:** a few packages installed and no errors. `npm run setup`
-   ends with a ready Playwright browser and a GitNexus index.
-
-3. **Start it.**
+2. **Start it.**
 
    ```bash
    npm start
    ```
 
-   No `.env` is needed: the port defaults to 3001, the module catalog is the
-   local `catalog/` folder, and every outside system is off until you
-   configure it. **You'll see:** the server log line with the port, and your
-   browser opening by itself.
+   Your browser opens on [http://localhost:3001](http://localhost:3001). No
+   settings file is needed.
 
-4. **Open it.** If no tab opened, go to
-   [http://localhost:3001](http://localhost:3001). **You'll see:** the
-   dashboard, with the rail of eight drawers on the left.
+3. **Walk the welcome page.** The first time, Mission Deck opens **Start here**:
+   a short list of checks, each one turning green or telling you in one line
+   what is missing.
 
-5. **Walk the onboarding wizard.** On the first start Mission Deck opens
-   **Start here**: environment checks, an optional Bitwarden vault, app
-   repository access, encryption keys, team data, update and the Academy.
-   Every step can be skipped and revisited from **Start here** in the rail.
-   **You'll see:** each card turn green or tell you, in one line, what is
-   missing and how to fix it.
+   ![The Start here page with its first card](docs/images/wizard.png)
 
-On Windows, read [docs/guides/WINDOWS.md](docs/guides/WINDOWS.md) first. A
-longer, step-by-step version lives in
-[docs/guides/INSTALL.html](docs/guides/INSTALL.html).
+4. **Try it with sample data.** No team data yet? Press **Try it with sample
+   data** in the first card. Mission Deck fills itself with a fictional team,
+   installs every module and restarts. A yellow badge reminds you that nothing
+   you see belongs to a real team, and **Leave sample mode** takes it all away
+   again.
+
+   ![The first card with the sample data button](docs/images/wizard-sample.png)
+
+On Windows, read [docs/guides/WINDOWS.md](docs/guides/WINDOWS.md) first. The
+longer version of these steps is [docs/guides/INSTALL.html](docs/guides/INSTALL.html).
 
 ## A day with Mission Deck
 
-**The core stays put; the team's work moves through modules and data.**
+1. **Morning: the dashboard.** Pick the tiles you want and see the state of the
+   team the moment you arrive.
 
-1. **Morning.** The day-cycle pill in the top bar says *Good morning*: one
-   press pulls the team data and decrypts it.
-2. **Work.** Open the drawers you need. A module with team data shows a small
-   sync bar telling you whether you are behind or have something to send.
-3. **Build.** Something is missing? `node scripts/new-module.js` scaffolds a
-   module, and `/new-idea` in Claude Code turns a sentence into a plan you
-   accept, an implementation and a blind check of the acceptance criteria.
-4. **Share.** **Sync** sends your data changes; **Publish** puts a module in
-   the catalog.
-5. **Evening.** *End of day* sends what is pending and clears the plaintext
-   copy from disk - only when everything is safely in the encrypted mirror.
+   ![The dashboard](docs/images/dashboard.png)
 
-## Modules and the catalog
+2. **Check the sprint.** Commitment against delivery for every squad, with a
+   burndown and a spillover view. Here one squad had a rough sprint and then
+   recovered.
 
-The catalog ships under one roof with the core, in `catalog/`:
-`catalog.json` plus `catalog/modules/<id>/`. Settings > **Modules** lists what
-is installed and what the catalog offers.
+   ![Sprint stats](docs/images/sprint-stats.png)
 
-- **Install** copies a module from `catalog/` into `modules/<id>/`, where it
-  becomes its own small git repository with no remote. Restart the server from
-  the same tab and it appears in the menu.
-- **Save version** commits the module locally; **Export** gives you a zip for
-  one colleague.
-- **Publish** copies the module back into `catalog/modules/<id>/` and updates
-  `catalog.json`. Commit that, or open a pull request, like any other change.
-- A team that prefers a hosted catalog can point `MODULES_CATALOG_REPO_URL` at
-  a GitLab repository; publishing then opens a merge request instead.
+3. **Look at the roadmap.** Fifteen initiatives, who owns them, which ones are
+   slipping, and a timeline and kanban view of the same list.
 
-The catalog starts with 23 modules, among them a knowledge base, a meeting
-archive and transcripts, responsibilities, a team directory, sprint planning,
-review and stats, two roadmaps, time-off, on-call, costs, QA tests, rollout
-waves and usage analytics. The module contract is in
-[modules-template/README.md](modules-template/README.md); the plain-words
-version is [docs/guides/module-anatomy.md](docs/guides/module-anatomy.md).
+   ![The roadmap](docs/images/roadmap.png)
 
-A module runs with full rights in your browser and in the Node process.
-Install modules you trust.
+4. **Log your time.** A heat map of who logged what over the last two weeks, so
+   gaps are easy to spot before they become a month-end problem.
 
-## Team data and encryption
+   ![The time log](docs/images/time-log.png)
 
-Team data is one source, `data-tier-0` ("Team data"). Point
-`DATA_TIER_0_REPO_URL` at a git repository you own and Mission Deck clones it
-as an **encrypted mirror**:
+5. **Evening: wrap up.** One button in the top bar sends what is pending and
+   clears the working copy; in the morning one press brings it back. See it
+   in the [demo chapter on the end of the day](https://androszr.github.io/mission-deck/#day-cycle/0).
 
-- the plaintext lives in `data-sub-repositories/ds-data/` and is never a git
-  repository;
-- the clone holds one `.enc` file per file, with encrypted names
-  (AES-256-GCM, a per-file key derived with HKDF);
-- the key is one line in the gitignored `.encryption-key`. Without it, sync
-  refuses instead of pushing plaintext.
+## Modules: the catalog is the product
 
-The first person generates the key in the wizard and hands it to teammates
-through a channel you trust. Sync is manual: the **Sync** button in the top
-bar, never a silent background push. Guards refuse any operation that would
-wipe the mirror, and a conflicted pull stops and asks whose version to keep.
-More sources can be declared in `DATA_REPO_DEFS`; see
-[docs/architecture/data-repos-and-sync.md](docs/architecture/data-repos-and-sync.md).
+<img src="docs/images/showcase/every-screen-a-module.png" width="880" alt="Every screen is a module: four real module screens - sprint stats, production bugs, the Gantt roadmap and the team directory - framed as windows, with 23 modules in the catalog.">
 
-## Prototypes
+The core is small on purpose. Everything useful comes as a **module**, and the
+catalog that ships with Mission Deck has 23 of them. Open **Settings >
+Modules**, press **Install**, restart, and the new pages appear in the menu.
 
-**Design > Prototypes** keeps clickable React screens in team data, one folder
-per prototype. **Add prototype** creates a working starter, `/prototype` in
-Claude Code builds the screen against the design system, **Local preview**
-runs it with Vite on your machine, and **Publish** pushes a build to any git
-remote whose hosting you choose (`PROTO_BUILD_REPO_URL`,
-`PROTO_PAGES_BASE_URL`). A guard stops a publish that would overwrite work
-nobody synced. People-facing guide:
-[docs/guides/prototypes.md](docs/guides/prototypes.md).
+![The module catalog](docs/images/catalog.png)
 
-## Claude Code skills and agents
+| | | |
+|---|---|---|
+| [![Production bugs](docs/images/prod-bugs.png)](docs/images/prod-bugs.png) **Production bugs.** Open, new and fixed per sprint, with the spike after a release. | [![Costs](docs/images/costs.png)](docs/images/costs.png) **Costs.** Logged hours times daily rates, by epic, person and month. | [![On-call](docs/images/on-call.png)](docs/images/on-call.png) **On-call.** Who is on duty today, this week and this month. |
+| [![Team directory](docs/images/team-directory.png)](docs/images/team-directory.png) **Team directory.** Everyone, by squad, with role and contact. | [![Knowledge base](docs/images/knowledge-base.png)](docs/images/knowledge-base.png) **Knowledge base.** Research, notes and decisions, searchable. | [![Meeting archive](docs/images/meeting-archive.png)](docs/images/meeting-archive.png) **Meeting archive.** Summaries and transcripts, grouped in folders. |
+| [![Gantt roadmap](docs/images/gantt-roadmap.png)](docs/images/gantt-roadmap.png) **Gantt roadmap.** A quarter on one page, by area and owner. | [![Vendor settlements](docs/images/vendor-settlements.png)](docs/images/vendor-settlements.png) **Vendor settlements.** Monthly settlements, protocols and what is overdue. | [![Time log](docs/images/time-log.png)](docs/images/time-log.png) **Time log.** Two weeks of logged time at a glance. |
+
+**Build your own in an afternoon.** The **Academy** takes you from an empty
+editor to a published module, and checks each step for you.
+
+![The Academy](docs/images/academy.png)
+
+## Mini Deck
+
+<img src="apps/mini-deck/public/icons/icon-192.png" width="64" height="64" alt="The Mini Deck app icon" align="left">
+
+**Mini Deck** is the phone half of Mission Deck: the sprint, the bugs and who is
+on call, as a small app you can put on your home screen. It lives in
+[apps/mini-deck/](apps/mini-deck/) and is built from the same sample data.
+
+<br clear="left">
+
+<img src="docs/images/showcase/in-your-pocket.png" width="880" alt="On your laptop, in your pocket: Mini Deck's Sprints and Prod bugs screens on two phones, with its four screens, its data-age warning and its light and dark themes listed beside them.">
+
+## Your data stays yours
+
+Mission Deck never needs a cloud of its own. Your team's files live as plain
+files on your laptop. When you send them to the team, they are scrambled first,
+file names included, and only the scrambled copies go to your shared git
+repository. The key that unscrambles them stays on your machine and is handed
+to colleagues by you, not by the app.
+
+![Readable files stay on your laptop, only scrambled copies reach the shared repository](docs/images/data-stays-yours.svg)
+
+Nothing is sent in the background: sending is always a button you press, and
+the app refuses to send anything at all when the key is missing. The details,
+including the safety rules, are in
+[docs/guides/under-the-hood.md](docs/guides/under-the-hood.md).
+
+## Claude Code inside
 
 Mission Deck is built to be changed with [Claude Code](https://claude.com/claude-code).
-`.claude/skills/` carries the method and **Settings > Skills** shows each one
-as a card derived from its own files.
+The method lives in skills (`/new-idea` plans, builds and checks a change) and
+**Settings > Skills** shows each one as a card.
 
-| I want to... | Use |
-|---|---|
-| Build a feature, view, endpoint or fix | `/new-idea` |
-| Build a screen prototype | `/prototype` |
-| Audit my diff before a commit | `/pre-ship-audit` |
-| Review a branch with its blast radius | `/review-pr` |
-| Summarise a meeting | `/summarize-meeting` |
-| Draft a commit message | `/commit-message` |
+<img src="docs/images/showcase/say-it-once.png" width="880" alt="Say it once, ship a screen: a Claude Code terminal turning one sentence into a module, beside the Academy and the module catalog, with three numbered steps from sentence to published module.">
 
-`/new-idea` runs a planner, an implementer and a blind verifier, adding a
-conventions guardian, visual checks in a real browser and a bug scan only when
-the change calls for them. Deterministic scripts in `scripts/` do the
-mechanical half (conventions, gates, diff digests, scaffolds) so the model
-spends its tokens on judgement. Agents never commit: you review the diff and
-commit. Roster: [.claude/agents/README.md](.claude/agents/README.md).
+![The skills page](docs/images/skills.png)
+
+Agents never commit: you review the change and commit it yourself.
 
 ## Safety in brief
 
-- Everything runs on your machine; the server listens on `localhost` only.
-- `.env` holds configuration, never a secret. Tokens come from a Bitwarden
-  vault when you unlock it, live only in the server process's memory, and
-  never reach a child process's environment or the disk.
-- Team data reaches git encrypted, and sync refuses to push without a key.
-- Team data is never pulled or pushed in the background; sync is a press.
-- Hooks block `git reset --hard` for agents, and the app's own update never
-  pops a stash or discards uncommitted work silently.
-- Usage telemetry is off unless you configure it.
-
-How to report a vulnerability: [SECURITY.md](SECURITY.md).
+Everything runs on your machine and listens on `localhost` only. Nothing is
+sent anywhere without a button press. To report a vulnerability see
+[SECURITY.md](SECURITY.md); the full list is in
+[docs/guides/under-the-hood.md](docs/guides/under-the-hood.md).
 
 ## Troubleshooting
 
@@ -209,33 +183,23 @@ the error.
 **The Claude terminal does not open.** `npm rebuild node-pty && node scripts/postinstall.js`,
 then restart from Settings > System.
 
-**Settings > Tools shows a yellow or red card.** It names what is missing and,
-for most cards, installs it with one press.
-
 The full list: [docs/troubleshooting.md](docs/troubleshooting.md).
 
 ## Uninstall
 
-Stop the server, then delete the folder:
-
-```bash
-npm stop
-cd .. && rm -rf mission-deck
-```
-
-Everything Mission Deck stores lives inside that folder (`data/`, `modules/`,
-`user-data/`, `data-sub-repositories/`, `.encryption-key`). If you installed
-them for it and no longer need them, also remove the global CLIs:
-`npm uninstall -g @bitwarden/cli gitnexus`, and the Playwright browser cache.
-Keep a copy of `.encryption-key` first if your team still needs it.
+Stop the server (`npm stop`) and delete the folder; everything Mission Deck
+stores is inside it. See
+[docs/guides/under-the-hood.md](docs/guides/under-the-hood.md#uninstall).
 
 ## Everything else
 
-- [docs/guides/ONBOARDING.md](docs/guides/ONBOARDING.md) - getting started, tokens and vault item names
+- [docs/guides/under-the-hood.md](docs/guides/under-the-hood.md) - install details, data protection, modules, prototypes, safety
+- [docs/guides/ONBOARDING.md](docs/guides/ONBOARDING.md) - getting started and access
 - [docs/guides/repo-guide.md](docs/guides/repo-guide.md) - the repository explained for people
 - [docs/architecture/](docs/architecture/) - one file per topic, the reasoning behind the rules
 - [CLAUDE.md](CLAUDE.md) - the rules, written for agents
 - [templates/README.md](templates/README.md) - document templates
+- [docs/images/SHOTS.md](docs/images/SHOTS.md) - how the pictures above are made
 
 ## Contributing
 

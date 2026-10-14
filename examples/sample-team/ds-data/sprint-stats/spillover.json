@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-30T07:30:00",
+  "source": {
+    "board": "main",
+    "active_sprint_n": 26
+  },
+  "team_names": [
+    "Atlas",
+    "Borealis",
+    "Comet",
+    "Echo",
+    "Falcon"
+  ],
+  "sprints": [
+    {
+      "sprint_n": 21,
+      "label": "S21",
+      "period": "01.07 -- 15.07",
+      "committed_sp": 163,
+      "done_sp": 142,
+      "spillover_full": 21,
+      "spillover_pct": 12.9,
+      "completion_pct": 87.1
+    },
+    {
+      "sprint_n": 22,
+      "label": "S22",
+      "period": "15.07 -- 29.07",
+      "committed_sp": 164,
+      "done_sp": 144,
+      "spillover_full": 20,
+      "spillover_pct": 12.2,
+      "completion_pct": 87.8
+    },
+    {
+      "sprint_n": 23,
+      "label": "S23",
+      "period": "29.07 -- 12.08",
+      "committed_sp": 162,
+      "done_sp": 126,
+      "spillover_full": 36,
+      "spillover_pct": 22.2,
+      "completion_pct": 77.8
+    },
+    {
+      "sprint_n": 24,
+      "label": "S24",
+      "period": "12.08 -- 26.08",
+      "committed_sp": 162,
+      "done_sp": 133,
+      "spillover_full": 29,
+      "spillover_pct": 17.9,
+      "completion_pct": 82.1
+    },
+    {
+      "sprint_n": 25,
+      "label": "S25",
+      "period": "26.08 -- 09.09",
+      "committed_sp": 161,
+      "done_sp": 145,
+      "spillover_full": 16,
+      "spillover_pct": 9.9,
+      "completion_pct": 90.1
+    },
+    {
+      "sprint_n": 26,
+      "label": "S26",
+      "period": "09.09 -- 23.09",
+      "committed_sp": 161,
+      "done_sp": 146,
+      "spillover_full": 15,
+      "spillover_pct": 9.3,
+      "completion_pct": 90.7
+    }
+  ],
+  "teams": {
+    "Atlas": {
+      "sprints": [
+        {
+          "sprint_n": 21,
+          "label": "S21",
+          "period": "01.07 -- 15.07",
+          "committed_sp": 32,
+          "done_sp": 29,
+          "spillover_full": 3,
+          "spillover_pct": 9.4,
+          "completion_pct": 90.6
+        },
+        {
+          "sprint_n": 22,
+          "label": "S22",
+          "period": "15.07 -- 29.07",
+          "committed_sp": 34,
+          "done_sp": 31,
+          "spillover_full": 3,
+          "spillover_pct": 8.8,
+          "completion_pct": 91.2
+        },
+        {
+          "sprint_n": 23,
+          "label": "S23",
+          "period": "29.07 -- 12.08",
+          "committed_sp": 31,
+          "done_sp": 28,
+          "spillover_full": 3,
+          "spillover_pct": 9.7,
+          "completion_pct": 90.3
+        },
+        {
+          "sprint_n": 24,
+          "label": "S24",
+          "period": "12.08 -- 26.08",
+          "committed_sp": 31,
+          "done_sp": 29,
+          "spillover_full": 2,
+          "spillover_pct": 6.5,
+          "completion_pct": 93.5
+        },
+        {
+          "sprint_n": 25,
+          "label": "S25",
+          "period": "26.08 -- 09.09",
+          "committed_sp": 32,
+          "done_sp": 30,
+          "spillover_full": 2,
+          "spillover_pct": 6.3,
+          "completion_pct": 93.8
+        },
+        {
+          "sprint_n": 26,
+          "label": "S26",
+          "period": "09.09 -- 23.09",
+          "committed_sp": 35,
+          "done_sp": 31,
+          "spillover_full": 4,
+          "spillover_pct": 11.4,
+          "completion_pct": 88.6
+        }
+      ],
+      "avg_committed_sp": 32.5,
+      "avg_spillover_full": 2.8,
+      "avg_spillover_pct": 8.7,
+      "worst_sprint_n": 26,
+      "worst_sprint_label": "S26",
+      "worst_spillover_pct": 11.4
+    },
+    "Borealis": {
+      "sprints": [
+        {
+          "sprint_n": 21,
+          "label": "S21",
+          "period": "01.07 -- 15.07",
+          "committed_sp": 29,
+          "done_sp": 24,
+          "spillover_full": 5,
+          "spillover_pct": 17.2,
+          "completion_pct": 82.8
+        },
+        {
+          "sprint_n": 22,
+          "label": "S22",
+          "period": "15.07 -- 29.07",
+          "committed_sp": 30,
+          "done_sp": 26,
+          "spillover_full": 4,
+          "spillover_pct": 13.3,
+          "completion_pct": 86.7
+        },
+        {
+          "sprint_n": 23,
+          "label": "S23",
+          "period": "29.07 -- 12.08",
+          "committed_sp": 32,
+          "done_sp": 30,
+          "spillover_full": 2,
+          "spillover_pct": 6.3,
+          "completion_pct": 93.8
+        },
+        {
+          "sprint_n": 24,
+          "label": "S24",
+          "period": "12.08 -- 26.08",
+          "committed_sp": 33,
+          "done_sp": 22,
+          "spillover_full": 11,
+          "spillover_pct": 33.3,
+          "completion_pct": 66.7
+        },
+        {
+          "sprint_n": 25,
+          "label": "S25",
+          "period": "26.08 -- 09.09",
+          "committed_sp": 32,
+          "done_sp": 28,
+          "spillover_full": 4,
+          "spillover_pct": 12.5,
+          "completion_pct": 87.5
+        },
+        {
+          "sprint_n": 26,
+          "label": "S26",
+          "period": "09.09 -- 23.09",
+          "committed_sp": 28,
+          "done_sp": 26,
+          "spillover_full": 2,
+          "spillover_pct": 7.1,
+          "completion_pct": 92.9
+        }
+      ],
+      "avg_committed_sp": 30.7,
+      "avg_spillover_full": 4.7,
+      "avg_spillover_pct": 14.9,
+      "worst_sprint_n": 24,
+      "worst_sprint_label": "S24",
+      "worst_spillover_pct": 33.3
+    },
+    "Comet": {
+      "sprints": [
+        {
+          "sprint_n": 21,
+          "label": "S21",
+          "period": "01.07 -- 15.07",
+          "committed_sp": 41,
+          "done_sp": 37,
+          "spillover_full": 4,
+          "spillover_pct": 9.8,
+          "completion_pct": 90.2
+        },
+        {
+          "sprint_n": 22,
+          "label": "S22",
+          "period": "15.07 -- 29.07",
+          "committed_sp": 40,
+          "done_sp": 34,
+          "spillover_full": 6,
+          "spillover_pct": 15,
+          "completion_pct": 85
+        },
+        {
+          "sprint_n": 23,
+          "label": "S23",
+          "period": "29.07 -- 12.08",
+          "committed_sp": 39,
+          "done_sp": 20,
+          "spillover_full": 19,
+          "spillover_pct": 48.7,
+          "completion_pct": 51.3
+        },
+        {
+          "sprint_n": 24,
+          "label": "S24",
+          "period": "12.08 -- 26.08",
+          "committed_sp": 39,
+          "done_sp": 31,
+          "spillover_full": 8,
+          "spillover_pct": 20.5,
+          "completion_pct": 79.5
+        },
+        {
+          "sprint_n": 25,
+          "label": "S25",
+          "period": "26.08 -- 09.09",
+          "committed_sp": 36,
+          "done_sp": 34,
+          "spillover_full": 2,
+          "spillover_pct": 5.6,
+          "completion_pct": 94.4
+        },
+        {
+          "sprint_n": 26,
+          "label": "S26",
+          "period": "09.09 -- 23.09",
+          "committed_sp": 37,
+          "done_sp": 36,
+          "spillover_full": 1,
+          "spillover_pct": 2.7,
+          "completion_pct": 97.3
+        }
+      ],
+      "avg_committed_sp": 38.7,
+      "avg_spillover_full": 6.7,
+      "avg_spillover_pct": 17.1,
+      "worst_sprint_n": 23,
+      "worst_sprint_label": "S23",
+      "worst_spillover_pct": 48.7
+    },
+    "Echo": {
+      "sprints": [
+        {
+          "sprint_n": 21,
+          "label": "S21",
+          "period": "01.07 -- 15.07",
+          "committed_sp": 33,
+          "done_sp": 26,
+          "spillover_full": 7,
+          "spillover_pct": 21.2,
+          "completion_pct": 78.8
+        },
+        {
+          "sprint_n": 22,
+          "label": "S22",
+          "period": "15.07 -- 29.07",
+          "committed_sp": 34,
+          "done_sp": 30,
+          "spillover_full": 4,
+          "spillover_pct": 11.8,
+          "completion_pct": 88.2
+        },
+        {
+          "sprint_n": 23,
+          "label": "S23",
+          "period": "29.07 -- 12.08",
+          "committed_sp": 33,
+          "done_sp": 26,
+          "spillover_full": 7,
+          "spillover_pct": 21.2,
+          "completion_pct": 78.8
+        },
+        {
+          "sprint_n": 24,
+          "label": "S24",
+          "period": "12.08 -- 26.08",
+          "committed_sp": 30,
+          "done_sp": 26,
+          "spillover_full": 4,
+          "spillover_pct": 13.3,
+          "completion_pct": 86.7
+        },
+        {
+          "sprint_n": 25,
+          "label": "S25",
+          "period": "26.08 -- 09.09",
+          "committed_sp": 32,
+          "done_sp": 28,
+          "spillover_full": 4,
+          "spillover_pct": 12.5,
+          "completion_pct": 87.5
+        },
+        {
+          "sprint_n": 26,
+          "label": "S26",
+          "period": "09.09 -- 23.09",
+          "committed_sp": 32,
+          "done_sp": 27,
+          "spillover_full": 5,
+          "spillover_pct": 15.6,
+          "completion_pct": 84.4
+        }
+      ],
+      "avg_committed_sp": 32.3,
+      "avg_spillover_full": 5.2,
+      "avg_spillover_pct": 15.9,
+      "worst_sprint_n": 21,
+      "worst_sprint_label": "S21",
+      "worst_spillover_pct": 21.2
+    },
+    "Falcon": {
+      "sprints": [
+        {
+          "sprint_n": 21,
+          "label": "S21",
+          "period": "01.07 -- 15.07",
+          "committed_sp": 28,
+          "done_sp": 26,
+          "spillover_full": 2,
+          "spillover_pct": 7.1,
+          "completion_pct": 92.9
+        },
+        {
+          "sprint_n": 22,
+          "label": "S22",
+          "period": "15.07 -- 29.07",
+          "committed_sp": 26,
+          "done_sp": 23,
+          "spillover_full": 3,
+          "spillover_pct": 11.5,
+          "completion_pct": 88.5
+        },
+        {
+          "sprint_n": 23,
+          "label": "S23",
+          "period": "29.07 -- 12.08",
+          "committed_sp": 27,
+          "done_sp": 22,
+          "spillover_full": 5,
+          "spillover_pct": 18.5,
+          "completion_pct": 81.5
+        },
+        {
+          "sprint_n": 24,
+          "label": "S24",
+          "period": "12.08 -- 26.08",
+          "committed_sp": 29,
+          "done_sp": 25,
+          "spillover_full": 4,
+          "spillover_pct": 13.8,
+          "completion_pct": 86.2
+        },
+        {
+          "sprint_n": 25,
+          "label": "S25",
+          "period": "26.08 -- 09.09",
+          "committed_sp": 29,
+          "done_sp": 25,
+          "spillover_full": 4,
+          "spillover_pct": 13.8,
+          "completion_pct": 86.2
+        },
+        {
+          "sprint_n": 26,
+          "label": "S26",
+          "period": "09.09 -- 23.09",
+          "committed_sp": 29,
+          "done_sp": 26,
+          "spillover_full": 3,
+          "spillover_pct": 10.3,
+          "completion_pct": 89.7
+        }
+      ],
+      "avg_committed_sp": 28,
+      "avg_spillover_full": 3.5,
+      "avg_spillover_pct": 12.5,
+      "worst_sprint_n": 23,
+      "worst_sprint_label": "S23",
+      "worst_spillover_pct": 18.5
+    }
+  }
+}

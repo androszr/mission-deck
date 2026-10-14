@@ -14,6 +14,10 @@
 // narrowest slot here: absent entirely unless git stash list has something.
 // See the section at the bottom of this file for why it earns the bar.
 //
+// The "Sample data - nothing is synced" badge (js/sample-mode.js) is the other
+// slot that is absent by default: it appears only while sample mode is on, and
+// it carries the one action that leaves it.
+//
 // The help/feedback button passes both halves of the rule too: needed on
 // every view (a report is about the screen someone is on right now) and its
 // own entry, POST /api/feedback/submit, is in BUILD-CONTRACT.
@@ -31,6 +35,7 @@ import { clearSkeleton } from './skeleton.js';
 import { dayCycleMode, shouldAutoOpenMorning } from './day-cycle-helpers.mjs';
 import { shouldShowStashPill, stashPillState, fetchStashEntries } from './stash-helpers.mjs';
 import { mrRowsToPaint, mrChipState } from './topbar-mr-helpers.mjs';
+import { refreshSampleBadge } from './sample-mode.js';
 
 // ── User avatar slot ──────────────────────────────────────────────────────────
 
@@ -964,7 +969,15 @@ export function initTopbar() {
 
   // One fetch for both: the pill's initial mode and the auto-open decision
   // share the same /api/sync-overview read.
-  refreshDayCycleButton().then(({ rows }) => _autoOpenMorningIfDue(rows));
+  // Sample mode has no mirror, so its rows never carry `wrappedUpAt`; the
+  // auto-open would read that as "already cleared" and forget a real evening.
+  // It waits for the badge's status read and stays out while the mode is on.
+  const sampleBadgeReady = refreshSampleBadge().catch(() => {});
+  refreshDayCycleButton().then(async ({ rows }) => {
+    await sampleBadgeReady;
+    if (document.documentElement.hasAttribute('data-sample-mode')) return;
+    _autoOpenMorningIfDue(rows);
+  });
 
   refreshStashPill();
 }

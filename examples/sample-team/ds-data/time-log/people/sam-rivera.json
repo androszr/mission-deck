@@ -1,0 +1,280 @@
+{
+  "slug": "sam-rivera",
+  "name": "Sam Rivera",
+  "display_short": "S. Rivera",
+  "email": "sam.rivera@northwind.example",
+  "team": "Atlas",
+  "logged_days_count": 10,
+  "miss_days_count": 0,
+  "days": [
+    {
+      "date": "2026-09-29",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "ATL-200",
+          "summary": "Reorder button on past orders",
+          "hours": 4.5,
+          "logged_at": "2026-09-29T17:10:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-201",
+          "summary": "Import orders from a CSV file",
+          "hours": 3.5,
+          "logged_at": "2026-09-29T17:31:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "ATL-209",
+          "summary": "Edit quantities on an open order",
+          "hours": 3.5,
+          "logged_at": "2026-09-28T17:13:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-205",
+          "summary": "Export the order list to CSV",
+          "hours": 5,
+          "logged_at": "2026-09-28T17:52:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-27",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-26",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-25",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "ATL-202",
+          "summary": "Validation messages for the import",
+          "hours": 8,
+          "logged_at": "2026-09-25T17:38:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "ATL-202",
+          "summary": "Validation messages for the import",
+          "hours": 4,
+          "logged_at": "2026-09-24T17:17:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-205",
+          "summary": "Export the order list to CSV",
+          "hours": 4,
+          "logged_at": "2026-09-24T17:20:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "ATL-200",
+          "summary": "Reorder button on past orders",
+          "hours": 2.5,
+          "logged_at": "2026-09-23T17:15:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-201",
+          "summary": "Import orders from a CSV file",
+          "hours": 3,
+          "logged_at": "2026-09-23T17:35:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-205",
+          "summary": "Export the order list to CSV",
+          "hours": 2.5,
+          "logged_at": "2026-09-23T17:48:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "ATL-200",
+          "summary": "Reorder button on past orders",
+          "hours": 3.5,
+          "logged_at": "2026-09-22T17:31:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-209",
+          "summary": "Edit quantities on an open order",
+          "hours": 4,
+          "logged_at": "2026-09-22T17:22:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-205",
+          "summary": "Export the order list to CSV",
+          "hours": 0.5,
+          "logged_at": "2026-09-22T17:46:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-21",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "ATL-202",
+          "summary": "Validation messages for the import",
+          "hours": 4.5,
+          "logged_at": "2026-09-21T17:11:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-209",
+          "summary": "Edit quantities on an open order",
+          "hours": 3,
+          "logged_at": "2026-09-21T17:53:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-20",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-19",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-18",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "ATL-205",
+          "summary": "Export the order list to CSV",
+          "hours": 2.5,
+          "logged_at": "2026-09-18T17:22:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-200",
+          "summary": "Reorder button on past orders",
+          "hours": 4.5,
+          "logged_at": "2026-09-18T17:50:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-209",
+          "summary": "Edit quantities on an open order",
+          "hours": 0.5,
+          "logged_at": "2026-09-18T17:41:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "ATL-209",
+          "summary": "Edit quantities on an open order",
+          "hours": 5,
+          "logged_at": "2026-09-17T17:59:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "ATL-201",
+          "summary": "Import orders from a CSV file",
+          "hours": 3.5,
+          "logged_at": "2026-09-17T17:53:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "ATL-209",
+          "summary": "Edit quantities on an open order",
+          "hours": 8,
+          "logged_at": "2026-09-16T17:13:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    }
+  ]
+}

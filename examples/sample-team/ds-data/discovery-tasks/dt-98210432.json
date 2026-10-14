@@ -1,0 +1,102 @@
+{
+  "id": "dt-98210432",
+  "title": "Catalog import pipeline",
+  "ticket": "NW-105",
+  "rank": 5,
+  "po": "Grace Whitfield",
+  "analyst": "Taylor Kim",
+  "designer": "Aiko Tanaka",
+  "architect": "",
+  "ragStatus": "red",
+  "stageStatus": [
+    "preparation",
+    "problem-space",
+    "solution-space"
+  ],
+  "discoveryEnd": "2026-08-10",
+  "deliveryEnd": "2026-10-12",
+  "goLiveDate": "2026-09-26",
+  "vmoName": null,
+  "appliesTo": "Comet",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-250",
+      "summary": "Catalog import pipeline: scope gate start",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Grace Whitfield",
+      "timeByPerson": {
+        "Grace Whitfield": 75600
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-251",
+      "summary": "Catalog import pipeline: process mapping",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Ingrid Solberg",
+      "timeByPerson": {
+        "Ingrid Solberg": 115200
+      }
+    },
+    {
+      "defId": "research-insights",
+      "key": "NW-252",
+      "summary": "Catalog import pipeline: research insights",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Taylor Kim",
+      "timeByPerson": {
+        "Taylor Kim": 36000
+      }
+    },
+    {
+      "defId": "goals-metrics",
+      "key": "NW-253",
+      "summary": "Catalog import pipeline: goals metrics",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Grace Whitfield",
+      "timeByPerson": {
+        "Grace Whitfield": 126000
+      }
+    },
+    {
+      "defId": "requirements-breakdown",
+      "key": "NW-254",
+      "summary": "Catalog import pipeline: requirements breakdown",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Taylor Kim",
+      "timeByPerson": {
+        "Taylor Kim": 82800
+      }
+    },
+    {
+      "defId": "workshops-alignment",
+      "key": "NW-255",
+      "summary": "Catalog import pipeline: workshops alignment",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Ingrid Solberg",
+      "timeByPerson": {
+        "Ingrid Solberg": 46800
+      }
+    }
+  ],
+  "comments": [
+    {
+      "author": "Grace Whitfield",
+      "date": "2026-09-02",
+      "text": "Slipping: the go-live date moves by about three weeks. Needs one more engineer for two sprints."
+    }
+  ],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-105"
+    }
+  ]
+}

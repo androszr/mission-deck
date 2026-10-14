@@ -1,0 +1,46 @@
+{
+  "id": "dt-670185fd",
+  "title": "Multi-warehouse stock view",
+  "ticket": "NW-114",
+  "rank": 14,
+  "po": "Hannah Weiss",
+  "analyst": "Dmitri Volkov",
+  "designer": "Leila Karimi",
+  "architect": "",
+  "ragStatus": "green",
+  "stageStatus": [],
+  "discoveryEnd": "2026-09-15",
+  "deliveryEnd": "2026-11-24",
+  "goLiveDate": "2026-12-08",
+  "vmoName": null,
+  "appliesTo": "Delta",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-340",
+      "summary": "Multi-warehouse stock view: scope gate start",
+      "statusName": "In Progress",
+      "statusCategory": "indeterminate",
+      "assignee": "Leila Karimi",
+      "timeByPerson": {
+        "Leila Karimi": 122400
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-341",
+      "summary": "Multi-warehouse stock view: process mapping",
+      "statusName": "To Do",
+      "statusCategory": "new",
+      "assignee": "Oscar Lindqvist",
+      "timeByPerson": {}
+    }
+  ],
+  "comments": [],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-114"
+    }
+  ]
+}

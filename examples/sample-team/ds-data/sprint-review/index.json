@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "meeting": "team-review",
+  "sessions": [
+    {
+      "id": "sr-6c3f05f088f6a10b",
+      "reviewDate": "2026-09-23",
+      "sprintN": 26,
+      "sprintName": "Sprint 26",
+      "meeting": "team-review",
+      "confluencePageId": null,
+      "confluenceVersion": null,
+      "updatedAt": "2026-09-23T15:00:00.000Z"
+    },
+    {
+      "id": "sr-4403f2b168322d3c",
+      "reviewDate": "2026-09-09",
+      "sprintN": 25,
+      "sprintName": "Sprint 25",
+      "meeting": "team-review",
+      "confluencePageId": null,
+      "confluenceVersion": null,
+      "updatedAt": "2026-09-09T15:00:00.000Z"
+    },
+    {
+      "id": "sr-0049b4ae87e0c633",
+      "reviewDate": "2026-08-26",
+      "sprintN": 24,
+      "sprintName": "Sprint 24",
+      "meeting": "team-review",
+      "confluencePageId": null,
+      "confluenceVersion": null,
+      "updatedAt": "2026-08-26T15:00:00.000Z"
+    },
+    {
+      "id": "sr-00f4512ba92adc77",
+      "reviewDate": "2026-08-12",
+      "sprintN": 23,
+      "sprintName": "Sprint 23",
+      "meeting": "team-review",
+      "confluencePageId": null,
+      "confluenceVersion": null,
+      "updatedAt": "2026-08-12T15:00:00.000Z"
+    },
+    {
+      "id": "sr-dadf27903b0b509f",
+      "reviewDate": "2026-07-29",
+      "sprintN": 22,
+      "sprintName": "Sprint 22",
+      "meeting": "team-review",
+      "confluencePageId": null,
+      "confluenceVersion": null,
+      "updatedAt": "2026-07-29T15:00:00.000Z"
+    },
+    {
+      "id": "sr-85d710ab76530e52",
+      "reviewDate": "2026-07-15",
+      "sprintN": 21,
+      "sprintName": "Sprint 21",
+      "meeting": "team-review",
+      "confluencePageId": null,
+      "confluenceVersion": null,
+      "updatedAt": "2026-07-15T15:00:00.000Z"
+    }
+  ]
+}

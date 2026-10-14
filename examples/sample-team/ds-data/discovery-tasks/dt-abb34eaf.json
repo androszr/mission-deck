@@ -1,0 +1,96 @@
+{
+  "id": "dt-abb34eaf",
+  "title": "Delivery tracking",
+  "ticket": "NW-107",
+  "rank": 7,
+  "po": "Hannah Weiss",
+  "analyst": "Dmitri Volkov",
+  "designer": "Leila Karimi",
+  "architect": "",
+  "ragStatus": "green",
+  "stageStatus": [
+    "preparation",
+    "problem-space",
+    "solution-space"
+  ],
+  "discoveryEnd": "2026-08-18",
+  "deliveryEnd": "2026-11-03",
+  "goLiveDate": "2026-11-17",
+  "vmoName": null,
+  "appliesTo": "Delta",
+  "jiraTasks": [
+    {
+      "defId": "scope-gate-start",
+      "key": "NW-270",
+      "summary": "Delivery tracking: scope gate start",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Leila Karimi",
+      "timeByPerson": {
+        "Leila Karimi": 21600
+      }
+    },
+    {
+      "defId": "process-mapping",
+      "key": "NW-271",
+      "summary": "Delivery tracking: process mapping",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Oscar Lindqvist",
+      "timeByPerson": {
+        "Oscar Lindqvist": 50400
+      }
+    },
+    {
+      "defId": "research-insights",
+      "key": "NW-272",
+      "summary": "Delivery tracking: research insights",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Dmitri Volkov",
+      "timeByPerson": {
+        "Dmitri Volkov": 75600
+      }
+    },
+    {
+      "defId": "goals-metrics",
+      "key": "NW-273",
+      "summary": "Delivery tracking: goals metrics",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Hannah Weiss",
+      "timeByPerson": {
+        "Hannah Weiss": 28800
+      }
+    },
+    {
+      "defId": "requirements-breakdown",
+      "key": "NW-274",
+      "summary": "Delivery tracking: requirements breakdown",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Oscar Lindqvist",
+      "timeByPerson": {
+        "Oscar Lindqvist": 144000
+      }
+    },
+    {
+      "defId": "workshops-alignment",
+      "key": "NW-275",
+      "summary": "Delivery tracking: workshops alignment",
+      "statusName": "Done",
+      "statusCategory": "done",
+      "assignee": "Leila Karimi",
+      "timeByPerson": {
+        "Leila Karimi": 136800
+      }
+    }
+  ],
+  "comments": [],
+  "links": [
+    {
+      "title": "Brief",
+      "url": "https://wiki.example.com/northwind/nw-107"
+    }
+  ]
+}

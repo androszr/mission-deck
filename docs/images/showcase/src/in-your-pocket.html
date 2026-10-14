@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mini Deck - in your pocket</title>
+<link rel="stylesheet" href="poster.css">
+<style>
+  .row { position: absolute; left: 72px; right: 72px; top: 420px; display: grid; grid-template-columns: 300px 300px 1fr; gap: 36px; align-items: start; }
+  .row .phone + .phone { margin-top: 50px; }
+  .row .steps { margin-top: 70px; }
+</style>
+</head>
+<body>
+  <p class="prompt"><b>~/mission-deck$</b> <i>npm run build:apps</i></p>
+  <h1>On your laptop. <em>In your pocket.</em></h1>
+  <p class="lede">Mini Deck is the phone half of Mission Deck: <strong>the sprint,
+    the bugs, who is on call and the team</strong>, one thumb away when you are
+    nowhere near your desk.</p>
+
+  <div class="row">
+    <div class="phone"><div class="screen"><div class="status">9:41</div><img src="../../mini-deck-sprints.png" alt=""></div></div>
+    <div class="phone"><div class="screen"><div class="status">9:41</div><img src="../../mini-deck-bugs.png" alt=""></div></div>
+    <ol class="steps">
+      <li><span class="n">1</span><span><strong>Four screens</strong> - sprints, bugs, on-call and the team.</span></li>
+      <li><span class="n">2</span><span><strong>Says how old</strong> its data is, so you never act on last week.</span></li>
+      <li><span class="n">3</span><span><strong>Light and dark</strong>, phone, tablet and desktop.</span></li>
+    </ol>
+  </div>
+
+  <div class="footer">
+    <div class="wordmark"><b>MINI</b> DECK</div>
+    <div class="chips"><span class="chip">phone</span><span class="chip">tablet</span><span class="chip">desktop</span></div>
+  </div>
+</body>
+</html>

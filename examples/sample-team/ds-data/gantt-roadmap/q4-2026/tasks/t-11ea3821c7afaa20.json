@@ -1,0 +1,19 @@
+{
+  "uid": "t-11ea3821c7afaa20",
+  "n": 5,
+  "a": "search",
+  "o": 1,
+  "t": "Search analytics",
+  "who": [
+    "zoe-carter",
+    "rafael-costa"
+  ],
+  "s": 3,
+  "l": 5,
+  "ph": null,
+  "gw": false,
+  "ms": false,
+  "createdAt": "2026-06-24T09:00:00.000Z",
+  "updatedAt": "2026-09-20T09:00:00.000Z",
+  "updatedBy": null
+}

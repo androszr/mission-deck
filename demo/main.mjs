@@ -363,8 +363,8 @@ async function boot() {
       return;
     }
     if (tocOpen && (e.key === 'Enter' || e.key === ' ') && $('demo-toc').contains(e.target)) return;
-    // Enter / Space on a focused switch (Tab reaches it) operates the switch, not the show.
-    if ((e.key === 'Enter' || e.key === ' ') && e.target.closest && e.target.closest('[data-demo-track], [data-demo-mode]')) return;
+    // Enter / Space on a focused switch or link (Tab reaches it) operates it, not the show.
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.closest && e.target.closest('[data-demo-track], [data-demo-mode], a[href]')) return;
     if (e.key === '?') { e.preventDefault(); _togglePopover('demo-help', 'demo-help-btn'); return; }
     if (NEXT_KEYS.has(e.key)) { e.preventDefault(); e.stopPropagation(); go(engine.next); }
     else if (PREV_KEYS.has(e.key)) { e.preventDefault(); e.stopPropagation(); go(engine.prev); }

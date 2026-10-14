@@ -1,0 +1,197 @@
+{
+  "meta": {
+    "last_updated": "2026-09-30T16:00:00.000Z",
+    "total_assignments": 9
+  },
+  "assignments": [
+    {
+      "id": "st-122fa9e8",
+      "area": "atlas",
+      "title": "Order editing support - 2026-07",
+      "period_from": "2026-07-01",
+      "period_to": "2026-07-31",
+      "vendor": "Acme Ltd",
+      "mode": "persons",
+      "items": [
+        "Wei Zhang"
+      ],
+      "amount": 21840,
+      "amount_full": 21840,
+      "po_number": "PO-2026-014",
+      "po_name": "Order editing support",
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-a14a7522",
+      "accepted_at": "2026-08-05T10:00:00.000Z",
+      "created_at": "2026-08-01T09:00:00.000Z",
+      "updated_at": "2026-08-05T10:00:00.000Z",
+      "protocol_id": "pr-a14a7522"
+    },
+    {
+      "id": "st-51e7e753",
+      "area": "atlas",
+      "title": "Order editing support - 2026-08",
+      "period_from": "2026-08-01",
+      "period_to": "2026-08-31",
+      "vendor": "Acme Ltd",
+      "mode": "persons",
+      "items": [
+        "Wei Zhang"
+      ],
+      "amount": 22080,
+      "amount_full": 22080,
+      "po_number": "PO-2026-014",
+      "po_name": "Order editing support",
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-827821dc",
+      "accepted_at": "2026-09-05T10:00:00.000Z",
+      "created_at": "2026-09-01T09:00:00.000Z",
+      "updated_at": "2026-09-05T10:00:00.000Z",
+      "protocol_id": "pr-827821dc"
+    },
+    {
+      "id": "st-46585847",
+      "area": "atlas",
+      "title": "Order editing support - 2026-09",
+      "period_from": "2026-09-01",
+      "period_to": "2026-09-30",
+      "vendor": "Acme Ltd",
+      "mode": "persons",
+      "items": [
+        "Wei Zhang"
+      ],
+      "amount": 20240,
+      "amount_full": 20240,
+      "po_number": "PO-2026-014",
+      "po_name": "Order editing support",
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-15614022",
+      "accepted_at": null,
+      "created_at": "2026-10-01T09:00:00.000Z",
+      "updated_at": "2026-10-01T10:00:00.000Z",
+      "protocol_id": "pr-15614022"
+    },
+    {
+      "id": "st-7ce06dbf",
+      "area": "borealis",
+      "title": "Checkout optimisation - 2026-07",
+      "period_from": "2026-07-01",
+      "period_to": "2026-07-31",
+      "vendor": "Globex",
+      "mode": "persons",
+      "items": [
+        "Marta Kowal"
+      ],
+      "amount": 10080,
+      "amount_full": 10080,
+      "po_number": "PO-2026-021",
+      "po_name": "Checkout optimisation",
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-378ba6c3",
+      "accepted_at": "2026-08-05T10:00:00.000Z",
+      "created_at": "2026-08-01T09:00:00.000Z",
+      "updated_at": "2026-08-05T10:00:00.000Z",
+      "protocol_id": "pr-378ba6c3"
+    },
+    {
+      "id": "st-622a1970",
+      "area": "borealis",
+      "title": "Checkout optimisation - 2026-08",
+      "period_from": "2026-08-01",
+      "period_to": "2026-08-31",
+      "vendor": "Globex",
+      "mode": "persons",
+      "items": [
+        "Marta Kowal"
+      ],
+      "amount": 9760,
+      "amount_full": 9760,
+      "po_number": "PO-2026-021",
+      "po_name": "Checkout optimisation",
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-f50bbee6",
+      "accepted_at": "2026-09-05T10:00:00.000Z",
+      "created_at": "2026-09-01T09:00:00.000Z",
+      "updated_at": "2026-09-05T10:00:00.000Z",
+      "protocol_id": "pr-f50bbee6"
+    },
+    {
+      "id": "st-259c5d53",
+      "area": "borealis",
+      "title": "Checkout optimisation - 2026-09",
+      "period_from": "2026-09-01",
+      "period_to": "2026-09-30",
+      "vendor": "Globex",
+      "mode": "persons",
+      "items": [
+        "Marta Kowal"
+      ],
+      "amount": 8480,
+      "amount_full": 8480,
+      "po_number": "PO-2026-021",
+      "po_name": "Checkout optimisation",
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-21c0efb1",
+      "accepted_at": null,
+      "created_at": "2026-10-01T09:00:00.000Z",
+      "updated_at": "2026-10-01T10:00:00.000Z",
+      "protocol_id": "pr-21c0efb1"
+    },
+    {
+      "id": "st-a3069846",
+      "area": "comet",
+      "title": "Catalog import development - 2026-07",
+      "period_from": "2026-07-01",
+      "period_to": "2026-07-31",
+      "vendor": "Initech",
+      "mode": "persons",
+      "items": [
+        "Ben Hartley"
+      ],
+      "amount": 23520,
+      "amount_full": 23520,
+      "po_number": "PO-2026-027",
+      "po_name": "Catalog import development",
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-9590bff9",
+      "accepted_at": "2026-08-05T10:00:00.000Z",
+      "created_at": "2026-08-01T09:00:00.000Z",
+      "updated_at": "2026-08-05T10:00:00.000Z",
+      "protocol_id": "pr-9590bff9"
+    },
+    {
+      "id": "st-60f10070",
+      "area": "comet",
+      "title": "Catalog import development - 2026-08",
+      "period_from": "2026-08-01",
+      "period_to": "2026-08-31",
+      "vendor": "Initech",
+      "mode": "persons",
+      "items": [
+        "Ben Hartley"
+      ],
+      "amount": 23840,
+      "amount_full": 23840,
+      "po_number": "PO-2026-027",
+      "po_name": "Catalog import development",
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-faa3479b",
+      "accepted_at": null,
+      "created_at": "2026-09-01T09:00:00.000Z",
+      "updated_at": "2026-09-01T10:00:00.000Z",
+      "protocol_id": "pr-faa3479b"
+    },
+    {
+      "id": "st-cc5d3215",
+      "area": "comet",
+      "title": "Catalog import development - 2026-09",
+      "period_from": "2026-09-01",
+      "period_to": "2026-09-30",
+      "vendor": "Initech",
+      "mode": "persons",
+      "items": [
+        "Ben Hartley"
+      ],
+      "amount": 21920,
+      "amount_full": 21920,
+      "po_number": "PO-2026-027",
+      "po_name": "Catalog import development",
+      "protocol_link": "https://wiki.example.com/northwind/protocols/pr-0e818702",
+      "accepted_at": null,
+      "created_at": "2026-10-01T09:00:00.000Z",
+      "updated_at": "2026-10-01T10:00:00.000Z",
+      "protocol_id": "pr-0e818702"
+    }
+  ]
+}

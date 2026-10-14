@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "id": "delta-23",
+  "team": "delta",
+  "sprintN": 23,
+  "dateFrom": "2026-07-29",
+  "dateTo": "2026-08-12",
+  "datesSource": "computed",
+  "createdAt": "2026-07-28T10:00:00.000Z",
+  "updatedAt": "2026-07-28T10:00:00.000Z",
+  "sections": {
+    "oncall": {
+      "done": true,
+      "dev": "Dmitri Volkov",
+      "devops": "Oscar Lindqvist",
+      "note": ""
+    },
+    "capacity": {
+      "done": true,
+      "peopleOverride": null,
+      "extraDaysOff": 0,
+      "events": [
+        {
+          "text": "Quarter review on the last day",
+          "id": "it-02a7ee4f"
+        }
+      ],
+      "dependencies": [
+        {
+          "text": "Carrier test accounts from the vendor",
+          "id": "it-d0ccd360"
+        }
+      ]
+    },
+    "absences": {
+      "done": true,
+      "manual": [
+        {
+          "person": "Leila Karimi",
+          "dateFrom": "2026-07-29",
+          "dateTo": "2026-08-02",
+          "reason": "Holiday",
+          "id": "it-aeb865de"
+        }
+      ]
+    },
+    "velocity": {
+      "done": true,
+      "override": null,
+      "note": "Average of the last three sprints"
+    },
+    "refinements": {
+      "done": true,
+      "items": [
+        {
+          "key": "DLT-140",
+          "topic": "Partial delivery handling",
+          "note": "",
+          "id": "it-5873d353"
+        },
+        {
+          "key": "DLT-141",
+          "topic": "Proof of delivery upload",
+          "note": "",
+          "id": "it-88b1aeaf"
+        }
+      ],
+      "cross": []
+    },
+    "goal": {
+      "done": true,
+      "goal": "Notify buyers when a delivery is delayed"
+    },
+    "jira": {
+      "done": true
+    }
+  }
+}

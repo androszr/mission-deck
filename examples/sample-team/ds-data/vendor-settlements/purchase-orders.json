@@ -1,0 +1,25 @@
+{
+  "orders": [
+    {
+      "po_number": "PO-2026-014",
+      "vendor": "Acme Ltd",
+      "title": "Order editing support",
+      "amount": 90000,
+      "area": "atlas"
+    },
+    {
+      "po_number": "PO-2026-021",
+      "vendor": "Globex",
+      "title": "Checkout optimisation",
+      "amount": 72000,
+      "area": "borealis"
+    },
+    {
+      "po_number": "PO-2026-027",
+      "vendor": "Initech",
+      "title": "Catalog import development",
+      "amount": 108000,
+      "area": "comet"
+    }
+  ]
+}

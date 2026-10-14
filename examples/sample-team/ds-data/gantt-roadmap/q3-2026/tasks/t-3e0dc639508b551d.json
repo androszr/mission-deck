@@ -1,0 +1,19 @@
+{
+  "uid": "t-3e0dc639508b551d",
+  "n": 4,
+  "a": "checkout",
+  "o": 2,
+  "t": "Release and stabilise",
+  "who": [
+    "elena-rossi",
+    "jordan-lee"
+  ],
+  "s": 7,
+  "l": 4,
+  "ph": null,
+  "gw": false,
+  "ms": false,
+  "createdAt": "2026-06-24T09:00:00.000Z",
+  "updatedAt": "2026-09-20T09:00:00.000Z",
+  "updatedBy": null
+}

@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-30T16:00:00.000Z",
+  "dateFrom": "2026-07-01",
+  "dateTo": "2026-09-30",
+  "projects": [
+    "ATL",
+    "BOR",
+    "CMT",
+    "DLT",
+    "ECH",
+    "FAL"
+  ],
+  "months": [
+    {
+      "month": "2026-07",
+      "fetchedAt": "2026-09-30T16:00:00.000Z",
+      "dateFrom": "2026-07-01",
+      "dateTo": "2026-07-31",
+      "partial": false,
+      "authors": 27,
+      "worklogs": 1054,
+      "skipped": 0
+    },
+    {
+      "month": "2026-08",
+      "fetchedAt": "2026-09-30T16:00:00.000Z",
+      "dateFrom": "2026-08-01",
+      "dateTo": "2026-08-31",
+      "partial": false,
+      "authors": 27,
+      "worklogs": 906,
+      "skipped": 0
+    },
+    {
+      "month": "2026-09",
+      "fetchedAt": "2026-09-30T16:00:00.000Z",
+      "dateFrom": "2026-09-01",
+      "dateTo": "2026-09-30",
+      "partial": false,
+      "authors": 27,
+      "worklogs": 1026,
+      "skipped": 0
+    }
+  ],
+  "authorsSeen": [
+    {
+      "key": "aiko.tanaka@northwind.example",
+      "displayName": "Aiko Tanaka",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "alex.morgan@northwind.example",
+      "displayName": "Alex Morgan",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "amara.diallo@northwind.example",
+      "displayName": "Amara Diallo",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "ben.hartley@initech.example",
+      "displayName": "Ben Hartley",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "chloe.dubois@northwind.example",
+      "displayName": "Chloe Dubois",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "dmitri.volkov@northwind.example",
+      "displayName": "Dmitri Volkov",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "elena.rossi@northwind.example",
+      "displayName": "Elena Rossi",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "felix.moreau@northwind.example",
+      "displayName": "Felix Moreau",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "grace.whitfield@northwind.example",
+      "displayName": "Grace Whitfield",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "hannah.weiss@northwind.example",
+      "displayName": "Hannah Weiss",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "ingrid.solberg@northwind.example",
+      "displayName": "Ingrid Solberg",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "jonas.berg@northwind.example",
+      "displayName": "Jonas Berg",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "jordan.lee@northwind.example",
+      "displayName": "Jordan Lee",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "kofi.mensah@northwind.example",
+      "displayName": "Kofi Mensah",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "leila.karimi@northwind.example",
+      "displayName": "Leila Karimi",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "marta.kowal@globex.example",
+      "displayName": "Marta Kowal",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "nadia.petrova@northwind.example",
+      "displayName": "Nadia Petrova",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "oscar.lindqvist@northwind.example",
+      "displayName": "Oscar Lindqvist",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "priya.raman@northwind.example",
+      "displayName": "Priya Raman",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "rafael.costa@northwind.example",
+      "displayName": "Rafael Costa",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "sam.rivera@northwind.example",
+      "displayName": "Sam Rivera",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "samir.haddad@northwind.example",
+      "displayName": "Samir Haddad",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "taylor.kim@northwind.example",
+      "displayName": "Taylor Kim",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "tomas.novak@northwind.example",
+      "displayName": "Tomas Novak",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "wei.zhang@acmeltd.example",
+      "displayName": "Wei Zhang",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "yuki.sato@northwind.example",
+      "displayName": "Yuki Sato",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    },
+    {
+      "key": "zoe.carter@northwind.example",
+      "displayName": "Zoe Carter",
+      "firstMonth": "2026-07",
+      "lastMonth": "2026-09"
+    }
+  ],
+  "unmatchedByEmail": []
+}

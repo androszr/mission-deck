@@ -1,0 +1,63 @@
+{
+  "id": "default",
+  "name": "Two-week plan",
+  "slug": "default",
+  "rows": [
+    {
+      "topic": "Welcome and setup",
+      "description": "Laptop, accounts, and a first coffee with the squad.",
+      "who": "Squad lead",
+      "when": "Day 1"
+    },
+    {
+      "topic": "Read the handbook",
+      "description": "Ten pages, with questions written down.",
+      "who": "New colleague",
+      "when": "Day 1"
+    },
+    {
+      "topic": "Product tour",
+      "description": "Use the product as a customer for an hour.",
+      "who": "Product owner",
+      "when": "Day 2"
+    },
+    {
+      "topic": "Meet the other squads",
+      "description": "Fifteen minutes with one person from each squad.",
+      "who": "New colleague",
+      "when": "Day 2 to 3"
+    },
+    {
+      "topic": "First small task",
+      "description": "A change small enough to ship by Friday.",
+      "who": "Buddy",
+      "when": "Day 3 to 5"
+    },
+    {
+      "topic": "Shadow a support call",
+      "description": "Listen to how customers talk about the product.",
+      "who": "Support",
+      "when": "Day 4"
+    },
+    {
+      "topic": "Sprint planning",
+      "description": "Join planning and ask about anything unclear.",
+      "who": "Squad",
+      "when": "Day 6"
+    },
+    {
+      "topic": "Review the first task",
+      "description": "Show the result at the sprint review.",
+      "who": "New colleague",
+      "when": "Day 9"
+    },
+    {
+      "topic": "Retrospective on onboarding",
+      "description": "What helped, what was missing.",
+      "who": "Squad lead",
+      "when": "Day 10"
+    }
+  ],
+  "created_at": "2026-07-01T09:00:00.000Z",
+  "generated_at": "2026-09-30T16:00:00.000Z"
+}

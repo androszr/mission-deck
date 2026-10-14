@@ -1,0 +1,13 @@
+{
+  "dataset": "training-done",
+  "updated_at": "2026-09-24T10:00:00.000Z",
+  "total": 13,
+  "shards": {
+    "CEN": 3,
+    "EAS": 2,
+    "ISL": 1,
+    "NOR": 3,
+    "SOU": 2,
+    "WES": 2
+  }
+}

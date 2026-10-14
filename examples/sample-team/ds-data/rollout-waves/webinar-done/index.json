@@ -1,0 +1,13 @@
+{
+  "dataset": "webinar-done",
+  "updated_at": "2026-09-24T10:00:00.000Z",
+  "total": 18,
+  "shards": {
+    "CEN": 4,
+    "EAS": 4,
+    "ISL": 2,
+    "NOR": 4,
+    "SOU": 2,
+    "WES": 2
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "slug": "leila-karimi",
+  "name": "Leila Karimi",
+  "display_short": "L. Karimi",
+  "email": "leila.karimi@northwind.example",
+  "team": "Delta",
+  "logged_days_count": 10,
+  "miss_days_count": 0,
+  "days": [
+    {
+      "date": "2026-09-29",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "DLT-202",
+          "summary": "Label printing from the warehouse view",
+          "hours": 2.5,
+          "logged_at": "2026-09-29T17:57:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-206",
+          "summary": "Delivery cost rules per region",
+          "hours": 4.5,
+          "logged_at": "2026-09-29T17:47:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-200",
+          "summary": "Carrier connector for the first carrier",
+          "hours": 0.5,
+          "logged_at": "2026-09-29T17:45:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "DLT-200",
+          "summary": "Carrier connector for the first carrier",
+          "hours": 3.5,
+          "logged_at": "2026-09-28T17:34:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-202",
+          "summary": "Label printing from the warehouse view",
+          "hours": 4.5,
+          "logged_at": "2026-09-28T17:44:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-27",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-26",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-25",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "DLT-202",
+          "summary": "Label printing from the warehouse view",
+          "hours": 5,
+          "logged_at": "2026-09-25T17:13:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-206",
+          "summary": "Delivery cost rules per region",
+          "hours": 2,
+          "logged_at": "2026-09-25T17:48:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-200",
+          "summary": "Carrier connector for the first carrier",
+          "hours": 0.5,
+          "logged_at": "2026-09-25T17:21:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "DLT-202",
+          "summary": "Label printing from the warehouse view",
+          "hours": 2.5,
+          "logged_at": "2026-09-24T17:27:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-206",
+          "summary": "Delivery cost rules per region",
+          "hours": 5.5,
+          "logged_at": "2026-09-24T17:22:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "DLT-202",
+          "summary": "Label printing from the warehouse view",
+          "hours": 4,
+          "logged_at": "2026-09-23T17:33:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-206",
+          "summary": "Delivery cost rules per region",
+          "hours": 3,
+          "logged_at": "2026-09-23T17:26:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-201",
+          "summary": "Carrier connector for the second carrier",
+          "hours": 1.5,
+          "logged_at": "2026-09-23T17:52:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "DLT-200",
+          "summary": "Carrier connector for the first carrier",
+          "hours": 2,
+          "logged_at": "2026-09-22T17:27:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-201",
+          "summary": "Carrier connector for the second carrier",
+          "hours": 3.5,
+          "logged_at": "2026-09-22T17:33:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-202",
+          "summary": "Label printing from the warehouse view",
+          "hours": 2.5,
+          "logged_at": "2026-09-22T17:22:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-21",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8.5,
+      "issues": [
+        {
+          "key": "DLT-202",
+          "summary": "Label printing from the warehouse view",
+          "hours": 4.5,
+          "logged_at": "2026-09-21T17:37:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-206",
+          "summary": "Delivery cost rules per region",
+          "hours": 4,
+          "logged_at": "2026-09-21T17:16:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-20",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-19",
+      "is_weekend": true,
+      "is_holiday": false,
+      "has_log": false,
+      "hours": 0,
+      "issues": []
+    },
+    {
+      "date": "2026-09-18",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 7.5,
+      "issues": [
+        {
+          "key": "DLT-202",
+          "summary": "Label printing from the warehouse view",
+          "hours": 5,
+          "logged_at": "2026-09-18T17:23:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-206",
+          "summary": "Delivery cost rules per region",
+          "hours": 2.5,
+          "logged_at": "2026-09-18T17:37:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "DLT-202",
+          "summary": "Label printing from the warehouse view",
+          "hours": 4,
+          "logged_at": "2026-09-17T17:17:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-200",
+          "summary": "Carrier connector for the first carrier",
+          "hours": 4,
+          "logged_at": "2026-09-17T17:26:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "is_weekend": false,
+      "is_holiday": false,
+      "has_log": true,
+      "hours": 8,
+      "issues": [
+        {
+          "key": "DLT-200",
+          "summary": "Carrier connector for the first carrier",
+          "hours": 3,
+          "logged_at": "2026-09-16T17:11:00.000+0200",
+          "updated_at": null
+        },
+        {
+          "key": "DLT-201",
+          "summary": "Carrier connector for the second carrier",
+          "hours": 5,
+          "logged_at": "2026-09-16T17:31:00.000+0200",
+          "updated_at": null
+        }
+      ]
+    }
+  ]
+}

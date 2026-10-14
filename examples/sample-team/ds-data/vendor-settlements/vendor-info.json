@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "last_updated": "2026-09-30T16:00:00.000Z"
+  },
+  "vendors": [
+    {
+      "name": "Acme Ltd",
+      "full_name": "Acme Ltd Consulting Services",
+      "address": "1 Example Road, Exampleton",
+      "tax_id": "000-111-22-33",
+      "registry_no": "0000123456"
+    },
+    {
+      "name": "Globex",
+      "full_name": "Globex Corporation",
+      "address": "22 Sample Street, Sampleville",
+      "tax_id": "000-222-33-44",
+      "registry_no": "0000234567"
+    },
+    {
+      "name": "Initech",
+      "full_name": "Initech Software Ltd",
+      "address": "7 Placeholder Avenue, Placeholder City",
+      "tax_id": "000-333-44-55",
+      "registry_no": "0000345678"
+    }
+  ]
+}

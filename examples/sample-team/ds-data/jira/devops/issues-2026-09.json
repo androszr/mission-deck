@@ -1,0 +1,343 @@
+{
+  "month": "2026-09",
+  "issues": [
+    {
+      "key": "DEVOPS-118",
+      "summary": "Speed up the CI pipeline",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-09-08T09:42:00.000Z",
+      "started_at": "2026-09-11T10:00:00.000Z",
+      "done_at": "2026-09-17T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Samir Haddad",
+      "time_spent_s": 54000,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-09-08T09:42:00.000Z",
+          "to": "2026-09-11T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-09-11T10:00:00.000Z",
+          "to": "2026-09-16T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-09-16T14:00:00.000Z",
+          "to": "2026-09-17T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-09-17T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-119",
+      "summary": "Backup restore drill",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-09-10T09:27:00.000Z",
+      "started_at": "2026-09-10T10:00:00.000Z",
+      "done_at": "2026-09-13T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Jordan Lee",
+      "time_spent_s": 32400,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-09-10T09:27:00.000Z",
+          "to": "2026-09-10T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-09-10T10:00:00.000Z",
+          "to": "2026-09-13T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-09-13T14:00:00.000Z",
+          "to": "2026-09-13T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-09-13T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-120",
+      "summary": "Rotate the deploy keys",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-09-11T09:53:00.000Z",
+      "started_at": "2026-09-14T10:00:00.000Z",
+      "done_at": "2026-09-18T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Jordan Lee",
+      "time_spent_s": 43200,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-09-11T09:53:00.000Z",
+          "to": "2026-09-14T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-09-14T10:00:00.000Z",
+          "to": "2026-09-18T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-09-18T14:00:00.000Z",
+          "to": "2026-09-18T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-09-18T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-121",
+      "summary": "Clean up unused feature flags",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-09-14T09:19:00.000Z",
+      "started_at": "2026-09-14T10:00:00.000Z",
+      "done_at": "2026-09-18T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Samir Haddad",
+      "time_spent_s": 21600,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-09-14T09:19:00.000Z",
+          "to": "2026-09-14T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-09-14T10:00:00.000Z",
+          "to": "2026-09-16T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-09-16T14:00:00.000Z",
+          "to": "2026-09-18T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-09-18T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": [
+        {
+          "from": "2026-09-15T09:00:00.000Z",
+          "to": "2026-09-16T09:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "key": "DEVOPS-122",
+      "summary": "Health checks for the gateway",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-09-15T09:48:00.000Z",
+      "started_at": "2026-09-17T10:00:00.000Z",
+      "done_at": "2026-09-25T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Rafael Costa",
+      "time_spent_s": 64800,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-09-15T09:48:00.000Z",
+          "to": "2026-09-17T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-09-17T10:00:00.000Z",
+          "to": "2026-09-23T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-09-23T14:00:00.000Z",
+          "to": "2026-09-25T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-09-25T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-123",
+      "summary": "Add a canary step to deployments",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-09-17T09:54:00.000Z",
+      "started_at": "2026-09-17T10:00:00.000Z",
+      "done_at": "2026-09-23T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Ingrid Solberg",
+      "time_spent_s": 43200,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-09-17T09:54:00.000Z",
+          "to": "2026-09-17T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-09-17T10:00:00.000Z",
+          "to": "2026-09-21T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-09-21T14:00:00.000Z",
+          "to": "2026-09-23T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-09-23T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-124",
+      "summary": "Cheaper log retention",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-09-18T09:35:00.000Z",
+      "started_at": "2026-09-19T10:00:00.000Z",
+      "done_at": "2026-09-24T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Samir Haddad",
+      "time_spent_s": 54000,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-09-18T09:35:00.000Z",
+          "to": "2026-09-19T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-09-19T10:00:00.000Z",
+          "to": "2026-09-24T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-09-24T14:00:00.000Z",
+          "to": "2026-09-24T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-09-24T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-125",
+      "summary": "Upgrade the base container image",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-09-24T09:03:00.000Z",
+      "started_at": "2026-09-25T10:00:00.000Z",
+      "done_at": "2026-09-26T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Jordan Lee",
+      "time_spent_s": 10800,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-09-24T09:03:00.000Z",
+          "to": "2026-09-25T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-09-25T10:00:00.000Z",
+          "to": "2026-09-26T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-09-26T14:00:00.000Z",
+          "to": "2026-09-26T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-09-26T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    },
+    {
+      "key": "DEVOPS-126",
+      "summary": "Pin the dependency versions",
+      "type_id": "10002",
+      "subtask": false,
+      "is_epic": false,
+      "epic_key": null,
+      "created": "2026-09-25T09:26:00.000Z",
+      "started_at": "2026-09-26T10:00:00.000Z",
+      "done_at": "2026-09-30T16:00:00.000Z",
+      "status_id": "10003",
+      "assignee": "Felix Moreau",
+      "time_spent_s": 32400,
+      "intervals": [
+        {
+          "s": "10000",
+          "from": "2026-09-25T09:26:00.000Z",
+          "to": "2026-09-26T10:00:00.000Z"
+        },
+        {
+          "s": "10001",
+          "from": "2026-09-26T10:00:00.000Z",
+          "to": "2026-09-29T14:00:00.000Z"
+        },
+        {
+          "s": "10002",
+          "from": "2026-09-29T14:00:00.000Z",
+          "to": "2026-09-30T16:00:00.000Z"
+        },
+        {
+          "s": "10003",
+          "from": "2026-09-30T16:00:00.000Z",
+          "to": null
+        }
+      ],
+      "flagged": []
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "last_updated": "2026-09-30T16:00:00.000Z"
+  },
+  "months": [
+    "2026-07",
+    "2026-08",
+    "2026-09",
+    "2026-10",
+    "2026-11",
+    "2026-12"
+  ],
+  "groups": [
+    {
+      "id": "grp-694504e2",
+      "name": "Platform",
+      "areas": [
+        {
+          "id": "area-cb3420b4",
+          "name": "API stability",
+          "description": "Uptime and error budgets.",
+          "owner": "Felix Moreau",
+          "ratings": {
+            "2026-07": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        },
+        {
+          "id": "area-7e1dc4f8",
+          "name": "Security reviews",
+          "description": "Dependency audits and access reviews.",
+          "owner": "Chloe Dubois",
+          "ratings": {
+            "2026-07": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

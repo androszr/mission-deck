@@ -1,0 +1,19 @@
+{
+  "uid": "t-a3a32ddffd47276a",
+  "n": 7,
+  "a": "delivery",
+  "o": 2,
+  "t": "Carrier connectors",
+  "who": [
+    "hannah-weiss",
+    "dmitri-volkov"
+  ],
+  "s": 6,
+  "l": 6,
+  "ph": null,
+  "gw": false,
+  "ms": false,
+  "createdAt": "2026-06-24T09:00:00.000Z",
+  "updatedAt": "2026-09-20T09:00:00.000Z",
+  "updatedBy": null
+}

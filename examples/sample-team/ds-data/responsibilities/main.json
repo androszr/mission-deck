@@ -1,0 +1,263 @@
+{
+  "meta": {
+    "last_updated": "2026-09-30T16:00:00.000Z"
+  },
+  "months": [
+    "2026-07",
+    "2026-08",
+    "2026-09",
+    "2026-10",
+    "2026-11",
+    "2026-12"
+  ],
+  "groups": [
+    {
+      "id": "grp-f9c3fefe",
+      "name": "Product",
+      "areas": [
+        {
+          "id": "area-f0e3ac1b",
+          "name": "Roadmap and priorities",
+          "description": "Decides what is built next and says no to the rest.",
+          "owner": "Alex Morgan",
+          "ratings": {
+            "2026-07": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        },
+        {
+          "id": "area-c2fa3c99",
+          "name": "Customer feedback",
+          "description": "Collects, groups and shares what customers tell us.",
+          "owner": "Zoe Carter",
+          "ratings": {
+            "2026-07": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        },
+        {
+          "id": "area-78ada9df",
+          "name": "Pricing and packaging",
+          "description": "Owns plans, limits and what each plan includes.",
+          "owner": "Amara Diallo",
+          "ratings": {
+            "2026-07": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grp-06c6ee57",
+      "name": "Delivery",
+      "areas": [
+        {
+          "id": "area-9876844f",
+          "name": "Release management",
+          "description": "Plans releases, freezes and rollbacks.",
+          "owner": "Elena Rossi",
+          "ratings": {
+            "2026-07": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        },
+        {
+          "id": "area-4d700191",
+          "name": "Quality and testing",
+          "description": "Keeps the regression suite useful and fast.",
+          "owner": "Tomas Novak",
+          "ratings": {
+            "2026-07": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        },
+        {
+          "id": "area-3f86c928",
+          "name": "Incident response",
+          "description": "On-call, status updates and the post-incident review.",
+          "owner": "Dmitri Volkov",
+          "ratings": {
+            "2026-07": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        },
+        {
+          "id": "area-41c2e0d0",
+          "name": "Documentation",
+          "description": "Keeps guides, API docs and release notes current.",
+          "owner": "Felix Moreau",
+          "ratings": {
+            "2026-07": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grp-1cafae55",
+      "name": "Operations",
+      "areas": [
+        {
+          "id": "area-86e3c70b",
+          "name": "Vendor management",
+          "description": "Contracts, purchase orders and monthly settlements.",
+          "owner": "Hannah Weiss",
+          "ratings": {
+            "2026-07": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "green",
+              "actions": null,
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        },
+        {
+          "id": "area-b2248b6c",
+          "name": "Data and reporting",
+          "description": "Dashboards, definitions and the weekly numbers.",
+          "owner": "Grace Whitfield",
+          "ratings": {
+            "2026-07": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "amber",
+              "actions": "Watching it, review next month.",
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        },
+        {
+          "id": "area-3cf9f23c",
+          "name": "Onboarding",
+          "description": "First two weeks of every new colleague.",
+          "owner": "Samir Haddad",
+          "ratings": {
+            "2026-07": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-07-28T10:00:00.000Z"
+            },
+            "2026-08": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-08-28T10:00:00.000Z"
+            },
+            "2026-09": {
+              "status": "red",
+              "actions": "Owner and deputy agreed a plan for the next two weeks.",
+              "updated_at": "2026-09-28T10:00:00.000Z"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "uid": "t-d98198c26e497b79",
+  "n": 4,
+  "a": "delivery",
+  "o": 1,
+  "t": "Delivery slot booking",
+  "who": [
+    "hannah-weiss",
+    "dmitri-volkov"
+  ],
+  "s": 2,
+  "l": 8,
+  "ph": null,
+  "gw": false,
+  "ms": false,
+  "createdAt": "2026-06-24T09:00:00.000Z",
+  "updatedAt": "2026-09-20T09:00:00.000Z",
+  "updatedBy": null
+}
