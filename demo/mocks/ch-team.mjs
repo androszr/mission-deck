@@ -8,6 +8,7 @@
 // loaded from team data: initials stand in for every avatar.
 
 import { esc, modalShell } from './common.mjs';
+import { fruitFaceFor } from '../../assets/avatars/fruit-avatars.mjs';
 import { modulePage, syncBar } from './ch-time-tracking.mjs';
 
 const VIEW = 'zespol-sklad';
@@ -42,7 +43,7 @@ const _total = (extra) => ROSTER.reduce((n, t) => n + t.people.length, 0) + (ext
 function _tile([first, last, role], team) {
   const name = first + ' ' + last;
   return '<div class="zespol-person-tile" role="button" tabindex="0" aria-label="' + esc(name) + '" data-zespol-person="' + esc(_slug(name)) + '" title="' + esc(name + ' · ' + role + ' · ' + _mail(first, last)) + '">'
-    + '<span class="zespol-person-avatar">' + esc(_ini(first, last)) + '</span>'
+    + '<span class="zespol-person-avatar demo-fruit">' + fruitFaceFor(first + ' ' + last) + '</span>'
     + '<span class="zespol-person-caption">' + esc(first + ' ' + last.charAt(0) + '.') + '</span>'
     + '<span class="zespol-person-role">' + esc(role) + '</span>'
     + '<span class="zespol-team-hidden">' + esc(team) + '</span></div>';
@@ -93,7 +94,7 @@ function skladBody({ query = '', joined = false } = {}) {
 function _uzyCard([first, last, role], team, id) {
   const email = _mail(first, last);
   return '<div class="ds-card uzy-card" data-uzy-id="' + esc(id) + '"><div class="uzy-card__top">'
-    + '<span class="uzy-card__avatar uzy-card__avatar--initials" aria-hidden="true">' + esc(_ini(first, last)) + '</span>'
+    + '<span class="uzy-card__avatar demo-fruit" aria-hidden="true">' + fruitFaceFor(first + ' ' + last) + '</span>'
     + '<div class="uzy-card__body"><span class="uzy-card__name">' + esc(first + ' ' + last) + '</span>'
     + '<span class="uzy-card__role">' + esc(role) + '</span>'
     + '<div class="uzy-card__meta"><span class="ds-badge ds-badge--gray">' + esc(team) + '</span></div></div>'
@@ -146,7 +147,7 @@ export const MOCKS = {
     id: 'zespol-profile-modal',
     title: 'Person profile',
     size: 'md',
-    body: '<div class="zespol-modal-hero"><span class="zespol-modal-avatar">AM</span>'
+    body: '<div class="zespol-modal-hero"><span class="zespol-modal-avatar demo-fruit">' + fruitFaceFor('Alex Morgan') + '</span>'
       + '<h2 class="zespol-modal-name">Alex Morgan</h2><span class="ds-badge zespol-team-badge">Atlas</span></div>'
       + '<div class="zespol-modal-rows">'
       + '<div class="zespol-modal-row"><span class="zespol-modal-label">Role</span><span>Product Owner</span></div>'
@@ -170,7 +171,7 @@ export const MOCKS = {
   'zespol-edit-modal': () => personModal({ editing: true }),
 
   /** The photo slot after an upload: the server named the file, the demo shows the stamp. */
-  'zespol-photo-done': () => '<span class="uzy-card__avatar uzy-card__avatar--initials zespol-photo-new" aria-hidden="true">JB</span>',
+  'zespol-photo-done': () => '<span class="uzy-card__avatar demo-fruit zespol-photo-new" aria-hidden="true">' + fruitFaceFor(NEW_PERSON[0] + ' ' + NEW_PERSON[1]) + '</span>',
   'zespol-photo-hint': () => 'Saved as <code>team/avatars/jules-bennett.png</code> — the server named the file.',
 };
 

@@ -3,7 +3,8 @@
 A fictional product team used for screenshots, tests and "Try it with sample
 data" in the onboarding wizard. Six squads (Atlas, Borealis, Comet, Delta, Echo,
 Falcon), 24 invented people, one quarter of history (2026-07-01 to 2026-09-30).
-Everything is made up; the vendors are Acme Ltd, Globex and Initech.
+Everything is made up; the vendors are Acme Ltd, Globex and Initech. Every
+person's avatar is a fruit with a face (`assets/avatars/fruit-avatars.mjs`).
 
 `ds-data/` has the layout of the team data repository, one folder per module
 path. Do not edit it by hand: it is written by

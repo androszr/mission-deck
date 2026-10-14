@@ -35,6 +35,11 @@ describe('screens render their baked JSON', () => {
   it('Team', () => {
     const html = text(renderToString(<TeamView data={load<TeamData>('team')} />));
     expect(html).toContain('Wren Ashby');
+    expect(html).toContain('avatars/wren-ashby.svg');
+    expect(html).not.toContain('>WA<');
+  });
+  it('Team falls back to initials when a member has no avatar', () => {
+    const html = renderToString(<TeamView data={{ generatedAt: '', members: [{ name: 'Wren Ashby', role: 'QA', squad: 'Falcon' }] }} />);
     expect(html).toContain('>WA<');
   });
   it('shows Pip when a list is empty', () => {

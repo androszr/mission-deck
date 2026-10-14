@@ -163,6 +163,16 @@ function sandboxEnv(work) {
   };
 }
 
+/**
+ * Who the app greets: a sample person, never the git name of whoever runs the
+ * script. GIT_CONFIG_* is git's own per-process override, above every config file.
+ * @param {string|undefined} name
+ */
+export function identityEnv(name) {
+  if (!name) return {};
+  return { GIT_CONFIG_COUNT: '1', GIT_CONFIG_KEY_0: 'user.name', GIT_CONFIG_VALUE_0: String(name) };
+}
+
 async function runAction(page, action) {
   if (action.click) { await page.click(action.click); return; }
   if (action.clickIfPresent) {
@@ -195,7 +205,7 @@ async function main() {
 
   const chromium = await loadPlaywright();
   const work = fs.mkdtempSync(path.join(os.tmpdir(), 'mission-deck-shots-'));
-  const env = sandboxEnv(work);
+  const env = { ...sandboxEnv(work), ...identityEnv(doc.identity) };
   fs.mkdirSync(env.MODULES_DIR, { recursive: true });
   fs.mkdirSync(env.SAMPLE_DATA_DIR, { recursive: true });
   // the dashboard tiles of the dashboard shot (a per-machine file, here a temp one)
@@ -220,6 +230,9 @@ async function main() {
     browser = await chromium.launch();
     const viewport = doc.viewport || { width: 1280, height: 800 };
     const context = await browser.newContext({ viewport, deviceScaleFactor: 1, colorScheme: 'light', locale: 'en-US', timezoneId: 'UTC' });
+    // The sample team's quarter ends on doc.clock: with the real date every
+    // "today" (the roadmap's day strip, overdue labels) would land past the data.
+    if (doc.clock) await context.clock.setFixedTime(new Date(doc.clock));
     await context.addInitScript(() => {
       try {
         localStorage.setItem('cockpit-theme', 'light');

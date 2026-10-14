@@ -12,6 +12,7 @@
 // Ids this file creates start with `klucze-dla-zespolu-`.
 
 import { esc, modalShell } from './common.mjs';
+import { fruitFaceFor } from '../../assets/avatars/fruit-avatars.mjs';
 
 const P = 'klucze-dla-zespolu-';
 
@@ -246,7 +247,7 @@ export const MOCKS = {
   'klucze-dla-zespolu-wizard': ({ side = 'admin' } = {}) => wizard({ side }),
   'klucze-dla-zespolu-key-rows': ({ side = 'admin', present = [] } = {}) => keyRows({ side, present }),
   'klucze-dla-zespolu-status-row': (props = {}) => statusRow(props),
-  'klucze-dla-zespolu-user': () => '<button type="button" class="app-top-bar__user-btn" title="Robin Hart" aria-label="Robin Hart"><span class="app-top-bar__user-initials">RH</span></button>',
+  'klucze-dla-zespolu-user': () => '<button type="button" class="app-top-bar__user-btn" title="Robin Hart" aria-label="Robin Hart"><span class="app-top-bar__user-initials demo-fruit">' + fruitFaceFor('Robin Hart') + '</span></button>',
   'klucze-dla-zespolu-whoami': ({ who = 'Alex Morgan', role = 'data maintainer' } = {}) => `<span class="ds-badge ds-badge--blue ${P}whoami" id="${P}whoami">${esc(who)} · ${esc(role)}</span>`,
 };
 

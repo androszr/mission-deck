@@ -1,17 +1,17 @@
 {
   "generatedAt": "2026-10-01T08:00:00Z",
   "members": [
-    { "name": "Ada Lindqvist", "role": "Engineer", "squad": "Atlas" },
-    { "name": "Tomas Rey", "role": "Designer", "squad": "Atlas" },
-    { "name": "Mira Okafor", "role": "Product manager", "squad": "Beacon" },
-    { "name": "Jonas Weil", "role": "Engineer", "squad": "Beacon" },
-    { "name": "Lena Park", "role": "Engineer", "squad": "Comet" },
-    { "name": "Ivo Marsh", "role": "QA", "squad": "Comet" },
-    { "name": "Noor Haddad", "role": "Designer", "squad": "Drift" },
-    { "name": "Saul Becker", "role": "Engineer", "squad": "Drift" },
-    { "name": "Pia Novak", "role": "Engineer", "squad": "Echo" },
-    { "name": "Remy Dale", "role": "Product manager", "squad": "Echo" },
-    { "name": "Kai Duarte", "role": "Engineer", "squad": "Falcon" },
-    { "name": "Wren Ashby", "role": "QA", "squad": "Falcon" }
+    { "name": "Ada Lindqvist", "role": "Engineer", "squad": "Atlas", "avatar": "avatars/ada-lindqvist.svg" },
+    { "name": "Tomas Rey", "role": "Designer", "squad": "Atlas", "avatar": "avatars/tomas-rey.svg" },
+    { "name": "Mira Okafor", "role": "Product manager", "squad": "Beacon", "avatar": "avatars/mira-okafor.svg" },
+    { "name": "Jonas Weil", "role": "Engineer", "squad": "Beacon", "avatar": "avatars/jonas-weil.svg" },
+    { "name": "Lena Park", "role": "Engineer", "squad": "Comet", "avatar": "avatars/lena-park.svg" },
+    { "name": "Ivo Marsh", "role": "QA", "squad": "Comet", "avatar": "avatars/ivo-marsh.svg" },
+    { "name": "Noor Haddad", "role": "Designer", "squad": "Drift", "avatar": "avatars/noor-haddad.svg" },
+    { "name": "Saul Becker", "role": "Engineer", "squad": "Drift", "avatar": "avatars/saul-becker.svg" },
+    { "name": "Pia Novak", "role": "Engineer", "squad": "Echo", "avatar": "avatars/pia-novak.svg" },
+    { "name": "Remy Dale", "role": "Product manager", "squad": "Echo", "avatar": "avatars/remy-dale.svg" },
+    { "name": "Kai Duarte", "role": "Engineer", "squad": "Falcon", "avatar": "avatars/kai-duarte.svg" },
+    { "name": "Wren Ashby", "role": "QA", "squad": "Falcon", "avatar": "avatars/wren-ashby.svg" }
   ]
 }

@@ -159,6 +159,13 @@ test('SAMPLE: booting with the marker serves the copy and refuses every sync ope
   assert.strictEqual(roadmap.body.count, 15);
   const timeLog = await getJson(PORT_SAMPLE, '/api/m/time-log/data');
   assert.strictEqual(timeLog.body.persons.length, 24);
+  // the Academy reads the sample copy, which has no clone: the team's progress shows
+  const academy = await getJson(PORT_SAMPLE, '/api/cocreate/progress');
+  assert.strictEqual(academy.status, 200);
+  assert.notStrictEqual(academy.body.storage, 'unavailable', 'the Academy treats the sample copy as storage');
+  assert.ok((academy.body.completed['etap-1'] || []).length >= 10, JSON.stringify(academy.body.completed).slice(0, 300));
+  const muralList = await getJson(PORT_SAMPLE, '/api/cocreate/mural');
+  assert.ok((muralList.body.entries || []).length >= 4, JSON.stringify(muralList.body).slice(0, 300));
 
   // every sync operation is refused with the same answer
   const refused = [
@@ -189,9 +196,8 @@ test('SAMPLE: booting with the marker serves the copy and refuses every sync ope
   const mine = (rf.body.refreshed || []).find((x) => x.repo === 'data-tier-0');
   assert.ok(!mine || mine.skipped === 'sample-mode', JSON.stringify(mine));
   const mural = await postJson(PORT_SAMPLE, '/api/cocreate/mural', { content: 'Hello from the sample team.' });
-  if (mural.body && mural.body.sync) {
-    assert.deepStrictEqual({ state: mural.body.sync.state, reason: mural.body.sync.reason }, { state: 'skipped', reason: 'sample-mode' });
-  }
+  assert.strictEqual(mural.status, 200, JSON.stringify(mural.body));
+  assert.deepStrictEqual({ state: mural.body.sync.state, reason: mural.body.sync.reason }, { state: 'skipped', reason: 'sample-mode' });
   const again = await postJson(PORT_SAMPLE, '/api/sample-mode/enter', {});
   assert.strictEqual(again.status, 409);
   assert.strictEqual(again.body.error, 'already-active');

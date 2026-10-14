@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "person_slug": "amara-diallo",
+  "display_name": "Amara Diallo",
+  "unlocks": {
+    "etap-1": "2026-07-08T09:00:00.000Z"
+  },
+  "steps": {
+    "etap-1": {
+      "step-1": {
+        "checked_at": "2026-07-08T10:50:00.000Z",
+        "method": "server"
+      },
+      "step-2": {
+        "checked_at": "2026-07-08T11:00:00.000Z",
+        "method": "server"
+      },
+      "step-2b": {
+        "checked_at": "2026-07-09T12:00:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2c": {
+        "checked_at": "2026-07-09T13:00:00.000Z",
+        "method": "self-attest"
+      }
+    }
+  },
+  "completed": {}
+}

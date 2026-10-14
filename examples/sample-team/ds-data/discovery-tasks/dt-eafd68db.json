@@ -1,12 +1,12 @@
 {
-  "id": "dt-ad4293d8",
+  "id": "dt-eafd68db",
   "title": "Delivery slot booking",
   "ticket": "NW-108",
   "rank": 8,
   "po": "Hannah Weiss",
   "analyst": "Dmitri Volkov",
   "designer": "Leila Karimi",
-  "architect": "",
+  "architect": "Oscar Lindqvist",
   "ragStatus": "green",
   "stageStatus": [
     "preparation"
@@ -23,9 +23,16 @@
       "summary": "Delivery slot booking: scope gate start",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Oscar Lindqvist",
+      "assignee": "Hannah Weiss",
       "timeByPerson": {
-        "Oscar Lindqvist": 72000
+        "Hannah Weiss": 115200
+      },
+      "timeByPersonByDay": {
+        "Hannah Weiss": {
+          "2026-08-11": 37800,
+          "2026-08-12": 37800,
+          "2026-08-13": 37800
+        }
       }
     },
     {
@@ -34,9 +41,16 @@
       "summary": "Delivery slot booking: process mapping",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Leila Karimi",
+      "assignee": "Dmitri Volkov",
       "timeByPerson": {
-        "Leila Karimi": 126000
+        "Dmitri Volkov": 50400
+      },
+      "timeByPersonByDay": {
+        "Dmitri Volkov": {
+          "2026-08-12": 16200,
+          "2026-08-13": 16200,
+          "2026-08-14": 16200
+        }
       }
     },
     {
@@ -47,7 +61,20 @@
       "statusCategory": "indeterminate",
       "assignee": "Leila Karimi",
       "timeByPerson": {
-        "Leila Karimi": 93600
+        "Leila Karimi": 50400
+      },
+      "timeByPersonByDay": {
+        "Leila Karimi": {
+          "2026-09-14": 5400,
+          "2026-09-15": 5400,
+          "2026-09-16": 5400,
+          "2026-09-21": 5400,
+          "2026-09-23": 5400,
+          "2026-09-24": 5400,
+          "2026-09-25": 5400,
+          "2026-09-28": 5400,
+          "2026-09-29": 5400
+        }
       }
     },
     {
@@ -56,8 +83,9 @@
       "summary": "Delivery slot booking: goals metrics",
       "statusName": "To Do",
       "statusCategory": "new",
-      "assignee": "Dmitri Volkov",
-      "timeByPerson": {}
+      "assignee": "Hannah Weiss",
+      "timeByPerson": {},
+      "timeByPersonByDay": {}
     }
   ],
   "comments": [

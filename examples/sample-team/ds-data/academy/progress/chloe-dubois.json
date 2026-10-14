@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "person_slug": "chloe-dubois",
+  "display_name": "Chloe Dubois",
+  "unlocks": {
+    "etap-1": "2026-07-14T09:00:00.000Z"
+  },
+  "steps": {
+    "etap-1": {
+      "step-1": {
+        "checked_at": "2026-07-14T10:20:00.000Z",
+        "method": "server"
+      },
+      "step-2": {
+        "checked_at": "2026-07-14T11:30:00.000Z",
+        "method": "server"
+      },
+      "step-2b": {
+        "checked_at": "2026-07-15T12:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2c": {
+        "checked_at": "2026-07-15T13:30:00.000Z",
+        "method": "self-attest"
+      }
+    }
+  },
+  "completed": {}
+}

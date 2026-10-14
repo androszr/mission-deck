@@ -4,7 +4,7 @@
 //  2. determinism: two runs, byte-identical trees
 //  3. refusals: --site with --out (exit 2), a foreign non-empty dir
 //  4. the leftover-URL check still refuses a planted absolute path
-//  5. the GitHub link exists in the site and stays hidden in the app's demo
+//  5. data-demo-site is set in the site only
 // Run: node --test tests/test_demo_export_site.mjs
 
 import { describe, it, before, after } from 'node:test';
@@ -103,19 +103,6 @@ describe('demo-export --site', () => {
     assert.ok(files.has('404.html'));
   });
 
-  it('lets Enter and Space through on links (the GitHub link stays operable)', () => {
-    const main = fs.readFileSync(path.join(ROOT, 'demo/main.mjs'), 'utf8');
-    assert.match(main, /closest\('\[data-demo-track\], \[data-demo-mode\], a\[href\]'\)\) return;/);
-  });
-
-  it('shrinks the GitHub link on narrow windows so the bar keeps fitting', () => {
-    const css = fs.readFileSync(path.join(ROOT, 'demo/demo.css'), 'utf8');
-    assert.match(css, /@media \(max-width: 1439px\)\s*\{[^}]*\.demo-bar-github-full\s*\{\s*display:\s*none/);
-    assert.match(css, /\.demo-bar-github-short\s*\{\s*display:\s*none/);
-    const html = fs.readFileSync(path.join(ROOT, 'demo/index.html'), 'utf8');
-    assert.match(html, /id="demo-github-link"[^>]*aria-label="Get Mission Deck on GitHub"/);
-  });
-
   it('works through the CLI and does not need a proto-* name or spec.json', () => {
     const dir = path.join(tmp, 'cli-site');
     const r = spawnSync(process.execPath, [SCRIPT, '--site', dir], { encoding: 'utf8' });
@@ -134,18 +121,21 @@ describe('demo-export --site', () => {
     assert.equal(X.leftovers(js, 'demo__main.js'), '/api/');
   });
 
-  it('sets data-demo-site and shows a GitHub link only in the site', () => {
+  it('sets data-demo-site in the site only, and the bar carries no GitHub link', () => {
     const site = fs.readFileSync(path.join(siteA, 'index.html'), 'utf8');
     assert.match(site, /<html[^>]*\sdata-demo-site="1"/);
-    assert.ok(site.includes('id="demo-github-link"'));
-    assert.ok(site.includes(X.SITE_REPO_URL));
-    assert.equal(X.SITE_REPO_URL, 'https://github.com/androszr/mission-deck');
+    assert.ok(!site.includes('demo-github-link'));
 
     const app = fs.readFileSync(path.join(ROOT, 'demo/index.html'), 'utf8');
     assert.ok(!/data-demo-site/.test(app.replace(/<!--[\s\S]*?-->/g, '')), 'the in-app demo never sets data-demo-site');
+  });
+
+  it('keeps the bar from overlapping: the legend gives way, the buttons do not', () => {
     const css = fs.readFileSync(path.join(ROOT, 'demo/demo.css'), 'utf8');
-    assert.match(css, /html:not\(\[data-demo-site\]\)\s+\.demo-bar-github\s*\{\s*display:\s*none/);
-    const siteCss = fs.readFileSync(path.join(siteA, 'demo__demo.css'), 'utf8');
-    assert.match(siteCss, /html:not\(\[data-demo-site\]\)\s+\.demo-bar-github/);
+    assert.match(css, /\.demo-bar-cue \{[^}]*min-width: 0;[^}]*overflow: hidden;/);
+    assert.match(css, /grid-template-columns: minmax\(0, 1fr\) auto minmax\(min-content, 1fr\);/);
+    assert.match(css, /\.demo-bar-actions \{[^}]*min-width: 0;/);
+    assert.match(css, /\.demo-bar-actions > \.ds-btn \{ flex-shrink: 0; \}/);
+    assert.match(css, /@media \(max-width: 1439px\) \{\s*\.demo-bar-keys \{ display: none; \}/);
   });
 });

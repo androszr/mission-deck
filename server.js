@@ -17467,6 +17467,15 @@ const COCREATE_PROGRESS_SUBDIR = 'academy/progress';
  * NAME here, so it is validated as one before it is ever joined into a path.
  * @param {string} slug @returns {string|null}
  */
+/**
+ * Where Academy progress and the mural may be read and written. Normally the
+ * cloned team data; in sample mode the local sample copy, which has no clone
+ * (and needs none: _cocreatePushDataFile skips publishing there).
+ */
+function _cocreateStorageReady() {
+  return SAMPLE_MODE_ACTIVE ? fs.existsSync(DATA_TIER_0_DIR) : dataTier0Exists();
+}
+
 function _cocreateSlugSafe(slug) {
   return typeof slug === 'string' && /^[a-z0-9][a-z0-9-]{0,63}$/.test(slug) ? slug : null;
 }
@@ -17536,7 +17545,7 @@ function _cocreateReadPerson(slug, displayName) {
  * `storage` is a read-time annotation, not part of any file on disk.
  */
 function _cocreateReadProgress() {
-  if (!dataTier0Exists()) {
+  if (!_cocreateStorageReady()) {
     return { ..._cocreateEmptyProgress(), storage: 'unavailable' };
   }
   let names = [];
@@ -17591,7 +17600,7 @@ async function _cocreateWritePerson(me, mutate) {
   const slug = _cocreateSlugSafe(me && me.person_slug);
   if (!slug) return { ok: false, reason: 'no-identity' };
   const written = await withCocreateProgressLock(() => {
-    if (!dataTier0Exists()) return { ok: false, reason: 'repo-missing' };
+    if (!_cocreateStorageReady()) return { ok: false, reason: 'repo-missing' };
     const doc = _cocreateReadPerson(slug, me.display_name);
     const next = mutate(doc) || doc;
     next.display_name = me.display_name || next.display_name;
@@ -17859,7 +17868,7 @@ function _cocreateMuralEntry(slug) {
  * @returns {{entries: object[], storage: string}}
  */
 function _cocreateReadMural() {
-  if (!dataTier0Exists()) return { entries: [], storage: 'unavailable' };
+  if (!_cocreateStorageReady()) return { entries: [], storage: 'unavailable' };
   let names = [];
   try {
     names = fs.readdirSync(_cocreateMuralDir()).filter((f) => f.endsWith('.md'));
@@ -17893,7 +17902,7 @@ async function _cocreateWriteMural(me, content) {
   const body = String(content || '').trim();
 
   const written = await withCocreateMuralLock(() => {
-    if (!dataTier0Exists()) return { ok: false, reason: 'repo-missing' };
+    if (!_cocreateStorageReady()) return { ok: false, reason: 'repo-missing' };
     const target = _cocreateMuralFile(slug);
     if (!body) {
       try { fs.unlinkSync(target); } catch { /* already gone */ }
@@ -18151,7 +18160,7 @@ async function _cocreateCheckModulePublished() {
  * file, never "somebody wrote something on the mural".
  */
 async function _cocreateCheckMuralEntry() {
-  if (!dataTier0Exists()) {
+  if (!_cocreateStorageReady()) {
     return {
       pass: false,
       detail: 'The ds-data repository is not cloned - clone it in the sync panel to save the entry.',

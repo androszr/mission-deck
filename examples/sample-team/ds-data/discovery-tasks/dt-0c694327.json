@@ -1,12 +1,12 @@
 {
-  "id": "dt-2a22a966",
+  "id": "dt-0c694327",
   "title": "Audit log",
   "ticket": "NW-112",
   "rank": 12,
   "po": "Amara Diallo",
   "analyst": "Felix Moreau",
   "designer": "Yuki Sato",
-  "architect": "",
+  "architect": "Chloe Dubois",
   "ragStatus": "green",
   "stageStatus": [
     "preparation"
@@ -23,9 +23,16 @@
       "summary": "Audit log: scope gate start",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Chloe Dubois",
+      "assignee": "Amara Diallo",
       "timeByPerson": {
-        "Chloe Dubois": 68400
+        "Amara Diallo": 39600
+      },
+      "timeByPersonByDay": {
+        "Amara Diallo": {
+          "2026-08-26": 12600,
+          "2026-08-27": 12600,
+          "2026-08-28": 12600
+        }
       }
     },
     {
@@ -34,9 +41,16 @@
       "summary": "Audit log: process mapping",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Yuki Sato",
+      "assignee": "Felix Moreau",
       "timeByPerson": {
-        "Yuki Sato": 54000
+        "Felix Moreau": 36000
+      },
+      "timeByPersonByDay": {
+        "Felix Moreau": {
+          "2026-08-28": 12600,
+          "2026-08-31": 12600,
+          "2026-09-01": 12600
+        }
       }
     },
     {
@@ -45,9 +59,19 @@
       "summary": "Audit log: research insights",
       "statusName": "In Progress",
       "statusCategory": "indeterminate",
-      "assignee": "Amara Diallo",
+      "assignee": "Yuki Sato",
       "timeByPerson": {
-        "Amara Diallo": 32400
+        "Yuki Sato": 86400
+      },
+      "timeByPersonByDay": {
+        "Yuki Sato": {
+          "2026-09-15": 14400,
+          "2026-09-17": 14400,
+          "2026-09-21": 14400,
+          "2026-09-24": 14400,
+          "2026-09-25": 14400,
+          "2026-09-28": 14400
+        }
       }
     },
     {
@@ -56,8 +80,9 @@
       "summary": "Audit log: goals metrics",
       "statusName": "To Do",
       "statusCategory": "new",
-      "assignee": "Felix Moreau",
-      "timeByPerson": {}
+      "assignee": "Amara Diallo",
+      "timeByPerson": {},
+      "timeByPersonByDay": {}
     }
   ],
   "comments": [],

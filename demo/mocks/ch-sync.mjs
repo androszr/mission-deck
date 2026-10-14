@@ -9,6 +9,7 @@
 // Pure (props) => htmlString, no network, no listeners.
 
 import { esc } from './common.mjs';
+import { fruitFaceFor } from '../../assets/avatars/fruit-avatars.mjs';
 
 const SYNC_TITLE = 'The server state comes from the last fetch, not from a network query right now.';
 const PULL_TIP = 'Fetch (syncs the whole source)';
@@ -228,12 +229,12 @@ export const MOCKS = {
   'synchronizacja-diagram': (p) => _diagram(p),
   /** A full-screen cut card: "on the other computer". */
   'synchronizacja-switch': () => `<div class="synchronizacja-switch"><div class="ds-card synchronizacja-switch-card"><div class="ds-card-body">
-      <span class="synchronizacja-switch-avatar">SR</span>
+      <span class="synchronizacja-switch-avatar demo-fruit">${fruitFaceFor('Sam Rivera')}</span>
       <div><div class="synchronizacja-switch-title">Meanwhile, on Sam Rivera’s computer</div>
       <div class="synchronizacja-switch-sub">The same Mission Deck, its own key line in the .encryption-key file</div></div>
     </div></div></div>`,
   /** Top-bar avatar of the colleague (js/topbar.js user slot). */
-  'synchronizacja-user-jan': () => '<span class="ds-badge ds-badge--blue synchronizacja-machine" id="synchronizacja-machine">Sam’s computer</span><button type="button" class="app-top-bar__user-btn" title="Sam Rivera" aria-label="Sam Rivera"><span class="app-top-bar__user-initials">SR</span></button>',
+  'synchronizacja-user-jan': () => '<span class="ds-badge ds-badge--blue synchronizacja-machine" id="synchronizacja-machine">Sam’s computer</span><button type="button" class="app-top-bar__user-btn" title="Sam Rivera" aria-label="Sam Rivera"><span class="app-top-bar__user-initials demo-fruit">' + fruitFaceFor('Sam Rivera') + '</span></button>',
 };
 
 /** Every visible label these painters paint (copy gate). */

@@ -1,12 +1,12 @@
 {
-  "id": "dt-9560f875",
+  "id": "dt-e464f795",
   "title": "Order editing after checkout",
   "ticket": "NW-101",
   "rank": 1,
   "po": "Alex Morgan",
   "analyst": "Sam Rivera",
   "designer": "Aiko Tanaka",
-  "architect": "",
+  "architect": "Priya Raman",
   "ragStatus": "green",
   "stageStatus": [
     "preparation",
@@ -27,7 +27,14 @@
       "statusCategory": "done",
       "assignee": "Alex Morgan",
       "timeByPerson": {
-        "Alex Morgan": 100800
+        "Alex Morgan": 46800
+      },
+      "timeByPersonByDay": {
+        "Alex Morgan": {
+          "2026-07-08": 16200,
+          "2026-07-09": 16200,
+          "2026-07-10": 16200
+        }
       }
     },
     {
@@ -36,9 +43,16 @@
       "summary": "Order editing after checkout: process mapping",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Tomas Novak",
+      "assignee": "Sam Rivera",
       "timeByPerson": {
-        "Tomas Novak": 61200
+        "Sam Rivera": 100800
+      },
+      "timeByPersonByDay": {
+        "Sam Rivera": {
+          "2026-07-09": 34200,
+          "2026-07-10": 34200,
+          "2026-07-13": 34200
+        }
       }
     },
     {
@@ -47,9 +61,16 @@
       "summary": "Order editing after checkout: research insights",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Priya Raman",
+      "assignee": "Aiko Tanaka",
       "timeByPerson": {
-        "Priya Raman": 82800
+        "Aiko Tanaka": 133200
+      },
+      "timeByPersonByDay": {
+        "Aiko Tanaka": {
+          "2026-07-14": 45000,
+          "2026-07-15": 45000,
+          "2026-07-16": 45000
+        }
       }
     },
     {
@@ -58,9 +79,16 @@
       "summary": "Order editing after checkout: goals metrics",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Tomas Novak",
+      "assignee": "Alex Morgan",
       "timeByPerson": {
-        "Tomas Novak": 54000
+        "Alex Morgan": 61200
+      },
+      "timeByPersonByDay": {
+        "Alex Morgan": {
+          "2026-07-15": 19800,
+          "2026-07-16": 19800,
+          "2026-07-17": 19800
+        }
       }
     },
     {
@@ -71,7 +99,14 @@
       "statusCategory": "done",
       "assignee": "Sam Rivera",
       "timeByPerson": {
-        "Sam Rivera": 46800
+        "Sam Rivera": 100800
+      },
+      "timeByPersonByDay": {
+        "Sam Rivera": {
+          "2026-07-20": 34200,
+          "2026-07-21": 34200,
+          "2026-07-22": 34200
+        }
       }
     },
     {
@@ -80,9 +115,16 @@
       "summary": "Order editing after checkout: workshops alignment",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Tomas Novak",
+      "assignee": "Sam Rivera",
       "timeByPerson": {
-        "Tomas Novak": 72000
+        "Sam Rivera": 82800
+      },
+      "timeByPersonByDay": {
+        "Sam Rivera": {
+          "2026-07-22": 27000,
+          "2026-07-23": 27000,
+          "2026-07-24": 27000
+        }
       }
     }
   ],

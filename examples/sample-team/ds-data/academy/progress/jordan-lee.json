@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "person_slug": "jordan-lee",
+  "display_name": "Jordan Lee",
+  "unlocks": {
+    "etap-1": "2026-07-14T09:00:00.000Z",
+    "etap-2": "2026-07-26T09:00:00.000Z",
+    "etap-3": "2026-08-05T09:00:00.000Z",
+    "etap-4": "2026-08-16T09:00:00.000Z"
+  },
+  "steps": {
+    "etap-1": {
+      "step-1": {
+        "checked_at": "2026-07-14T10:20:00.000Z",
+        "method": "server"
+      },
+      "step-2": {
+        "checked_at": "2026-07-14T11:50:00.000Z",
+        "method": "server"
+      },
+      "step-2b": {
+        "checked_at": "2026-07-15T12:00:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2c": {
+        "checked_at": "2026-07-15T13:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-3": {
+        "checked_at": "2026-07-16T14:50:00.000Z",
+        "method": "self-attest"
+      },
+      "step-4": {
+        "checked_at": "2026-07-16T15:30:00.000Z",
+        "method": "self-attest"
+      },
+      "step-5": {
+        "checked_at": "2026-07-17T10:00:00.000Z",
+        "method": "server"
+      },
+      "step-6": {
+        "checked_at": "2026-07-17T11:00:00.000Z",
+        "method": "server"
+      }
+    },
+    "etap-2": {
+      "step-1": {
+        "checked_at": "2026-07-26T10:20:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2": {
+        "checked_at": "2026-07-26T11:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-3": {
+        "checked_at": "2026-07-27T12:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-4": {
+        "checked_at": "2026-07-27T13:40:00.000Z",
+        "method": "self-attest"
+      },
+      "step-5": {
+        "checked_at": "2026-07-28T14:50:00.000Z",
+        "method": "self-attest"
+      },
+      "step-6": {
+        "checked_at": "2026-07-28T15:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-7": {
+        "checked_at": "2026-07-29T10:30:00.000Z",
+        "method": "self-attest"
+      },
+      "step-8": {
+        "checked_at": "2026-07-29T11:40:00.000Z",
+        "method": "self-attest"
+      }
+    },
+    "etap-3": {
+      "step-1": {
+        "checked_at": "2026-08-05T10:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-1b": {
+        "checked_at": "2026-08-05T11:20:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2": {
+        "checked_at": "2026-08-06T12:40:00.000Z",
+        "method": "server"
+      },
+      "step-3": {
+        "checked_at": "2026-08-06T13:10:00.000Z",
+        "method": "server"
+      },
+      "step-3b": {
+        "checked_at": "2026-08-07T14:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-4": {
+        "checked_at": "2026-08-07T15:40:00.000Z",
+        "method": "self-attest"
+      },
+      "step-6": {
+        "checked_at": "2026-08-08T10:00:00.000Z",
+        "method": "self-attest"
+      },
+      "step-7": {
+        "checked_at": "2026-08-08T11:40:00.000Z",
+        "method": "server"
+      }
+    },
+    "etap-4": {
+      "step-1": {
+        "checked_at": "2026-08-16T10:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2": {
+        "checked_at": "2026-08-16T11:50:00.000Z",
+        "method": "self-attest"
+      }
+    }
+  },
+  "completed": {
+    "etap-1": "2026-07-18T16:00:00.000Z",
+    "etap-2": "2026-07-30T16:00:00.000Z",
+    "etap-3": "2026-08-09T16:00:00.000Z"
+  }
+}

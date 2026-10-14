@@ -1,12 +1,12 @@
 {
-  "id": "dt-6af04ab5",
+  "id": "dt-93d8aec8",
   "title": "Search relevance",
   "ticket": "NW-109",
   "rank": 9,
   "po": "Zoe Carter",
   "analyst": "Rafael Costa",
   "designer": "Aiko Tanaka",
-  "architect": "",
+  "architect": "Nadia Petrova",
   "ragStatus": "green",
   "stageStatus": [
     "preparation",
@@ -26,9 +26,16 @@
       "summary": "Search relevance: scope gate start",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Nadia Petrova",
+      "assignee": "Zoe Carter",
       "timeByPerson": {
-        "Nadia Petrova": 136800
+        "Zoe Carter": 93600
+      },
+      "timeByPersonByDay": {
+        "Zoe Carter": {
+          "2026-08-07": 30600,
+          "2026-08-10": 30600,
+          "2026-08-11": 30600
+        }
       }
     },
     {
@@ -37,9 +44,16 @@
       "summary": "Search relevance: process mapping",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Jonas Berg",
+      "assignee": "Rafael Costa",
       "timeByPerson": {
-        "Jonas Berg": 86400
+        "Rafael Costa": 57600
+      },
+      "timeByPersonByDay": {
+        "Rafael Costa": {
+          "2026-08-12": 19800,
+          "2026-08-13": 19800,
+          "2026-08-14": 19800
+        }
       }
     },
     {
@@ -48,9 +62,16 @@
       "summary": "Search relevance: research insights",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Nadia Petrova",
+      "assignee": "Aiko Tanaka",
       "timeByPerson": {
-        "Nadia Petrova": 25200
+        "Aiko Tanaka": 97200
+      },
+      "timeByPersonByDay": {
+        "Aiko Tanaka": {
+          "2026-08-13": 32400,
+          "2026-08-14": 32400,
+          "2026-08-17": 32400
+        }
       }
     },
     {
@@ -59,9 +80,16 @@
       "summary": "Search relevance: goals metrics",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Rafael Costa",
+      "assignee": "Zoe Carter",
       "timeByPerson": {
-        "Rafael Costa": 79200
+        "Zoe Carter": 126000
+      },
+      "timeByPersonByDay": {
+        "Zoe Carter": {
+          "2026-08-18": 41400,
+          "2026-08-19": 41400,
+          "2026-08-20": 41400
+        }
       }
     },
     {
@@ -72,7 +100,14 @@
       "statusCategory": "done",
       "assignee": "Rafael Costa",
       "timeByPerson": {
-        "Rafael Costa": 136800
+        "Rafael Costa": 46800
+      },
+      "timeByPersonByDay": {
+        "Rafael Costa": {
+          "2026-08-19": 16200,
+          "2026-08-20": 16200,
+          "2026-08-21": 16200
+        }
       }
     },
     {
@@ -81,9 +116,16 @@
       "summary": "Search relevance: workshops alignment",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Nadia Petrova",
+      "assignee": "Rafael Costa",
       "timeByPerson": {
-        "Nadia Petrova": 54000
+        "Rafael Costa": 32400
+      },
+      "timeByPersonByDay": {
+        "Rafael Costa": {
+          "2026-08-24": 10800,
+          "2026-08-25": 10800,
+          "2026-08-26": 10800
+        }
       }
     }
   ],

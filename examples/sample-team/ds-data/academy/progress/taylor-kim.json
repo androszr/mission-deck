@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "person_slug": "taylor-kim",
+  "display_name": "Taylor Kim",
+  "unlocks": {
+    "etap-1": "2026-07-04T09:00:00.000Z",
+    "etap-2": "2026-07-16T09:00:00.000Z",
+    "etap-3": "2026-07-24T09:00:00.000Z"
+  },
+  "steps": {
+    "etap-1": {
+      "step-1": {
+        "checked_at": "2026-07-04T10:40:00.000Z",
+        "method": "server"
+      },
+      "step-2": {
+        "checked_at": "2026-07-04T11:30:00.000Z",
+        "method": "server"
+      },
+      "step-2b": {
+        "checked_at": "2026-07-05T12:20:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2c": {
+        "checked_at": "2026-07-05T13:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-3": {
+        "checked_at": "2026-07-06T14:30:00.000Z",
+        "method": "self-attest"
+      },
+      "step-4": {
+        "checked_at": "2026-07-06T15:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-5": {
+        "checked_at": "2026-07-07T10:40:00.000Z",
+        "method": "server"
+      },
+      "step-6": {
+        "checked_at": "2026-07-07T11:10:00.000Z",
+        "method": "server"
+      }
+    },
+    "etap-2": {
+      "step-1": {
+        "checked_at": "2026-07-16T10:20:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2": {
+        "checked_at": "2026-07-16T11:20:00.000Z",
+        "method": "self-attest"
+      },
+      "step-3": {
+        "checked_at": "2026-07-17T12:40:00.000Z",
+        "method": "self-attest"
+      },
+      "step-4": {
+        "checked_at": "2026-07-17T13:40:00.000Z",
+        "method": "self-attest"
+      },
+      "step-5": {
+        "checked_at": "2026-07-18T14:00:00.000Z",
+        "method": "self-attest"
+      },
+      "step-6": {
+        "checked_at": "2026-07-18T15:50:00.000Z",
+        "method": "self-attest"
+      },
+      "step-7": {
+        "checked_at": "2026-07-19T10:30:00.000Z",
+        "method": "self-attest"
+      },
+      "step-8": {
+        "checked_at": "2026-07-19T11:30:00.000Z",
+        "method": "self-attest"
+      }
+    },
+    "etap-3": {
+      "step-1": {
+        "checked_at": "2026-07-24T10:20:00.000Z",
+        "method": "self-attest"
+      },
+      "step-1b": {
+        "checked_at": "2026-07-24T11:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2": {
+        "checked_at": "2026-07-25T12:20:00.000Z",
+        "method": "server"
+      },
+      "step-3": {
+        "checked_at": "2026-07-25T13:50:00.000Z",
+        "method": "server"
+      }
+    }
+  },
+  "completed": {
+    "etap-1": "2026-07-08T16:00:00.000Z",
+    "etap-2": "2026-07-20T16:00:00.000Z"
+  }
+}

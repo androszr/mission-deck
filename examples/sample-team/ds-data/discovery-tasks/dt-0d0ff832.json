@@ -1,12 +1,12 @@
 {
-  "id": "dt-5ef379e0",
+  "id": "dt-0d0ff832",
   "title": "Public API v2",
   "ticket": "NW-111",
   "rank": 11,
   "po": "Amara Diallo",
   "analyst": "Felix Moreau",
   "designer": "Yuki Sato",
-  "architect": "",
+  "architect": "Chloe Dubois",
   "ragStatus": "red",
   "stageStatus": [
     "preparation",
@@ -24,9 +24,16 @@
       "summary": "Public API v2: scope gate start",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Yuki Sato",
+      "assignee": "Amara Diallo",
       "timeByPerson": {
-        "Yuki Sato": 39600
+        "Amara Diallo": 108000
+      },
+      "timeByPersonByDay": {
+        "Amara Diallo": {
+          "2026-08-17": 36000,
+          "2026-08-18": 36000,
+          "2026-08-19": 36000
+        }
       }
     },
     {
@@ -35,9 +42,16 @@
       "summary": "Public API v2: process mapping",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Amara Diallo",
+      "assignee": "Felix Moreau",
       "timeByPerson": {
-        "Amara Diallo": 39600
+        "Felix Moreau": 61200
+      },
+      "timeByPersonByDay": {
+        "Felix Moreau": {
+          "2026-08-19": 19800,
+          "2026-08-20": 19800,
+          "2026-08-21": 19800
+        }
       }
     },
     {
@@ -46,9 +60,16 @@
       "summary": "Public API v2: research insights",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Amara Diallo",
+      "assignee": "Yuki Sato",
       "timeByPerson": {
-        "Amara Diallo": 86400
+        "Yuki Sato": 61200
+      },
+      "timeByPersonByDay": {
+        "Yuki Sato": {
+          "2026-08-21": 19800,
+          "2026-08-24": 19800,
+          "2026-08-25": 19800
+        }
       }
     },
     {
@@ -57,9 +78,16 @@
       "summary": "Public API v2: goals metrics",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Chloe Dubois",
+      "assignee": "Amara Diallo",
       "timeByPerson": {
-        "Chloe Dubois": 57600
+        "Amara Diallo": 115200
+      },
+      "timeByPersonByDay": {
+        "Amara Diallo": {
+          "2026-08-26": 37800,
+          "2026-08-27": 37800,
+          "2026-08-28": 37800
+        }
       }
     },
     {
@@ -68,9 +96,21 @@
       "summary": "Public API v2: requirements breakdown",
       "statusName": "In Progress",
       "statusCategory": "indeterminate",
-      "assignee": "Chloe Dubois",
+      "assignee": "Felix Moreau",
       "timeByPerson": {
-        "Chloe Dubois": 90000
+        "Felix Moreau": 86400
+      },
+      "timeByPersonByDay": {
+        "Felix Moreau": {
+          "2026-09-14": 10800,
+          "2026-09-15": 10800,
+          "2026-09-17": 10800,
+          "2026-09-21": 10800,
+          "2026-09-22": 10800,
+          "2026-09-23": 10800,
+          "2026-09-25": 10800,
+          "2026-09-28": 10800
+        }
       }
     },
     {
@@ -79,8 +119,9 @@
       "summary": "Public API v2: workshops alignment",
       "statusName": "To Do",
       "statusCategory": "new",
-      "assignee": "Chloe Dubois",
-      "timeByPerson": {}
+      "assignee": "Felix Moreau",
+      "timeByPerson": {},
+      "timeByPersonByDay": {}
     }
   ],
   "comments": [

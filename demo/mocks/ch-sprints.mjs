@@ -6,6 +6,7 @@
 // goal status segments and topics, the agenda card). Team labels and every number, goal, topic and person is invented.
 
 import { esc, modalShell } from './common.mjs';
+import { fruitFaceFor } from '../../assets/avatars/fruit-avatars.mjs';
 import { modulePage, syncBar } from './ch-time-tracking.mjs';
 
 const TEAMS = ['Atlas', 'Borealis', 'Delta', 'Comet'];
@@ -166,7 +167,7 @@ function _teamCard(team, status) {
     .map(([v, l]) => '<button type="button" class="ds-segment' + (status === v ? ' active' : '') + '" data-sprinty-status="' + esc(team + '-' + v) + '"' + (locked ? ' disabled' : '') + '>' + l + '</button>').join('');
   const table = topics.length
     ? '<div class="ds-table-wrap"><table class="ds-table"><thead><tr><th>Topic</th><th>Presenter</th><th>Format</th></tr></thead><tbody>'
-      + topics.map(([t, who, f]) => '<tr><td>' + esc(t) + '</td><td>' + who.map((n) => '<span class="sprinty-presenter"><span class="sprinty-presenter-avatar">' + esc(_ini(n)) + '</span><span>' + esc(n) + '</span></span>').join('') + '</td><td>' + esc(f) + '</td></tr>').join('')
+      + topics.map(([t, who, f]) => '<tr><td>' + esc(t) + '</td><td>' + who.map((n) => '<span class="sprinty-presenter"><span class="sprinty-presenter-avatar demo-fruit">' + fruitFaceFor(n) + '</span><span>' + esc(n) + '</span></span>').join('') + '</td><td>' + esc(f) + '</td></tr>').join('')
       + '</tbody></table></div>'
     : '<div class="ds-callout ds-callout--info"><div>No topics submitted.</div></div>';
   return '<div class="ds-card sprinty-team-card" data-sprinty-team="' + esc(team) + '">'

@@ -6,6 +6,7 @@
 // entries are fictitious. Ids this file creates start with `dm-szkolenie-`.
 
 import { esc } from './common.mjs';
+import { fruitFaceFor } from '../../assets/avatars/fruit-avatars.mjs';
 
 const P = 'dm-szkolenie-';
 
@@ -222,7 +223,7 @@ function stepCard(etapId, step, idx, passed, result) {
 
 function avatars(stageId) {
   const list = FINISHERS[stageId] || [];
-  const circles = list.map(([ini, name]) => `<span class="tc-pavatar tc-pavatar--initials" title="${esc(name)}">${esc(ini)}</span>`);
+  const circles = list.map(([, name]) => `<span class="tc-pavatar demo-fruit" title="${esc(name)}">${fruitFaceFor(name)}</span>`);
   for (let i = circles.length; i < 16; i += 1) circles.push('<span class="tc-pavatar tc-pavatar--empty" aria-hidden="true"></span>');
   return `<div class="tc-participants-av" title="Participants who finished this stage">${circles.join('')}</div>`;
 }
@@ -294,10 +295,9 @@ const KROK0 = (() => {
 })();
 
 function muralTile(entry, idx, fresh) {
-  const ini = entry.name.split(' ').map((w) => w[0]).join('');
   return `<button type="button" class="ds-card tc-mural-tile${fresh ? ` ${P}fresh` : ''}" id="${P}mural-tile-${idx}" aria-label="Read the entry: ${esc(entry.name)}">
       <span class="tc-mural-tile-head">
-        <span class="tc-mural-photo"><span class="tc-mural-photo-fallback">${esc(ini)}</span></span>
+        <span class="tc-mural-photo demo-fruit">${fruitFaceFor(entry.name)}</span>
         <span class="tc-mural-who"><span class="tc-mural-author">${esc(entry.name)}</span><span class="tc-mural-meta">${esc(entry.meta)}</span></span>
       </span>
       <span class="tc-mural-answers">${entry.answers.map(([q, a]) => `<span class="tc-mural-answer"><span class="tc-mural-answer-q">${esc(q)}</span><span class="tc-mural-answer-a">${esc(a)}</span></span>`).join('')}</span>
@@ -341,7 +341,7 @@ function hero() {
   const stages = ['etap-1', 'etap-2', 'etap-3', 'etap-4'];
   return `<div class="tc-hero">
       <div class="tc-hero-top">
-        <div class="tc-hero-avatar"><span class="tc-hero-avatar-fallback">AM</span></div>
+        <div class="tc-hero-avatar demo-fruit">${fruitFaceFor('Alex Morgan')}</div>
         <div class="tc-hero-text">
           <div class="tc-hero-greeting">Welcome, Alex!</div>
           <div class="tc-hero-sub">Unlock the stages one by one, verify the steps and build your own module.</div>

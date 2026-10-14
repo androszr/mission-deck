@@ -8,6 +8,7 @@
 // roadmapa-*. Initiatives, tickets and people are invented.
 
 import { esc } from './common.mjs';
+import { fruitFaceFor } from '../../assets/avatars/fruit-avatars.mjs';
 import { modulePage, syncBar } from './ch-time-tracking.mjs';
 
 const RAG = { green: 'Green', amber: 'Amber', red: 'Red' };
@@ -37,7 +38,7 @@ const BUSY = {
 };
 
 const _ini = (n) => n.split(' ').map((w) => w.charAt(0)).join('').slice(0, 2).toUpperCase();
-const _av = (n) => (n ? '<span class="roadmapa-avatar" title="' + esc(n) + '">' + esc(_ini(n)) + '</span>' : '');
+const _av = (n) => (n ? '<span class="roadmapa-avatar demo-fruit" title="' + esc(n) + '">' + fruitFaceFor(n) + '</span>' : '');
 const DEMO_TODAY_ISO = '2026-10-04';
 
 /** workingDaysLabel from modules/roadmap/client/helpers.js, against the demo's today (holidays left out). */

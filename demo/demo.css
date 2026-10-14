@@ -636,7 +636,9 @@ body[data-card="1"] .demo-caption {
   grid-column: 1 / -1;
   grid-row: 2;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  /* The right column never drops below what its buttons need; the step
+     title on the left is the part that gives way on a narrow window. */
+  grid-template-columns: minmax(0, 1fr) auto minmax(min-content, 1fr);
   align-items: center;
   gap: var(--space-16);
   padding: 0 var(--space-16);
@@ -695,6 +697,11 @@ html[data-demo-ready="1"] .demo-app[data-progress="ready"] .demo-progress {
   align-items: center;
   justify-items: end;
   margin-right: var(--space-8);
+  /* The one part of the right column that may give way: without this the
+     nowrap legend kept its full width and, on a window too narrow for the
+     buttons beside it, the column grew leftwards over the switches. */
+  min-width: 0;
+  overflow: hidden;
 }
 
 .demo-bar-cue > * { grid-area: 1 / 1; }
@@ -743,22 +750,24 @@ html[data-demo-ready="1"] .demo-app[data-progress="ready"] .demo-bar-keys {
   justify-content: flex-end;
   align-items: center;
   gap: var(--space-8);
+  min-width: 0;
 }
 
-.demo-bar-github { text-decoration: none; }
-html:not([data-demo-site]) .demo-bar-github { display: none; }
-.demo-bar-github { white-space: nowrap; }
-.demo-bar-github-short { display: none; }
-/* Narrow windows: the short label keeps Contents and Shortcuts reachable. */
-@media (max-width: 1439px) {
-  .demo-bar-github-full { display: none; }
-  .demo-bar-github-short { display: inline; }
-}
+.demo-bar-actions > .ds-btn { flex-shrink: 0; }
 
 .demo-bar-keys {
   font-size: var(--text-xs);
   color: var(--body-tertiary-text);
   white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Too narrow for the legend next to the switches and the buttons: drop it
+   (Shortcuts still lists the keys) rather than squeeze it to an ellipsis. */
+@media (max-width: 1439px) {
+  .demo-bar-keys { display: none; }
 }
 
 /* ── Narration (Instruktaz mode) ──────────────────────────────────────────── */
@@ -905,4 +914,21 @@ html:not([data-demo-site]) .demo-bar-github { display: none; }
   .demo-pressed { transform: none; }
   .demo-progress-fill { transition: none; }
   html[data-demo-ready="1"] .demo-app[data-progress="ready"] .demo-progress { animation: none; }
+}
+
+/* ── Fruit avatars (assets/avatars/fruit-avatars.mjs) ──────────────────────────────────
+   Every person in the walkthrough is a fruit with a face. The avatar slot
+   keeps its own size, shape and ring; the fruit fills it edge to edge.
+   Doubled class: wins over each module's own avatar background. */
+.demo-fruit.demo-fruit {
+  overflow: hidden;
+  padding: 0;
+  background: none;
+  color: transparent;
+}
+
+.demo-fruit > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }

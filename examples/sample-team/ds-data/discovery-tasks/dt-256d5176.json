@@ -1,12 +1,12 @@
 {
-  "id": "dt-26d05e64",
+  "id": "dt-256d5176",
   "title": "Bulk order import",
   "ticket": "NW-102",
   "rank": 2,
   "po": "Alex Morgan",
   "analyst": "Sam Rivera",
   "designer": "Aiko Tanaka",
-  "architect": "",
+  "architect": "Priya Raman",
   "ragStatus": "green",
   "stageStatus": [
     "preparation",
@@ -27,7 +27,14 @@
       "statusCategory": "done",
       "assignee": "Alex Morgan",
       "timeByPerson": {
-        "Alex Morgan": 54000
+        "Alex Morgan": 64800
+      },
+      "timeByPersonByDay": {
+        "Alex Morgan": {
+          "2026-07-10": 21600,
+          "2026-07-13": 21600,
+          "2026-07-14": 21600
+        }
       }
     },
     {
@@ -38,7 +45,14 @@
       "statusCategory": "done",
       "assignee": "Sam Rivera",
       "timeByPerson": {
-        "Sam Rivera": 126000
+        "Sam Rivera": 14400
+      },
+      "timeByPersonByDay": {
+        "Sam Rivera": {
+          "2026-07-15": 5400,
+          "2026-07-16": 5400,
+          "2026-07-17": 5400
+        }
       }
     },
     {
@@ -47,9 +61,16 @@
       "summary": "Bulk order import: research insights",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Sam Rivera",
+      "assignee": "Aiko Tanaka",
       "timeByPerson": {
-        "Sam Rivera": 28800
+        "Aiko Tanaka": 140400
+      },
+      "timeByPersonByDay": {
+        "Aiko Tanaka": {
+          "2026-07-16": 46800,
+          "2026-07-17": 46800,
+          "2026-07-20": 46800
+        }
       }
     },
     {
@@ -58,9 +79,16 @@
       "summary": "Bulk order import: goals metrics",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Sam Rivera",
+      "assignee": "Alex Morgan",
       "timeByPerson": {
-        "Sam Rivera": 64800
+        "Alex Morgan": 86400
+      },
+      "timeByPersonByDay": {
+        "Alex Morgan": {
+          "2026-07-21": 28800,
+          "2026-07-22": 28800,
+          "2026-07-23": 28800
+        }
       }
     },
     {
@@ -69,9 +97,16 @@
       "summary": "Bulk order import: requirements breakdown",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Tomas Novak",
+      "assignee": "Sam Rivera",
       "timeByPerson": {
-        "Tomas Novak": 122400
+        "Sam Rivera": 75600
+      },
+      "timeByPersonByDay": {
+        "Sam Rivera": {
+          "2026-07-22": 25200,
+          "2026-07-23": 25200,
+          "2026-07-24": 25200
+        }
       }
     },
     {
@@ -82,7 +117,14 @@
       "statusCategory": "done",
       "assignee": "Sam Rivera",
       "timeByPerson": {
-        "Sam Rivera": 115200
+        "Sam Rivera": 57600
+      },
+      "timeByPersonByDay": {
+        "Sam Rivera": {
+          "2026-07-27": 19800,
+          "2026-07-28": 19800,
+          "2026-07-29": 19800
+        }
       }
     }
   ],

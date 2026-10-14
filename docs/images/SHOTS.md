@@ -13,6 +13,11 @@ node scripts/readme-shots.mjs --only sprint-stats,roadmap
 node scripts/readme-shots.mjs --list
 ```
 
+`shots.json` also fixes the browser clock (`clock`, the last day of the
+sample quarter, so the roadmap's day strip and every "overdue" read the way the
+data intends) and who the app greets (`identity`, a sample person, never the
+git name of whoever runs the script).
+
 The script starts Mission Deck on a spare port (3777, `--port` to change) in
 sample mode, with every folder it writes to inside one temporary directory, so
 your own `data/`, `modules/` and team data are never read or changed. It stops

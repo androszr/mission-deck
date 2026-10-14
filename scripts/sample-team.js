@@ -22,6 +22,7 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const C = require('./_sample-team-content.js');
+const { fruitAvatarSvg } = require('./_fruit-avatars.js');
 
 const QUARTER_START = '2026-07-01';
 const QUARTER_END = '2026-09-30';
@@ -135,8 +136,6 @@ function makeWriter(outDir) {
 
 // -- People ---------------------------------------------------------------------
 
-const AVATAR_HUES = [210, 160, 30, 280, 340, 190, 50, 120];
-
 function buildPeople() {
   const r = rngFor('people');
   const people = [];
@@ -161,14 +160,10 @@ function buildPeople() {
   return people;
 }
 
+// Made-up people get made-up faces: a fruit with a face, never initials and
+// never a photo (scripts/_fruit-avatars.js).
 function avatarSvg(person, index) {
-  const initials = (person.first_name[0] + person.last_name[0]).toUpperCase();
-  const hue = AVATAR_HUES[index % AVATAR_HUES.length];
-  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-label="'
-    + person._name + '">'
-    + '<circle cx="48" cy="48" r="48" fill="hsl(' + hue + ' 48% 42%)"/>'
-    + '<text x="48" y="48" text-anchor="middle" dominant-baseline="central" font-family="Inter, Arial, sans-serif" '
-    + 'font-size="34" font-weight="600" fill="hsl(0 0% 100%)">' + initials + '</text></svg>\n';
+  return fruitAvatarSvg(index, person._name);
 }
 
 function writeTeam(w, people) {
@@ -747,6 +742,24 @@ function writeQa(w) {
 function writeRoadmap(w, people, worklogs) {
   const r = rngFor('roadmap');
   const dtype = ['scope-gate-start', 'process-mapping', 'research-insights', 'goals-metrics', 'requirements-breakdown', 'workshops-alignment', 'architecture', 'mockups-prototypes', 'user-testing', 'refinements'];
+  // The role each discovery task belongs to (the roadmap module's DISCOVERY_TASKS),
+  // so a task lands on the person who holds that role on the initiative.
+  const roleOf = {
+    'scope-gate-start': 'po', 'process-mapping': 'analyst', 'research-insights': 'designer', 'goals-metrics': 'po',
+    'requirements-breakdown': 'analyst', 'workshops-alignment': 'analyst', architecture: 'architect',
+    'mockups-prototypes': 'designer', 'user-testing': 'designer', refinements: 'analyst',
+  };
+  // The roadmap's activity strip shows who logged time on each of the last
+  // working days before "today" (the sample clock, 2026-09-30) and who has
+  // work in progress today and tomorrow. Done tasks log a few days before
+  // the discovery end; tasks in progress log most days of the last two weeks.
+  const recentDays = eachDay(addDays(QUARTER_END, -16), addDays(QUARTER_END, -1)).filter((d) => !isWeekend(d));
+  const spread = (secs, days) => {
+    const out = {};
+    const per = Math.max(1800, Math.round(secs / days.length / 1800) * 1800);
+    for (const d of days) out[d] = per;
+    return out;
+  };
   const stageOrder = ['preparation', 'problem-space', 'solution-space', 'delivery', 'pilot', 'go-live'];
   const slipping = new Set(['NW-105', 'NW-111']);
   let rank = 0;
@@ -756,7 +769,10 @@ function writeRoadmap(w, people, worklogs) {
     const members = people.filter((p) => p._squad === squadId);
     const po = members.find((p) => p.role === 'Product Owner') || members[0];
     const designer = people.find((p) => p.role === 'Designer' && p._squad === squadId) || people.find((p) => p.role === 'Designer');
-    const eng = members.find((p) => p.role === 'Engineer');
+    const engineers = members.filter((p) => p.role === 'Engineer');
+    const eng = engineers[0];
+    const architect = engineers[1] || engineers[0];
+    const holder = { po, analyst: eng || po, designer: designer || po, architect: architect || po };
     const stageIdx = stageOrder.indexOf(stage);
     const done = stageOrder.slice(0, Math.max(0, stageIdx));
     const dayOffset = 20 + rank * 4;
@@ -767,16 +783,24 @@ function writeRoadmap(w, people, worklogs) {
     const tasks = [];
     for (let t = 0; t < nTasks; t++) {
       const category = t < nTasks - 2 || stageIdx >= 3 ? 'done' : t === nTasks - 2 ? 'indeterminate' : 'new';
-      const assignee = pick(r, members)._name;
+      const assignee = holder[roleOf[dtype[t]]]._name;
       const secs = category === 'new' ? 0 : int(r, 4, 40) * 3600;
+      let days = [];
+      if (category === 'done') {
+        const end = addDays(discoveryEnd, -3 * (nTasks - 1 - t));
+        days = eachDay(addDays(end, -6), end).filter((d) => !isWeekend(d) && d <= QUARTER_END).slice(-3);
+      } else if (category === 'indeterminate') {
+        days = recentDays.filter(() => r() < 0.75);
+      }
       tasks.push({
         defId: dtype[t], key: 'NW-' + (200 + rank * 10 + t), summary: title + ': ' + dtype[t].replace(/-/g, ' '),
         statusName: category === 'done' ? 'Done' : category === 'indeterminate' ? 'In Progress' : 'To Do', statusCategory: category,
         assignee, timeByPerson: secs ? { [assignee]: secs } : {},
+        timeByPersonByDay: secs && days.length ? { [assignee]: spread(secs, days) } : {},
       });
     }
     const initiative = {
-      id: 'dt-' + hex(r, 8), title, ticket, rank, po: po._name, analyst: eng ? eng._name : '', designer: designer ? designer._name : '', architect: '',
+      id: 'dt-' + hex(r, 8), title, ticket, rank, po: po._name, analyst: eng ? eng._name : '', designer: designer ? designer._name : '', architect: architect ? architect._name : '',
       ragStatus: slipping.has(ticket) ? 'red' : rag, stageStatus: done,
       discoveryEnd, deliveryEnd, goLiveDate: goLive, vmoName: null, appliesTo: squad.name, jiraTasks: tasks,
       comments: [],
@@ -1273,6 +1297,53 @@ function writeDemoHub(w) {
 
 // -- Main -------------------------------------------------------------------------------------------------------------------------------------------
 
+// -- Academy ---------------------------------------------------------------------------------------
+
+// One progress file per person, the shape the server's /api/cocreate/* writes
+// (academy/progress/<person_slug>.json), so the Academy's "finished stage"
+// rows show faces. Stage and step ids come from the one list the view and the
+// server read. Most of the team finished stage 1, fewer each stage after it.
+const ACADEMY_REACH = [4, 3, 2, 4, 1, 3, 2, 1, 4, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 1, 0, 2, 1, 0];
+const ACADEMY_MURAL = [
+  ['alex-morgan', 'What I built', 'A release calendar for Atlas. It took one sentence and two rounds of feedback.'],
+  ['sam-rivera', 'What surprised me', 'The plan came before the code, and reading it caught a wrong idea early.'],
+  ['grace-whitfield', 'A tip for the next person', 'Describe the screen the way you would to a colleague, not as a spec.'],
+  ['kofi-mensah', 'What I built', 'A page that shows which carrier is late today, from the data we already had.'],
+];
+
+function writeAcademy(w, people) {
+  const { STAGES } = require('../js/academy-stages.mjs');
+  const r = rngFor('academy');
+  people.forEach((p, i) => {
+    const reach = ACADEMY_REACH[i % ACADEMY_REACH.length];
+    const doc = { version: 1, person_slug: p._slug, display_name: p._name, unlocks: {}, steps: {}, completed: {} };
+    let at = addDays(QUARTER_START, 3 + (i % 9) * 2);
+    STAGES.forEach((stage, si) => {
+      if (si > reach) return;
+      doc.unlocks[stage.id] = at + 'T09:00:00.000Z';
+      const finished = si < reach;
+      // The stage after the last finished one is under way: about half its steps.
+      const steps = finished ? stage.steps : stage.steps.slice(0, Math.floor(stage.steps.length / 2));
+      if (steps.length === 0 && !finished) { delete doc.unlocks[stage.id]; return; }
+      doc.steps[stage.id] = {};
+      steps.forEach((step, k) => {
+        doc.steps[stage.id][step.id] = {
+          checked_at: addDays(at, Math.floor(k / 2)) + 'T' + String(10 + (k % 6)).padStart(2, '0') + ':' + String(int(r, 0, 5) * 10).padStart(2, '0') + ':00.000Z',
+          method: (step.check && step.check.type) || 'self-attest',
+        };
+      });
+      if (finished) doc.completed[stage.id] = addDays(at, Math.floor(stage.steps.length / 2)) + 'T16:00:00.000Z';
+      at = addDays(at, 6 + int(r, 0, 6));
+    });
+    if (Object.keys(doc.unlocks).length > 0) w.json('academy/progress/' + p._slug + '.json', doc);
+  });
+  for (const [slug, heading, text] of ACADEMY_MURAL) {
+    const p = people.find((x) => x._slug === slug);
+    if (!p) throw new Error('sample-team: the academy mural names ' + slug + ', who is not on the team');
+    w.text('academy/mural/' + slug + '.md', ['---', 'author: ' + p._name, 'person_slug: ' + slug, 'date: 2026-09-' + String(10 + ACADEMY_MURAL.findIndex((m) => m[0] === slug) * 4), '---', '', '## ' + heading, '', '- ' + text, ''].join('\n'));
+  }
+}
+
 function generate(outDir) {
   const out = path.resolve(outDir || DEFAULT_OUT);
   const target = path.join(out, 'ds-data');
@@ -1309,6 +1380,7 @@ function generate(outDir) {
   writeRolloutWaves(w, sites);
   writeUsageAnalytics(w, people);
   writeDemoHub(w);
+  writeAcademy(w, people);
   return { out: w.root, people: people.length };
 }
 

@@ -16,9 +16,13 @@ export function TeamView({ data }: { data: TeamData }) {
     <ul className="md-list">
       {data.members.map((m) => (
         <li key={m.name} className="md-card md-person">
-          <span className="md-avatar" aria-hidden="true">
-            {initials(m.name)}
-          </span>
+          {m.avatar ? (
+            <img className="md-avatar md-avatar--img" src={`${import.meta.env.BASE_URL}${m.avatar}`} alt="" width={40} height={40} />
+          ) : (
+            <span className="md-avatar" aria-hidden="true">
+              {initials(m.name)}
+            </span>
+          )}
           <div>
             <strong>{m.name}</strong>
             <p className="md-muted">

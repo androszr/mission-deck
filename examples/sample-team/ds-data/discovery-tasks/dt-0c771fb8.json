@@ -1,12 +1,12 @@
 {
-  "id": "dt-ef429137",
+  "id": "dt-0c771fb8",
   "title": "Saved payment terms",
   "ticket": "NW-104",
   "rank": 4,
   "po": "Elena Rossi",
   "analyst": "Jordan Lee",
   "designer": "Aiko Tanaka",
-  "architect": "",
+  "architect": "Samir Haddad",
   "ragStatus": "amber",
   "stageStatus": [
     "preparation",
@@ -24,9 +24,16 @@
       "summary": "Saved payment terms: scope gate start",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Samir Haddad",
+      "assignee": "Elena Rossi",
       "timeByPerson": {
-        "Samir Haddad": 79200
+        "Elena Rossi": 97200
+      },
+      "timeByPersonByDay": {
+        "Elena Rossi": {
+          "2026-07-20": 32400,
+          "2026-07-21": 32400,
+          "2026-07-22": 32400
+        }
       }
     },
     {
@@ -37,7 +44,14 @@
       "statusCategory": "done",
       "assignee": "Jordan Lee",
       "timeByPerson": {
-        "Jordan Lee": 21600
+        "Jordan Lee": 122400
+      },
+      "timeByPersonByDay": {
+        "Jordan Lee": {
+          "2026-07-22": 41400,
+          "2026-07-23": 41400,
+          "2026-07-24": 41400
+        }
       }
     },
     {
@@ -46,9 +60,16 @@
       "summary": "Saved payment terms: research insights",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Samir Haddad",
+      "assignee": "Aiko Tanaka",
       "timeByPerson": {
-        "Samir Haddad": 111600
+        "Aiko Tanaka": 97200
+      },
+      "timeByPersonByDay": {
+        "Aiko Tanaka": {
+          "2026-07-24": 32400,
+          "2026-07-27": 32400,
+          "2026-07-28": 32400
+        }
       }
     },
     {
@@ -57,9 +78,16 @@
       "summary": "Saved payment terms: goals metrics",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Aiko Tanaka",
+      "assignee": "Elena Rossi",
       "timeByPerson": {
-        "Aiko Tanaka": 100800
+        "Elena Rossi": 90000
+      },
+      "timeByPersonByDay": {
+        "Elena Rossi": {
+          "2026-07-29": 30600,
+          "2026-07-30": 30600,
+          "2026-07-31": 30600
+        }
       }
     },
     {
@@ -68,9 +96,23 @@
       "summary": "Saved payment terms: requirements breakdown",
       "statusName": "In Progress",
       "statusCategory": "indeterminate",
-      "assignee": "Elena Rossi",
+      "assignee": "Jordan Lee",
       "timeByPerson": {
-        "Elena Rossi": 79200
+        "Jordan Lee": 133200
+      },
+      "timeByPersonByDay": {
+        "Jordan Lee": {
+          "2026-09-14": 12600,
+          "2026-09-15": 12600,
+          "2026-09-16": 12600,
+          "2026-09-18": 12600,
+          "2026-09-21": 12600,
+          "2026-09-22": 12600,
+          "2026-09-23": 12600,
+          "2026-09-25": 12600,
+          "2026-09-28": 12600,
+          "2026-09-29": 12600
+        }
       }
     },
     {
@@ -80,7 +122,8 @@
       "statusName": "To Do",
       "statusCategory": "new",
       "assignee": "Jordan Lee",
-      "timeByPerson": {}
+      "timeByPerson": {},
+      "timeByPersonByDay": {}
     }
   ],
   "comments": [],

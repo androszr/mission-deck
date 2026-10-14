@@ -1,12 +1,12 @@
 {
-  "id": "dt-965d2820",
+  "id": "dt-d05e64c3",
   "title": "Faster checkout",
   "ticket": "NW-103",
   "rank": 3,
   "po": "Elena Rossi",
   "analyst": "Jordan Lee",
   "designer": "Aiko Tanaka",
-  "architect": "",
+  "architect": "Samir Haddad",
   "ragStatus": "green",
   "stageStatus": [
     "preparation",
@@ -26,9 +26,16 @@
       "summary": "Faster checkout: scope gate start",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Samir Haddad",
+      "assignee": "Elena Rossi",
       "timeByPerson": {
-        "Samir Haddad": 39600
+        "Elena Rossi": 140400
+      },
+      "timeByPersonByDay": {
+        "Elena Rossi": {
+          "2026-07-15": 46800,
+          "2026-07-16": 46800,
+          "2026-07-17": 46800
+        }
       }
     },
     {
@@ -37,9 +44,16 @@
       "summary": "Faster checkout: process mapping",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Aiko Tanaka",
+      "assignee": "Jordan Lee",
       "timeByPerson": {
-        "Aiko Tanaka": 122400
+        "Jordan Lee": 122400
+      },
+      "timeByPersonByDay": {
+        "Jordan Lee": {
+          "2026-07-17": 41400,
+          "2026-07-20": 41400,
+          "2026-07-21": 41400
+        }
       }
     },
     {
@@ -50,7 +64,14 @@
       "statusCategory": "done",
       "assignee": "Aiko Tanaka",
       "timeByPerson": {
-        "Aiko Tanaka": 90000
+        "Aiko Tanaka": 54000
+      },
+      "timeByPersonByDay": {
+        "Aiko Tanaka": {
+          "2026-07-22": 18000,
+          "2026-07-23": 18000,
+          "2026-07-24": 18000
+        }
       }
     },
     {
@@ -59,9 +80,16 @@
       "summary": "Faster checkout: goals metrics",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Samir Haddad",
+      "assignee": "Elena Rossi",
       "timeByPerson": {
-        "Samir Haddad": 61200
+        "Elena Rossi": 115200
+      },
+      "timeByPersonByDay": {
+        "Elena Rossi": {
+          "2026-07-23": 37800,
+          "2026-07-24": 37800,
+          "2026-07-27": 37800
+        }
       }
     },
     {
@@ -70,9 +98,16 @@
       "summary": "Faster checkout: requirements breakdown",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Elena Rossi",
+      "assignee": "Jordan Lee",
       "timeByPerson": {
-        "Elena Rossi": 57600
+        "Jordan Lee": 28800
+      },
+      "timeByPersonByDay": {
+        "Jordan Lee": {
+          "2026-07-28": 9000,
+          "2026-07-29": 9000,
+          "2026-07-30": 9000
+        }
       }
     },
     {
@@ -81,9 +116,16 @@
       "summary": "Faster checkout: workshops alignment",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Samir Haddad",
+      "assignee": "Jordan Lee",
       "timeByPerson": {
-        "Samir Haddad": 90000
+        "Jordan Lee": 68400
+      },
+      "timeByPersonByDay": {
+        "Jordan Lee": {
+          "2026-07-29": 23400,
+          "2026-07-30": 23400,
+          "2026-07-31": 23400
+        }
       }
     }
   ],

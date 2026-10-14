@@ -370,20 +370,62 @@ describe('AC4: Northwind Product, fictional and tidy', () => {
   const DS = path.join(COMMITTED, 'ds-data');
   const files = () => walk(DS);
 
-  it('six squads with four people each, invented names, generated avatars', () => {
+  it('six squads with four people each, invented names, fruit avatars', () => {
     const team = JSON.parse(fs.readFileSync(path.join(DS, 'team', 'team-members.json'), 'utf8'));
     const bySquad = {};
     for (const m of team.team_members) (bySquad[m.team] = bySquad[m.team] || []).push(m);
     assert.deepEqual(Object.keys(bySquad).sort(), ['Atlas', 'Borealis', 'Comet', 'Delta', 'Echo', 'Falcon']);
     for (const list of Object.values(bySquad)) assert.equal(list.length, 4);
+    const svgs = new Set();
     for (const m of team.team_members) {
       assert.match(m.email, /@northwind\.example$/);
       const svg = fs.readFileSync(path.join(DS, 'team', 'avatars', m.avatar), 'utf8');
       assert.match(svg, /^<svg /);
-      assert.ok(svg.includes((m.first_name[0] + m.last_name[0]).toUpperCase()));
+      assert.ok(svg.includes('aria-label="' + m.first_name + ' ' + m.last_name + '"'), m.avatar + ' is labelled with the name');
+      assert.doesNotMatch(svg, /<text/, m.avatar + ': a fruit with a face, never initials');
+      svgs.add(svg.replace(/aria-label="[^"]*"/, ''));
+    }
+    assert.equal(svgs.size, 24, 'no two people share an avatar');
+    for (const list of Object.values(bySquad)) {
+      const fruits = list.map((m) => fs.readFileSync(path.join(DS, 'team', 'avatars', m.avatar), 'utf8').replace(/<rect[^>]*>|aria-label="[^"]*"/g, ''));
+      assert.equal(new Set(fruits).size, 4, 'four different fruits in one squad');
     }
     assert.equal(files().filter((f) => f.startsWith('team/avatars/')).length, 24);
     assert.equal(files().filter((f) => /\.(png|jpe?g|webp)$/i.test(f)).length, 0, 'no photos');
+  });
+
+  it('academy: progress files in the server shape, a few faces per finished stage', async () => {
+    const { STAGES } = await import('../js/academy-stages.mjs');
+    const dir = path.join(DS, 'academy', 'progress');
+    const names = fs.readdirSync(dir).filter((f) => f.endsWith('.json'));
+    assert.ok(names.length >= 16);
+    const finished = {};
+    for (const name of names) {
+      const doc = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
+      assert.equal(doc.person_slug + '.json', name);
+      for (const [etap, at] of Object.entries(doc.completed)) {
+        const stage = STAGES.find((x) => x.id === etap);
+        assert.ok(stage, etap + ' is a real stage');
+        assert.deepEqual(Object.keys(doc.steps[etap]).sort(), stage.steps.map((x) => x.id).sort(), name + ': a finished stage has every step');
+        assert.ok(doc.unlocks[etap] && doc.unlocks[etap] <= at);
+        finished[etap] = (finished[etap] || 0) + 1;
+      }
+    }
+    for (const stage of STAGES) assert.ok((finished[stage.id] || 0) >= 3, stage.id + ' has at least three people who finished it');
+  });
+
+  it('roadmap: every discovery task sits with a role holder and the last working days carry logged time', () => {
+    const dir = path.join(DS, 'discovery-tasks');
+    const days = new Set();
+    for (const f of fs.readdirSync(dir)) {
+      const init = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+      const holders = new Set([init.po, init.analyst, init.designer, init.architect].filter(Boolean));
+      for (const t of init.jiraTasks) {
+        assert.ok(holders.has(t.assignee), f + ' ' + t.key + ': ' + t.assignee + ' holds no role');
+        for (const byDay of Object.values(t.timeByPersonByDay || {})) for (const d of Object.keys(byDay)) days.add(d);
+      }
+    }
+    for (const d of ['2026-09-22', '2026-09-23', '2026-09-24', '2026-09-25', '2026-09-28', '2026-09-29']) assert.ok(days.has(d), d + ' has logged time');
   });
 
   it('three vendors: Acme Ltd, Globex, Initech', () => {

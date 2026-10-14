@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "person_slug": "ingrid-solberg",
+  "display_name": "Ingrid Solberg",
+  "unlocks": {
+    "etap-1": "2026-07-06T09:00:00.000Z",
+    "etap-2": "2026-07-15T09:00:00.000Z",
+    "etap-3": "2026-07-27T09:00:00.000Z",
+    "etap-4": "2026-08-08T09:00:00.000Z"
+  },
+  "steps": {
+    "etap-1": {
+      "step-1": {
+        "checked_at": "2026-07-06T10:20:00.000Z",
+        "method": "server"
+      },
+      "step-2": {
+        "checked_at": "2026-07-06T11:10:00.000Z",
+        "method": "server"
+      },
+      "step-2b": {
+        "checked_at": "2026-07-07T12:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2c": {
+        "checked_at": "2026-07-07T13:30:00.000Z",
+        "method": "self-attest"
+      },
+      "step-3": {
+        "checked_at": "2026-07-08T14:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-4": {
+        "checked_at": "2026-07-08T15:30:00.000Z",
+        "method": "self-attest"
+      },
+      "step-5": {
+        "checked_at": "2026-07-09T10:30:00.000Z",
+        "method": "server"
+      },
+      "step-6": {
+        "checked_at": "2026-07-09T11:50:00.000Z",
+        "method": "server"
+      }
+    },
+    "etap-2": {
+      "step-1": {
+        "checked_at": "2026-07-15T10:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2": {
+        "checked_at": "2026-07-15T11:40:00.000Z",
+        "method": "self-attest"
+      },
+      "step-3": {
+        "checked_at": "2026-07-16T12:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-4": {
+        "checked_at": "2026-07-16T13:20:00.000Z",
+        "method": "self-attest"
+      },
+      "step-5": {
+        "checked_at": "2026-07-17T14:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-6": {
+        "checked_at": "2026-07-17T15:50:00.000Z",
+        "method": "self-attest"
+      },
+      "step-7": {
+        "checked_at": "2026-07-18T10:20:00.000Z",
+        "method": "self-attest"
+      },
+      "step-8": {
+        "checked_at": "2026-07-18T11:40:00.000Z",
+        "method": "self-attest"
+      }
+    },
+    "etap-3": {
+      "step-1": {
+        "checked_at": "2026-07-27T10:30:00.000Z",
+        "method": "self-attest"
+      },
+      "step-1b": {
+        "checked_at": "2026-07-27T11:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2": {
+        "checked_at": "2026-07-28T12:20:00.000Z",
+        "method": "server"
+      },
+      "step-3": {
+        "checked_at": "2026-07-28T13:50:00.000Z",
+        "method": "server"
+      },
+      "step-3b": {
+        "checked_at": "2026-07-29T14:30:00.000Z",
+        "method": "self-attest"
+      },
+      "step-4": {
+        "checked_at": "2026-07-29T15:20:00.000Z",
+        "method": "self-attest"
+      },
+      "step-6": {
+        "checked_at": "2026-07-30T10:30:00.000Z",
+        "method": "self-attest"
+      },
+      "step-7": {
+        "checked_at": "2026-07-30T11:10:00.000Z",
+        "method": "server"
+      }
+    },
+    "etap-4": {
+      "step-1": {
+        "checked_at": "2026-08-08T10:30:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2": {
+        "checked_at": "2026-08-08T11:50:00.000Z",
+        "method": "self-attest"
+      }
+    }
+  },
+  "completed": {
+    "etap-1": "2026-07-10T16:00:00.000Z",
+    "etap-2": "2026-07-19T16:00:00.000Z",
+    "etap-3": "2026-07-31T16:00:00.000Z"
+  }
+}

@@ -4,6 +4,7 @@
 // same SVGs, same labels - only the data is invented.
 
 import { esc } from './common.mjs';
+import { fruitFaceFor } from '../../assets/avatars/fruit-avatars.mjs';
 
 const BW_KEY_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16" aria-hidden="true"><circle cx="8" cy="15" r="3"/><path d="M11 15h9M14 12v6"/><path d="M17 15V9.5a5.5 5.5 0 0 0-11 0"/></svg>';
 const TERM_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="6 9 9 12 6 15"/><line x1="12" y1="15" x2="17" y2="15"/></svg>';
@@ -42,7 +43,7 @@ export const MOCKS = {
     return `<button type="button" class="sidebar-ai-toggle-btn topbar-bw-btn" id="demo-topbar-bw-btn" style="border-color:${color}" title="${title}"><span style="display:inline-flex;color:${color}">${BW_KEY_SVG}</span><span>Bitwarden</span></button>`;
   },
 
-  'topbar-user': () => '<button type="button" class="app-top-bar__user-btn" title="Alex Morgan" aria-label="Alex Morgan"><span class="app-top-bar__user-initials">AM</span></button>',
+  'topbar-user': () => '<button type="button" class="app-top-bar__user-btn" title="Alex Morgan" aria-label="Alex Morgan"><span class="app-top-bar__user-initials demo-fruit">' + fruitFaceFor('Alex Morgan') + '</span></button>',
 
   /** The three entry cards of js/dashboard.js renderDashboardView. */
   'dashboard-cards': () => `<div class="placeholder-hub-grid">${DASHBOARD_CARDS.map((c) => `<div class="placeholder-hub-card" role="button" tabindex="0">`

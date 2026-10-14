@@ -1,12 +1,12 @@
 {
-  "id": "dt-38e0d0ff",
+  "id": "dt-946af04a",
   "title": "Saved filters",
   "ticket": "NW-110",
   "rank": 10,
   "po": "Zoe Carter",
   "analyst": "Rafael Costa",
   "designer": "Aiko Tanaka",
-  "architect": "",
+  "architect": "Nadia Petrova",
   "ragStatus": "amber",
   "stageStatus": [
     "preparation",
@@ -25,9 +25,16 @@
       "summary": "Saved filters: scope gate start",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Rafael Costa",
+      "assignee": "Zoe Carter",
       "timeByPerson": {
-        "Rafael Costa": 115200
+        "Zoe Carter": 97200
+      },
+      "timeByPersonByDay": {
+        "Zoe Carter": {
+          "2026-08-12": 32400,
+          "2026-08-13": 32400,
+          "2026-08-14": 32400
+        }
       }
     },
     {
@@ -36,9 +43,16 @@
       "summary": "Saved filters: process mapping",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Nadia Petrova",
+      "assignee": "Rafael Costa",
       "timeByPerson": {
-        "Nadia Petrova": 108000
+        "Rafael Costa": 25200
+      },
+      "timeByPersonByDay": {
+        "Rafael Costa": {
+          "2026-08-14": 9000,
+          "2026-08-17": 9000,
+          "2026-08-18": 9000
+        }
       }
     },
     {
@@ -47,9 +61,16 @@
       "summary": "Saved filters: research insights",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Nadia Petrova",
+      "assignee": "Aiko Tanaka",
       "timeByPerson": {
-        "Nadia Petrova": 144000
+        "Aiko Tanaka": 79200
+      },
+      "timeByPersonByDay": {
+        "Aiko Tanaka": {
+          "2026-08-19": 27000,
+          "2026-08-20": 27000,
+          "2026-08-21": 27000
+        }
       }
     },
     {
@@ -60,7 +81,14 @@
       "statusCategory": "done",
       "assignee": "Zoe Carter",
       "timeByPerson": {
-        "Zoe Carter": 115200
+        "Zoe Carter": 79200
+      },
+      "timeByPersonByDay": {
+        "Zoe Carter": {
+          "2026-08-20": 27000,
+          "2026-08-21": 27000,
+          "2026-08-24": 27000
+        }
       }
     },
     {
@@ -69,9 +97,16 @@
       "summary": "Saved filters: requirements breakdown",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Nadia Petrova",
+      "assignee": "Rafael Costa",
       "timeByPerson": {
-        "Nadia Petrova": 18000
+        "Rafael Costa": 79200
+      },
+      "timeByPersonByDay": {
+        "Rafael Costa": {
+          "2026-08-25": 27000,
+          "2026-08-26": 27000,
+          "2026-08-27": 27000
+        }
       }
     },
     {
@@ -82,7 +117,14 @@
       "statusCategory": "done",
       "assignee": "Rafael Costa",
       "timeByPerson": {
-        "Rafael Costa": 126000
+        "Rafael Costa": 136800
+      },
+      "timeByPersonByDay": {
+        "Rafael Costa": {
+          "2026-08-26": 45000,
+          "2026-08-27": 45000,
+          "2026-08-28": 45000
+        }
       }
     }
   ],

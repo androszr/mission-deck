@@ -1,12 +1,12 @@
 {
-  "id": "dt-98210432",
+  "id": "dt-42913717",
   "title": "Catalog import pipeline",
   "ticket": "NW-105",
   "rank": 5,
   "po": "Grace Whitfield",
   "analyst": "Taylor Kim",
   "designer": "Aiko Tanaka",
-  "architect": "",
+  "architect": "Ingrid Solberg",
   "ragStatus": "red",
   "stageStatus": [
     "preparation",
@@ -27,7 +27,14 @@
       "statusCategory": "done",
       "assignee": "Grace Whitfield",
       "timeByPerson": {
-        "Grace Whitfield": 75600
+        "Grace Whitfield": 100800
+      },
+      "timeByPersonByDay": {
+        "Grace Whitfield": {
+          "2026-07-22": 34200,
+          "2026-07-23": 34200,
+          "2026-07-24": 34200
+        }
       }
     },
     {
@@ -36,9 +43,16 @@
       "summary": "Catalog import pipeline: process mapping",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Ingrid Solberg",
+      "assignee": "Taylor Kim",
       "timeByPerson": {
-        "Ingrid Solberg": 115200
+        "Taylor Kim": 39600
+      },
+      "timeByPersonByDay": {
+        "Taylor Kim": {
+          "2026-07-27": 12600,
+          "2026-07-28": 12600,
+          "2026-07-29": 12600
+        }
       }
     },
     {
@@ -47,9 +61,16 @@
       "summary": "Catalog import pipeline: research insights",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Taylor Kim",
+      "assignee": "Aiko Tanaka",
       "timeByPerson": {
-        "Taylor Kim": 36000
+        "Aiko Tanaka": 79200
+      },
+      "timeByPersonByDay": {
+        "Aiko Tanaka": {
+          "2026-07-29": 27000,
+          "2026-07-30": 27000,
+          "2026-07-31": 27000
+        }
       }
     },
     {
@@ -60,7 +81,14 @@
       "statusCategory": "done",
       "assignee": "Grace Whitfield",
       "timeByPerson": {
-        "Grace Whitfield": 126000
+        "Grace Whitfield": 61200
+      },
+      "timeByPersonByDay": {
+        "Grace Whitfield": {
+          "2026-07-31": 19800,
+          "2026-08-03": 19800,
+          "2026-08-04": 19800
+        }
       }
     },
     {
@@ -71,7 +99,14 @@
       "statusCategory": "done",
       "assignee": "Taylor Kim",
       "timeByPerson": {
-        "Taylor Kim": 82800
+        "Taylor Kim": 129600
+      },
+      "timeByPersonByDay": {
+        "Taylor Kim": {
+          "2026-08-05": 43200,
+          "2026-08-06": 43200,
+          "2026-08-07": 43200
+        }
       }
     },
     {
@@ -80,9 +115,16 @@
       "summary": "Catalog import pipeline: workshops alignment",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Ingrid Solberg",
+      "assignee": "Taylor Kim",
       "timeByPerson": {
-        "Ingrid Solberg": 46800
+        "Taylor Kim": 144000
+      },
+      "timeByPersonByDay": {
+        "Taylor Kim": {
+          "2026-08-06": 48600,
+          "2026-08-07": 48600,
+          "2026-08-10": 48600
+        }
       }
     }
   ],

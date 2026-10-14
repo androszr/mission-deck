@@ -1,12 +1,12 @@
 {
-  "id": "dt-35f8610a",
+  "id": "dt-243c8dae",
   "title": "Product variants",
   "ticket": "NW-106",
   "rank": 6,
   "po": "Grace Whitfield",
   "analyst": "Taylor Kim",
   "designer": "Aiko Tanaka",
-  "architect": "",
+  "architect": "Ingrid Solberg",
   "ragStatus": "green",
   "stageStatus": [
     "preparation",
@@ -24,9 +24,16 @@
       "summary": "Product variants: scope gate start",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Taylor Kim",
+      "assignee": "Grace Whitfield",
       "timeByPerson": {
-        "Taylor Kim": 39600
+        "Grace Whitfield": 108000
+      },
+      "timeByPersonByDay": {
+        "Grace Whitfield": {
+          "2026-07-28": 36000,
+          "2026-07-29": 36000,
+          "2026-07-30": 36000
+        }
       }
     },
     {
@@ -35,9 +42,16 @@
       "summary": "Product variants: process mapping",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Kofi Mensah",
+      "assignee": "Taylor Kim",
       "timeByPerson": {
-        "Kofi Mensah": 86400
+        "Taylor Kim": 115200
+      },
+      "timeByPersonByDay": {
+        "Taylor Kim": {
+          "2026-07-29": 37800,
+          "2026-07-30": 37800,
+          "2026-07-31": 37800
+        }
       }
     },
     {
@@ -46,9 +60,16 @@
       "summary": "Product variants: research insights",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Kofi Mensah",
+      "assignee": "Aiko Tanaka",
       "timeByPerson": {
-        "Kofi Mensah": 97200
+        "Aiko Tanaka": 57600
+      },
+      "timeByPersonByDay": {
+        "Aiko Tanaka": {
+          "2026-08-03": 19800,
+          "2026-08-04": 19800,
+          "2026-08-05": 19800
+        }
       }
     },
     {
@@ -57,9 +78,16 @@
       "summary": "Product variants: goals metrics",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Kofi Mensah",
+      "assignee": "Grace Whitfield",
       "timeByPerson": {
-        "Kofi Mensah": 136800
+        "Grace Whitfield": 36000
+      },
+      "timeByPersonByDay": {
+        "Grace Whitfield": {
+          "2026-08-05": 12600,
+          "2026-08-06": 12600,
+          "2026-08-07": 12600
+        }
       }
     },
     {
@@ -68,9 +96,24 @@
       "summary": "Product variants: requirements breakdown",
       "statusName": "In Progress",
       "statusCategory": "indeterminate",
-      "assignee": "Kofi Mensah",
+      "assignee": "Taylor Kim",
       "timeByPerson": {
-        "Kofi Mensah": 136800
+        "Taylor Kim": 28800
+      },
+      "timeByPersonByDay": {
+        "Taylor Kim": {
+          "2026-09-15": 1800,
+          "2026-09-16": 1800,
+          "2026-09-17": 1800,
+          "2026-09-18": 1800,
+          "2026-09-21": 1800,
+          "2026-09-22": 1800,
+          "2026-09-23": 1800,
+          "2026-09-24": 1800,
+          "2026-09-25": 1800,
+          "2026-09-28": 1800,
+          "2026-09-29": 1800
+        }
       }
     },
     {
@@ -79,8 +122,9 @@
       "summary": "Product variants: workshops alignment",
       "statusName": "To Do",
       "statusCategory": "new",
-      "assignee": "Kofi Mensah",
-      "timeByPerson": {}
+      "assignee": "Taylor Kim",
+      "timeByPerson": {},
+      "timeByPersonByDay": {}
     }
   ],
   "comments": [],

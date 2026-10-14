@@ -39,6 +39,8 @@ export interface Member {
   name: string;
   role: string;
   squad: string;
+  /** Path under the app's base URL to a fruit avatar; initials when absent. */
+  avatar?: string;
 }
 export interface TeamData extends Baked {
   members: Member[];

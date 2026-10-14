@@ -1,12 +1,12 @@
 {
-  "id": "dt-670185fd",
+  "id": "dt-8dbcf0b7",
   "title": "Multi-warehouse stock view",
   "ticket": "NW-114",
   "rank": 14,
   "po": "Hannah Weiss",
   "analyst": "Dmitri Volkov",
   "designer": "Leila Karimi",
-  "architect": "",
+  "architect": "Oscar Lindqvist",
   "ragStatus": "green",
   "stageStatus": [],
   "discoveryEnd": "2026-09-15",
@@ -21,9 +21,22 @@
       "summary": "Multi-warehouse stock view: scope gate start",
       "statusName": "In Progress",
       "statusCategory": "indeterminate",
-      "assignee": "Leila Karimi",
+      "assignee": "Hannah Weiss",
       "timeByPerson": {
-        "Leila Karimi": 122400
+        "Hannah Weiss": 140400
+      },
+      "timeByPersonByDay": {
+        "Hannah Weiss": {
+          "2026-09-14": 16200,
+          "2026-09-15": 16200,
+          "2026-09-16": 16200,
+          "2026-09-17": 16200,
+          "2026-09-18": 16200,
+          "2026-09-21": 16200,
+          "2026-09-24": 16200,
+          "2026-09-28": 16200,
+          "2026-09-29": 16200
+        }
       }
     },
     {
@@ -32,8 +45,9 @@
       "summary": "Multi-warehouse stock view: process mapping",
       "statusName": "To Do",
       "statusCategory": "new",
-      "assignee": "Oscar Lindqvist",
-      "timeByPerson": {}
+      "assignee": "Dmitri Volkov",
+      "timeByPerson": {},
+      "timeByPersonByDay": {}
     }
   ],
   "comments": [],

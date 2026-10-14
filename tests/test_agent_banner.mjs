@@ -139,7 +139,10 @@ test('live: every shipped banner with placeholders resolves via its agents.json'
     .filter((d) => fs.existsSync(d));
   assert.ok(bannerDirs.length > 0, 'expected at least one banners/ dir');
   for (const dir of bannerDirs) {
-    const map = JSON.parse(fs.readFileSync(path.join(dir, 'agents.json'), 'utf8'));
+    // A banners/ dir with no agents.json is fine while none of its banners
+    // carries a model placeholder (an intro card, say); one that does needs it.
+    const mapPath = path.join(dir, 'agents.json');
+    const map = fs.existsSync(mapPath) ? JSON.parse(fs.readFileSync(mapPath, 'utf8')) : null;
     for (const f of fs.readdirSync(dir).filter((n) => n.endsWith('.txt'))) {
       const name = path.basename(f, '.txt');
       const text = fs.readFileSync(path.join(dir, f), 'utf8');
@@ -147,8 +150,9 @@ test('live: every shipped banner with placeholders resolves via its agents.json'
       for (const re of BANNER_DENYLIST) {
         assert.doesNotMatch(text, re, `${f}: banner depicts a destructive or covert action (${re}) - a model reads it as an injection and refuses to paste it`);
       }
-      const entry = map[name];
       if (!/\{\{MODEL/.test(text)) continue;
+      assert.ok(map, `${path.relative(ROOT, dir)}: ${f} carries a model placeholder but the dir has no agents.json`);
+      const entry = map[name];
       if (entry && !Array.isArray(entry) && typeof entry !== 'string') continue; // hint-only entry
       const rel = path.relative(ROOT, path.join(dir, f));
       const r = render({ spec: rel, root: ROOT, sessionModel: 'claude-fable-5-1' });

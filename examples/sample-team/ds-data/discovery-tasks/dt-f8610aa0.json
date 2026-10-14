@@ -1,12 +1,12 @@
 {
-  "id": "dt-abb34eaf",
+  "id": "dt-f8610aa0",
   "title": "Delivery tracking",
   "ticket": "NW-107",
   "rank": 7,
   "po": "Hannah Weiss",
   "analyst": "Dmitri Volkov",
   "designer": "Leila Karimi",
-  "architect": "",
+  "architect": "Oscar Lindqvist",
   "ragStatus": "green",
   "stageStatus": [
     "preparation",
@@ -25,9 +25,16 @@
       "summary": "Delivery tracking: scope gate start",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Leila Karimi",
+      "assignee": "Hannah Weiss",
       "timeByPerson": {
-        "Leila Karimi": 21600
+        "Hannah Weiss": 136800
+      },
+      "timeByPersonByDay": {
+        "Hannah Weiss": {
+          "2026-07-30": 45000,
+          "2026-07-31": 45000,
+          "2026-08-03": 45000
+        }
       }
     },
     {
@@ -36,9 +43,16 @@
       "summary": "Delivery tracking: process mapping",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Oscar Lindqvist",
+      "assignee": "Dmitri Volkov",
       "timeByPerson": {
-        "Oscar Lindqvist": 50400
+        "Dmitri Volkov": 136800
+      },
+      "timeByPersonByDay": {
+        "Dmitri Volkov": {
+          "2026-08-04": 45000,
+          "2026-08-05": 45000,
+          "2026-08-06": 45000
+        }
       }
     },
     {
@@ -47,9 +61,16 @@
       "summary": "Delivery tracking: research insights",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Dmitri Volkov",
+      "assignee": "Leila Karimi",
       "timeByPerson": {
-        "Dmitri Volkov": 75600
+        "Leila Karimi": 136800
+      },
+      "timeByPersonByDay": {
+        "Leila Karimi": {
+          "2026-08-05": 45000,
+          "2026-08-06": 45000,
+          "2026-08-07": 45000
+        }
       }
     },
     {
@@ -60,7 +81,14 @@
       "statusCategory": "done",
       "assignee": "Hannah Weiss",
       "timeByPerson": {
-        "Hannah Weiss": 28800
+        "Hannah Weiss": 140400
+      },
+      "timeByPersonByDay": {
+        "Hannah Weiss": {
+          "2026-08-10": 46800,
+          "2026-08-11": 46800,
+          "2026-08-12": 46800
+        }
       }
     },
     {
@@ -69,9 +97,16 @@
       "summary": "Delivery tracking: requirements breakdown",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Oscar Lindqvist",
+      "assignee": "Dmitri Volkov",
       "timeByPerson": {
-        "Oscar Lindqvist": 144000
+        "Dmitri Volkov": 39600
+      },
+      "timeByPersonByDay": {
+        "Dmitri Volkov": {
+          "2026-08-12": 12600,
+          "2026-08-13": 12600,
+          "2026-08-14": 12600
+        }
       }
     },
     {
@@ -80,9 +115,16 @@
       "summary": "Delivery tracking: workshops alignment",
       "statusName": "Done",
       "statusCategory": "done",
-      "assignee": "Leila Karimi",
+      "assignee": "Dmitri Volkov",
       "timeByPerson": {
-        "Leila Karimi": 136800
+        "Dmitri Volkov": 61200
+      },
+      "timeByPersonByDay": {
+        "Dmitri Volkov": {
+          "2026-08-14": 19800,
+          "2026-08-17": 19800,
+          "2026-08-18": 19800
+        }
       }
     }
   ],

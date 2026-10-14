@@ -8,6 +8,7 @@
 // People and teams are fictitious. Ids start with `dm-uzycie-modulu-`.
 
 import { esc, modalShell } from './common.mjs';
+import { fruitFaceFor } from '../../assets/avatars/fruit-avatars.mjs';
 import { TEAMS, DATES, PEOPLE, LAST_WORKDAY, hoursOf, fmtDate, initialsOf } from './time-log-data.mjs';
 
 const P = 'dm-uzycie-modulu-';
@@ -48,7 +49,7 @@ function body({ fresh = false, team = '' } = {}) {
     const logged = work.filter((h) => h > 0).length;
     const pct = Math.round((logged / work.length) * 100);
     const missing = logged < work.length;
-    return `<div class="tlc-name-cell"><span class="tlc-avatar tlc-avatar--initials">${esc(p.ini)}</span><span class="tlc-name-text">${esc(p.name)}</span>`
+    return `<div class="tlc-name-cell"><span class="tlc-avatar demo-fruit">${fruitFaceFor(p.name)}</span><span class="tlc-name-text">${esc(p.name)}</span>`
       + `<button type="button" class="ds-btn ds-btn--tertiary ds-btn--sm tlc-teams-btn" aria-label="Send a Teams message" title="${missing ? 'Send a Teams message' : 'No gaps in time logging'}"${missing ? '' : ' disabled'}>${TEAMS_SVG}</button></div>`
       + hs.map(cellHtml).join('')
       + `<div class="tlc-cell tlc-cell--row-sum ${sumClass(pct)}">${logged}/${work.length}</div>`;

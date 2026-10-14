@@ -133,9 +133,28 @@ describe('scripts/readme-shots.mjs', () => {
     for (const key of ['SAMPLE_DATA_DIR', 'MODULES_DIR', 'DASHBOARD_LAYOUT_FILE', "NODE_ENV: 'test'", 'mkdtempSync']) assert.ok(src.includes(key), key);
     assert.match(src, /\/api\/sample-mode\/enter/);
   });
+
+  it('freezes the clock on the sample quarter and greets a sample person, not the git user', async () => {
+    const { loadShots, identityEnv } = await import('../scripts/readme-shots.mjs');
+    const doc = loadShots();
+    assert.equal(doc.clock, '2026-09-30T16:00:00Z');
+    assert.equal(doc.identity, 'Alex Morgan');
+    const team = JSON.parse(fs.readFileSync(path.join(ROOT, 'examples/sample-team/ds-data/team/team-members.json'), 'utf8'));
+    assert.ok(team.team_members.some((m) => m.first_name + ' ' + m.last_name === doc.identity), 'the identity is on the sample team');
+    assert.deepEqual(identityEnv('Alex Morgan'), { GIT_CONFIG_COUNT: '1', GIT_CONFIG_KEY_0: 'user.name', GIT_CONFIG_VALUE_0: 'Alex Morgan' });
+    assert.deepEqual(identityEnv(undefined), {});
+    const src = fs.readFileSync(path.join(ROOT, 'scripts/readme-shots.mjs'), 'utf8');
+    assert.match(src, /context\.clock\.setFixedTime\(new Date\(doc\.clock\)\)/);
+  });
 });
 
 describe('scripts/readme-showcase.mjs', () => {
+  it('phones show the whole screen, tab bar included, never a cropped top', () => {
+    const css = fs.readFileSync(path.join(ROOT, 'docs/images/showcase/src/poster.css'), 'utf8');
+    assert.match(css, /\.phone img \{[^}]*height: auto;/);
+    assert.doesNotMatch(css, /\.phone img \{[^}]*object-fit: cover/);
+  });
+
   it('parses its arguments and lists one poster per layout without starting anything', async () => {
     const { parseArgs, listLayouts, POSTER_SIZE, PHONE_SHOTS } = await import('../scripts/readme-showcase.mjs');
     assert.deepEqual(parseArgs([]), { step: 'all', port: 3778, help: false });

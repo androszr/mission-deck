@@ -11,6 +11,7 @@
 // team, sprints) reuse.
 
 import { esc, modalShell } from './common.mjs';
+import { fruitFaceFor } from '../../assets/avatars/fruit-avatars.mjs';
 import { TEAMS, DATES, PEOPLE, LAST_WORKDAY, hoursOf, fmtDate, initialsOf } from './time-log-data.mjs';
 
 /**
@@ -84,7 +85,7 @@ function _rowHtml(p, fresh, spot) {
       + ' aria-label="' + esc(title) + '"><span class="czas-pracy-cell-h">' + esc(fmtH(h)) + '</span></div>';
   }).join('');
   const pct = workdays ? Math.round((logged / workdays) * 100) : 0;
-  return '<div class="czas-pracy-name-cell' + (spot === p.slug ? ' czas-pracy-name-cell--spot' : '') + '" data-czas-pracy-person="' + esc(p.slug) + '"><span class="czas-pracy-avatar">' + esc(_initials(p.name)) + '</span>'
+  return '<div class="czas-pracy-name-cell' + (spot === p.slug ? ' czas-pracy-name-cell--spot' : '') + '" data-czas-pracy-person="' + esc(p.slug) + '"><span class="czas-pracy-avatar demo-fruit">' + fruitFaceFor(p.name) + '</span>'
     + '<span class="czas-pracy-name-text">' + esc(p.name) + '</span>'
     + '<button type="button" class="ds-btn ds-btn--tertiary ds-btn--sm czas-pracy-teams-btn" data-czas-pracy-teams="' + esc(p.slug) + '" aria-label="Send a Teams message" title="Send a Teams message">' + TEAMS_SVG + '</button></div>'
     + cells

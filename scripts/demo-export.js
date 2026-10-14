@@ -71,7 +71,6 @@ const SHELL_NAME = 'host__index.html';
 
 // Site mode (--site): the public page and its link-preview card.
 const SITE_URL = 'https://androszr.github.io/mission-deck/';
-const SITE_REPO_URL = 'https://github.com/androszr/mission-deck';
 const SITE_OG_SOURCE = 'assets/demo-og.png';
 const SITE_OG_NAME = 'demo-og.png';
 const SITE_TITLE = 'Mission Deck - try the demo';
@@ -910,7 +909,6 @@ if (require.main === module) {
     addSiteFile,
     runSite,
     SITE_URL,
-    SITE_REPO_URL,
     SITE_INDEX_PATH,
     LEFTOVER_TOKENS,
   };

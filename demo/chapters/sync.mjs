@@ -113,7 +113,7 @@ export default {
       caption: 'Meanwhile at **Sam’s**: Mission Deck sees three files to fetch.',
       mascot: 'working',
       actions: [
-        narrate('The second person', 'The top bar and the window say whose computer this is: “Sam’s computer” and his initials. On Sam’s computer the same “Team data” row now shows “to fetch”. Sam gets no file from Alex by email — only the encrypted mirror travels through GitLab.'),
+        narrate('The second person', 'The top bar and the window say whose computer this is: “Sam’s computer” and his initials. On Sam’s computer the same “Team data” row now shows “to fetch”. Sam gets no file from Alex by email — only the encrypted mirror travels between them, through the shared team repository.'),
         { type: 'click', target: '#synchronizacja-scm-ok' },
         { type: 'modal', close: '#synchronizacja-scm' },
         { type: 'surface', show: 'screen', mock: 'synchronizacja-switch' },

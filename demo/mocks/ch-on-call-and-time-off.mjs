@@ -9,6 +9,7 @@
 // dyzury-i-urlopy-*. Every person, phone and address is invented.
 
 import { esc, modalShell } from './common.mjs';
+import { fruitFaceFor } from '../../assets/avatars/fruit-avatars.mjs';
 import { modulePage, syncBar } from './ch-time-tracking.mjs';
 
 const DY = 'dyzury-i-urlopy-dyzury';
@@ -72,7 +73,7 @@ function _dyGrid(synced) {
     for (const c of cells.slice(w, w + 7)) {
       if (!c) { html += '<div class="' + P + '-dy-day ' + P + '-dy-day--empty"></div>'; continue; }
       const rows = synced ? _dutyOf(c.d, c.we) : [];
-      const av = rows.map((r) => '<span class="' + P + '-avatar ' + P + '-ring--' + r.cols[0] + '" title="' + esc(r.p.name) + '">' + esc(_ini(r.p.name)) + '</span>').join('');
+      const av = rows.map((r) => '<span class="' + P + '-avatar demo-fruit ' + P + '-ring--' + r.cols[0] + '" title="' + esc(r.p.name) + '">' + fruitFaceFor(r.p.name) + '</span>').join('');
       html += '<div class="' + P + '-dy-day' + (c.we ? ' ' + P + '-dy-day--weekend' : '') + (c.d === 4 ? ' ' + P + '-dy-day--today' : '') + '" data-dyzury-i-urlopy-day="' + c.d + '">'
         + '<span class="' + P + '-dy-day-num">' + c.d + '</span>' + (av ? '<span class="' + P + '-dy-day-avatars">' + av + '</span>' : '') + '</div>';
     }
@@ -90,7 +91,7 @@ function _table(head, rows) {
 }
 
 function _person(n) {
-  return '<span class="' + P + '-person-cell"><span class="' + P + '-avatar">' + esc(_ini(n)) + '</span><span>' + esc(n) + '</span></span>';
+  return '<span class="' + P + '-person-cell"><span class="' + P + '-avatar demo-fruit">' + fruitFaceFor(n) + '</span><span>' + esc(n) + '</span></span>';
 }
 
 function dyBody({ synced = false } = {}) {
@@ -98,7 +99,7 @@ function dyBody({ synced = false } = {}) {
   const legend = '<div class="' + P + '-legend">' + COLUMNS.map((c) => '<span class="ds-badge ' + c.badge + '">' + esc(c.label) + '</span>').join('') + '</div>';
   const prefix = synced ? '' : '<div class="ds-callout ds-callout--info">No rota for this month - click Sync with Confluence.</div>';
   const godziny = _table(['System', 'Days', 'Hours', 'Scope'], GODZINY.map((g) => '<tr>' + g.map((x) => '<td>' + esc(x) + '</td>').join('') + '</tr>').join(''));
-  const koord = _table(['Person', 'Phone', 'Email'], KOORD.map((k) => '<tr><td><span class="' + P + '-person-cell"><span class="' + P + '-avatar">' + esc(_ini(k.name)) + '</span>'
+  const koord = _table(['Person', 'Phone', 'Email'], KOORD.map((k) => '<tr><td><span class="' + P + '-person-cell"><span class="' + P + '-avatar demo-fruit">' + fruitFaceFor(k.name) + '</span>'
     + '<span class="' + P + '-koord-info"><span class="' + P + '-koord-name">' + esc(k.name) + '</span><span class="' + P + '-koord-note">' + esc(k.note) + '</span></span></span></td>'
     + '<td><span class="ds-btn ds-btn--tertiary ds-btn--sm">' + esc(k.phone) + '</span></td><td><span class="ds-btn ds-btn--tertiary ds-btn--sm">' + esc(_mail(k.name)) + '</span></td></tr>').join(''));
   const dyzurni = _table(['Person', 'Scopes', 'Role', 'Company', 'Phone', 'Email'], ONCALL.map((o, i) => '<tr><td>' + _person(o.name) + '</td>'
@@ -124,7 +125,7 @@ function _dyActions({ busy = false } = {}) {
 
 function dayModal() {
   const rows = _dutyOf(4, true);
-  const body = rows.map((r) => '<div class="' + P + '-modal-person"><span class="' + P + '-modal-avatar">' + esc(_ini(r.p.name)) + '</span>'
+  const body = rows.map((r) => '<div class="' + P + '-modal-person"><span class="' + P + '-modal-avatar demo-fruit">' + fruitFaceFor(r.p.name) + '</span>'
     + '<div><div class="' + P + '-modal-person-name">' + esc(r.p.name) + '</div><div class="' + P + '-badges">'
     + r.cols.map((k) => { const c = COLUMNS.find((x) => x.key === k); return '<span class="ds-badge ' + c.badge + '">' + esc(c.label) + '</span>'; }).join('') + '</div></div></div>'
     + '<div class="' + P + '-modal-contact"><span class="ds-btn ds-btn--tertiary ds-btn--sm">' + esc(r.p.phone) + '</span><span class="ds-btn ds-btn--tertiary ds-btn--sm">' + esc(_mail(r.p.name)) + '</span>'
@@ -166,7 +167,7 @@ function _urCalendar(list) {
       const on = c.we ? [] : list.filter((e) => e.from <= c.d && c.d <= e.to);
       html += '<div class="' + P + '-ur-day' + (c.we ? ' ' + P + '-ur-day--off' : '') + (c.d === 4 ? ' ' + P + '-ur-day--today' : '') + '" data-dyzury-i-urlopy-uday="' + c.d + '">'
         + '<div class="' + P + '-ur-day-num">' + c.d + '</div>'
-        + (on.length ? '<div class="' + P + '-ur-day-avatars">' + on.map((e) => '<span class="' + P + '-ur-avatar ' + P + '-c--' + e.c + '" data-dyzury-i-urlopy-leave="' + esc(_slug(e.name) + c.d) + '" title="' + esc(e.name) + '">' + esc(_ini(e.name)) + '</span>').join('') + '</div>' : '')
+        + (on.length ? '<div class="' + P + '-ur-day-avatars">' + on.map((e) => '<span class="' + P + '-ur-avatar demo-fruit ' + P + '-c--' + e.c + '" data-dyzury-i-urlopy-leave="' + esc(_slug(e.name) + c.d) + '" title="' + esc(e.name) + '">' + fruitFaceFor(e.name) + '</span>').join('') + '</div>' : '')
         + '</div>';
     }
     html += '</div>';
@@ -194,7 +195,7 @@ function urBody({ fetched = false, search = '', team = '', progress = false } = 
 function popover() {
   const e = LEAVES[1];
   const days = _workdays(e.from, e.to);
-  return '<div class="' + P + '-popover" id="' + P + '-popover"><div class="' + P + '-popover-head"><span class="' + P + '-popover-avatar ' + P + '-c--' + e.c + '">' + esc(_ini(e.name)) + '</span>'
+  return '<div class="' + P + '-popover" id="' + P + '-popover"><div class="' + P + '-popover-head"><span class="' + P + '-popover-avatar demo-fruit ' + P + '-c--' + e.c + '">' + fruitFaceFor(e.name) + '</span>'
     + '<div><div class="' + P + '-popover-name">' + esc(e.name) + '</div><div class="' + P + '-popover-role">' + esc(e.role) + '</div><div class="' + P + '-popover-team">' + esc(e.team) + '</div></div></div>'
     + '<div class="' + P + '-popover-dates"><span class="' + P + '-popover-dates-label">On leave</span><span class="' + P + '-popover-dates-value">05.10.2026 - 09.10.2026</span>'
     + '<span class="' + P + '-popover-dates-days">' + days + ' workdays</span></div></div>';

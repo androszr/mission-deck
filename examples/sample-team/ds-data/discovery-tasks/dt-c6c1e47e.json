@@ -1,12 +1,12 @@
 {
-  "id": "dt-88dbcf0b",
+  "id": "dt-c6c1e47e",
   "title": "Partner sandbox",
   "ticket": "NW-115",
   "rank": 15,
   "po": "Amara Diallo",
   "analyst": "Felix Moreau",
   "designer": "Yuki Sato",
-  "architect": "",
+  "architect": "Chloe Dubois",
   "ragStatus": "green",
   "stageStatus": [],
   "discoveryEnd": "2026-09-19",
@@ -21,9 +21,23 @@
       "summary": "Partner sandbox: scope gate start",
       "statusName": "In Progress",
       "statusCategory": "indeterminate",
-      "assignee": "Yuki Sato",
+      "assignee": "Amara Diallo",
       "timeByPerson": {
-        "Yuki Sato": 126000
+        "Amara Diallo": 14400
+      },
+      "timeByPersonByDay": {
+        "Amara Diallo": {
+          "2026-09-14": 1800,
+          "2026-09-15": 1800,
+          "2026-09-16": 1800,
+          "2026-09-18": 1800,
+          "2026-09-21": 1800,
+          "2026-09-22": 1800,
+          "2026-09-24": 1800,
+          "2026-09-25": 1800,
+          "2026-09-28": 1800,
+          "2026-09-29": 1800
+        }
       }
     },
     {
@@ -32,8 +46,9 @@
       "summary": "Partner sandbox: process mapping",
       "statusName": "To Do",
       "statusCategory": "new",
-      "assignee": "Yuki Sato",
-      "timeByPerson": {}
+      "assignee": "Felix Moreau",
+      "timeByPerson": {},
+      "timeByPersonByDay": {}
     }
   ],
   "comments": [],

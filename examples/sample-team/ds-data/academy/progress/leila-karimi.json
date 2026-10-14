@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "person_slug": "leila-karimi",
+  "display_name": "Leila Karimi",
+  "unlocks": {
+    "etap-1": "2026-07-14T09:00:00.000Z",
+    "etap-2": "2026-07-20T09:00:00.000Z"
+  },
+  "steps": {
+    "etap-1": {
+      "step-1": {
+        "checked_at": "2026-07-14T10:10:00.000Z",
+        "method": "server"
+      },
+      "step-2": {
+        "checked_at": "2026-07-14T11:00:00.000Z",
+        "method": "server"
+      },
+      "step-2b": {
+        "checked_at": "2026-07-15T12:40:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2c": {
+        "checked_at": "2026-07-15T13:00:00.000Z",
+        "method": "self-attest"
+      },
+      "step-3": {
+        "checked_at": "2026-07-16T14:40:00.000Z",
+        "method": "self-attest"
+      },
+      "step-4": {
+        "checked_at": "2026-07-16T15:30:00.000Z",
+        "method": "self-attest"
+      },
+      "step-5": {
+        "checked_at": "2026-07-17T10:40:00.000Z",
+        "method": "server"
+      },
+      "step-6": {
+        "checked_at": "2026-07-17T11:20:00.000Z",
+        "method": "server"
+      }
+    },
+    "etap-2": {
+      "step-1": {
+        "checked_at": "2026-07-20T10:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2": {
+        "checked_at": "2026-07-20T11:00:00.000Z",
+        "method": "self-attest"
+      },
+      "step-3": {
+        "checked_at": "2026-07-21T12:50:00.000Z",
+        "method": "self-attest"
+      },
+      "step-4": {
+        "checked_at": "2026-07-21T13:00:00.000Z",
+        "method": "self-attest"
+      }
+    }
+  },
+  "completed": {
+    "etap-1": "2026-07-18T16:00:00.000Z"
+  }
+}

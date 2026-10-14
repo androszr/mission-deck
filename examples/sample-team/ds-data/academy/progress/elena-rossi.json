@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "person_slug": "elena-rossi",
+  "display_name": "Elena Rossi",
+  "unlocks": {
+    "etap-1": "2026-07-12T09:00:00.000Z",
+    "etap-2": "2026-07-24T09:00:00.000Z"
+  },
+  "steps": {
+    "etap-1": {
+      "step-1": {
+        "checked_at": "2026-07-12T10:20:00.000Z",
+        "method": "server"
+      },
+      "step-2": {
+        "checked_at": "2026-07-12T11:50:00.000Z",
+        "method": "server"
+      },
+      "step-2b": {
+        "checked_at": "2026-07-13T12:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2c": {
+        "checked_at": "2026-07-13T13:50:00.000Z",
+        "method": "self-attest"
+      },
+      "step-3": {
+        "checked_at": "2026-07-14T14:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-4": {
+        "checked_at": "2026-07-14T15:50:00.000Z",
+        "method": "self-attest"
+      },
+      "step-5": {
+        "checked_at": "2026-07-15T10:50:00.000Z",
+        "method": "server"
+      },
+      "step-6": {
+        "checked_at": "2026-07-15T11:50:00.000Z",
+        "method": "server"
+      }
+    },
+    "etap-2": {
+      "step-1": {
+        "checked_at": "2026-07-24T10:20:00.000Z",
+        "method": "self-attest"
+      },
+      "step-2": {
+        "checked_at": "2026-07-24T11:00:00.000Z",
+        "method": "self-attest"
+      },
+      "step-3": {
+        "checked_at": "2026-07-25T12:10:00.000Z",
+        "method": "self-attest"
+      },
+      "step-4": {
+        "checked_at": "2026-07-25T13:40:00.000Z",
+        "method": "self-attest"
+      }
+    }
+  },
+  "completed": {
+    "etap-1": "2026-07-16T16:00:00.000Z"
+  }
+}
