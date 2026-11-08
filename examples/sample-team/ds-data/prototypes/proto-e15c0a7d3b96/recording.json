@@ -1,0 +1,169 @@
+{
+  "steps": [
+    {
+      "id": "console-list",
+      "proto": "proto-7f3a91c0d2e4",
+      "device": "desktop",
+      "frames": [
+        {
+          "state": "list",
+          "ms": 1600
+        },
+        {
+          "cur": "t=Pitch system fault on blade B",
+          "act": "hover:t=Pitch system fault on blade B",
+          "ms": 900
+        },
+        {
+          "cur": "t=Pitch system fault on blade B",
+          "act": "click:t=Pitch system fault on blade B",
+          "cam": "css=.dsp-panel",
+          "ms": 2600
+        },
+        {
+          "cur": "t=Live readings",
+          "act": "hover:t=Live readings",
+          "cam": "css=.dsp-panel",
+          "ms": 3200
+        }
+      ]
+    },
+    {
+      "id": "console-assign",
+      "proto": "proto-7f3a91c0d2e4",
+      "device": "desktop",
+      "frames": [
+        {
+          "state": "detail",
+          "ms": 1400
+        },
+        {
+          "cur": "b=Assign technician",
+          "act": "hover:b=Assign technician",
+          "ms": 800
+        },
+        {
+          "cur": "b=Assign technician",
+          "act": "click:b=Assign technician",
+          "cam": "css=.ds-modal",
+          "ms": 2600
+        },
+        {
+          "cur": "a=Choose Lena Fischer",
+          "act": "click:a=Choose Lena Fischer",
+          "cam": "css=.ds-modal",
+          "ms": 1800
+        },
+        {
+          "cur": "b=Assign and notify",
+          "act": "click:b=Assign and notify",
+          "ms": 3400
+        }
+      ]
+    },
+    {
+      "id": "console-crew",
+      "proto": "proto-7f3a91c0d2e4",
+      "device": "desktop",
+      "frames": [
+        {
+          "state": "list",
+          "ms": 1300
+        },
+        {
+          "cur": "b=Crew board",
+          "act": "click:b=Crew board",
+          "ms": 2600
+        },
+        {
+          "cur": "a=Open WO-1038",
+          "act": "hover:a=Open WO-1038",
+          "ms": 2600
+        }
+      ]
+    },
+    {
+      "id": "field-today",
+      "proto": "proto-2b8e64f1a9c7",
+      "device": "phone",
+      "frames": [
+        {
+          "state": "today",
+          "ms": 1600
+        },
+        {
+          "cur": "a=Open job WO-1042",
+          "act": "click:a=Open job WO-1042",
+          "ms": 2600
+        },
+        {
+          "cur": "b=Start safety check",
+          "act": "hover:b=Start safety check",
+          "ms": 2800
+        }
+      ]
+    },
+    {
+      "id": "field-safety",
+      "proto": "proto-2b8e64f1a9c7",
+      "device": "phone",
+      "frames": [
+        {
+          "state": "safety",
+          "ms": 1400
+        },
+        {
+          "cur": "t=Wind below 12 m/s",
+          "act": "click:t=Wind below 12 m/s",
+          "ms": 700
+        },
+        {
+          "cur": "t=Lockout / tagout applied",
+          "act": "click:t=Lockout / tagout applied",
+          "ms": 700
+        },
+        {
+          "cur": "t=Rescue kit checked",
+          "act": "click:t=Rescue kit checked",
+          "ms": 700
+        },
+        {
+          "cur": "t=Climbing partner on site",
+          "act": "click:t=Climbing partner on site",
+          "ms": 700
+        },
+        {
+          "cur": "t=Harness, helmet and gloves on",
+          "act": "click:t=Harness, helmet and gloves on",
+          "ms": 1500
+        },
+        {
+          "cur": "b=Start work",
+          "act": "click:b=Start work",
+          "ms": 2600
+        }
+      ]
+    },
+    {
+      "id": "field-close",
+      "proto": "proto-2b8e64f1a9c7",
+      "device": "phone",
+      "frames": [
+        {
+          "state": "work-filled",
+          "ms": 1500
+        },
+        {
+          "cur": "b=Complete job",
+          "act": "click:b=Complete job",
+          "ms": 2600
+        },
+        {
+          "cur": "b=Close job and send report",
+          "act": "click:b=Close job and send report",
+          "ms": 3200
+        }
+      ]
+    }
+  ]
+}

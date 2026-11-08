@@ -14,13 +14,14 @@ let count = 0;
 const base = `# Prototype
 **Prototype id:** example
 **Prototype format:** react
+**Prototype kind:** desktop
 **Prototype mode:** spec-driven
 ## Files to change
 - \`data-sub-repositories/ds-data/prototypes/example/index.tsx\`
 ## New files
 - \`data-sub-repositories/ds-data/prototypes/example/spec.json\`
 ## Steps
-1. Implement index.tsx and spec.json using ../../ds, demoStates, useDemoState, breakpoints and @container proto.
+1. Implement index.tsx and spec.json using ../../ds, demoStates, useDemoState, breakpoints and @container proto; every screen root carries data-track-screen.
 ## Test plan
 - [ ] node scripts/check-proto-ds.js data-sub-repositories/ds-data/prototypes/example
 ## Visual verification (Playwright)
@@ -81,6 +82,27 @@ test('P7 demoStates: BLOCK for a new prototype, WARN for an existing one without
   assert.ok(has(findings(noStates.replace('breakpoints', 'widths')), 'P7', 'BLOCK'));
   assert.deepEqual(findings(base), []);
   fs.rmSync(path.join(protoRoot, 'example'), { recursive: true, force: true });
+});
+
+// -- prototype kit: P18 the kind is named, P19 the screens are named ----------
+test('P18: a plan header without a valid **Prototype kind:** warns, every kind is clean', () => {
+  const noKind = base.replace('**Prototype kind:** desktop\n', '');
+  assert.ok(has(findings(noKind), 'P18', 'WARN'));
+  assert.ok(has(findings(base.replace('kind:** desktop', 'kind:** tablet')), 'P18', 'WARN'));
+  for (const kind of ['desktop', 'mobile', 'briefing', 'blank']) {
+    assert.ok(none(findings(base.replace('kind:** desktop', `kind:** ${kind}`)), 'P18'), kind);
+  }
+  assert.ok(none(findings(noKind.replace('**Prototype format:** react', '**Prototype format:** vanilla')), 'P18'), 'a legacy format has no kind');
+});
+test('P19: steps that never name the screens warn, data-track-screen or trackScreen is clean', () => {
+  const unnamed = base.replace('; every screen root carries data-track-screen', '');
+  assert.ok(has(findings(unnamed), 'P19', 'WARN'));
+  assert.ok(none(findings(withStep('2. Name the layer with trackScreen="Area > Sheet".').replace('; every screen root carries data-track-screen', '')), 'P19'));
+  assert.ok(none(findings(base), 'P19'));
+});
+test('P4: an import.meta.glob pattern must stay inside ./assets/', () => {
+  assert.ok(none(findings(withStep("2. Load the frames with `import.meta.glob('./assets/frames/*.jpg', { eager: true })`.")), 'P4'));
+  assert.ok(has(findings(withStep("2. Load them with `import.meta.glob('../other/*.jpg')`.")), 'P4', 'BLOCK'));
 });
 
 // -- R-03: P4 the import allowlist ---------------------------------------------
@@ -220,12 +242,13 @@ test('P17 (15c): own switcher or replaceState warns, reading useDemoState is cle
 // The plan template, filled with realistic values, trips none of the rules
 // added for R-21/R-03: its boilerplate names customElements[], a `case`, an
 // `@container (min-width)` and a DS package, and none of those is a proposal.
-test('filled plan-prototype.md template trips no P4 or P8-P17 rule', () => {
+test('filled plan-prototype.md template trips no P4 or P8-P19 rule', () => {
   const tpl = fs.readFileSync(new URL('../.claude/skills/prototype/templates/plan-prototype.md', import.meta.url), 'utf8');
   const filled = tpl
     .replace(/\{\{#if [^}]+\}\}[\s\S]*?\{\{\/if\}\}/g, '')
     .replaceAll('{{proto-id}}', 'example')
     .replace('{{react | vanilla}}', 'react')
+    .replace('{{desktop | mobile | briefing | blank}}', 'desktop')
     .replace('{{requirements-driven | spec-driven}}', 'spec-driven')
     .replace('(min-width: ...)', '(min-width: 960px)')
     .replace("`case '<id>':`", "`case 'empty':`")

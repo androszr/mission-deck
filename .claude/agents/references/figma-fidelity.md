@@ -19,6 +19,43 @@ skill's hard-rule list.
 `figma_reference_dir: user-data/figma-reference/<id>/` from `/prototype` Phase 1. Every other
 section applies to EVERY prototype build.
 
+## Always, with or without a reference
+
+Rules that make a prototype feel like the product. They apply to every build; each exists because
+the defect it names reached a user test after every automated gate had passed. Sections 1-17 below
+carry the detail and the precedent; this list is the short form to apply while writing.
+
+1. **Interaction states belong to the control.** Every clickable row, card or list item has
+   `cursor: pointer` and a visible hover from a real token; every control has `:focus-visible`
+   (sections 7, 16c).
+2. **The label is the hit area.** A checkbox or radio toggles when its label or row is clicked,
+   exactly once - no double toggle from a nested control (sections 16a, 16b).
+3. **Data text truncates, it does not wrap the layout apart.** Names, titles and ids in tables and
+   cards get `min-width: 0` on the flex or grid child plus ellipsis, with the full text in `title`
+   (section 11).
+4. **Scroll resets on navigation.** A new screen starts at the top; a phone keeps the old scroll
+   otherwise (section 8).
+5. **Icons are currentColor.** Tint an icon by setting `color` on its parent - never an `svg`
+   selector, a filter or a mask (section 5).
+6. **Resolve a token before you use it.** A `--*-border` token can be transparent; the linter blocks
+   a token that does not exist, you check what the known ones resolve to (section 6).
+7. **No invented constraints.** A fixed `min-width`, `max-width` or `height` needs a source (a
+   measured layout tree, a reference frame); otherwise the content and the grid decide (section 2).
+8. **Override by structure, not by force.** No `!important`, no deep selectors into a DS component's
+   internals; use its props or wrap it (section 14).
+9. **Measure, do not look.** "Looks the same" is not evidence; a bounding box or a computed style is
+   (section 13).
+10. **Evidence for absence.** "There is no icon or component for this" needs the grep or ls that
+    proves it (section 6).
+11. **Layers are layers.** Menus, popovers, sheets and modals are DS layers and carry a screen name
+    for analytics (`trackScreen`); nothing with a `transform` sits between a layer and the canvas
+    (section 16d). Every screen root carries `data-track-screen`, so a click lands on a named screen
+    and not in "unknown screen".
+
+Rules 12-15 of the same short form (component instances keep their size, numbers come from the
+layout tree, text is copied exactly, a departure is a user decision) are sections 1, 3, 4 and the
+deviation rules of `/prototype` - not restated here.
+
 ## The reference bundle (what Phase 1 writes)
 
 `/prototype` Phase 1 ingests a Figma link with `scripts/figma_reference.py` (Figma REST API, run by

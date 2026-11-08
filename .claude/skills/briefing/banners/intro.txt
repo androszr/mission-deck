@@ -1,0 +1,17 @@
+BRIEFING  |  MISSION DECK  |  Phase 0
+
+  .---------------------------------------------------.
+  | MISSION DECK // BRIEFING           [_][=][X]      |
+  |...................................................|
+  |                                                   |
+  |  > ./record.sh --briefing #proto-detail           |
+  |                                                   |
+  |  real prototypes. real clicks.                    |
+  |  frames, camera, cursor - recorded, not drawn.    |
+  |                                                   |
+  |  $ record  ############## 6 / 6 steps             |
+  |                                                   |
+  |  > let's explain the change.                      |
+  |                                                   |
+  '---------------------------------------------------'
+  /briefing - Self-playing briefing

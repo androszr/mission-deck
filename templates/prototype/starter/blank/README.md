@@ -1,9 +1,9 @@
 # Prototype starter
 
-`POST /api/prototypes` copies `index.tsx` and `styles.css` to
+`POST /api/prototypes` with `kind: blank` copies `index.tsx` and `styles.css` to
 `data-sub-repositories/ds-data/prototypes/<id>/` (the server substitutes
 `{{PROTO_NAME_JSON}}` and `{{PROTO_ID}}` and generates `spec.json`). This is the
-**only** starter.
+**blank** starter: one screen, no frame.
 
 ## What it contains
 

@@ -1,0 +1,6 @@
+{
+  "_comment": "banner name -> agent; /briefing runs inline (no agent), so the banner carries no {{MODEL}}.",
+  "intro": {
+    "hint": "no agent - the /briefing intro banner"
+  }
+}

@@ -1,0 +1,796 @@
+{
+  "title": "From alarm to repair, faster",
+  "subtitle": "For shift leads and operations managers: what changes in dispatching and in the field, why, and what your shift gains",
+  "kicker": "Ops Console - Field maintenance",
+  "framesDate": "14 Oct",
+  "guide": "Vane",
+  "minDurations": {
+    "card": 4500,
+    "agenda": 9000,
+    "why": 11000,
+    "compare": 9000,
+    "screen": 6000,
+    "phone": 6000,
+    "faq": 12000,
+    "summary": 10000
+  },
+  "sources": {
+    "shadowing": "Dispatch shadowing, three regions, September",
+    "interviews": "Interviews with eight field technicians",
+    "sessions": "Prototype test sessions with dispatchers and technicians",
+    "logs": "Work-order log, last quarter (aggregates only)"
+  },
+  "chapters": [
+    {
+      "id": "opening",
+      "title": "From alarm to repair, faster",
+      "steps": [
+        {
+          "id": "opening-1",
+          "type": "card",
+          "pose": "wave",
+          "caption": "Hi, I am **Vane**. In the next few minutes I will show you how a turbine alarm becomes a finished repair in the **new Ops Console** - and what changes for your shift."
+        },
+        {
+          "id": "opening-2",
+          "type": "agenda",
+          "pose": "point",
+          "caption": "Four stops: **why** we change dispatching, the **new console** for dispatchers, the **technician app** in the field, and the questions shift leads asked us most."
+        }
+      ]
+    },
+    {
+      "id": "why",
+      "title": "Why we change dispatching",
+      "steps": [
+        {
+          "id": "why-1",
+          "type": "card",
+          "pose": "think",
+          "caption": "First, the why. Nobody is doing a bad job today - the **tools make the morning slow**."
+        },
+        {
+          "id": "why-2",
+          "type": "why",
+          "pose": "think",
+          "heading": "Why",
+          "paragraphs": [
+            {
+              "text": "A critical alarm takes on average 40 minutes to reach a technician, most of it spent phoning around for who is free and nearby.",
+              "source": "shadowing"
+            },
+            {
+              "text": "Technicians often arrive without the fault history and call back for it from the tower base.",
+              "source": "interviews"
+            },
+            {
+              "text": "The safety sign-off is on paper and reaches the office at the end of the day, if at all.",
+              "source": "interviews"
+            }
+          ],
+          "benefitsHeading": "What the shift gains",
+          "benefits": [
+            {
+              "icon": "clock",
+              "title": "Minutes, not calls",
+              "text": "The console suggests who fits the job: skills, distance and free hours in one list.",
+              "source": "sessions"
+            },
+            {
+              "icon": "turbine",
+              "title": "History in the pocket",
+              "text": "Readings, history and the dispatcher's note travel with the job to the phone.",
+              "source": "sessions"
+            },
+            {
+              "icon": "shield",
+              "title": "Safety on record",
+              "text": "Work starts only after the five safety confirmations - logged with the job.",
+              "source": "sessions"
+            }
+          ],
+          "caption": "Three things slow the morning down: **finding a free technician**, **missing context** on site, and a **paper safety sign-off**. Each one has a fix in the new console."
+        },
+        {
+          "id": "why-3",
+          "type": "compare",
+          "pose": "point",
+          "before": {
+            "title": "Today",
+            "points": [
+              "Alarm list in one tool, crew calendar in another",
+              "Phone calls to find who is free",
+              "Fault history requested by phone from site",
+              "Paper safety form, collected weekly"
+            ]
+          },
+          "after": {
+            "title": "With the new console",
+            "points": [
+              "Alarms, crew and workload on one screen",
+              "Ranked suggestion: best match first",
+              "History and note on the technician's phone",
+              "Safety check gates the start of work"
+            ]
+          },
+          "caption": "Side by side: what used to need **two tools and three calls** now happens **in one place**."
+        }
+      ]
+    },
+    {
+      "id": "console",
+      "title": "The new dispatch console",
+      "steps": [
+        {
+          "id": "console-1",
+          "type": "card",
+          "pose": "point",
+          "caption": "Now the dispatcher's desk. Everything you see next is a **clickable prototype**, recorded on the morning of 14 October."
+        },
+        {
+          "id": "console-list",
+          "type": "screen",
+          "pose": "point",
+          "source": "proto-7f3a91c0d2e4",
+          "caption": "The morning queue is sorted by priority. One click on the **critical pitch fault** opens the panel with **live readings and history** - no second tool.",
+          "frames": [
+            {
+              "file": "console-list-00.jpg",
+              "ms": 1600,
+              "transition": 0
+            },
+            {
+              "file": "console-list-01.jpg",
+              "ms": 900,
+              "transition": 160
+            },
+            {
+              "file": "console-list-02.jpg",
+              "ms": 2600,
+              "transition": 160
+            },
+            {
+              "file": "console-list-03.jpg",
+              "ms": 3200,
+              "transition": 160
+            }
+          ],
+          "motion": {
+            "camera": [
+              {
+                "ms": 0,
+                "x": 0.5,
+                "y": 0.5,
+                "zoom": 1
+              },
+              {
+                "ms": 2500,
+                "x": 0.5,
+                "y": 0.5,
+                "zoom": 1
+              },
+              {
+                "ms": 3300,
+                "x": 0.8763,
+                "y": 0.5292,
+                "zoom": 1
+              },
+              {
+                "ms": 5100,
+                "x": 0.8763,
+                "y": 0.5292,
+                "zoom": 1
+              },
+              {
+                "ms": 5900,
+                "x": 0.8763,
+                "y": 0.5292,
+                "zoom": 1
+              }
+            ],
+            "cursor": [
+              {
+                "ms": 0,
+                "x": 0.5144,
+                "y": 0.6262
+              },
+              {
+                "ms": 810,
+                "x": 0.5144,
+                "y": 0.6262
+              },
+              {
+                "ms": 1460,
+                "x": 0.4144,
+                "y": 0.5062
+              },
+              {
+                "ms": 1710,
+                "x": 0.4144,
+                "y": 0.5062
+              },
+              {
+                "ms": 2360,
+                "x": 0.4144,
+                "y": 0.5062
+              },
+              {
+                "ms": 4310,
+                "x": 0.4144,
+                "y": 0.5062
+              },
+              {
+                "ms": 4960,
+                "x": 0.8766,
+                "y": 0.3396
+              }
+            ],
+            "events": [
+              {
+                "ms": 2410,
+                "type": "click"
+              }
+            ]
+          }
+        },
+        {
+          "id": "console-assign",
+          "type": "screen",
+          "pose": "point",
+          "source": "proto-7f3a91c0d2e4",
+          "caption": "**Assign technician** ranks the crew: who is free, who has the skills, how far away, how full the day is. The dispatcher picks the **best match** and the job goes straight to the phone.",
+          "frames": [
+            {
+              "file": "console-assign-00.jpg",
+              "ms": 1400,
+              "transition": 0
+            },
+            {
+              "file": "console-assign-01.jpg",
+              "ms": 800,
+              "transition": 160
+            },
+            {
+              "file": "console-assign-02.jpg",
+              "ms": 2600,
+              "transition": 160
+            },
+            {
+              "file": "console-assign-03.jpg",
+              "ms": 1800,
+              "transition": 160
+            },
+            {
+              "file": "console-assign-04.jpg",
+              "ms": 3400,
+              "transition": 160
+            }
+          ],
+          "motion": {
+            "camera": [
+              {
+                "ms": 0,
+                "x": 0.5,
+                "y": 0.5,
+                "zoom": 1
+              },
+              {
+                "ms": 2200,
+                "x": 0.5,
+                "y": 0.5,
+                "zoom": 1
+              },
+              {
+                "ms": 3000,
+                "x": 0.5,
+                "y": 0.5,
+                "zoom": 1.269
+              },
+              {
+                "ms": 4800,
+                "x": 0.5,
+                "y": 0.5,
+                "zoom": 1.269
+              },
+              {
+                "ms": 5600,
+                "x": 0.5,
+                "y": 0.5,
+                "zoom": 1.269
+              }
+            ],
+            "cursor": [
+              {
+                "ms": 0,
+                "x": 0.95,
+                "y": 0.95
+              },
+              {
+                "ms": 610,
+                "x": 0.95,
+                "y": 0.95
+              },
+              {
+                "ms": 1260,
+                "x": 0.8766,
+                "y": 0.9542
+              },
+              {
+                "ms": 1410,
+                "x": 0.8766,
+                "y": 0.9542
+              },
+              {
+                "ms": 2060,
+                "x": 0.8766,
+                "y": 0.9542
+              },
+              {
+                "ms": 4010,
+                "x": 0.8766,
+                "y": 0.9542
+              },
+              {
+                "ms": 4660,
+                "x": 0.5,
+                "y": 0.3245
+              },
+              {
+                "ms": 5810,
+                "x": 0.5,
+                "y": 0.3245
+              },
+              {
+                "ms": 6460,
+                "x": 0.6379,
+                "y": 0.7974
+              }
+            ],
+            "events": [
+              {
+                "ms": 2110,
+                "type": "click"
+              },
+              {
+                "ms": 4710,
+                "type": "click"
+              },
+              {
+                "ms": 6510,
+                "type": "click"
+              }
+            ]
+          }
+        },
+        {
+          "id": "console-crew",
+          "type": "screen",
+          "pose": "think",
+          "source": "proto-7f3a91c0d2e4",
+          "caption": "The **crew board** shows who is doing what today - and whose day is already full - before anyone picks up the phone.",
+          "frames": [
+            {
+              "file": "console-crew-00.jpg",
+              "ms": 1300,
+              "transition": 0
+            },
+            {
+              "file": "console-crew-01.jpg",
+              "ms": 2600,
+              "transition": 160
+            },
+            {
+              "file": "console-crew-02.jpg",
+              "ms": 2600,
+              "transition": 160
+            }
+          ],
+          "motion": {
+            "camera": [
+              {
+                "ms": 0,
+                "x": 0.5,
+                "y": 0.5,
+                "zoom": 1
+              }
+            ],
+            "cursor": [
+              {
+                "ms": 0,
+                "x": 0.1755,
+                "y": 0.2992
+              },
+              {
+                "ms": 510,
+                "x": 0.1755,
+                "y": 0.2992
+              },
+              {
+                "ms": 1160,
+                "x": 0.0755,
+                "y": 0.1792
+              },
+              {
+                "ms": 3110,
+                "x": 0.0755,
+                "y": 0.1792
+              },
+              {
+                "ms": 3760,
+                "x": 0.4109,
+                "y": 0.3333
+              }
+            ],
+            "events": [
+              {
+                "ms": 1210,
+                "type": "click"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "title": "On the technician's phone",
+      "steps": [
+        {
+          "id": "field-1",
+          "type": "card",
+          "pose": "wave",
+          "caption": "Same job, now in the field. Lena gets it on her phone, marked **New from dispatch**."
+        },
+        {
+          "id": "field-today",
+          "type": "phone",
+          "pose": "point",
+          "source": "proto-2b8e64f1a9c7",
+          "caption": "The new critical job sits **on top of the day**. Opening it shows the fault, the readings and the **note from dispatch** - before she drives out.",
+          "frames": [
+            {
+              "file": "field-today-00.jpg",
+              "ms": 1600,
+              "transition": 0
+            },
+            {
+              "file": "field-today-01.jpg",
+              "ms": 2600,
+              "transition": 160
+            },
+            {
+              "file": "field-today-02.jpg",
+              "ms": 2800,
+              "transition": 160
+            }
+          ],
+          "motion": {
+            "camera": [
+              {
+                "ms": 0,
+                "x": 0.5,
+                "y": 0.5,
+                "zoom": 1
+              }
+            ],
+            "cursor": [
+              {
+                "ms": 0,
+                "x": 0.6,
+                "y": 0.3577
+              },
+              {
+                "ms": 810,
+                "x": 0.6,
+                "y": 0.3577
+              },
+              {
+                "ms": 1460,
+                "x": 0.5,
+                "y": 0.2377
+              },
+              {
+                "ms": 3410,
+                "x": 0.5,
+                "y": 0.2377
+              },
+              {
+                "ms": 4060,
+                "x": 0.5,
+                "y": 0.8202
+              }
+            ],
+            "events": [
+              {
+                "ms": 1510,
+                "type": "click"
+              }
+            ]
+          }
+        },
+        {
+          "id": "field-safety",
+          "type": "phone",
+          "pose": "point",
+          "source": "proto-2b8e64f1a9c7",
+          "caption": "Before climbing, **five confirmations**. Until all five are ticked, **Start work stays locked** - and the check is logged with the job.",
+          "frames": [
+            {
+              "file": "field-safety-00.jpg",
+              "ms": 1400,
+              "transition": 0
+            },
+            {
+              "file": "field-safety-01.jpg",
+              "ms": 700,
+              "transition": 160
+            },
+            {
+              "file": "field-safety-02.jpg",
+              "ms": 700,
+              "transition": 160
+            },
+            {
+              "file": "field-safety-03.jpg",
+              "ms": 700,
+              "transition": 160
+            },
+            {
+              "file": "field-safety-04.jpg",
+              "ms": 700,
+              "transition": 160
+            },
+            {
+              "file": "field-safety-05.jpg",
+              "ms": 1500,
+              "transition": 160
+            },
+            {
+              "file": "field-safety-06.jpg",
+              "ms": 2600,
+              "transition": 160
+            }
+          ],
+          "motion": {
+            "camera": [
+              {
+                "ms": 0,
+                "x": 0.5,
+                "y": 0.5,
+                "zoom": 1
+              }
+            ],
+            "cursor": [
+              {
+                "ms": 0,
+                "x": 0.62,
+                "y": 0.3971
+              },
+              {
+                "ms": 610,
+                "x": 0.62,
+                "y": 0.3971
+              },
+              {
+                "ms": 1260,
+                "x": 0.52,
+                "y": 0.2771
+              },
+              {
+                "ms": 1310,
+                "x": 0.52,
+                "y": 0.2771
+              },
+              {
+                "ms": 1960,
+                "x": 0.5507,
+                "y": 0.3682
+              },
+              {
+                "ms": 2010,
+                "x": 0.5507,
+                "y": 0.3682
+              },
+              {
+                "ms": 2660,
+                "x": 0.539,
+                "y": 0.4815
+              },
+              {
+                "ms": 2710,
+                "x": 0.539,
+                "y": 0.4815
+              },
+              {
+                "ms": 3360,
+                "x": 0.4487,
+                "y": 0.5727
+              },
+              {
+                "ms": 3410,
+                "x": 0.4487,
+                "y": 0.5727
+              },
+              {
+                "ms": 4060,
+                "x": 0.449,
+                "y": 0.6638
+              },
+              {
+                "ms": 4910,
+                "x": 0.449,
+                "y": 0.6638
+              },
+              {
+                "ms": 5560,
+                "x": 0.5,
+                "y": 0.8707
+              }
+            ],
+            "events": [
+              {
+                "ms": 1310,
+                "type": "click"
+              },
+              {
+                "ms": 2010,
+                "type": "click"
+              },
+              {
+                "ms": 2710,
+                "type": "click"
+              },
+              {
+                "ms": 3410,
+                "type": "click"
+              },
+              {
+                "ms": 4110,
+                "type": "click"
+              },
+              {
+                "ms": 5610,
+                "type": "click"
+              }
+            ]
+          }
+        },
+        {
+          "id": "field-close",
+          "type": "phone",
+          "pose": "cheer",
+          "source": "proto-2b8e64f1a9c7",
+          "caption": "Tasks, parts and photos are recorded on site. **Close job** sends the report and tells dispatch the turbine is **producing again**.",
+          "frames": [
+            {
+              "file": "field-close-00.jpg",
+              "ms": 1500,
+              "transition": 0
+            },
+            {
+              "file": "field-close-01.jpg",
+              "ms": 2600,
+              "transition": 160
+            },
+            {
+              "file": "field-close-02.jpg",
+              "ms": 3200,
+              "transition": 160
+            }
+          ],
+          "motion": {
+            "camera": [
+              {
+                "ms": 0,
+                "x": 0.5,
+                "y": 0.5,
+                "zoom": 1
+              }
+            ],
+            "cursor": [
+              {
+                "ms": 0,
+                "x": 0.6,
+                "y": 0.95
+              },
+              {
+                "ms": 710,
+                "x": 0.6,
+                "y": 0.95
+              },
+              {
+                "ms": 1360,
+                "x": 0.5,
+                "y": 0.8707
+              },
+              {
+                "ms": 3310,
+                "x": 0.5,
+                "y": 0.8707
+              },
+              {
+                "ms": 3960,
+                "x": 0.5,
+                "y": 0.8818
+              }
+            ],
+            "events": [
+              {
+                "ms": 1410,
+                "type": "click"
+              },
+              {
+                "ms": 4010,
+                "type": "click"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "questions",
+      "title": "What shift leads asked us",
+      "steps": [
+        {
+          "id": "questions-1",
+          "type": "faq",
+          "pose": "think",
+          "items": [
+            {
+              "q": "Does the console decide who goes?",
+              "a": "No. It ranks the crew; the dispatcher always chooses and can pick anyone."
+            },
+            {
+              "q": "What if a technician has no signal?",
+              "a": "The app works offline and sends everything once the phone is back online."
+            },
+            {
+              "q": "Can a safety item be skipped in an emergency?",
+              "a": "Not in the app. Emergencies follow the existing rescue procedure, outside the work order."
+            },
+            {
+              "q": "When does this start?",
+              "a": "A pilot region first; your shift gets a hands-on session before go-live."
+            }
+          ],
+          "caption": "The four questions we heard most. The short version: **people decide, the tool prepares**, and **safety is never optional**."
+        }
+      ]
+    },
+    {
+      "id": "summary",
+      "title": "What your shift gains",
+      "steps": [
+        {
+          "id": "summary-1",
+          "type": "summary",
+          "pose": "cheer",
+          "items": [
+            {
+              "icon": "clock",
+              "title": "Faster first response",
+              "text": "Critical alarms reach the right technician in minutes."
+            },
+            {
+              "icon": "users",
+              "title": "Fair, visible workload",
+              "text": "Everyone sees whose day is already full."
+            },
+            {
+              "icon": "shield",
+              "title": "Safety you can show",
+              "text": "Every start of work has its five confirmations on record."
+            },
+            {
+              "icon": "bolt",
+              "title": "Less lost production",
+              "text": "Turbines are back online sooner - and dispatch knows it immediately."
+            }
+          ],
+          "caption": "That is the whole story: **faster first response**, **visible workload**, **safety on record** and **turbines back online sooner**. Thanks for watching!"
+        }
+      ]
+    }
+  ]
+}

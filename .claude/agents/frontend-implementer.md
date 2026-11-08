@@ -150,6 +150,13 @@ prototype plan has no `index.html`/`js/`/`css/` slice in THIS repo - **every** f
 inside `prototype_dir`, a separate, gitignored data-repo clone. Do not report `n/a` for an empty
 slice here; a prototype plan's whole "Files to change" lives in `prototype_dir`.
 
+- **Screens are named and actions tracked.** Every screen, step and window root carries
+  `data-track-screen="Area > Screen"` and every `DSModal` / `DSBottomSheet` a `trackScreen`;
+  meaningful actions call `track('Event Name', { prototype })` from `../_shared/analytics`; never
+  write `?state=` or fire `popstate` (the viewer owns the switcher). A briefing keeps its story in
+  `content.json` and its pictures in `recording.json` - step types `card`, `agenda`, `summary` in the
+  starter, more in the example (`proto-e15c0a7d3b96`); pictures are recorded with `/briefing`, never
+  drawn.
 - **Filesystem-only, never git.** Reads and writes under `data-sub-repositories/` are plain file
   operations - never `git add/commit/push` there, even though the change is real and expected to
   persist. The user syncs the clone through the app's Sync bar afterward.
@@ -157,8 +164,10 @@ slice here; a prototype plan's whole "Files to change" lives in `prototype_dir`.
   `export default` component, `export const breakpoints: number[]`,
   `export const demoStates: DemoStateDef[]` driven by `useDemoState(demoStates, '<defaultId>')`
   from `../_shared/demo-state` - read that file's header comment before wiring it: the viewer owns
-  the URL and the switcher, the prototype only reads the returned id and resets+applies its own
-  state in a one-shot effect. Imports allowed ONLY from `react`, `./styles.css`, `../_shared/*`,
+  the URL and the switcher, the prototype only reads the returned id and applies its own state by
+  REMOUNTING: key the screen on that id (`<Screen key={demoState} />`) and start from the state a
+  scenario names in `useState` initialisers - never an effect that sets state (hooks 7 lints it and
+  the publish gate blocks on it). Imports allowed ONLY from `react`, `./styles.css`, `../_shared/*`,
   `../../ds`, `../../components`, plus the named exception - schedulers = `@bryntum/scheduler`
   (`-react`, `-trial`), export = `write-excel-file`, `jspdf`, `html2canvas`; the one list is
   `scripts/_proto-imports.js`, shared by `_protoValidateTsx` in `server.js` and the linter. Never

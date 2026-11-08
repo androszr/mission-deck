@@ -1,0 +1,51 @@
+{
+  "title": "Briefing title",
+  "subtitle": "Who this briefing is for and what changes for them",
+  "kicker": "Briefing",
+  "minDurations": { "card": 4500, "agenda": 9000, "summary": 10000 },
+  "chapters": [
+    {
+      "id": "opening",
+      "title": "Opening",
+      "steps": [
+        {
+          "id": "opening-1",
+          "type": "card",
+          "caption": "Hello. In the next few minutes I will show **what changes** and what it means for your shift."
+        },
+        {
+          "id": "opening-2",
+          "type": "agenda",
+          "caption": "Two stops: **what changes**, and **what you gain**."
+        }
+      ]
+    },
+    {
+      "id": "change",
+      "title": "What changes",
+      "steps": [
+        {
+          "id": "change-1",
+          "type": "card",
+          "caption": "First, **what changes**. Replace this caption with the narration for the step - the caption IS the script."
+        }
+      ]
+    },
+    {
+      "id": "gain",
+      "title": "What you gain",
+      "steps": [
+        {
+          "id": "gain-1",
+          "type": "summary",
+          "heading": "What your shift gains",
+          "items": [
+            { "icon": "check-circle", "title": "First benefit", "text": "One sentence a shift lead can repeat." },
+            { "icon": "clock", "title": "Second benefit", "text": "One sentence a shift lead can repeat." }
+          ],
+          "caption": "That is the whole change. **Three things** to take away: replace this caption with your summary."
+        }
+      ]
+    }
+  ]
+}

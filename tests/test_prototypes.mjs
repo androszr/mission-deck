@@ -20,6 +20,11 @@ const {
   protoErrorMessage,
   protoStartCommand,
   PROTO_NAME_MAX_LEN,
+  PROTO_KINDS,
+  PROTO_DEFAULT_KIND,
+  protoKindLabel,
+  buildCreatePayload,
+  kindPickerHtml,
 } = await import(pathToFileURL(path.join(ROOT, 'js', 'prototypy.js')).href);
 
 // ── Format recognition ───────────────────────────────────────────────────────
@@ -204,3 +209,59 @@ test('matchOwnerMembers finds people by name in either order, role and team, wit
   assert.deepStrictEqual(ids(null), ['tm-1', 'tm-2', 'tm-3']);
 });
 
+// -- Kinds: the registry stores one only when it was chosen --
+
+test('the client kinds are the server kinds, Desktop is the default', async () => {
+  const { createRequire } = await import('node:module');
+  const srv = createRequire(import.meta.url)(path.join(ROOT, 'server.js'));
+  assert.deepStrictEqual(PROTO_KINDS.map((k) => k.id).sort(), [...srv.PROTO_KINDS].sort());
+  assert.strictEqual(PROTO_DEFAULT_KIND, 'desktop');
+  assert.strictEqual(PROTO_KINDS[0].id, PROTO_DEFAULT_KIND, 'Desktop is listed first');
+});
+
+test('kind: absent or unknown reads as no label and never throws; a stored kind is labelled', () => {
+  assert.strictEqual(protoKindLabel({}), '');
+  assert.strictEqual(protoKindLabel(null), '');
+  assert.strictEqual(protoKindLabel({ kind: 'tablet' }), '');
+  assert.strictEqual(protoKindLabel({ kind: 'briefing' }), 'Briefing');
+  assert.strictEqual(protoKindLabel({ kind: 'desktop' }), 'Desktop');
+});
+
+test('kind: the create payload carries it only when it was chosen, and only a valid one', () => {
+  assert.deepStrictEqual(buildCreatePayload({ name: 'A', owners: [] }), { name: 'A', owners: [] });
+  assert.deepStrictEqual(buildCreatePayload({ name: 'A', owners: [], kind: null }), { name: 'A', owners: [] });
+  assert.deepStrictEqual(buildCreatePayload({ name: 'A', owners: ['x'], kind: 'mobile' }), { name: 'A', owners: ['x'], kind: 'mobile' });
+  assert.deepStrictEqual(buildCreatePayload({ name: 'A', owners: [], kind: 'tablet' }), { name: 'A', owners: [] });
+  assert.match(protoErrorMessage('invalid-kind'), /Desktop, Mobile, Briefing or Blank/);
+});
+
+test('kind: a registry written before kinds existed round-trips byte for byte through the write path', async () => {
+  const { createRequire } = await import('node:module');
+  const os = await import('node:os');
+  const cp = await import('node:child_process');
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'proto-kind-rt-'));
+  try {
+    const protos = path.join(tmp, 'ds-data', 'prototypes');
+    fs.mkdirSync(protos, { recursive: true });
+    const old = { items: [{ id: 'proto-aaaa11111111', name: 'Older', area: '', owners: ['tm-1'], created_at: '2026-01-01T00:00:00.000Z', updated_at: '2026-01-01T00:00:00.000Z' }] };
+    // The server writes the registry as JSON.stringify(data, null, 2) + '\n'.
+    fs.writeFileSync(path.join(protos, 'prototypes.json'), JSON.stringify(old, null, 2) + '\n');
+    const script = `
+      const srv = require(${JSON.stringify(path.join(ROOT, 'server.js'))});
+      (async () => {
+        const r = await srv._protoCreateEntry({ name: 'Newer', kind: 'blank' });
+        process.stdout.write(JSON.stringify({ code: r.code, kind: r.body.item && r.body.item.kind }));
+      })();`;
+    const out = cp.execFileSync(process.execPath, ['-e', script], {
+      encoding: 'utf8',
+      env: { ...process.env, IS_TEST_MODE: '1', AUTO_SYNC_ENABLED: '0', DATA_SUB_REPOS_DIR: tmp, DATA_TIER_0_DIR: path.join(tmp, 'ds-data'), POC_PAGES_DATA_DIR: path.join(tmp, 'shell') },
+    });
+    assert.deepStrictEqual(JSON.parse(out), { code: 200, kind: 'blank' });
+    const after = JSON.parse(fs.readFileSync(path.join(protos, 'prototypes.json'), 'utf8'));
+    assert.deepStrictEqual(after.items[0], old.items[0], 'the older entry is untouched and gained no kind');
+    assert.strictEqual(after.items[1].kind, 'blank');
+    assert.strictEqual(createRequire(import.meta.url)(path.join(ROOT, 'server.js'))._protoKindOf(after.items[0]), 'desktop', 'an entry without kind reads as desktop');
+  } finally {
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+});

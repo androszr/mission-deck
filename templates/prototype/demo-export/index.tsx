@@ -57,7 +57,7 @@ export default function DemoCockpitPrototype() {
         key={demoState}
         className="proto-demo-cockpit-frame"
         src={PAGE + (TRACK_HASH[demoState] || TRACK_HASH['full'])}
-        title="Demo — how we work with Mission Deck"
+        title="Demo - how we work with Mission Deck"
         allow="fullscreen"
         onLoad={focusFrame}
       />

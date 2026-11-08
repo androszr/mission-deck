@@ -59,15 +59,18 @@ test('registry schema is described as {items: [...]}, not a bare array', () => {
     'SKILL.md must not describe prototypes.json as a bare top-level array');
 });
 
-test('starter token {{PROTO_NAME_JSON}} exists in the parent-owned starter template', () => {
+test('starter token {{PROTO_NAME_JSON}} exists in the parent-owned starter template of every kind', () => {
   // templates/prototype/starter/ is backend-implementer's, read here only as evidence that the
   // token this skill's Phase 1 relies on (POST /api/prototypes substitutes it server-side) is
   // actually present - a stale placeholder name here would silently break every new prototype.
-  const starterIndex = read('templates/prototype/starter/index.tsx');
+  const starterIndex = read('templates/prototype/starter/blank/index.tsx');
   assert.ok(
     starterIndex.includes('{{PROTO_NAME_JSON}}'),
-    'templates/prototype/starter/index.tsx no longer contains the {{PROTO_NAME_JSON}} token'
+    'templates/prototype/starter/blank/index.tsx no longer contains the {{PROTO_NAME_JSON}} token'
   );
+  for (const kind of ['desktop', 'mobile', 'briefing', 'blank']) {
+    assert.ok(read('templates/prototype/starter/' + kind + '/index.tsx').includes('{{PROTO_NAME_JSON}}'), kind + ' starter lost {{PROTO_NAME_JSON}}');
+  }
   const skill = read(SKILL);
   assert.ok(
     /React starter/.test(skill) && /POST \/api\/prototypes/.test(skill),
@@ -230,9 +233,9 @@ test('the guide names every detail-page action js/prototypy.js renders, and deni
 // placeholders, one screen with its four data states, no literal colours and
 // no @media in the CSS, no raw controls - and a clean run of the very gate a
 // new prototype faces (`check-proto-ds`) on the substituted template.
-test('the starter is one generic screen with demo states and passes check-proto-ds as substituted', () => {
-  const tsx = read('templates/prototype/starter/index.tsx');
-  const css = read('templates/prototype/starter/styles.css');
+test('the blank starter is one generic screen with demo states and passes check-proto-ds as substituted', () => {
+  const tsx = read('templates/prototype/starter/blank/index.tsx');
+  const css = read('templates/prototype/starter/blank/styles.css');
   assert.ok(/export default function \w+/.test(tsx), 'starter has no default export');
   assert.ok(/export const breakpoints\s*=\s*\[/.test(tsx), 'starter does not export breakpoints');
   assert.ok(/export const demoStates\b/.test(tsx) && /useDemoState\(/.test(tsx), 'starter does not export demoStates / use useDemoState');
@@ -265,3 +268,58 @@ test('the starter is one generic screen with demo states and passes check-proto-
     fs.rmSync(tmp, { recursive: true, force: true });
   }
 });
+
+// One starter per kind. Each is substituted the way POST /api/prototypes does,
+// staged with the files of its kind and run through the very gate a new
+// prototype faces. The contract (default export, breakpoints, demoStates read
+// through useDemoState, tokens only, no raw controls, named screens) holds for
+// every kind; what differs is the frame.
+const KIND_FRAME = { desktop: 'app', mobile: 'phone', briefing: 'none', blank: 'none' };
+for (const kind of Object.keys(KIND_FRAME)) {
+  test(`the ${kind} kind starter keeps the contract and passes check-proto-ds as substituted`, () => {
+    const base = 'templates/prototype/starter/' + kind + '/';
+    const tsx = read(base + 'index.tsx');
+    const css = read(base + 'styles.css');
+    assert.ok(/export default function \w+/.test(tsx), kind + ' starter has no default export');
+    assert.ok(/export const breakpoints\s*=\s*\[/.test(tsx), kind + ' starter does not export breakpoints');
+    assert.ok(/export const demoStates\b/.test(tsx) && /useDemoState\(/.test(tsx), kind + ' starter does not read its demo states');
+    for (const token of ['{{PROTO_NAME_JSON}}', '{{PROTO_ID}}']) assert.ok(tsx.includes(token), kind + ' starter lost ' + token);
+    assert.ok(!/#[0-9a-fA-F]{3,8}\b/.test(css) && !/rgba?\(/.test(css), kind + ' starter CSS carries literal colours');
+    assert.ok(!/@media\b/.test(css.replace(/\/\*[\s\S]*?\*\//g, '')), kind + ' starter CSS uses @media');
+    if (kind !== 'blank') {
+      assert.ok(/data-track-screen=/.test(tsx), kind + ' starter does not name its screens');
+      assert.ok(/\btrack\(/.test(tsx), kind + ' starter does not track an action');
+    }
+    assert.strictEqual(kind === 'briefing', fs.existsSync(path.join(ROOT, base, 'content.json')), 'only the briefing kind ships content.json');
+    assert.strictEqual(kind === 'briefing', fs.existsSync(path.join(ROOT, base, 'recording.json')), 'only the briefing kind ships recording.json');
+
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'starter-kind-'));
+    try {
+      const id = 'proto-' + kind.slice(0, 4).padEnd(4, '0') + '0000a1';
+      const dir = path.join(tmp, 'prototypes', id);
+      fs.mkdirSync(dir, { recursive: true });
+      const substituted = tsx.split('{{PROTO_NAME_JSON}}').join(JSON.stringify('New prototype "test"')).split('{{PROTO_ID}}').join(id);
+      fs.writeFileSync(path.join(dir, 'index.tsx'), substituted);
+      fs.writeFileSync(path.join(dir, 'styles.css'), css);
+      for (const f of fs.readdirSync(path.join(ROOT, base))) {
+        if (f.endsWith('.json')) fs.copyFileSync(path.join(ROOT, base, f), path.join(dir, f));
+      }
+      fs.writeFileSync(path.join(dir, 'spec.json'), JSON.stringify({ id, frame: KIND_FRAME[kind], customElements: [] }));
+      const linter = createRequire(import.meta.url)(path.join(ROOT, 'scripts', 'check-proto-ds.js'));
+      const found = linter.run(dir, {}).findings.filter((f) => f.severity === 'BLOCK');
+      assert.deepStrictEqual(found.map((f) => f.rule + ': ' + f.message), [], 'the substituted ' + kind + ' starter does not pass check-proto-ds');
+    } finally {
+      fs.rmSync(tmp, { recursive: true, force: true });
+    }
+  });
+}
+
+test('the kinds the server knows are the kinds the starters, the preflight and the picker name', () => {
+  const srv = createRequire(import.meta.url)(path.join(ROOT, 'server.js'));
+  assert.deepStrictEqual([...srv.PROTO_KINDS].sort(), Object.keys(KIND_FRAME).sort());
+  assert.deepStrictEqual({ ...srv.PROTO_KIND_FRAME }, KIND_FRAME, 'the frame of each kind');
+  const preflight = read('scripts/proto-preflight.js');
+  assert.ok(/P18/.test(preflight) && /P19/.test(preflight), 'proto-preflight.js lost P18 / P19');
+  for (const kind of Object.keys(KIND_FRAME)) assert.ok(preflight.includes(kind), 'proto-preflight.js does not name the kind ' + kind);
+});
+

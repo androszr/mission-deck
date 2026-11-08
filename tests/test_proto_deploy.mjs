@@ -155,6 +155,13 @@ test('js/proto-deploy.js: the done handler passes pushed and unsynced to deployR
   assert.ok(/\bunsynced:\s*d\.unsynced\b/.test(call[0]), 'unsynced: d.unsynced');
 });
 
+test('js/proto-deploy.js: the preview warnings toast has a neutral title', async () => {
+  const { readFileSync } = await import('node:fs');
+  const src = readFileSync(new URL('../js/proto-deploy.js', import.meta.url), 'utf8');
+  assert.ok(src.includes("showToast('warning', 'Build shell needs attention', data.warnings.join(' '))"));
+  assert.ok(!src.includes('Shell files kept as you edited them'));
+});
+
 // ── Local preview: the progress modal ──────────────────────────────────────────
 
 test('formatElapsed: seconds, minutes with a leading zero, junk -> 0 s', () => {

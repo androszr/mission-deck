@@ -687,6 +687,146 @@
       "size": 48,
       "file": "48-ic-photo.svg",
       "source": "lucide:image"
+    },
+    {
+      "slug": "24-ic-menu",
+      "name": "24 / Menu",
+      "size": 24,
+      "file": "24-ic-menu.svg",
+      "source": "prototype-lab-kit:menu"
+    },
+    {
+      "slug": "24-ic-arrow-right",
+      "name": "24 / Arrow Right",
+      "size": 24,
+      "file": "24-ic-arrow-right.svg",
+      "source": "prototype-lab-kit:arrow-right"
+    },
+    {
+      "slug": "24-ic-filter",
+      "name": "24 / Filter",
+      "size": 24,
+      "file": "24-ic-filter.svg",
+      "source": "prototype-lab-kit:filter"
+    },
+    {
+      "slug": "24-ic-users",
+      "name": "24 / Users",
+      "size": 24,
+      "file": "24-ic-users.svg",
+      "source": "prototype-lab-kit:users"
+    },
+    {
+      "slug": "24-ic-bell",
+      "name": "24 / Bell",
+      "size": 24,
+      "file": "24-ic-bell.svg",
+      "source": "prototype-lab-kit:bell"
+    },
+    {
+      "slug": "24-ic-home",
+      "name": "24 / Home",
+      "size": 24,
+      "file": "24-ic-home.svg",
+      "source": "prototype-lab-kit:home"
+    },
+    {
+      "slug": "24-ic-map-pin",
+      "name": "24 / Map Pin",
+      "size": 24,
+      "file": "24-ic-map-pin.svg",
+      "source": "prototype-lab-kit:map-pin"
+    },
+    {
+      "slug": "24-ic-wrench",
+      "name": "24 / Wrench",
+      "size": 24,
+      "file": "24-ic-wrench.svg",
+      "source": "prototype-lab-kit:wrench"
+    },
+    {
+      "slug": "24-ic-camera",
+      "name": "24 / Camera",
+      "size": 24,
+      "file": "24-ic-camera.svg",
+      "source": "prototype-lab-kit:camera"
+    },
+    {
+      "slug": "24-ic-wind",
+      "name": "24 / Wind",
+      "size": 24,
+      "file": "24-ic-wind.svg",
+      "source": "prototype-lab-kit:wind"
+    },
+    {
+      "slug": "24-ic-turbine",
+      "name": "24 / Turbine",
+      "size": 24,
+      "file": "24-ic-turbine.svg",
+      "source": "prototype-lab-kit:turbine"
+    },
+    {
+      "slug": "24-ic-message",
+      "name": "24 / Message",
+      "size": 24,
+      "file": "24-ic-message.svg",
+      "source": "prototype-lab-kit:message"
+    },
+    {
+      "slug": "24-ic-more",
+      "name": "24 / More",
+      "size": 24,
+      "file": "24-ic-more.svg",
+      "source": "prototype-lab-kit:more"
+    },
+    {
+      "slug": "24-ic-volume-on",
+      "name": "24 / Volume On",
+      "size": 24,
+      "file": "24-ic-volume-on.svg",
+      "source": "prototype-lab-kit:volume-on"
+    },
+    {
+      "slug": "24-ic-volume-off",
+      "name": "24 / Volume Off",
+      "size": 24,
+      "file": "24-ic-volume-off.svg",
+      "source": "prototype-lab-kit:volume-off"
+    },
+    {
+      "slug": "24-ic-captions",
+      "name": "24 / Captions",
+      "size": 24,
+      "file": "24-ic-captions.svg",
+      "source": "prototype-lab-kit:captions"
+    },
+    {
+      "slug": "24-ic-bolt",
+      "name": "24 / Bolt",
+      "size": 24,
+      "file": "24-ic-bolt.svg",
+      "source": "prototype-lab-kit:bolt"
+    },
+    {
+      "slug": "24-ic-route",
+      "name": "24 / Route",
+      "size": 24,
+      "file": "24-ic-route.svg",
+      "source": "prototype-lab-kit:route"
+    },
+    {
+      "slug": "24-ic-wifi-off",
+      "name": "24 / Wifi Off",
+      "size": 24,
+      "file": "24-ic-wifi-off.svg",
+      "source": "prototype-lab-kit:wifi-off"
+    },
+    {
+      "slug": "24-ic-gauge",
+      "name": "24 / Gauge",
+      "size": 24,
+      "file": "24-ic-gauge.svg",
+      "source": "prototype-lab-kit:gauge"
     }
   ]
 }

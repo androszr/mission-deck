@@ -9,6 +9,49 @@ A prototype is **a working screen that does not exist in the product yet**. Clic
 browser, built with the Design System - but with no real data and no back end. It serves one
 purpose: to show an idea before anybody builds it.
 
+## How we work with prototypes
+
+We make prototypes for two groups of people who are hard to reach with documents:
+
+- **The people who use a screen** (a dispatcher, a technician) get a **clickable prototype**. It is
+  built from the real Design System, inside the real app frame and with realistic data, so a test
+  session measures the idea and not the mock-up.
+- **The people who run the shifts** (shift leads, managers, trainers) get a **briefing**: a
+  self-playing presentation of the same prototypes in motion that says why the change is coming and
+  what the shift gains.
+
+Each piece of work goes through the same seven steps. The example in brackets is the one that ships
+in sample data: a wind-farm operator, where a turbine raises an alarm and work order WO-1042 travels
+from the dispatcher to the technician.
+
+1. **Start - pick the kind of screen.** In **Design > Prototypes > Add prototype** choose Desktop,
+   Mobile, Briefing or Blank. The starter already passes every check, so the first change is about
+   the idea. (The dispatch console starts as Desktop, the technician app as Mobile.)
+2. **Plan and build - agents prepare, a person decides.** The assistant's `/prototype` command
+   writes a plan, you accept it, agents build it and check it. Scripts check colours, icons, imports
+   and screen names first; the reviewer sees only the plan and the files, never the builder's own
+   report. Older prototypes are checked only on what a change adds.
+3. **Make it look real.** Prototypes are built from the Design System's ready-made pieces - buttons,
+   tables, cards, sheets, the app frame with its side menu - in the app's own colours and font, never
+   from hand-drawn copies. (The dialog where the dispatcher assigns WO-1042 is the same dialog a
+   Mission Deck user would see.)
+4. **Try every case.** The preview's toolbar switches the screen width and the demo state, and every
+   state has its own address, so screenshots and reviews can be repeated at any time. (Console states:
+   morning queue, filtered to critical, detail panel open for WO-1042.)
+5. **Test and measure.** Run a session with real users and open the **Analytics** menu to see the
+   clicks per named screen (see below). Many clicks on one screen before the next step opens says the
+   route is too long.
+6. **Follow the whole job.** Prototypes of different kinds can tell one story together. (The
+   dispatcher assigns WO-1042 on the console; the technician sees it at the top of today's list on the
+   phone and cannot start work until the safety check is complete.)
+7. **Brief the shift.** The `/briefing` command records pictures from the real prototypes and plays
+   them with a camera, a cursor and captions that can be read aloud (see Briefings below). When a
+   prototype changes, the pictures are recorded again from it, never edited by hand.
+
+Not built yet, and waiting as cards on the board: a click heatmap for published prototypes,
+generated narration audio, and a runner that takes prototype requests from chat without a person at
+the keyboard.
+
 ## Where it is
 
 **Left menu > Design > Prototypes.**
@@ -54,12 +97,22 @@ missing - a normal state, not an error.
 
 ## Adding a prototype
 
-On the list, next to the search box, is **Add prototype**. Give it a name and tick the people
-responsible. That is all.
+On the list, next to the search box, is **Add prototype**. Give it a name, pick a **kind** and tick the
+people responsible.
 
-The form creates **a registry entry and a working starting point** - one **empty screen** for the
-prototype's content, with a default, empty, loading and error state. If the starter files cannot
-be created, no entry is created at all - no empty card is left behind.
+The kind decides the starting point:
+
+| Kind | What you start with |
+|---|---|
+| **Desktop** (the default) | A screen inside an application frame - a top bar and a side menu you can rebrand - with two screens, building blocks (buttons, cards, tables, dialogs, icons) and demo states. |
+| **Mobile** | A phone frame with a tab bar, two tabs and a bottom sheet. |
+| **Briefing** | A self-playing presentation: start screen, captions, optional spoken narration, three step types. See "Briefings" below. |
+| **Blank** | One empty screen with no frame - the simplest start. |
+
+The form creates **a registry entry and a working starting point** of that kind. If the starter
+files cannot be created, no entry is created at all - no empty card is left behind. Prototypes that
+existed before kinds were introduced keep working exactly as before; their cards show no kind
+badge, a new one shows its kind.
 
 Further work (real content, extra screens) happens in Claude Code. A new prototype's page has a
 ready **starter prompt for the assistant** - copy it, paste it into Claude Code and add what the
@@ -90,12 +143,34 @@ went through it - stops with a list of files and a **Publish anyway** button. Th
 the data on the machine that published, pull it on yours, then publish. "Anyway" is for when you
 know the local version should replace the published one.
 
+## Watching how people click: the Analytics menu
+
+While a prototype runs in the preview, the toolbar has an **Analytics** menu. It lists the clicks per
+screen - every screen of a prototype carries a name - and the last few tracked actions. The numbers
+stay in your browser tab and are gone when you close it; nothing is sent anywhere. A click that lands
+outside a named screen is counted as "unknown screen", which tells the author to name that screen.
+
+Two address switches help the people who build prototypes: add `?chrome=0` to open the prototype
+without the toolbar, and `?w=<pixels>` to open it at an exact width.
+
+## Briefings
+
+A briefing explains a change to people who will never open the clickable prototypes - shift leads,
+managers, trainers. It plays by itself: pictures of the real prototypes recorded from the running
+screens, a camera that zooms in, a cursor that glides to what is clicked and a caption for each step.
+The caption is also what the optional narration says (the browser's own voice). Keys: arrows to move,
+Space to pause, C for captions, M for narration. When sample data is on, **Design > Prototypes** lists
+three examples - a dispatch console, a technician phone app and an operations briefing built from
+them. The assistant builds and re-records a briefing with the `/briefing` command; the pictures are
+always recorded again from the real prototypes when those change, never edited by hand.
+
 ## What works, and what deliberately is not there
 
 | What | State |
 |---|---|
 | **List, prototype page, add, edit, delete** | Works. Data reaches the team through Sync. |
-| **React starter after "Add prototype"** | Works. A new entry always has source files; without them no entry is created. |
+| **Starter after "Add prototype"** | Works for every kind. A new entry always has source files; without them no entry is created. |
+| **Analytics menu** | Works in the preview; counts stay in the tab. Collecting clicks from the published site is not part of the app. |
 | **Starter prompt for the assistant** | Works. One prompt, the same id as on the list. |
 | **Local preview** | Works on any machine with Node.js - the first run installs the build environment (a few minutes), later runs take seconds. |
 | **Publishing from the app** | Works when `.env` sets the publish repository (`PROTO_BUILD_REPO_URL`) and the hosting address (`PROTO_PAGES_BASE_URL`). It finishes outside the app: the result goes into that repository and the hosting serves the new version a few minutes later. "Publish started" means "sent", not "already visible". |

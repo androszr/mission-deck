@@ -153,10 +153,12 @@ Detail per topic: [shell and views](docs/architecture/shell-and-views.md) · [mo
 
 Detail: [docs/architecture/prototypes.md](docs/architecture/prototypes.md). People-facing: `docs/guides/prototypes.md`.
 
-- Prototypes live in team data, `ds-data/prototypes/<id>/` (`_prototypes` sync row). `POST /api/prototypes` always copies `templates/prototype/starter/` (one generic screen with demo states). The build shell seed `templates/prototype-build-shell/` is self-contained.
+- Prototypes live in team data, `ds-data/prototypes/<id>/` (`_prototypes` sync row). `POST /api/prototypes` copies the starter of its `kind` (`desktop` default, `mobile`, `briefing`, `blank`; `templates/prototype/starter/<kind>/`); `kind` is stored only when the request named one, a missing kind reads as `desktop` (`_protoKindOf`), an unknown one is `invalid-kind`. The build shell seed `templates/prototype-build-shell/` is self-contained.
 - `GET /api/prototypes/deploy-stream?id=<id>[&force=1]`: clone/sync the shell (`data-sub-repositories/data-prototypes/`, remote `PROTO_BUILD_REPO_URL`, env-only; without it `no-remote`), rewrite sources, ESLint, build, commit, push; hosting serves `PROTO_PAGES_BASE_URL`. The shell syncs only through `_protoShellSyncWithOrigin`; never `--autostash` on `_protoGitExec` (rule `proto-shell-autostash`).
 - **Stale-source guard** (`_protoPublishedGuard`): a published blob that differs from local plaintext must be found in the team data mirror's history; not found or unknown -> `stale-source`, `force=1` only from the modal's "publish anyway". `unsent-source` (a publish file still pending in team data) has NO force. Lint and build are never forced.
 - The commit names exact paths (`_protoPublishAddPaths`), never `git add src/ public/`. `PROTO_DEPLOY_TOKEN` never enters a stored URL (one-command `-c url.<token>.insteadOf=`). One import allowlist in `scripts/_proto-imports.js`; `_protoEnsureLibraryDeps` **never installs `@bryntum/*`** (503 `deps-missing`).
+- The seed's shared layer (`src/ds/`, `src/components/`, `_shared/analytics.ts`, `recorder.ts`, the viewer's `?chrome=0` / `?w=` and Analytics menu, `public/ds-icons/`) reaches an existing shell through `_protoEnsureShellSharedSeed` before every preview and publish: absent files are copied, a file is replaced only when its sha256 is on `PROTO_SEED_UPGRADES`, any other edit is kept and named; the team overlay still wins and the seed paths are quarantine sources. `assets/` is copied recursively, `import.meta.glob('./assets/...')` is allowed.
+- Briefings: `scripts/proto-record.mjs` and `scripts/proto-build-content.mjs` record a briefing's frames from a preview (`/briefing`); `scripts/proto-shell-check.js` builds, lints and type-checks prototypes in a throwaway shell. Examples in sample data: `examples/prototypes/`.
 - Tests: `tests/test_proto_deploy_guard.mjs`, `tests/test_proto_deploy.mjs`, `tests/test_proto_shell_sync.mjs`, `tests/test_proto_imports.mjs`, `tests/test_check_proto_ds.mjs`, `tests/test_proto_preflight.mjs`, `tests/test_prototype_contract.mjs`.
 
 ## End of day / Good morning
@@ -204,6 +206,7 @@ Detail: [docs/architecture/loading-skeletons.md](docs/architecture/loading-skele
 |---|---|
 | Build a feature, view, endpoint or fix | `/new-idea` (plan -> review -> implement -> verify) |
 | Build or extend a screen prototype | `/prototype` (React prototype in team data, DS gate) |
+| Build a self-playing briefing from the prototypes | `/briefing` (story, recorded frames, camera and cursor) |
 | Change a mini app (Vite + React + TypeScript) | `/mini` (registered under `.claude/skills/mini/projects/`) |
 | Summarise a meeting transcript | `/summarize-meeting` |
 | Celebrate a branch or MR with an HTML page | `/kudos` |

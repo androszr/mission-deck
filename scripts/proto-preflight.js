@@ -2,9 +2,11 @@
 'use strict';
 // scripts/proto-preflight.js
 // Phase 4.5 of /prototype: the generic plan rules from plan-preflight.js plus
-// the prototype-specific ones (P1-P17). One pass over the plan file.
+// the prototype-specific ones (P1-P19). One pass over the plan file.
 // P8-P17 port the sf-test Phase 4.5 rules 5a, 6b, 8, 9, 10, 12, 13, 14, 15b
 // and 15c (see RULES below); they read the plan text, never the prototype.
+// P18 (the kind is named) and P19 (screens are named for analytics) come from
+// the prototype kit.
 //
 //   node scripts/proto-preflight.js plans/2026-09-05-proto-foo.md
 //   node scripts/proto-preflight.js plans/2026-09-05-proto-foo.md --json
@@ -29,7 +31,7 @@ Options:
                   prototype (BLOCK) from an existing one without demoStates (WARN)
   --help          this text
 
-Runs every rule of plan-preflight.js plus P1-P17 documented in
+Runs every rule of plan-preflight.js plus P1-P19 documented in
 .claude/skills/prototype/SKILL.md (Phase 4.5).
 Exit codes: 0 clean/warn, 1 blocking findings, 2 usage or internal error.
 `;
@@ -43,7 +45,11 @@ const LEGACY_ROOT = 'data-sub-repositories/ds-data/prototypes/';
 // a second list is exactly the drift the shared module exists to prevent.
 function loadImportAllowlist() {
   const { isAllowedProtoImport } = require('./_proto-imports');
-  return { isAllowed: (spec) => Boolean(isAllowedProtoImport(spec)), source: '_proto-imports' };
+  return {
+    isAllowed: (spec) => Boolean(isAllowedProtoImport(spec)),
+    isAllowedGlob: (spec) => Boolean(isAllowedProtoImport(spec, { glob: true })),
+    source: '_proto-imports',
+  };
 }
 
 // Import specifiers a plan line proposes: `import ... from '<spec>'`,
@@ -56,6 +62,9 @@ function importSpecs(text) {
   for (const m of text.matchAll(IMPORT_SPEC_RE)) out.push(m[1] || m[2] || m[3]);
   return out;
 }
+
+// `import.meta.glob('<./assets/...>')` patterns a plan line proposes.
+const GLOB_SPEC_RE = /\bimport\.meta\.glob\s*\(\s*['"]([^'"\n]+)['"]/g;
 
 // -- R-21 patterns (sf-test Phase 4.5 rules 5a, 6b, 8, 9, 10, 12-15c) --------
 // Polish prose negations R.NEGATION_RE does not carry ("zadnego selektora
@@ -212,7 +221,14 @@ function run(planPath, flags) {
     if (!inFence[i] && describesShellImports(text)) return;
     for (const spec of importSpecs(text)) {
       if (format === 'react' && !spec.startsWith('/js/') && !allowlist.isAllowed(spec)) {
-        rep.block({ rule: 'P4', line: i + 1, message: 'import outside the prototype allowlist: `' + spec + '`', fix: 'allowed: react, ./styles.css, ./*.json, ./assets/*, ../_shared/*, ../../ds, ../../components (plus the listed library exceptions)' });
+        rep.block({ rule: 'P4', line: i + 1, message: 'import outside the prototype allowlist: `' + spec + '`', fix: 'allowed: react, ./styles.css, ./*.json, ./assets/*, import.meta.glob(\'./assets/...\'), ../_shared/*, ../../ds, ../../components (plus the listed library exceptions)' });
+      }
+    }
+    if (format === 'react') {
+      for (const m of text.matchAll(GLOB_SPEC_RE)) {
+        if (!allowlist.isAllowedGlob(m[1])) {
+          rep.block({ rule: 'P4', line: i + 1, message: 'import.meta.glob pattern outside the prototype assets: `' + m[1] + '`', fix: 'a glob may only name ./assets/... inside the prototype folder' });
+        }
       }
     }
   });
@@ -256,6 +272,16 @@ function run(planPath, flags) {
 
 
   runR21Rules(rep, { raw, lines, sections, inFence, steps, format, protoId });
+
+  // -- P18 / P19 (prototype kit) --------------------------------------------
+  // The kind picks the starter (desktop, mobile, briefing, blank) and the
+  // frame; a plan that names it keeps the implementer from guessing.
+  if (format === 'react' && !/^\*\*Prototype kind:\*\*\s*`?(?:desktop|mobile|briefing|blank)`?\s*$/m.test(raw)) {
+    rep.warn({ rule: 'P18', message: 'the plan header does not name `**Prototype kind:**` (desktop, mobile, briefing or blank)', fix: 'add `**Prototype kind:** desktop` (or mobile / briefing / blank) under the prototype id' });
+  }
+  if (format === 'react' && !/data-track-screen|trackScreen/.test(stepsText)) {
+    rep.warn({ rule: 'P19', message: 'the steps never name the screens for analytics (`data-track-screen` / `trackScreen`)', fix: 'name each screen root and DS layer as "Area > Screen" so clicks group on the heatmap' });
+  }
 
   // Not a rule, just a useful line in the report.
   if (protoId) rep.info('prototype: ' + protoId + ' (' + mode + ', ' + format + ')');

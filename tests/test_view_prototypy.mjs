@@ -56,3 +56,45 @@ test('prototypy + proto-detail: VIEW_REGISTRY refresh hooks name real exports on
   // page) and must not silently share a single refresh function.
   assert.notStrictEqual(registryEntry.refresh, detailEntry.refresh);
 });
+
+// -- Kind picker and badge --
+
+test('prototypy: the Add form picker lists four kinds with Desktop selected, and the payload carries a chosen one', async () => {
+  const { pathToFileURL } = await import('node:url');
+  const mod = await import(pathToFileURL(path.join(ROOT, 'js', 'prototypy.js')).href);
+  const html = mod.kindPickerHtml(null);
+  const buttons = [...html.matchAll(/data-proto-kind="([a-z]+)"[^>]*aria-pressed="(true|false)"/g)].map((m) => [m[1], m[2]]);
+  assert.deepStrictEqual(buttons, [['desktop', 'true'], ['mobile', 'false'], ['briefing', 'false'], ['blank', 'false']]);
+  assert.match(html, /class="ds-segmented"/);
+  assert.match(mod.kindPickerHtml('briefing'), /data-proto-kind="briefing"[^>]*aria-pressed="true"/);
+  assert.deepStrictEqual(mod.buildCreatePayload({ name: 'N', owners: [], kind: 'briefing' }), { name: 'N', owners: [], kind: 'briefing' });
+  // The form sends kind on create only: the edit branch builds its own payload.
+  const src = read('js/prototypy.js');
+  assert.match(src, /_formMode === 'edit'\s*\?\s*\{ name: check\.value, owners: Array\.from\(_formSelectedOwners\) \}/);
+  assert.match(src, /kindPickerHtml\(null\)/);
+});
+
+test('prototypy: choosing a kind toggles the existing buttons in place (focus survives) and updates the hint', async () => {
+  const { pathToFileURL } = await import('node:url');
+  const mod = await import(pathToFileURL(path.join(ROOT, 'js', 'prototypy.js')).href);
+  const mk = (kind) => {
+    const attrs = { 'aria-pressed': 'false' };
+    const cls = new Set();
+    return { dataset: { protoKind: kind }, attrs, cls, classList: { toggle: (c, on) => (on ? cls.add(c) : cls.delete(c)) }, setAttribute: (k, v) => { attrs[k] = v; } };
+  };
+  const buttons = ['desktop', 'mobile', 'briefing', 'blank'].map(mk);
+  const hint = { textContent: '' };
+  const root = { querySelectorAll: () => buttons, querySelector: () => hint };
+  mod.applyKindSelection(root, 'briefing');
+  assert.deepStrictEqual(buttons.map((b) => b.attrs['aria-pressed']), ['false', 'false', 'true', 'false']);
+  assert.deepStrictEqual(buttons.map((b) => b.cls.has('active')), [false, false, true, false]);
+  assert.ok(hint.textContent.length > 0, 'the hint text is written in place');
+  assert.doesNotMatch(read('js/prototypy.js'), /currentTarget\.innerHTML = kindPickerHtml/, 'the click handler no longer rewrites the picker');
+});
+
+test('prototypy: an item without kind renders no badge and no error, one with kind renders its label', () => {
+  const src = read('js/prototypy.js');
+  assert.match(src, /const kindLabel = protoKindLabel\(item\);/);
+  assert.match(src, /const kindHtml = kindLabel \? /, 'the badge exists only when the kind has a label');
+  assert.match(read('styles.css'), /\.proto-card-kind\s*\{/);
+});

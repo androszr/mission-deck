@@ -1,0 +1,62 @@
+{
+  "id": "proto-2b8e64f1a9c7",
+  "title": "Technician app - from new job to closed job",
+  "summary": "Phone prototype for field technicians: the job assigned by dispatch arrives as New, the safety check gates the start of work, tasks, parts, notes and photos are captured on site, and a confirmation sheet closes the job and tells dispatch the turbine is producing again. Tested questions: does a gating checklist feel like help or paperwork, and can a job be closed in under two minutes?",
+  "updated": "2026-09-24",
+  "frame": "phone",
+  "scope": [
+    {
+      "group": "Today",
+      "items": [
+        "Job list with the new job highlighted",
+        "Offline banner",
+        "Empty day"
+      ]
+    },
+    {
+      "group": "Job",
+      "items": [
+        "Key facts",
+        "Note from dispatch",
+        "Task preview",
+        "Start safety check"
+      ]
+    },
+    {
+      "group": "Safety check",
+      "items": [
+        "Five confirmations, whole row is the hit area",
+        "Progress",
+        "Start work locked until all confirmed"
+      ]
+    },
+    {
+      "group": "Work and close",
+      "items": [
+        "Tasks",
+        "Parts counter",
+        "Photos",
+        "Notes",
+        "Confirmation sheet with 'back online'",
+        "Closed screen with the next job"
+      ]
+    }
+  ],
+  "releases": [
+    {
+      "date": "2026-09-19",
+      "items": [
+        "First version: today, job, safety check."
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "items": [
+        "Work screen, close-job sheet, offline banner."
+      ]
+    }
+  ],
+  "customElements": [],
+  "figmaSource": null,
+  "figmaDeviations": []
+}

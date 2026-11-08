@@ -32,6 +32,11 @@ function walk(dir, base = dir) {
   return out.sort();
 }
 
+// The recorded frames of the example briefing are binary pictures of fictional
+// screens (accepted: they show made-up data only). They are the one image kind
+// the "no photos" and ASCII checks let through - nothing else under prototypes/.
+const isPrototypeFrame = (rel) => /^prototypes\/proto-[a-z0-9]+\/assets\/frames\/[a-z0-9-]+\.jpg$/.test(rel);
+
 let tmp;
 let treeA;
 let treeB;
@@ -391,7 +396,29 @@ describe('AC4: Northwind Product, fictional and tidy', () => {
       assert.equal(new Set(fruits).size, 4, 'four different fruits in one squad');
     }
     assert.equal(files().filter((f) => f.startsWith('team/avatars/')).length, 24);
-    assert.equal(files().filter((f) => /\.(png|jpe?g|webp)$/i.test(f)).length, 0, 'no photos');
+    assert.equal(files().filter((f) => /\.(png|jpe?g|webp)$/i.test(f) && !isPrototypeFrame(f)).length, 0, 'no photos');
+  });
+
+  it('prototypes: the three example prototypes are registered with their kind and carry their sources', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(DS, 'prototypes', 'prototypes.json'), 'utf8'));
+    const byId = Object.fromEntries(reg.items.map((it) => [it.id, it]));
+    assert.deepEqual(Object.keys(byId).sort(), ['proto-2b8e64f1a9c7', 'proto-7f3a91c0d2e4', 'proto-e15c0a7d3b96']);
+    assert.equal(byId['proto-7f3a91c0d2e4'].kind, 'desktop');
+    assert.equal(byId['proto-2b8e64f1a9c7'].kind, 'mobile');
+    assert.equal(byId['proto-e15c0a7d3b96'].kind, 'briefing');
+    for (const it of reg.items) {
+      assert.ok(it.created_at >= QUARTER_START && it.updated_at <= QUARTER_END + 'T23:59:59.999Z', it.id + ': dates sit inside the quarter');
+      const memberIds = new Set(JSON.parse(fs.readFileSync(path.join(DS, 'team', 'team-members.json'), 'utf8')).team_members.map((m) => m.id));
+      assert.ok(it.owners.length > 0 && it.owners.every((o) => memberIds.has(o)), it.id + ': owners are team-member ids');
+      for (const f of ['index.tsx', 'styles.css', 'spec.json']) assert.ok(fs.existsSync(path.join(DS, 'prototypes', it.id, f)), it.id + '/' + f);
+    }
+    const frames = fs.readdirSync(path.join(DS, 'prototypes', 'proto-e15c0a7d3b96', 'assets', 'frames'));
+    assert.equal(frames.length, 25, 'the briefing ships its 25 recorded frames');
+    // Bytes, not re-encoded text: the committed example is the generator's source.
+    for (const name of frames) {
+      assert.ok(fs.readFileSync(path.join(DS, 'prototypes', 'proto-e15c0a7d3b96', 'assets', 'frames', name))
+        .equals(fs.readFileSync(path.join(ROOT, 'examples', 'prototypes', 'proto-e15c0a7d3b96', 'assets', 'frames', name))), name);
+    }
   });
 
   it('academy: progress files in the server shape, a few faces per finished stage', async () => {
@@ -439,6 +466,7 @@ describe('AC4: Northwind Product, fictional and tidy', () => {
 
   it('all text is ASCII English with no real-looking host or secret', () => {
     for (const rel of files()) {
+      if (isPrototypeFrame(rel)) continue; // binary pictures of fictional screens
       const text = fs.readFileSync(path.join(DS, rel), 'utf8');
       assert.doesNotMatch(text, /[^\x00-\x7F]/, rel + ' has a non-ASCII character');
       for (const m of text.matchAll(/https?:\/\/([a-z0-9.-]+)/gi)) {
@@ -454,7 +482,7 @@ describe('AC4: Northwind Product, fictional and tidy', () => {
     const futureOk = (rel) => rel.startsWith('discovery-tasks/') || rel.startsWith('gantt-roadmap/q4-2026/');
     const bad = [];
     for (const rel of files()) {
-      if (rel.endsWith('.svg') || futureOk(rel)) continue;
+      if (rel.endsWith('.svg') || futureOk(rel) || isPrototypeFrame(rel)) continue;
       const text = fs.readFileSync(path.join(DS, rel), 'utf8');
       for (const m of text.matchAll(/\b(20\d\d-\d\d-\d\d)\b/g)) {
         if (m[1] < QUARTER_START || m[1] > QUARTER_END) bad.push(rel + ': ' + m[1]);

@@ -232,6 +232,42 @@ test('an orphaned file in src/components: out of the tree during the gates, a ne
   } finally { fx.cleanup(); }
 });
 
+test('a seed file the shell upkeep just copied is a source: it stays in the tree and travels, the orphan still leaves', async () => {
+  const fx = sharedFixture();
+  try {
+    // The seed holds AppFrame.tsx; the shell got an untracked copy of it from the upkeep step.
+    const seed = path.join(fx.root, 'seed');
+    put(path.join(seed, 'src/components/AppFrame.tsx'), 'frame');
+    put(path.join(fx.shell, 'src/components/AppFrame.tsx'), 'frame');
+    const q = await srv._protoQuarantineUntracked({ buildDir: fx.shell, slug: 'pub', quarantineRoot: fx.quarantine, sharedRoots: fx.sharedRoots, seedDir: seed });
+    assert.ok(!q.files.includes('src/components/AppFrame.tsx'), 'the adapter is not an orphan');
+    assert.ok(q.files.includes('src/components/Orphan.tsx'), 'a real orphan is still quarantined');
+    assert.ok(fs.existsSync(path.join(fx.shell, 'src/components/AppFrame.tsx')));
+    q.restore();
+    // Without the seed as a source the same file WOULD be moved out (this is what the step prevents).
+    const q2 = await srv._protoQuarantineUntracked({ buildDir: fx.shell, slug: 'pub', quarantineRoot: fx.quarantine, sharedRoots: fx.sharedRoots, seedDir: path.join(fx.root, 'no-seed') });
+    assert.ok(q2.files.includes('src/components/AppFrame.tsx'));
+    q2.restore();
+  } finally { fx.cleanup(); }
+});
+
+test('seedPaths from the upkeep replace the seed folder as a source: a skipped folder contributes none', async () => {
+  const fx = sharedFixture();
+  try {
+    const seed = path.join(fx.root, 'seed');
+    put(path.join(seed, 'src/components/AppFrame.tsx'), 'frame');
+    put(path.join(fx.shell, 'src/components/AppFrame.tsx'), 'frame');
+    // The upkeep skipped components/ (seedPaths holds nothing from it): the file is an orphan.
+    const q = await srv._protoQuarantineUntracked({ buildDir: fx.shell, slug: 'pub', quarantineRoot: fx.quarantine, sharedRoots: fx.sharedRoots, seedDir: seed, seedPaths: [] });
+    assert.ok(q.files.includes('src/components/AppFrame.tsx'));
+    q.restore();
+    // Seeded: it travels.
+    const q2 = await srv._protoQuarantineUntracked({ buildDir: fx.shell, slug: 'pub', quarantineRoot: fx.quarantine, sharedRoots: fx.sharedRoots, seedDir: seed, seedPaths: ['src/components/AppFrame.tsx'] });
+    assert.ok(!q2.files.includes('src/components/AppFrame.tsx'));
+    q2.restore();
+  } finally { fx.cleanup(); }
+});
+
 test('the publish commit carries no orphaned src/components files, but a new component from the data does', async () => {
   const fx = sharedFixture();
   try {

@@ -124,6 +124,74 @@ export function ownerIdsInUse(items) {
   return [...seen].sort();
 }
 
+/**
+ * The kinds a new prototype can start as (server.js PROTO_KINDS): each has its
+ * own starting screen. The registry stores `kind` ONLY for a prototype that
+ * was created with one named - an older entry has none and is not labelled.
+ */
+export const PROTO_KINDS = Object.freeze([
+  { id: 'desktop', label: 'Desktop', hint: 'Application frame with a side menu' },
+  { id: 'mobile', label: 'Mobile', hint: 'Phone frame with tabs' },
+  { id: 'briefing', label: 'Briefing', hint: 'Self-playing presentation' },
+  { id: 'blank', label: 'Blank', hint: 'One empty screen, no frame' },
+]);
+export const PROTO_DEFAULT_KIND = 'desktop';
+
+/**
+ * The label of a stored kind, or '' for an entry that has none (or an unknown
+ * one) - such an entry shows no badge and never errors.
+ * @param {{kind?: unknown}|null|undefined} item
+ * @returns {string}
+ */
+export function protoKindLabel(item) {
+  const hit = PROTO_KINDS.find((k) => item && k.id === item.kind);
+  return hit ? hit.label : '';
+}
+
+/**
+ * The body of POST /api/prototypes. `kind` goes in ONLY when the person used
+ * the picker; otherwise the server stages the default kind and the entry stays
+ * as it was before kinds existed.
+ * @param {{name: string, owners: string[], kind?: string|null}} args
+ * @returns {{name: string, owners: string[], kind?: string}}
+ */
+export function buildCreatePayload({ name, owners, kind }) {
+  const payload = { name, owners };
+  if (PROTO_KINDS.some((k) => k.id === kind)) payload.kind = kind;
+  return payload;
+}
+
+/**
+ * The kind picker of the Add form: one `ds-segmented` group, one button per
+ * kind, `selected` active (Desktop when the picker was not used).
+ * @param {string|null} selected
+ * @returns {string}
+ */
+export function kindPickerHtml(selected) {
+  const current = PROTO_KINDS.some((k) => k.id === selected) ? selected : PROTO_DEFAULT_KIND;
+  const buttons = PROTO_KINDS.map((k) => `<button type="button" class="ds-segment${k.id === current ? ' active' : ''}" data-proto-kind="${escHtml(k.id)}" aria-pressed="${k.id === current}" title="${escHtml(k.hint)}">${escHtml(k.label)}</button>`).join('');
+  const hint = (PROTO_KINDS.find((k) => k.id === current) || PROTO_KINDS[0]).hint;
+  return `<div class="ds-segmented" role="group" aria-label="Kind of prototype">${buttons}</div><span class="ds-hint" data-proto-kind-hint>${escHtml(hint)}</span>`;
+}
+
+/**
+ * Moves the picker's selection in place: `active` and `aria-pressed` toggle on
+ * the buttons that already exist and the hint text is replaced, so the focused
+ * button keeps focus (rewriting the HTML would drop it).
+ * @param {{querySelectorAll: Function, querySelector: Function}} root the element holding kindPickerHtml()
+ * @param {string} selected
+ */
+export function applyKindSelection(root, selected) {
+  const current = PROTO_KINDS.some((k) => k.id === selected) ? selected : PROTO_DEFAULT_KIND;
+  root.querySelectorAll('[data-proto-kind]').forEach((b) => {
+    const on = b.dataset.protoKind === current;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', String(on));
+  });
+  const hint = root.querySelector('[data-proto-kind-hint]');
+  if (hint) hint.textContent = (PROTO_KINDS.find((k) => k.id === current) || PROTO_KINDS[0]).hint;
+}
+
 /** Server limit (server.js PROTO_NAME_MAX_LEN) - one constant shared with client validation. */
 export const PROTO_NAME_MAX_LEN = 200;
 
@@ -153,6 +221,7 @@ export function protoErrorMessage(code) {
   switch (code) {
     case 'name-required': return 'A prototype name is required.';
     case 'name-too-long': return `The name is too long (limit ${PROTO_NAME_MAX_LEN} characters).`;
+    case 'invalid-kind': return 'Pick one of the listed kinds: Desktop, Mobile, Briefing or Blank.';
     case 'invalid-owners': return 'Invalid owner list.';
     case 'invalid-area': return 'Invalid area value.';
     case 'invalid-discovery-task-id': return 'Invalid discovery task id.';
@@ -476,9 +545,12 @@ function _cardHtml(item) {
   const initiativeHtml = initiative
     ? `<span class="proto-card-initiative" title="Discovery initiative">${escHtml(initiative)}</span>`
     : '';
+  const kindLabel = protoKindLabel(item);
+  const kindHtml = kindLabel ? `<span class="ds-badge ds-badge--sm ds-badge--gray proto-card-kind" title="Kind of prototype">${escHtml(kindLabel)}</span>` : '';
   return `<a class="ds-card proto-card" href="#proto-detail/${encodeURIComponent(item.id)}" data-proto-id="${escHtml(item.id)}">
     <div class="ds-card-body proto-card-body">
       <div class="proto-card-name">${escHtml(item.name || item.id)}</div>
+      ${kindHtml}
       ${initiativeHtml}
       <div class="proto-card-meta">
         ${dateHtml}
@@ -1000,13 +1072,16 @@ export function initProtoDetail() {
 // once, `_formOverlay` remembers it).
 //
 // The `area` and `discoveryTaskId` fields are NOT in the form (out of the
-// plan's scope) - the payload sends ONLY name and owners, so PUT merges them
-// over the existing entry without touching those two fields.
+// plan's scope) - the payload sends ONLY name and owners (plus `kind` on create,
+// when the picker was used), so PUT merges them over the existing entry
+// without touching those two fields.
 
 const FORM_MODAL_ID = 'proto-form-modal';
 let _formOverlay = null;
 let _formMode = 'create'; // 'create' | 'edit'
 let _formItemId = null;
+/** The kind chosen in the picker, or null while the picker is unused (create only). */
+let _formKind = null;
 /** @type {Set<string>} tm-* ids ticked in the form */
 let _formSelectedOwners = new Set();
 
@@ -1088,6 +1163,10 @@ function _ensureFormModal() {
           <input type="text" class="ds-input" id="proto-form-name" maxlength="${PROTO_NAME_MAX_LEN}" placeholder="Prototype name" autocomplete="off">
           <span class="ds-hint ds-hint--error" id="proto-form-name-error" hidden></span>
         </div>
+        <div class="ds-input-wrap" id="proto-form-kind-wrap">
+          <span class="ds-label">Kind</span>
+          <div id="proto-form-kind"></div>
+        </div>
         <div class="ds-input-wrap">
           <span class="ds-label">Owners</span>
           <div id="proto-form-owners"></div>
@@ -1105,6 +1184,12 @@ function _ensureFormModal() {
   overlay.querySelector('#proto-form-x').addEventListener('click', close);
   overlay.querySelector('#proto-form-cancel').addEventListener('click', close);
   overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+  overlay.querySelector('#proto-form-kind').addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-proto-kind]');
+    if (!btn) return;
+    _formKind = btn.dataset.protoKind;
+    applyKindSelection(e.currentTarget, _formKind);
+  });
   overlay.querySelector('#proto-form-owners').addEventListener('change', (e) => {
     const cb = e.target.closest('[data-proto-owner-checkbox]');
     if (!cb) return;
@@ -1151,10 +1236,11 @@ async function _submitProtoForm(overlay) {
 
   // area and discoveryTaskId NEVER enter the payload - PUT merges over the
   // existing entry, so leaving them out keeps the server's values unchanged.
-  const payload = {
-    name: check.value,
-    owners: Array.from(_formSelectedOwners),
-  };
+  // `kind` is sent on CREATE only, and only when the picker was used: it
+  // chose the starter, so an edit never carries it.
+  const payload = _formMode === 'edit'
+    ? { name: check.value, owners: Array.from(_formSelectedOwners) }
+    : buildCreatePayload({ name: check.value, owners: Array.from(_formSelectedOwners), kind: _formKind });
   const origLabel = saveBtn.textContent;
   saveBtn.disabled = true;
   cancelBtn.disabled = true;
@@ -1197,6 +1283,11 @@ async function _openProtoForm(mode, item) {
   _formMode = mode;
   _formItemId = item ? item.id : null;
   _formSelectedOwners = new Set(Array.isArray(item && item.owners) ? item.owners : []);
+  _formKind = null;
+  // The kind picks the starter, so it exists in create mode only.
+  const kindWrap = overlay.querySelector('#proto-form-kind-wrap');
+  kindWrap.hidden = mode === 'edit';
+  overlay.querySelector('#proto-form-kind').innerHTML = kindPickerHtml(null);
 
   overlay.querySelector('#proto-form-title').textContent = mode === 'edit' ? 'Edit prototype' : 'Add prototype';
   overlay.querySelector('#proto-form-error').hidden = true;

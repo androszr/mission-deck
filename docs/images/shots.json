@@ -167,6 +167,33 @@
       "file": "skills.png",
       "hash": "settings/skills",
       "settleMs": 1500
+    },
+    {
+      "id": "prototypes",
+      "file": "prototypes.png",
+      "hash": "prototypy",
+      "settleMs": 2000
+    },
+    {
+      "id": "prototypes-add",
+      "file": "prototypes-add.png",
+      "hash": "prototypy",
+      "settleMs": 2000,
+      "actions": [
+        {
+          "click": "[data-proto-add]"
+        },
+        {
+          "waitFor": "#proto-form-kind button"
+        },
+        {
+          "click": "#proto-form-kind button:nth-child(3)"
+        },
+        {
+          "waitMs": 300
+        }
+      ],
+      "selector": "#proto-form-modal .ds-modal"
     }
   ]
 }

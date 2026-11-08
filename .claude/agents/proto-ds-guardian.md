@@ -81,6 +81,17 @@ and is NEVER a finding.
 lead_confirmed, owns? }`, optional `figmaSource` and `figmaDeviations[]`), optional `compliance.json`,
 `assets/*.png`.
 
+**Kit rules (React).** Screens are named for analytics: `data-track-screen` on every screen root
+and `trackScreen` on every `DSModal` / `DSBottomSheet` (rule `screen-marker`; BLOCK when several
+screens have no name). The viewer owns the demo-state switcher: a prototype that writes `?state=` or
+fires `popstate` is a finding (`own-switcher`), and a state applied through an effect that sets
+state fails the shell's lint - the screen is keyed on the demo state instead. Meaningful actions
+call `track(...)` (`analytics-missing`, WARN); a prototype with more than three screens routes them
+through the hash (`screen-deep-link`, WARN); `spec.json` `id` equals the folder and `frame` is `app`,
+`phone` or `none` (`spec-id`). A briefing's `content.json` step types are `card`, `agenda`, `why`,
+`compare`, `screen`, `phone`, `faq`, `summary`; its recorded frames live in `assets/frames/` and are
+never edited by hand.
+
 **Legacy vanilla (`prototype_format: vanilla`, existing prototypes only):** `index.html`
 (standalone page loading `/css/ds-tokens.css`, `/css/ds-tokens-dark.css`, `/css/ds.css`,
 `/js/theme-boot.js`, its own `./styles.css`, and `./render.js` as a module), `render.js` (ES

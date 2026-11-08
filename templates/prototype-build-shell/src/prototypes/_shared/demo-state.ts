@@ -5,6 +5,11 @@
 // owns the URL: picking a scenario replaces `?state=<id>` and dispatches a
 // synthetic popstate, which this hook listens to.
 //
+// Applying a state: derive it in a `useState` initialiser inside a child that
+// is keyed on the active id (`<Screen key={demoState} />`), so a new state
+// remounts the screen with fresh interaction state. Do not set state from an
+// effect to apply a scenario.
+//
 // A team may replace this file with its own copy under
 // <team data>/prototypes/_shared/demo-state.ts - the build copies that folder
 // over this one before every preview and publish.
@@ -20,11 +25,15 @@ export interface DemoStateDef {
   group?: string
 }
 
-const DEMO_STATE_PARAM = 'state'
+export const DEMO_STATE_PARAM = 'state'
 
-function readState(states: DemoStateDef[], fallback: string): string {
-  if (typeof window === 'undefined') return fallback
-  const raw = new URLSearchParams(window.location.search).get(DEMO_STATE_PARAM)
+function readParam(): string | null {
+  if (typeof window === 'undefined') return null
+  return new URLSearchParams(window.location.search).get(DEMO_STATE_PARAM)
+}
+
+function readState(states: readonly DemoStateDef[], fallback: string): string {
+  const raw = readParam()
   return raw && states.some((s) => s.id === raw) ? raw : fallback
 }
 
@@ -32,7 +41,7 @@ function readState(states: DemoStateDef[], fallback: string): string {
  * The active demo state id: `?state=` when it names a declared state, else
  * `defaultId`. Re-reads the URL on popstate (the viewer's picker).
  */
-export function useDemoState(states: DemoStateDef[], defaultId: string): string {
+export function useDemoState(states: readonly DemoStateDef[], defaultId: string): string {
   const [state, setState] = useState(() => readState(states, defaultId))
   useEffect(() => {
     const onPop = () => setState(readState(states, defaultId))
@@ -40,4 +49,9 @@ export function useDemoState(states: DemoStateDef[], defaultId: string): string 
     return () => window.removeEventListener('popstate', onPop)
   }, [states, defaultId])
   return state
+}
+
+/** True when the page was opened with an explicit `?state=`. */
+export function hasDemoStateParam(): boolean {
+  return readParam() !== null
 }

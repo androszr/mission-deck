@@ -33,6 +33,7 @@ that, an installed `playwright`. Its browser comes from `npm run setup`.
 - Keep the total under 4 MB (screens and posters together; about 3.2 MB today).
 - A step is one of `click`, `clickIfPresent`, `fill`, `press`, `waitFor`, `waitMs`, `hide` (a CSS selector to hide) and `scrollIntoView`.
 - `data-stays-yours.svg` is a drawing, not a capture; edit it by hand.
+- `prototypes-briefing.jpg` is one step of the sample briefing (`examples/prototypes/proto-e15c0a7d3b96`), taken from its preview, not by this list; the README's console picture is a recorded frame of that briefing.
 - `mini-deck-*.png` are Mini Deck phone screens, taken by `scripts/readme-showcase.mjs phone` (below), not by this list.
 
 ## Showcase posters

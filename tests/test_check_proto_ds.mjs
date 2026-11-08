@@ -145,9 +145,9 @@ test('a missing contract file is a BLOCK', () => {
   assert.strictEqual(rep.exitCode(), 1);
 });
 
-const starter = fs.readFileSync(path.join(ROOT, 'templates/prototype/starter/index.tsx'), 'utf8')
+const starter = fs.readFileSync(path.join(ROOT, 'templates/prototype/starter/blank/index.tsx'), 'utf8')
   .replace('{{PROTO_NAME_JSON}}', JSON.stringify('New prototype'));
-const starterCss = fs.readFileSync(path.join(ROOT, 'templates/prototype/starter/styles.css'), 'utf8');
+const starterCss = fs.readFileSync(path.join(ROOT, 'templates/prototype/starter/blank/styles.css'), 'utf8');
 let reactCount = 0;
 const reactFixture = (files = {}) => writeProto('react-' + reactCount++, {
   'render.js': null, 'index.html': null, 'index.tsx': starter, 'styles.css': starterCss, ...files,
@@ -446,5 +446,94 @@ test('hashed-class: a selector on a CSS-module class is a WARN, a structural one
   assert.deepStrictEqual(warns(reactFixture({ 'styles.css': starterCss + '\n.x-tabs button[role="tab"] { min-width: 120px; }\n.x_tab_1 { gap: 0; }\n' }), 'hashed-class'), []);
   assert.deepStrictEqual(warns(reactFixture(), 'hashed-class'), [], 'the starter is clean');
 });
+
+// -- prototype kit rules: screens named for analytics, deep links, the viewer's
+// -- switcher, the tracking contract, the scope file's id and frame ----------
+
+const severity = (dir, rule) => linter.run(dir).findings.filter((f) => f.rule === rule).map((f) => f.severity);
+const withSpec = (spec) => ({ 'spec.json': JSON.stringify({ customElements: [], ...spec }) });
+
+test('screen-marker: several screens and no data-track-screen is a BLOCK, naming the screens clears it', () => {
+  const hashRouted = starter + "\nwindow.addEventListener('hashchange', () => {});\n";
+  assert.deepStrictEqual(severity(reactFixture({ 'index.tsx': hashRouted }), 'screen-marker'), ['BLOCK']);
+  assert.deepStrictEqual(severity(reactFixture({ 'index.tsx': hashRouted + '\nconst n = "data-track-screen";\n' }), 'screen-marker'), []);
+  assert.deepStrictEqual(severity(reactFixture(), 'screen-marker'), [], 'one screen: nothing to name');
+});
+
+test('screen-marker: a DS layer without trackScreen is a WARN, with it nothing', () => {
+  const layer = starter + "\nconst a = <DSModal open title=\"x\" onClose={() => {}}>y</DSModal>;\n";
+  assert.ok(severity(reactFixture({ 'index.tsx': layer }), 'screen-marker').includes('WARN'));
+  const named = starter + "\nconst a = <DSModal open title=\"x\" onClose={() => {}} trackScreen=\"Area > Layer\">y</DSModal>;\n";
+  assert.deepStrictEqual(severity(reactFixture({ 'index.tsx': named }), 'screen-marker'), []);
+});
+
+test('screen-deep-link: more than three demo states and no hash routing is a WARN', () => {
+  assert.deepStrictEqual(severity(reactFixture(), 'screen-deep-link'), ['WARN'], 'the blank starter has four states and no routing');
+  assert.deepStrictEqual(severity(reactFixture({ 'index.tsx': starter + "\nwindow.addEventListener('hashchange', () => {});\n" }), 'screen-deep-link'), []);
+});
+
+test('own-switcher: writing ?state= or firing popstate is a WARN, reading it is not', () => {
+  assert.deepStrictEqual(severity(reactFixture({ 'index.tsx': starter + "\nwindow.dispatchEvent(new PopStateEvent('popstate'));\n" }), 'own-switcher'), ['WARN']);
+  assert.deepStrictEqual(severity(reactFixture({ 'index.tsx': starter + "\nconst u = new URL(location.href); u.searchParams.set('state', 'x');\n" }), 'own-switcher'), ['WARN']);
+  assert.deepStrictEqual(severity(reactFixture(), 'own-switcher'), []);
+});
+
+test('analytics-missing: no track(...) call is a WARN, one call clears it', () => {
+  assert.deepStrictEqual(severity(reactFixture(), 'analytics-missing'), ['WARN']);
+  assert.deepStrictEqual(severity(reactFixture({ 'index.tsx': starter + "\ntrack('Opened', { prototype: 'x' });\n" }), 'analytics-missing'), []);
+});
+
+test('spec-id: an id that differs from the folder, or a frame outside app / phone / none, is a BLOCK', () => {
+  const ok = reactFixture();
+  assert.deepStrictEqual(severity(ok, 'spec-id'), [], 'no id, no frame: nothing to check');
+  const right = reactFixture(); // folder name is known only after creation: write the id second
+  fs.writeFileSync(path.join(right, 'spec.json'), JSON.stringify({ customElements: [], id: path.basename(right), frame: 'app' }));
+  assert.deepStrictEqual(severity(right, 'spec-id'), []);
+  assert.deepStrictEqual(severity(reactFixture(withSpec({ id: 'proto-other' })), 'spec-id'), ['BLOCK']);
+  assert.deepStrictEqual(severity(reactFixture(withSpec({ frame: 'app-frame' })), 'spec-id'), ['BLOCK']);
+  for (const frame of ['app', 'phone', 'none']) assert.deepStrictEqual(severity(reactFixture(withSpec({ frame })), 'spec-id'), [], frame);
+});
+
+test('DSIcon names: an adapter name of the seed ICONS passes, an unknown one is a BLOCK', () => {
+  const icon = (name) => starter + `\nconst i = <DSIcon name="${name}" />;\n`;
+  assert.deepStrictEqual(severity(reactFixture({ 'index.tsx': icon('turbine') }), 'unknown-icon'), [], 'an adapter name');
+  assert.deepStrictEqual(severity(reactFixture({ 'index.tsx': icon('24-ic-clock') }), 'unknown-icon'), [], 'a manifest slug');
+  assert.deepStrictEqual(severity(reactFixture({ 'index.tsx': icon('no-such-icon') }), 'unknown-icon'), ['BLOCK']);
+});
+
+test('tokens of the seed ds/tokens.css are known, an invented one is not', () => {
+  const css = (name) => starterCss + `\n.x { color: var(${name}); }\n`;
+  assert.deepStrictEqual(severity(reactFixture({ 'styles.css': css('--text-primary') }), 'unknown-token'), []);
+  assert.deepStrictEqual(severity(reactFixture({ 'styles.css': css('--proto-text-base') }), 'unknown-token'), []);
+  assert.deepStrictEqual(severity(reactFixture({ 'styles.css': css('--surface-nonsense') }), 'unknown-token'), ['BLOCK']);
+});
+
+// The four starters, substituted the way POST /api/prototypes does, and the
+// three example prototypes of the sample data pass the gate with no BLOCK.
+const STARTER_KINDS = ['desktop', 'mobile', 'briefing', 'blank'];
+for (const kind of STARTER_KINDS) {
+  test(`the ${kind} starter passes the gate as substituted`, () => {
+    const base = path.join(ROOT, 'templates/prototype/starter', kind);
+    const id = 'proto-' + kind.slice(0, 4).padEnd(4, '0') + '0000a1';
+    const files = {};
+    for (const f of fs.readdirSync(base)) {
+      if (f === 'README.md') continue;
+      files[f] = fs.readFileSync(path.join(base, f), 'utf8');
+    }
+    files['index.tsx'] = files['index.tsx'].replace('{{PROTO_NAME_JSON}}', JSON.stringify('New prototype')).replace('{{PROTO_ID}}', id);
+    files['spec.json'] = JSON.stringify({ id, frame: { desktop: 'app', mobile: 'phone', briefing: 'none', blank: 'none' }[kind], customElements: [] });
+    const dir = path.join(TMP, id);
+    fs.mkdirSync(dir, { recursive: true });
+    for (const [f, text] of Object.entries(files)) fs.writeFileSync(path.join(dir, f), text);
+    assert.deepStrictEqual(blocks(dir), []);
+  });
+}
+
+for (const id of ['proto-7f3a91c0d2e4', 'proto-2b8e64f1a9c7', 'proto-e15c0a7d3b96']) {
+  test(`the example prototype ${id} passes the gate with no BLOCK`, () => {
+    const dir = path.join(ROOT, 'examples', 'prototypes', id);
+    assert.deepStrictEqual(blocks(dir), []);
+  });
+}
 
 test.after(() => fs.rmSync(TMP, { recursive: true, force: true }));

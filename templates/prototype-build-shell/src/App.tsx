@@ -4,6 +4,7 @@ import { LandingPage, type Claims } from './LandingPage'
 import { PrototypePlaceholder } from './PrototypePlaceholder'
 import { PROTOTYPE_CODES } from './prototype-codes'
 import { PROTOTYPE_COMPONENTS } from './prototypes/registry'
+import { installRecorder } from './recorder'
 
 const KNOWN_SLUGS = new Set(Object.values(PROTOTYPE_CODES))
 
@@ -81,6 +82,8 @@ function DeployedPrototype({ slug }: DeployedPrototypeProps) {
 }
 
 export function App() {
+  // Local analytics recorder: window.analytics + click counts per screen.
+  useEffect(() => installRecorder(), [])
   const [claims, setClaims] = useState<Claims | null>(null)
   const [error, setError] = useState<string | null>(null)
 

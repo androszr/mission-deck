@@ -15,7 +15,7 @@ const README = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
 
 const ORDER = [
   'Why Mission Deck', 'Get going in five minutes', 'A day with Mission Deck', 'Modules: the catalog is the product',
-  'Mini Deck', 'Your data stays yours', 'Claude Code inside', 'Safety in brief', 'Troubleshooting', 'Uninstall',
+  'Prototypes: show the idea before anybody builds it', 'Mini Deck', 'Your data stays yours', 'Claude Code inside', 'Safety in brief', 'Troubleshooting', 'Uninstall',
   'Everything else', 'Contributing', 'Credits', 'License',
 ];
 

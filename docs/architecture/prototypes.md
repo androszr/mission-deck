@@ -6,10 +6,9 @@ the reasoning. Add new detail HERE and at most one line to `CLAUDE.md`.
 ## Where prototypes live
 
 A prototype is a React screen in the team data repo: `data-sub-repositories/ds-data/prototypes/<id>/`
-(`index.tsx`, `styles.css`, `spec.json`, optional `compliance.json`, `assets/`), registered in
+(`index.tsx`, `styles.css`, `spec.json`, optional `compliance.json`, `assets/` with sub-folders; a briefing also `content.json` and `recording.json`), registered in
 `prototypes/prototypes.json` (`{ items: [...] }`). The id always comes from `POST /api/prototypes`,
-which also stages the starter (`templates/prototype/starter/`: one generic screen with four demo
-states, no frame and no design-system package). The `_prototypes` row of `SYNC_CORE_SCOPES` owns
+which also stages the starter of the chosen kind (see "Kinds and starters"). The `_prototypes` row of `SYNC_CORE_SCOPES` owns
 `prototypes/` in the sync window.
 
 ## The build shell
@@ -20,10 +19,12 @@ two origins:
 
 - the SEED in `templates/prototype-build-shell/`, copied when there is no clone. It builds and
   runs a prototype LOCALLY and is never a git repository. It ships its own neutral
-  `src/tokens.css`, the viewer (`BreakpointViewer`: width presets and the "Demo states" picker) and
-  a default `src/prototypes/_shared/demo-state.ts`; a team may override `_shared/` from
-  `ds-data/prototypes/_shared/`, which `_protoSyncSharedDeps` copies over it before every preview
-  and publish.
+  `src/tokens.css`, the viewer (`BreakpointViewer`: width presets, the "Demo states" picker, the
+  Analytics menu and the `?chrome=0` / `?w=` switches), a default
+  `src/prototypes/_shared/demo-state.ts` and `analytics.ts`, the shared layer (`src/ds/`,
+  `src/components/`, `src/recorder.ts`, see "The seed's shared layer"); a team may override `ds/`,
+  `components/` and `_shared/` from team data, which `_protoSyncSharedDeps` copies over the shell
+  before every preview and publish.
 - a CLONE of the repository named by `PROTO_BUILD_REPO_URL` (env-only, no default). Only a clone
   can publish: publishing is a commit and a push there, and whatever hosting watches it (GitHub or
   GitLab Pages, Cloudflare Pages, Netlify, ...) serves the result under `PROTO_PAGES_BASE_URL`.
@@ -34,6 +35,79 @@ a one-command `-c url.<with token>.insteadOf=<without>` in `_protoGitExec`, and 
 `remote.origin.url` carries credentials is rewritten to the bare address
 (`_protoStripUrlCredentials`) on its first remote operation. Without a token git uses the
 machine's own credentials.
+
+## Kinds and starters
+
+`POST /api/prototypes` takes an optional `kind`: `desktop` (the default; application frame with a
+side menu), `mobile` (phone frame with tabs), `briefing` (self-playing presentation) or `blank` (one
+empty screen, no frame). `PROTO_KINDS`, `PROTO_KIND_FRAME` and `_protoKindOf` are in `server.js`;
+the starters are `templates/prototype/starter/<kind>/` (`PROTOTYPE_STARTER_DIR` names the parent).
+`_protoStageStarter` copies every file of the kind except `README.md` (documentation of the template)
+and `spec.json` (generated, with `frame`: `app`, `phone`, `none`, `none`), substituting
+`{{PROTO_NAME_JSON}}` and `{{PROTO_ID}}` in `index.tsx` only, atomically (temporary folder, one
+rename). `kind` is written to the registry ONLY when the request named one: an entry without it reads
+as `desktop`, no read or update path writes it back, and `PUT` ignores it (it chose the starter).
+`GET /api/prototypes` returns `kind` only when stored, which is why the card shows a badge only then.
+An unknown kind is `400 invalid-kind`. Every starter applies a demo state by remounting (the screen
+is keyed on the id `useDemoState` returns and starts from the scenario's initial state) - never an
+effect that sets state, which the shell's hooks 7 lint rejects.
+
+## The seed's shared layer
+
+The seed ships what a prototype builds with: the DS adapters `src/ds/` (button, card, input, table,
+tabs, modal, sheet, toast, icon ...), the neutral frames `src/components/` (`AppFrame`, `PhoneFrame`,
+`NotInPrototype`; brand, icon, persona and menu are props), `src/prototypes/_shared/analytics.ts`
+and `src/recorder.ts`. `src/ds/tokens.css` is an ALIAS layer: every kit token name the shell does not
+define is `var(--<shell token>)`, so retuning `src/tokens.css` retunes the kit. Nine names exist in
+the shell with another value (`--radius-l`, `--text-base`, `--text-2xl`, `--text-3xl`, `--lh-xs`,
+`--lh-base`, `--lh-xl`, `--lh-2xl`, `--lh-3xl`); the kit layouts use them as `--proto-<name>` instead
+of redefining a shell token. `DSIcon` is a CSS mask over `/ds-icons/<slug>.svg` painted with
+`currentColor`; `ICONS` maps an adapter name to a slug of `assets/icons/ds/manifest.json` (icons the
+set lacked were added with `source: prototype-lab-kit:<name>`).
+
+A clone never re-reads the seed, so `_protoEnsureShellSharedSeed` runs before every preview and
+publish (before `_protoSyncSharedDeps`, so a team's own copy still wins): a seed file ABSENT from the
+shell is copied, never overwritten; a file is replaced only when its sha256 is on the frozen
+`PROTO_SEED_UPGRADES` map (an untouched earlier seed version: `BreakpointViewer.tsx`, its css,
+`App.tsx`, `demo-state.ts`); any other differing file is a team's edit, is kept and yields one warning
+line naming what will not work; nothing is deleted. `public/ds-icons/` is filled from
+`assets/icons/ds/` the same way. `package.json` gets `devDependencies.playwright` only when absent and
+no `package-lock.json` would go stale. The publish commit names `public/ds-icons/`, the viewer files
+and `src/recorder.ts` (`_protoPublishAddPaths`), and the quarantine treats the seed's files as sources
+so the adapters are never moved out as orphans.
+
+## Analytics contract and the viewer
+
+Every screen, step and window root carries `data-track-screen="Area > Screen"`; a DS layer carries
+`trackScreen` (layers render outside the screen's subtree). `track(event, props)` calls
+`window.analytics?.track`. The viewer installs `src/recorder.ts`: events and clicks (grouped by the
+nearest `data-track-screen`, else "unknown screen") live in memory of the tab only and are listed in
+the viewer's "Analytics" menu; nothing leaves the browser. The viewer reads `?state=`, `?w=<px>`
+(an exact width that wins over the stored preset and is written on a preset click) and `?chrome=0` (the
+bare prototype, no toolbar) through one parser, and keeps `data-proto-canvas` on the canvas in both
+modes. Floating layers render into `[data-proto-overlay-root]` inside the canvas.
+
+## Nested assets
+
+`_protoCopyAssets` copies `assets/` recursively to `src/prototypes/<slug>/assets/` (so `./assets/...`
+imports and `import.meta.glob` resolve through Vite) and to `public/proto-assets/<slug>/` (URL
+references, kept for existing prototypes); `_protoPublishPairs` lists every file for both destinations,
+so the stale-source guard and the narrow commit see all of them.
+
+## The recording tool and briefings
+
+A briefing is a prototype of kind `briefing`: `content.json` (chapters and steps; the caption is the
+narration script, read by browser speech synthesis) plus `recording.json` (the steps to record).
+`scripts/proto-record.mjs` opens the source prototypes bare (`<base>/<slug>?chrome=0&state=<state>`) in
+the shell's own Playwright and writes a JPEG per frame plus a `<step>.json`; `scripts/proto-build-content.mjs`
+copies them into `assets/frames/` and writes `frames` and the camera, cursor and event tracks
+(`motionFor`) into `content.json`. `--check-frames` opens the built briefing and fails when no picture
+is on the page, one did not load or the page raised an error. The browser is `PW_CHROMIUM_PATH`, else a
+Chromium found under the folder `scripts/_playwright-paths.js` names; the shell's `playwright` pin must
+equal `PLAYWRIGHT_VERSION` in `scripts/bootstrap-playwright.js` (a test guards it). The three example
+prototypes (`examples/prototypes/`: dispatch console, technician app, operations briefing) are copied
+byte for byte into the sample team data by `scripts/sample-team.js` (`writePrototypes`), frames
+included. Workflow: the `/briefing` skill.
 
 ## Local preview
 
@@ -53,7 +127,9 @@ type-checks; `npx tsc -b` in the shell is.
 One import allowlist lives in `scripts/_proto-imports.js`, required by `_protoValidateTsx`, by the
 `react-import` rule of `scripts/check-proto-ds.js` and by preflight P4, so the server and the gates
 never give one file two verdicts. Local specifiers are limited to what `_protoStageSources`
-copies (`./styles.css`, top-level `*.json`, `assets/`). The library exception is
+copies (`./styles.css`, top-level `*.json`, `assets/` with its sub-folders). A prototype may load its
+own pictures by pattern with `import.meta.glob('./assets/...')` (`GLOB_RE`): the pattern is a
+specifier too and must stay inside `./assets/` (no `..`), for the server, the gate and preflight P4. The library exception is
 `@bryntum/scheduler(-react|-trial)` plus `write-excel-file`, `jspdf` and `html2canvas`;
 `_protoEnsureLibraryDeps` installs a missing export library (pinned by `PROTO_LIBRARY_PINS` only
 when undeclared) and never installs a licensed `@bryntum/*` package (503 `deps-missing`).
@@ -102,7 +178,19 @@ and `tests/test_proto_preflight.mjs`.
 slugs, the import allowlist, the React contract and the custom-element registry. `--baseline <json>`
 blocks only NEW findings for an EXISTING prototype (fingerprints over rule, file, message and a
 normalised snippet); a new prototype never gets a baseline. `scripts/proto-preflight.js <plan>`
-checks a `/prototype` plan (P1-P17).
+checks a `/prototype` plan (P1-P19).
+
+The kit rules of the gate (React): `screen-marker` (BLOCK: hash routing or a DS layer with no
+`data-track-screen`; WARN: a `DSModal` / `DSBottomSheet` without `trackScreen`), `spec-id` (BLOCK: `id`
+not equal to the folder, `frame` outside `app` / `phone` / `none`), and WARNs `screen-deep-link`,
+`own-switcher`, `analytics-missing`. `<DSIcon name>` passes for a manifest slug or a key of the seed's
+`ICONS`; tokens of the seed's `ds/tokens.css` are known. A prototype that existed before a rule is
+excused with `--baseline`; the rules are line-free so the fingerprints stay stable.
+`scripts/proto-shell-check.js --prototypes <dirs> --out <tmp>` is the clean build check: it copies the
+seed to a throwaway shell, stages the prototypes with the server's own helpers (the same ones the
+preview uses), runs `npm install`, `eslint .`, `tsc -b` and `vite build`, and asserts the built
+bundle holds the prototypes' pictures. Its optional `--check-frames <id>` serves `dist` with
+`vite preview` and runs the frame smoke of `scripts/proto-record.mjs`.
 
 ## Demo export
 

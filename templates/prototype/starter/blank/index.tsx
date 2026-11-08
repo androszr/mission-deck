@@ -1,13 +1,14 @@
 // Mission Deck - prototype STARTER (index.tsx)
 //
-// POST /api/prototypes copies this file (the only starter) to
+// POST /api/prototypes (kind: blank) copies this file to
 // data-sub-repositories/ds-data/prototypes/<id>/ and substitutes
 // {{PROTO_NAME_JSON}} (through JSON.stringify) and {{PROTO_ID}}. Search for
 // "CUSTOMIZE" to fit the starter to the scope of the accepted plan.
 //
 // What is here: ONE empty screen for the prototype's content, with demo
-// states (ready, empty, loading, error). No frame, no design-system package:
-// the prototype styles itself with the build shell's tokens.
+// states (ready, empty, loading, error). No frame: the prototype styles
+// itself with the build shell's tokens. Need the app frame and the building
+// blocks (buttons, cards, tables, dialogs)? Start a desktop or mobile prototype.
 //
 // Contract:
 //   - default export: a React 18 component without props,

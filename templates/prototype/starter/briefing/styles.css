@@ -1,0 +1,87 @@
+/* Mission Deck - prototype STARTER, kind: briefing (styles.css)
+ *
+ * Prefix .brf-*. Colours ONLY through tokens; no hex, no rgba. The layout
+ * reacts to the container: @container proto, never @media.
+ *
+ * CUSTOMIZE: this file is the place for your own styles. A hand-built element
+ * the building blocks do not cover is registered in spec.json customElements[]
+ * and marked here with a comment of the form CUSTOM: Name.
+ */
+
+/* Operations briefing - own styles. Prefix .brf-*. Tokens only, @container proto only. */
+
+.brf-root {
+  position: relative; display: grid; grid-template-rows: auto minmax(0, 1fr) auto auto; height: 100%; min-height: 0;
+  background: var(--surface-page); color: var(--text-primary); font-family: var(--font-sans); overflow: hidden;
+}
+.brf-head { display: flex; align-items: center; gap: var(--space-16); padding: var(--space-12) var(--space-24); border-bottom: 1px solid var(--border-subtle); background: var(--surface-card); }
+.brf-head__kicker { font-size: var(--text-s); color: var(--text-tertiary); white-space: nowrap; }
+.brf-head__chapter { flex: 1; min-width: 0; font-weight: var(--weight-bold); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.brf-stage { position: relative; min-height: 0; overflow: hidden; }
+.brf-pad { height: 100%; padding: var(--space-32) var(--space-48); overflow-y: auto; display: flex; flex-direction: column; gap: var(--space-24); }
+.brf-h2 { margin: 0 0 var(--space-12); font-size: var(--proto-text-2xl); line-height: var(--proto-lh-2xl); }
+/* ---- Title card ---- */
+.brf-card {
+  height: 100%; display: flex; align-items: center; justify-content: center; gap: var(--space-48); padding: var(--space-48);
+  background: var(--briefing-card-bg); color: var(--text-inverse);
+}
+.brf-card__text { max-width: 640px; }
+.brf-card__number { color: var(--briefing-card-accent); font-size: var(--text-m); font-weight: var(--weight-bold); letter-spacing: 0.06em; text-transform: uppercase; }
+.brf-card__title { margin: var(--space-8) 0 0; font-size: var(--proto-text-3xl); line-height: var(--proto-lh-3xl); }
+.brf-root--card .brf-caption { background: var(--briefing-card-bg); color: var(--text-inverse); border-top-color: var(--surface-inverse-raised); }
+.brf-root--card .brf-caption b { color: var(--briefing-card-accent); }
+/* ---- Agenda ---- */
+.brf-agenda { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-12); }
+.brf-agenda__item { display: flex; align-items: center; gap: var(--space-16); }
+.brf-agenda__num {
+  flex: none; width: 40px; height: 40px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--briefing-card-bg); color: var(--briefing-card-accent); font-weight: var(--weight-bold);
+}
+.brf-agenda__title { flex: 1; font-size: var(--text-l); font-weight: var(--weight-bold); }
+.brf-benefits { display: flex; flex-direction: column; gap: var(--space-12); }
+.brf-benefit { display: flex; gap: var(--space-12); align-items: flex-start; }
+.brf-benefit__icon { flex: none; width: 40px; height: 40px; border-radius: var(--radius-m); display: inline-flex; align-items: center; justify-content: center; background: var(--success-soft); color: var(--success); }
+.brf-benefit__title { font-weight: var(--weight-bold); font-size: var(--text-m); }
+.brf-benefit__text { color: var(--text-secondary); }
+.brf-missing { margin: auto; display: flex; align-items: center; gap: var(--space-12); padding: var(--space-24); border: 1px dashed var(--border-strong); border-radius: var(--proto-radius-l); color: var(--text-secondary); }
+/* ---- Caption ---- */
+.brf-caption {
+  display: flex; align-items: center; gap: var(--space-16); min-height: 88px; padding: var(--space-12) var(--space-24);
+  background: var(--surface-card); border-top: 1px solid var(--border-subtle);
+}
+.brf-caption--hidden { min-height: 0; padding-top: var(--space-4); padding-bottom: var(--space-4); }
+.brf-caption__text { margin: 0; flex: 1; font-size: var(--text-l); line-height: var(--lh-l); }
+.brf-caption__text b { color: var(--accent); }
+/* ---- Controls and progress ---- */
+.brf-controls { display: flex; align-items: center; gap: var(--space-8); padding: var(--space-8) var(--space-16); background: var(--surface-card); border-top: 1px solid var(--border-subtle); }
+/* ---- Start screen ---- */
+.brf-start { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; padding: var(--space-24); background: var(--briefing-card-bg); }
+.brf-start__card { max-width: 720px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-12); color: var(--text-inverse); }
+.brf-start__kicker { color: var(--briefing-card-accent); font-weight: var(--weight-bold); text-transform: uppercase; letter-spacing: 0.06em; font-size: var(--text-s); }
+.brf-start__title { margin: 0; font-size: var(--proto-text-3xl); line-height: var(--proto-lh-3xl); }
+.brf-start__sub { margin: 0; color: var(--text-inverse-muted); font-size: var(--text-l); line-height: var(--lh-l); }
+.brf-start__actions { display: flex; gap: var(--space-12); flex-wrap: wrap; justify-content: center; margin-top: var(--space-16); }
+.brf-start__hint { margin-top: var(--space-8); color: var(--text-inverse-muted); font-size: var(--text-s); }
+/* ---- Narrow canvas (phone in landscape, small window): compact player ---- */
+@container proto (max-width: 900px) {
+
+  .brf-root { grid-template-rows: minmax(0, 1fr) auto auto; }
+
+  .brf-head { display: none; }
+
+  .brf-pad { padding: var(--space-16); gap: var(--space-16); }
+
+  .brf-card { flex-direction: column; gap: var(--space-16); padding: var(--space-24); text-align: center; }
+
+  .brf-card__title, .brf-start__title { font-size: var(--proto-text-2xl); line-height: var(--proto-lh-2xl); }
+
+  .brf-caption { min-height: 0; padding: var(--space-8) var(--space-12); }
+
+  .brf-caption__text { font-size: var(--proto-text-base); line-height: var(--proto-lh-base); }
+
+  .brf-h2 { font-size: var(--text-xl); line-height: var(--proto-lh-xl); }
+}
+
+.brf-caption__mark { flex: none; display: inline-flex; color: var(--briefing-card-accent); }
+.brf-progress-wrap { flex: 1; min-width: 0; padding: 0 var(--space-12); }
+.brf-summary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-16); }

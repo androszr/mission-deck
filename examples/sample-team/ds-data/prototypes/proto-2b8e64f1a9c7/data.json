@@ -1,0 +1,32 @@
+{
+  "note": "Fictional demo data. Every name, site and number is invented.",
+  "technician": "Lena Fischer",
+  "today": "Tue 14 Oct",
+  "jobs": [
+    {
+      "id": "WO-1042", "turbine": "KR-07", "site": "Kestrel Ridge", "title": "Pitch system fault on blade B",
+      "priority": "critical", "window": "10:30 - 13:30", "distanceKm": 6, "estimateH": 3, "isNew": true,
+      "dispatcherNote": "Remote reset failed once. Accumulator on blade B was replaced last month - check it first.",
+      "facts": [ { "label": "Fault code", "value": "PS-221" }, { "label": "Pitch deviation", "value": "7.8 deg" }, { "label": "Wind now", "value": "9 m/s" } ],
+      "tasks": ["Inspect blade B pitch accumulator", "Check hydraulic hoses and fittings", "Run pitch calibration", "Test run 15 minutes"],
+      "parts": [ { "id": "seal-kit", "name": "Pitch cylinder seal kit" }, { "id": "hose", "name": "Hydraulic hose 1/2 in" } ]
+    },
+    {
+      "id": "WO-1047", "turbine": "KR-11", "site": "Kestrel Ridge", "title": "Anemometer replacement",
+      "priority": "medium", "window": "14:30 - 16:00", "distanceKm": 7, "estimateH": 1.5, "isNew": false,
+      "dispatcherNote": "", "facts": [], "tasks": [], "parts": []
+    },
+    {
+      "id": "WO-1049", "turbine": "KR-04", "site": "Kestrel Ridge", "title": "Fire extinguisher check",
+      "priority": "low", "window": "16:15 - 16:45", "distanceKm": 5, "estimateH": 0.5, "isNew": false,
+      "dispatcherNote": "", "facts": [], "tasks": [], "parts": []
+    }
+  ],
+  "safety": [
+    { "id": "wind", "label": "Wind below 12 m/s for the next 2 hours", "description": "Forecast and nacelle anemometer agree." },
+    { "id": "loto", "label": "Lockout / tagout applied", "description": "Rotor locked, main breaker tagged with your name." },
+    { "id": "rescue", "label": "Rescue kit checked at the tower base", "description": "Seal intact, descender inspected this month." },
+    { "id": "buddy", "label": "Climbing partner on site", "description": "Two-person rule for nacelle work." },
+    { "id": "ppe", "label": "Harness, helmet and gloves on", "description": "Harness inspection tag still valid." }
+  ]
+}

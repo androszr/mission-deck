@@ -1,0 +1,100 @@
+{
+  "id": "proto-e15c0a7d3b96",
+  "title": "Operations briefing - from alarm to repair, faster",
+  "summary": "Self-playing briefing for shift leads and operations managers: why dispatching changes, the new dispatch console and the technician app shown on frames recorded from the two clickable prototypes (camera, cursor, clicks and keys), the most common questions and what the shift gains. Start screen with 'Start with narration' (browser speech reads each caption) or 'Browse without sound'; captions are exactly what is spoken; the current step lives in the address (#/<chapter>/<n>); a step that stands still shows its key frame. Keys: arrows, Space, C, M. Compact layout below 900 px of canvas.",
+  "updated": "2026-09-24",
+  "frame": "none",
+  "scope": [
+    {
+      "group": "1. From alarm to repair, faster",
+      "items": [
+        "Title card",
+        "Agenda"
+      ]
+    },
+    {
+      "group": "2. Why we change dispatching",
+      "items": [
+        "Title card",
+        "Why + what the shift gains",
+        "Today vs after"
+      ]
+    },
+    {
+      "group": "3. The new dispatch console",
+      "items": [
+        "Title card",
+        "Recorded: morning queue and detail panel",
+        "Recorded: assign technician",
+        "Recorded: crew board"
+      ]
+    },
+    {
+      "group": "4. On the technician's phone",
+      "items": [
+        "Title card",
+        "Recorded: new job",
+        "Recorded: safety check",
+        "Recorded: close the job"
+      ]
+    },
+    {
+      "group": "5. What shift leads asked us",
+      "items": [
+        "Four questions"
+      ]
+    },
+    {
+      "group": "6. What your shift gains",
+      "items": [
+        "Summary"
+      ]
+    }
+  ],
+  "releases": [
+    {
+      "date": "2026-09-24",
+      "items": [
+        "First version, frames recorded from the dispatch and technician prototypes."
+      ]
+    }
+  ],
+  "customElements": [
+    {
+      "name": "ScreenShot",
+      "reason": "Recorded frames with a moving camera, a cursor and click/key markers - no DS component plays a frame sequence.",
+      "note": "Images only; no interactive content inside.",
+      "lead_confirmed": true,
+      "owns": [
+        "img",
+        "svg"
+      ]
+    },
+    {
+      "name": "PhoneBezel",
+      "reason": "Neutral phone outline around a recorded phone frame.",
+      "note": "Decorative.",
+      "lead_confirmed": true
+    },
+    {
+      "name": "GuideCharacter",
+      "reason": "The briefing guide is an illustration drawn for this kit, not a DS illustration.",
+      "note": "Inline SVG, colours from tokens.",
+      "lead_confirmed": true,
+      "owns": [
+        "svg"
+      ]
+    },
+    {
+      "name": "BriefingProgress",
+      "reason": "Chapter segments with one jump target per step; the DS has no stepper with this density.",
+      "note": "Raw buttons with aria-label and focus ring.",
+      "lead_confirmed": true,
+      "owns": [
+        "button"
+      ]
+    }
+  ],
+  "figmaSource": null,
+  "figmaDeviations": []
+}

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
+import { resetRecorder, snapshot, subscribe } from './recorder'
 import './BreakpointViewer.css'
 
 // Six breakpoint presets — mirrors the cockpit standalone viewer
@@ -24,9 +25,35 @@ export interface DemoStateDef {
 
 const DEMO_STATE_PARAM = 'state'
 
+// The three address switches the viewer understands, read by ONE parser:
+//   ?state=<id>   demo state (the viewer's picker writes it)
+//   ?w=<px>       exact canvas width; wins over the stored preset
+//   ?chrome=0     bare prototype, no toolbar (the recording tool uses it)
+interface ViewerParams {
+  state: string | null
+  width: number | null
+  chrome: boolean
+}
+
+function readViewerParams(): ViewerParams {
+  const p = new URLSearchParams(window.location.search)
+  const w = Number(p.get('w'))
+  return {
+    state: p.get(DEMO_STATE_PARAM),
+    width: Number.isFinite(w) && w >= 240 && w <= 3840 ? Math.round(w) : null,
+    chrome: p.get('chrome') !== '0',
+  }
+}
+
+function writeViewerParam(key: string, value: string): void {
+  const url = new URL(window.location.href)
+  url.searchParams.set(key, value)
+  window.history.replaceState(window.history.state, '', url.toString())
+}
+
 /** Current `?state=` value, or null when absent. Read-only — never writes. */
 function readDemoStateFromUrl(): string | null {
-  return new URLSearchParams(window.location.search).get(DEMO_STATE_PARAM)
+  return readViewerParams().state
 }
 
 // Same contract as prototypes/_shared/demo-state.ts's useDemoState: the
@@ -91,6 +118,8 @@ function autoBreakpoint(winWidth: number, allowed: number[] = PRESETS): number {
 // to the narrowest preset. Mirrors js/prototypy.js:_loadProtoBreakpoint
 // minus the legacy-migration branch.
 function loadInitialBreakpoint(): number {
+  const exact = readViewerParams().width
+  if (exact !== null) return exact
   try {
     const raw = window.localStorage.getItem(BREAKPOINT_STORAGE_KEY)
     if (raw !== null) {
@@ -107,6 +136,7 @@ function loadInitialBreakpoint(): number {
 }
 
 function persistBreakpoint(bp: number) {
+  if (readViewerParams().width !== null) writeViewerParam('w', String(bp))
   try {
     window.localStorage.setItem(BREAKPOINT_STORAGE_KEY, String(bp))
   } catch {
@@ -173,6 +203,9 @@ export function BreakpointViewer({ breakpoints, children, demoStates }: Breakpoi
     [breakpoints],
   )
 
+  const [viewerParams] = useState(readViewerParams)
+  // An exact `?w=` pins the width until the first preset click.
+  const [pinned, setPinned] = useState(viewerParams.width !== null)
   const [bp, setBp] = useState(loadInitialBreakpoint)
   const [winWidth, setWinWidth] = useState(() => window.innerWidth)
   const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches)
@@ -201,6 +234,7 @@ export function BreakpointViewer({ breakpoints, children, demoStates }: Breakpoi
   // only until the next resize (mirrors
   // js/prototypy.js:_registerBreakpointResizeListener).
   useEffect(() => {
+    if (pinned) return
     const initial = autoBreakpoint(window.innerWidth, declared)
     // Deferred to avoid synchronous setState in effect body
     queueMicrotask(() => {
@@ -210,7 +244,7 @@ export function BreakpointViewer({ breakpoints, children, demoStates }: Breakpoi
         return initial
       })
     })
-  }, [declared])
+  }, [declared, pinned])
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | null = null
@@ -219,6 +253,7 @@ export function BreakpointViewer({ breakpoints, children, demoStates }: Breakpoi
       timer = setTimeout(() => {
         const w = window.innerWidth
         setWinWidth(w)
+        if (pinned) return
         const nextBp = autoBreakpoint(w, declared)
         setBp((prev) => {
           if (nextBp === prev) return prev
@@ -232,7 +267,7 @@ export function BreakpointViewer({ breakpoints, children, demoStates }: Breakpoi
       window.removeEventListener('resize', onResize)
       if (timer) clearTimeout(timer)
     }
-  }, [declared])
+  }, [declared, pinned])
 
   // Mobile media-query tracking — drives the "no toolbar, no frame" mode.
   useEffect(() => {
@@ -299,7 +334,7 @@ export function BreakpointViewer({ breakpoints, children, demoStates }: Breakpoi
     }
     const onDown = (e: MouseEvent | TouchEvent) => {
       const target = e.target as HTMLElement
-      if (target.closest('button, select, option')) return
+      if (target.closest('button, select, option, .bv-analytics__pop')) return
       dragging = true
       const point = 'touches' in e ? e.touches[0] : e
       const cx = point.clientX
@@ -330,13 +365,17 @@ export function BreakpointViewer({ breakpoints, children, demoStates }: Breakpoi
 
   const handleSelect = (nextBp: number) => {
     if (nextBp === bp) return
+    setPinned(false)
     setBp(nextBp)
     persistBreakpoint(nextBp)
+    writeViewerParam('w', String(nextBp))
   }
 
   const frame: FrameKind = isMobile
     ? { kind: 'mobile', width: null }
-    : resolveFrameKind(bp, declared)
+    : pinned && !declared.includes(bp)
+      ? { kind: bp <= 480 ? 'phone' : 'none', width: bp }
+      : resolveFrameKind(bp, declared)
 
   const cqStyle: { width: string; display?: 'none' } = {
     width: frame.width ? `${frame.width}px` : '100%',
@@ -346,6 +385,24 @@ export function BreakpointViewer({ breakpoints, children, demoStates }: Breakpoi
   }
 
   const demoStateGroups = demoStates && demoStates.length > 0 ? groupDemoStates(demoStates) : null
+
+  // `?chrome=0`: the bare prototype, no toolbar and no frame. The canvas keeps
+  // the data-proto-canvas marker (the recorder and the recording tool look
+  // for it) and the overlay root floating layers render into.
+  if (!viewerParams.chrome) {
+    return (
+      <div className="bv-bare">
+        <div
+          className="proto-cq-root bv-bare__canvas"
+          data-proto-canvas
+          style={{ width: viewerParams.width ? `${viewerParams.width}px` : '100%' }}
+        >
+          {children}
+          <div className="bv-overlay" data-proto-overlay-root />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="bv-root">
@@ -401,6 +458,7 @@ export function BreakpointViewer({ breakpoints, children, demoStates }: Breakpoi
               })}
             </select>
           )}
+          <AnalyticsMenu />
         </div>
       )}
 
@@ -414,8 +472,9 @@ export function BreakpointViewer({ breakpoints, children, demoStates }: Breakpoi
             <div className="bv-frame-chrome-phone" aria-hidden="true">
               <div className="bv-phone-notch" />
             </div>
-            <div className="proto-cq-root" style={cqStyle}>
+            <div className="proto-cq-root" data-proto-canvas style={cqStyle}>
               {children}
+              <div className="bv-overlay" data-proto-overlay-root />
             </div>
             {!isMobile && frame.kind === 'placeholder' && (
               <div className="bv-placeholder">
@@ -431,6 +490,58 @@ export function BreakpointViewer({ breakpoints, children, demoStates }: Breakpoi
           </div>
         </div>
       </div>
+    </div>
+  )
+}
+
+// Snapshot cache: useSyncExternalStore needs a referentially stable value
+// between emits, and snapshot() builds fresh arrays on every call.
+let cachedSnapshot = snapshot()
+function getSnapshot() {
+  return cachedSnapshot
+}
+function subscribeSnapshot(onChange: () => void) {
+  return subscribe(() => {
+    cachedSnapshot = snapshot()
+    onChange()
+  })
+}
+
+// Clicks per screen name (the grouping a click heatmap uses) plus the last
+// track() events. Kept in this tab's memory only.
+function AnalyticsMenu() {
+  const snap = useSyncExternalStore(subscribeSnapshot, getSnapshot)
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="bv-analytics">
+      <button type="button" className="bv-analytics__btn" aria-expanded={open} onClick={() => setOpen(!open)}>
+        Analytics
+        <span className="bv-analytics__count">{snap.total}</span>
+      </button>
+      {open && (
+        <div className="bv-analytics__pop">
+          <div className="bv-analytics__caption">Clicks per screen</div>
+          {snap.screens.length === 0 && <div className="bv-analytics__empty">Click around the prototype.</div>}
+          {snap.screens.map(([name, n]) => (
+            <div key={name} className={`bv-analytics__row${name === 'unknown screen' ? ' bv-analytics__row--warn' : ''}`}>
+              <span>{name}</span>
+              <b>{n}</b>
+            </div>
+          ))}
+          <div className="bv-analytics__caption">Last events</div>
+          {snap.events.length === 0 && <div className="bv-analytics__empty">No track() events yet.</div>}
+          {snap.events.map((e) => (
+            <div key={e.seq} className="bv-analytics__row">
+              <span>{e.event}</span>
+              <code>{e.props ? JSON.stringify(e.props) : ''}</code>
+            </div>
+          ))}
+          <div className="bv-analytics__foot">
+            <button type="button" className="bv-analytics__reset" onClick={resetRecorder}>Reset</button>
+            <span>Local only - these clicks stay in this preview.</span>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -20204,12 +20204,30 @@ const PROTO_NAME_MAX_LEN = 200;
 
 // The template directory of a new screen (not to be confused with PROTO_SHELL_SEED_DIR
 // below - that one builds and displays, this one is the SOURCE copied into a new entry).
-// The only starter: a generic screen with demo states. Overridable
-// in tests (PROTOTYPE_STARTER_DIR) - the only way for the API suite to exercise a missing
-// template and a broken template without touching the real templates/prototype/starter/.
+// One starter per KIND, in templates/prototype/starter/<kind>/. PROTO_STARTER_DIR is the
+// PARENT of those directories. Overridable in tests (PROTOTYPE_STARTER_DIR) - the only way
+// for the API suite to exercise a missing template and a broken template without touching
+// the real templates/prototype/starter/.
 const PROTO_STARTER_DIR = process.env.PROTOTYPE_STARTER_DIR
   ? path.resolve(process.env.PROTOTYPE_STARTER_DIR)
   : path.join(ROOT, 'templates', 'prototype', 'starter');
+
+// Kinds of prototype a person can start. The registry stores `kind` ONLY when the
+// request named one; a missing kind reads as 'desktop' (_protoKindOf) and is never
+// written back by a read or an update. `frame` goes into the generated spec.json.
+const PROTO_KINDS = Object.freeze(['desktop', 'mobile', 'briefing', 'blank']);
+const PROTO_DEFAULT_KIND = 'desktop';
+const PROTO_KIND_FRAME = Object.freeze({ desktop: 'app', mobile: 'phone', briefing: 'none', blank: 'none' });
+
+/**
+ * The kind of a registry entry. An entry written before kinds existed (or by
+ * an older reader) has none and reads as 'desktop'. Never writes.
+ * @param {object|null|undefined} item
+ * @returns {'desktop'|'mobile'|'briefing'|'blank'}
+ */
+function _protoKindOf(item) {
+  return item && typeof item.kind === 'string' && PROTO_KINDS.includes(item.kind) ? item.kind : PROTO_DEFAULT_KIND;
+}
 
 // Tokens substituted in the starter source. The name MUST go through
 // JSON.stringify - the only safe way to embed arbitrary text
@@ -20277,8 +20295,9 @@ function _protoParseStarterDemoStates(tsx) {
  * @param {string} [stylesCss]
  * @returns {object}
  */
-function _protoGenerateStarterSpec(name, tsx, stylesCss) {
-  const templateName = 'templates/prototype/starter';
+function _protoGenerateStarterSpec(name, tsx, stylesCss, opts = {}) {
+  const kind = opts && PROTO_KINDS.includes(opts.kind) ? opts.kind : null;
+  const templateName = (opts && opts.templateName) || (kind ? `templates/prototype/starter/${kind}` : 'templates/prototype/starter');
   const today = todayStr();
   const demoStates = _protoParseStarterDemoStates(tsx);
   const groups = new Map();
@@ -20291,7 +20310,7 @@ function _protoGenerateStarterSpec(name, tsx, stylesCss) {
   const stateList = demoStates.map((s) => s.label || s.id).join(', ');
   const css = typeof stylesCss === 'string' ? stylesCss : '';
   const customElements = [...css.matchAll(/\/\*\s*CUSTOM\s*:\s*([a-zA-Z0-9_-]+)/g)].map((m) => ({ name: m[1] }));
-  return {
+  const spec = {
     updated: today,
     summary: `Starter of prototype "${name}" created automatically by POST /api/prototypes from template `
       + `${templateName}. Contains one empty screen for the prototype's content with demo states`
@@ -20305,6 +20324,8 @@ function _protoGenerateStarterSpec(name, tsx, stylesCss) {
     ],
     customElements,
   };
+  if (kind) spec.frame = PROTO_KIND_FRAME[kind];
+  return spec;
 }
 
 /**
@@ -20325,10 +20346,14 @@ function _protoGenerateStarterSpec(name, tsx, stylesCss) {
  *     source.
  * The source goes through _protoValidateTsx (isAllowedProtoImport), so a starter with
  * the frame cannot bypass the allowlist.
- * @param {{id: string, name: string}} args
+ * Every regular file of starter/<kind>/ is copied (index.tsx with its tokens
+ * substituted, the rest byte for byte) except README.md (documentation for the
+ * template, not for the prototype) and spec.json (generated here).
+ * @param {{id: string, name: string, kind?: string}} args
  */
-function _protoStageStarter({ id, name }) {
-  const starterDir = PROTO_STARTER_DIR;
+function _protoStageStarter({ id, name, kind = PROTO_DEFAULT_KIND }) {
+  if (!PROTO_KINDS.includes(kind)) return { ok: false, error: `Unknown prototype kind: ${kind}` };
+  const starterDir = path.join(PROTO_STARTER_DIR, kind);
   let indexTsxRaw;
   try {
     indexTsxRaw = fs.readFileSync(path.join(starterDir, 'index.tsx'), 'utf8');
@@ -20349,7 +20374,20 @@ function _protoStageStarter({ id, name }) {
   } catch (e) {
     return { ok: false, error: e.message };
   }
-  const spec = _protoGenerateStarterSpec(name, indexTsx, stylesCssRaw);
+  const spec = _protoGenerateStarterSpec(name, indexTsx, stylesCssRaw, { kind });
+
+  // The remaining files of the kind (content.json, recording.json, ...), read
+  // BEFORE anything is written so an unreadable one leaves no partial directory.
+  const extraFiles = [];
+  try {
+    for (const ent of fs.readdirSync(starterDir, { withFileTypes: true })) {
+      if (!ent.isFile()) continue;
+      if (['index.tsx', 'styles.css', 'spec.json', 'README.md'].includes(ent.name)) continue;
+      extraFiles.push({ name: ent.name, data: fs.readFileSync(path.join(starterDir, ent.name)) });
+    }
+  } catch (e) {
+    return { ok: false, error: `Reading the starter template files failed: ${e.message}` };
+  }
 
   const finalDir = path.join(PROTOTYPES_DIR, id);
   if (fs.existsSync(finalDir)) {
@@ -20364,6 +20402,7 @@ function _protoStageStarter({ id, name }) {
     fs.mkdirSync(tmpDir, { recursive: true });
     fs.writeFileSync(path.join(tmpDir, 'index.tsx'), indexTsx, 'utf8');
     fs.writeFileSync(path.join(tmpDir, 'styles.css'), stylesCssRaw, 'utf8');
+    for (const f of extraFiles) fs.writeFileSync(path.join(tmpDir, f.name), f.data);
     fs.writeFileSync(path.join(tmpDir, 'spec.json'), JSON.stringify(spec, null, 2) + '\n', 'utf8');
     fs.renameSync(tmpDir, finalDir);
   } catch (e) {
@@ -20413,6 +20452,9 @@ async function _protoCreateEntry(body) {
   if (body.discoveryTaskId !== undefined && typeof body.discoveryTaskId !== 'string') {
     return { code: 400, body: { error: 'invalid-discovery-task-id', message: 'The discoveryTaskId field must be a string.' } };
   }
+  if (body.kind !== undefined && !PROTO_KINDS.includes(body.kind)) {
+    return { code: 400, body: { error: 'invalid-kind', message: `The kind must be one of: ${PROTO_KINDS.join(', ')}.` } };
+  }
   return withProtoLock(() => {
     let data;
     try {
@@ -20436,6 +20478,9 @@ async function _protoCreateEntry(body) {
       updated_at: now,
     };
     if (typeof body.discoveryTaskId === 'string') item.discoveryTaskId = body.discoveryTaskId;
+    // `kind` is stored ONLY when the request named one; staging uses the default
+    // kind otherwise and the entry stays exactly as before kinds existed.
+    if (body.kind !== undefined) item.kind = body.kind;
 
     // Starter BEFORE the registry: NO tolerance for a missing template - the
     // templates/prototype/starter/ contract is a fixed resource, not parallel
@@ -20444,7 +20489,7 @@ async function _protoCreateEntry(body) {
     // registry is touched - there is never an entry without a working source. Entries with format:
     // 'missing' on GET concern only existing, older metadata records
     // without source files - not a new POST.
-    const staged = _protoStageStarter({ id, name });
+    const staged = _protoStageStarter({ id, name, kind: _protoKindOf(item) });
     if (!staged.ok) {
       return { code: 500, body: { error: 'starter-copy-failed', message: staged.error } };
     }
@@ -20514,6 +20559,8 @@ async function handlePrototypeUpdate(req, res) {
     }
     changes.discoveryTaskId = body.discoveryTaskId;
   }
+  // `kind` is NOT updatable: it chose the starter at creation. A body that names
+  // it is ignored (the stored kind, or its absence, survives the merge below).
 
   return withProtoLock(() => {
     let data;
@@ -20707,6 +20754,170 @@ function _protoEnsureBuildShell() {
     _protoCopyAppTokens();
   }
   return _protoBuildShellReady();
+}
+
+// -- Build shell: the seed's shared layer for a shell that already exists --
+
+// Earlier versions of the seed files that changed with the prototype kit
+// (sha256 of the file as committed). A shell holding one of these byte for byte
+// is UNTOUCHED, so it is replaced with the current seed file; any other content
+// is a team's own edit and is kept. A hash list is the only rule that tells the two apart.
+const PROTO_SEED_UPGRADES = Object.freeze({
+  'src/BreakpointViewer.tsx': ['a25dbf07abf49dcf42ec6c11a1877d948210c806c01ffa322c5f009aadab1a30'],
+  'src/BreakpointViewer.css': ['2923c87d3fa6913c495d2787b497aed87ba9849816488f5358d78d1730a746db'],
+  'src/App.tsx': ['8d0da96e9583eeed3001b1e2d6545f73428feeeb2438cce04eb8d4a0bcf0879e'],
+  'src/prototypes/_shared/demo-state.ts': ['946f9a95ec4557b7757fbc7181528f1ea9c35e5c606b154ff30fb286a6de99ab'],
+});
+// What a kept (edited) upgrade file will not do, for the one warning line.
+const PROTO_SEED_UPGRADE_EFFECT = Object.freeze({
+  'src/BreakpointViewer.tsx': 'the viewer keeps no ?chrome=0 bare mode, no ?w= width and no Analytics menu, so the recording tool cannot run here',
+  'src/BreakpointViewer.css': 'the bare mode and the Analytics menu are unstyled',
+  'src/App.tsx': 'the local analytics recorder is not installed',
+  'src/prototypes/_shared/demo-state.ts': 'prototypes that import hasDemoStateParam fail the type-check',
+});
+// Paths the publish commit carries for the upgrade (the shell's remote must
+// receive the upgraded files), in addition to the shared directories.
+const PROTO_SEED_UPGRADE_PATHS = Object.freeze([
+  'src/BreakpointViewer.tsx', 'src/BreakpointViewer.css', 'src/App.tsx', 'src/recorder.ts',
+]);
+// Seed directories filled absent-only into an existing shell, and single seed files.
+const PROTO_SEED_SHARED_DIRS = Object.freeze(['src/ds', 'src/components', 'src/prototypes/_shared']);
+const PROTO_SEED_SHARED_FILES = Object.freeze(['src/recorder.ts', 'src/BreakpointViewer.tsx', 'src/BreakpointViewer.css', 'src/App.tsx']);
+
+// Line endings are normalised before hashing: a Windows clone with
+// core.autocrlf checks the seed files out with CRLF, and an untouched file
+// must still match its LF hash on PROTO_SEED_UPGRADES.
+function _protoSha256File(abs) {
+  const text = fs.readFileSync(abs).toString('latin1').replace(/\r\n/g, '\n');
+  return crypto.createHash('sha256').update(Buffer.from(text, 'latin1')).digest('hex');
+}
+
+/**
+ * Every seed path (relative, '/') of the shared layer: the files under
+ * PROTO_SEED_SHARED_DIRS plus PROTO_SEED_SHARED_FILES that the seed holds.
+ * @param {string} [seedDir]
+ * @returns {string[]}
+ */
+function _protoSeedSharedPaths(seedDir = PROTO_SHELL_SEED_DIR) {
+  const out = [];
+  for (const dir of PROTO_SEED_SHARED_DIRS) out.push(..._protoListFilesRel(path.join(seedDir, ...dir.split('/')), dir));
+  for (const f of PROTO_SEED_SHARED_FILES) if (fs.existsSync(path.join(seedDir, ...f.split('/')))) out.push(f);
+  return out.sort();
+}
+
+/**
+ * Brings the seed's shared layer (ds/, components/, prototypes/_shared/, the
+ * recorder, the upgraded viewer files and public/ds-icons/) into a shell that
+ * already exists - a clone never re-reads the seed. It
+ *   - copies a seed file that is ABSENT from the shell (never overwrites),
+ *   - replaces a file ONLY when its sha256 is on PROTO_SEED_UPGRADES,
+ *   - leaves any other differing file alone; a differing upgrade file is
+ *     reported in `kept` (the caller prints one warning line each),
+ *   - adds devDependencies.playwright to package.json when absent and no
+ *     package-lock.json would go stale (otherwise `playwrightSkipped`).
+ * It runs BEFORE _protoSyncSharedDeps, so a team's own copy under the team
+ * data still wins afterwards. Nothing is ever deleted.
+ * @param {string} [buildDir]
+ * @param {{seedDir?: string, iconsDir?: string}} [opts]
+ * @returns {{copied: string[], upgraded: string[], kept: Array<{path: string, effect: string}>, icons: number, packageJsonUpdated: boolean, playwrightSkipped: boolean, seedPaths: string[]}}
+ */
+function _protoEnsureShellSharedSeed(buildDir = PROTO_BUILD_DIR, { seedDir = PROTO_SHELL_SEED_DIR, iconsDir = PROTO_DS_ICONS_DIR, sharedRoots = _protoSharedSyncRoots() } = {}) {
+  const result = { copied: [], upgraded: [], kept: [], icons: 0, packageJsonUpdated: false, playwrightSkipped: false, playwrightWanted: '', seedPaths: [], skippedDirs: [] };
+  // A shared folder is ONE unit: seeded whole or not at all. A folder the team
+  // owns (it exists in the team data) or one that already holds files the seed
+  // did not put there is left alone - a half-seeded folder (AppFrame next to a
+  // team ds/index.ts without the names it imports) breaks `tsc -b` for every
+  // publish. components/ imports from ds/, so it follows ds/. prototypes/_shared/
+  // holds independent helpers (analytics.ts, demo-state.ts), so it is seeded file
+  // by file, absent-only, whoever else holds files there.
+  const allSeed = _protoSeedSharedPaths(seedDir);
+  const skipped = new Set();
+  for (const dir of PROTO_SEED_SHARED_DIRS) {
+    if (dir === 'src/prototypes/_shared') continue;
+    const root = sharedRoots.find((r) => r.shellRel === dir);
+    const teamOwned = Boolean(root) && _protoListFilesRel(root.srcDir, dir).length > 0;
+    const known = new Set(allSeed.filter((p) => p.startsWith(`${dir}/`)));
+    const foreign = _protoListFilesRel(path.join(buildDir, ...dir.split('/')), dir).some((p) => !known.has(p));
+    if (teamOwned || foreign || (dir === 'src/components' && skipped.has('src/ds'))) skipped.add(dir);
+  }
+  result.skippedDirs = [...skipped];
+  const seedPaths = allSeed.filter((p) => ![...skipped].some((d) => p.startsWith(`${d}/`)));
+  result.seedPaths = seedPaths;
+  for (const rel of seedPaths) {
+    const from = path.join(seedDir, ...rel.split('/'));
+    const to = path.join(buildDir, ...rel.split('/'));
+    if (!fs.existsSync(to)) {
+      fs.mkdirSync(path.dirname(to), { recursive: true });
+      fs.copyFileSync(from, to);
+      result.copied.push(rel);
+      continue;
+    }
+    const have = _protoSha256File(to);
+    if (have === _protoSha256File(from)) continue;
+    const earlier = PROTO_SEED_UPGRADES[rel];
+    if (!earlier) continue; // a team's own shared file
+    if (earlier.includes(have)) {
+      fs.copyFileSync(from, to);
+      result.upgraded.push(rel);
+    } else {
+      result.kept.push({ path: rel, effect: PROTO_SEED_UPGRADE_EFFECT[rel] || 'the new seed version is not applied' });
+    }
+  }
+  // Icons: the adapters paint /ds-icons/<file>.svg, so the whole set must be in the shell.
+  try {
+    const dest = path.join(buildDir, 'public', 'ds-icons');
+    for (const f of fs.readdirSync(iconsDir)) {
+      if (!f.endsWith('.svg')) continue;
+      const to = path.join(dest, f);
+      if (fs.existsSync(to)) continue;
+      fs.mkdirSync(dest, { recursive: true });
+      fs.copyFileSync(path.join(iconsDir, f), to);
+      result.icons += 1;
+    }
+  } catch { /* no icons directory - the shell keeps what it has */ }
+  // package.json: add the playwright devDependency the recording tool needs, additively.
+  try {
+    const pkgPath = path.join(buildDir, 'package.json');
+    const seedPkg = JSON.parse(fs.readFileSync(path.join(seedDir, 'package.json'), 'utf8'));
+    const want = seedPkg.devDependencies && seedPkg.devDependencies.playwright;
+    if (want) result.playwrightWanted = String(want);
+    if (want && fs.existsSync(pkgPath)) {
+      const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+      if (!_protoPkgDeclares(pkg, 'playwright')) {
+        if (fs.existsSync(path.join(buildDir, 'package-lock.json'))) {
+          // A lock file without the new entry would break `npm ci` on the host.
+          result.playwrightSkipped = true;
+        } else {
+          pkg.devDependencies = { ...(pkg.devDependencies || {}), playwright: want };
+          fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf8');
+          result.packageJsonUpdated = true;
+        }
+      }
+    }
+  } catch { /* an unreadable package.json is _protoEnsureLibraryDeps' to report */ }
+  return result;
+}
+
+/**
+ * Runs _protoEnsureShellSharedSeed and turns its report into log lines.
+ * @param {(line: string) => void} log
+ * @returns {ReturnType<typeof _protoEnsureShellSharedSeed>}
+ */
+function _protoRunShellSharedSeed(log = () => {}) {
+  const r = _protoEnsureShellSharedSeed();
+  const n = r.copied.length + r.upgraded.length + r.icons;
+  if (n) log(`Shell upkeep: ${r.copied.length} shared files added, ${r.upgraded.length} upgraded, ${r.icons} icons added`);
+  const warnings = [];
+  for (const k of r.kept) warnings.push(`${k.path} was edited in the shell and is left as it is; ${k.effect}.`);
+  for (const dir of r.skippedDirs) {
+    warnings.push(`${dir}/ belongs to the team data or holds files the seed did not add, so the seed's version was not added; the Desktop, Mobile and Briefing starters import from it and fail to build unless that copy exports the same names.`);
+  }
+  // Only the recording tool needs playwright, so its absence is a log line, not a warning on every preview.
+  if (r.playwrightSkipped) {
+    log(`Note: package-lock.json is present, so the playwright devDependency was not added; run "npm install --save-dev playwright@${r.playwrightWanted || 'latest'}" in the build shell to use the recording tool.`);
+  }
+  for (const w of warnings) log(`WARNING: ${w}`);
+  return { ...r, warnings };
 }
 
 // ── Build shell: node_modules health ────────────────────────────────────────
@@ -21052,21 +21263,42 @@ async function _protoSyncSharedDeps() {
 }
 
 /**
- * Copies the prototype's assets/ to public/proto-assets/<slug>/ plus every DS icon
- * the source refers to through 'ds-icon/<slug>'.
+ * Copies regular files only, walking with lstat: a symlink (file or folder) is
+ * skipped, never copied as a link for the bundler to follow out of the tree.
+ * @param {string} src
+ * @param {string} dest
+ */
+function _protoCopyRegularFiles(src, dest) {
+  fs.mkdirSync(dest, { recursive: true });
+  for (const e of fs.readdirSync(src)) {
+    const from = path.join(src, e);
+    const st = fs.lstatSync(from);
+    if (st.isSymbolicLink()) continue;
+    if (st.isDirectory()) _protoCopyRegularFiles(from, path.join(dest, e));
+    else if (st.isFile()) fs.copyFileSync(from, path.join(dest, e));
+  }
+}
+
+/**
+ * Copies the prototype's assets/ RECURSIVELY (sub-folders included) to two
+ * places - src/prototypes/<slug>/assets/ (so `./assets/...` imports and
+ * `import.meta.glob('./assets/...')` resolve through Vite) and
+ * public/proto-assets/<slug>/ (URL references, kept for existing prototypes) -
+ * plus every DS icon the source refers to through 'ds-icon/<slug>'.
  * @param {{id: string, slug: string, codeText: string}} args
  */
 async function _protoCopyAssets({ id, slug, codeText }) {
   const srcAssetsDir = path.join(PROTOTYPES_DIR, id, 'assets');
   const destAssetsDir = path.join(PROTO_BUILD_DIR, 'public', 'proto-assets', slug);
   await fs.promises.mkdir(destAssetsDir, { recursive: true });
-  try {
-    for (const f of await fs.promises.readdir(srcAssetsDir)) {
-      const from = path.join(srcAssetsDir, f);
-      if (!(await fs.promises.stat(from)).isFile()) continue;
-      await fs.promises.copyFile(from, path.join(destAssetsDir, f));
+  const srcAssetsStat = fs.existsSync(srcAssetsDir) ? fs.lstatSync(srcAssetsDir) : null;
+  if (srcAssetsStat && !srcAssetsStat.isSymbolicLink() && srcAssetsStat.isDirectory()) {
+    const nearSource = path.join(PROTO_BUILD_DIR, 'src', 'prototypes', slug, 'assets');
+    for (const dest of [nearSource, destAssetsDir]) {
+      await fs.promises.mkdir(dest, { recursive: true });
+      _protoCopyRegularFiles(srcAssetsDir, dest);
     }
-  } catch { /* a prototype without assets/ - a normal state */ }
+  }
 
   const iconSlugs = new Set();
   const iconRe = /ds-icon\/([a-z0-9-]+)/g;
@@ -21622,8 +21854,10 @@ async function _protoLocalPreviewRun(res, id) {
   const src = await _protoLoadSourcesFor(id);
   if (src.error) return jsonResponse(res, src.error.code, { status: 'error', message: src.error.message });
 
+  let shellWarnings = [];
   const writeErr = await withProtoBuildLock(async () => {
     try {
+      shellWarnings = _protoRunShellSharedSeed((line) => console.log('[proto-shell]', line)).warnings;
       await _protoSyncSharedDeps();
     } catch (e) {
       return { code: 500, message: `Syncing the shared dependencies failed: ${e.message}` };
@@ -21654,7 +21888,7 @@ async function _protoLocalPreviewRun(res, id) {
   _protoPreviewPhase(id, 'vite');
   const vite = await _protoEnsureViteRunning();
   if (!vite.ok) return jsonResponse(res, 503, { status: 'error', message: vite.message });
-  return jsonResponse(res, 200, { url: `http://localhost:${PROTO_VITE_PORT}/${slug}` });
+  return jsonResponse(res, 200, { url: `http://localhost:${PROTO_VITE_PORT}/${slug}`, warnings: shellWarnings });
 }
 
 // GET /api/prototypes/local-preview-status[?id=proto-...]
@@ -21937,9 +22171,22 @@ function _protoPublishPairs(id, slug) {
     if (!f.endsWith('.json') || f === 'spec.json' || f === 'compliance.json') continue;
     push(`prototypes/${id}/${f}`, `src/prototypes/${slug}/${f}`);
   }
-  let assets = [];
-  try { assets = fs.readdirSync(path.join(protoDir, 'assets')); } catch { /* no assets */ }
-  for (const f of assets) push(`prototypes/${id}/assets/${f}`, `public/proto-assets/${slug}/${f}`);
+  // assets/ recursively (sub-folders such as assets/frames/), both destinations
+  // _protoCopyAssets writes - the guard and the commit must see every file.
+  const walkAssets = (rel) => {
+    let entries = [];
+    try { entries = fs.readdirSync(path.join(protoDir, 'assets', ...rel), { withFileTypes: true }); } catch { return; }
+    for (const e of entries) {
+      const next = [...rel, e.name];
+      if (e.isDirectory()) walkAssets(next);
+      else if (e.isFile()) {
+        const sub = next.join('/');
+        push(`prototypes/${id}/assets/${sub}`, `public/proto-assets/${slug}/${sub}`);
+        push(`prototypes/${id}/assets/${sub}`, `src/prototypes/${slug}/assets/${sub}`);
+      }
+    }
+  };
+  walkAssets([]);
   const walk = (plainRoot, shellRoot) => {
     const abs = path.join(PRODUCT_DATA_DIR, ...plainRoot.split('/'));
     let entries = [];
@@ -22103,8 +22350,10 @@ const PROTO_PUBLISH_SHELL_FILES = Object.freeze([
   'package.json', 'package-lock.json', 'postcss.config.js', 'vite.config.ts', 'vite.config.js',
 ]);
 
-function _protoPublishAddPaths(slug) {
+function _protoPublishAddPaths(slug, { keptPaths = [] } = {}) {
   const shellFiles = PROTO_PUBLISH_SHELL_FILES;
+  // An upgrade file the upkeep KEPT holds somebody's own edit; it stays local.
+  const upgradePaths = PROTO_SEED_UPGRADE_PATHS.filter((p) => !keptPaths.includes(p));
   const wanted = [
     `src/prototypes/${slug}/`,
     `public/proto-assets/${slug}/`,
@@ -22113,6 +22362,8 @@ function _protoPublishAddPaths(slug) {
     'src/ds/',
     'src/components/',
     'src/prototypes/_shared/',
+    'public/ds-icons/',
+    ...upgradePaths,
     ...shellFiles,
   ];
   return wanted.filter((p) => fs.existsSync(path.join(PROTO_BUILD_DIR, p)));
@@ -22287,7 +22538,7 @@ function _protoQuarantineRecover({ buildDir = PROTO_BUILD_DIR, quarantineRoot = 
  * A move error rolls back what was already moved, and throws.
  * @returns {Promise<{moved: string[], dir: string, left: string[], restore: () => string[]}>}
  */
-async function _protoQuarantineUntracked({ buildDir = PROTO_BUILD_DIR, slug, quarantineRoot = PROTO_QUARANTINE_DIR, sharedRoots = _protoSharedSyncRoots(), log = () => {} }) {
+async function _protoQuarantineUntracked({ buildDir = PROTO_BUILD_DIR, slug, quarantineRoot = PROTO_QUARANTINE_DIR, sharedRoots = _protoSharedSyncRoots(), seedDir = PROTO_SHELL_SEED_DIR, seedPaths = null, log = () => {} }) {
   const protosDir = path.join(buildDir, 'src', 'prototypes');
   // First, whatever an interrupted publish left behind - otherwise other people's previews
   // would silently vanish from the shell until a manual cleanup.
@@ -22307,7 +22558,16 @@ async function _protoQuarantineUntracked({ buildDir = PROTO_BUILD_DIR, slug, qua
     files.push(..._protoQuarantineSelectFiles({
       onDisk: _protoListFilesRel(path.join(buildDir, ...root.shellRel.split('/')), root.shellRel),
       trackedPaths,
-      sourcePaths: _protoListFilesRel(root.srcDir, root.shellRel),
+      // The team data AND the seed are sources: a seed file the upkeep just
+      // copied is untracked by definition and must travel, not be quarantined.
+      sourcePaths: [
+        ..._protoListFilesRel(root.srcDir, root.shellRel),
+        // `seedPaths` (what the upkeep really seeded) wins over a re-read of the
+        // seed: a folder the upkeep skipped contributes no source.
+        ...(Array.isArray(seedPaths)
+          ? seedPaths.filter((p) => p.startsWith(`${root.shellRel}/`))
+          : _protoListFilesRel(path.join(seedDir, ...root.shellRel.split('/')), root.shellRel)),
+      ],
     }));
   }
   const stamp = new Date().toISOString().replace(/[:.]/g, '-');
@@ -22582,11 +22842,16 @@ async function handlePrototypeDeployStream(req, res) {
 
       // (b) 10-35% - the invitation code and the shared dependencies.
       progress(10, 'Preparing sources...');
+      let shellSeedPaths = null; // the seed files the upkeep actually put in (folders it skipped are absent)
+      let shellKeptPaths = []; // upgrade files the upkeep left alone because they were edited
       const code = _protoCanonicalCode(_readPrototypes(), id)
         || await _protoCodeForSlug(slug)
         || _protoPlaceholderCode(slug);
       progress(20, 'Syncing shared dependencies...');
       try {
+        const seedRun = _protoRunShellSharedSeed(log);
+        shellSeedPaths = seedRun.seedPaths;
+        shellKeptPaths = seedRun.kept.map((k) => k.path);
         await _protoSyncSharedDeps();
         log('Synced ds/, components/ and prototypes/_shared/ from the team data');
       } catch (e) {
@@ -22632,7 +22897,7 @@ async function handlePrototypeDeployStream(req, res) {
       const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
       let quarantine;
       try {
-        quarantine = await _protoQuarantineUntracked({ slug, log });
+        quarantine = await _protoQuarantineUntracked({ slug, log, seedPaths: shellSeedPaths });
       } catch (e) {
         fail(`Quarantining untracked previews failed: ${e.message}`, 'write-failed');
         return;
@@ -22674,7 +22939,7 @@ async function handlePrototypeDeployStream(req, res) {
       // server without the package that got installed here. Non-existent paths
       // are filtered out - `git add` on an unknown path ends in an error.
       progress(92, 'Sending changes...');
-      const deployPaths = _protoPublishPathspec(_protoPublishAddPaths(slug), quarantine.files);
+      const deployPaths = _protoPublishPathspec(_protoPublishAddPaths(slug, { keptPaths: shellKeptPaths }), quarantine.files);
       const add = await _protoGitExec(['add', '--', ...deployPaths]);
       if (add.code !== 0) { fail(`git add failed: ${_protoTail(add.stderr)}`, 'git-failed'); return; }
       const status = await _protoGitExec(['status', '--porcelain', '--', ...deployPaths]);
@@ -24497,6 +24762,17 @@ if (require.main === module) {
     _protoParseStarterDemoStates,
     _protoGenerateStarterSpec,
     _protoStageStarter,
+    PROTO_KINDS,
+    PROTO_KIND_FRAME,
+    _protoKindOf,
+    _protoCreateEntry,
+    // prototypes: the seed's shared layer in an existing shell
+    PROTO_SEED_UPGRADES,
+    PROTO_SEED_UPGRADE_PATHS,
+    PROTO_SHELL_SEED_DIR,
+    _protoEnsureShellSharedSeed,
+    _protoSeedSharedPaths,
+    _protoCopyAssets,
     // server (for embedded use)
     server,
   };

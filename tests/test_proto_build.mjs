@@ -596,3 +596,320 @@ mkdir -p node_modules/vite/bin && : > node_modules/vite/bin/vite.js
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+// ---------------------------------------------------------------------------
+// Prototype kit: nested assets, the seed's shared layer in an existing shell,
+// the viewer's address switches and the pinned Playwright.
+// ---------------------------------------------------------------------------
+
+const ROOT = path.resolve(path.dirname(SERVER_PATH));
+const SEED = path.join(ROOT, 'templates', 'prototype-build-shell');
+const sha = (file) => require('node:crypto').createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+
+function withTemp(fn) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'proto-kit-'));
+  try { return fn(dir); } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+}
+
+test('_protoCopyAssets copies assets/ recursively to the source folder AND public/proto-assets', () => {
+  withTemp((tmp) => {
+    const buildDir = path.join(tmp, 'shell');
+    const dataRepos = path.join(tmp, 'repos');
+    const protoDir = path.join(dataRepos, 'ds-data', 'prototypes', 'proto-brief0001', 'assets');
+    fs.mkdirSync(path.join(protoDir, 'frames'), { recursive: true });
+    fs.writeFileSync(path.join(protoDir, 'top.png'), 'png');
+    fs.writeFileSync(path.join(protoDir, 'frames', 'a-00.jpg'), 'jpg');
+    runInIsolatedShell(buildDir, dataRepos, `
+      await srv._protoCopyAssets({ id: 'proto-brief0001', slug: 'brief0001', codeText: '' });
+      return null;
+    `, { DATA_TIER_0_DIR: path.join(dataRepos, 'ds-data') });
+    for (const rel of [
+      'src/prototypes/brief0001/assets/frames/a-00.jpg', 'src/prototypes/brief0001/assets/top.png',
+      'public/proto-assets/brief0001/frames/a-00.jpg', 'public/proto-assets/brief0001/top.png',
+    ]) assert.ok(fs.existsSync(path.join(buildDir, rel)), rel);
+    assert.strictEqual(fs.readFileSync(path.join(buildDir, 'src/prototypes/brief0001/assets/frames/a-00.jpg'), 'utf8'), 'jpg');
+  });
+});
+
+test('_protoCopyAssets skips symlinks at depth: only regular files reach the shell', () => {
+  withTemp((tmp) => {
+    const buildDir = path.join(tmp, 'shell');
+    const dataRepos = path.join(tmp, 'repos');
+    const protoDir = path.join(dataRepos, 'ds-data', 'prototypes', 'proto-brief0002', 'assets');
+    const outside = path.join(tmp, 'outside');
+    fs.mkdirSync(path.join(protoDir, 'a', 'b'), { recursive: true });
+    fs.mkdirSync(outside);
+    fs.writeFileSync(path.join(outside, 'secret.json'), '{}');
+    fs.writeFileSync(path.join(protoDir, 'a', 'b', 'ok.png'), 'png');
+    fs.symlinkSync(path.join(outside, 'secret.json'), path.join(protoDir, 'a', 'b', 'link.json'));
+    fs.symlinkSync(outside, path.join(protoDir, 'a', 'dirlink'));
+    runInIsolatedShell(buildDir, dataRepos, `
+      await srv._protoCopyAssets({ id: 'proto-brief0002', slug: 'brief0002', codeText: '' });
+      return null;
+    `, { DATA_TIER_0_DIR: path.join(dataRepos, 'ds-data') });
+    for (const root of ['src/prototypes/brief0002/assets', 'public/proto-assets/brief0002']) {
+      assert.ok(fs.existsSync(path.join(buildDir, root, 'a/b/ok.png')), root);
+      assert.ok(!fs.existsSync(path.join(buildDir, root, 'a/b/link.json')) && !fs.existsSync(path.join(buildDir, root, 'a/dirlink')), root + ' has no symlink');
+    }
+  });
+});
+
+test('_protoCopyAssets skips an assets/ folder that is itself a symlink', () => {
+  withTemp((tmp) => {
+    const buildDir = path.join(tmp, 'shell');
+    const dataRepos = path.join(tmp, 'repos');
+    const protoRoot = path.join(dataRepos, 'ds-data', 'prototypes', 'proto-brief0003');
+    const outside = path.join(tmp, 'outside');
+    fs.mkdirSync(protoRoot, { recursive: true });
+    fs.mkdirSync(outside);
+    fs.writeFileSync(path.join(outside, 'secret.json'), '{}');
+    fs.symlinkSync(outside, path.join(protoRoot, 'assets'));
+    runInIsolatedShell(buildDir, dataRepos, `
+      await srv._protoCopyAssets({ id: 'proto-brief0003', slug: 'brief0003', codeText: '' });
+      return null;
+    `, { DATA_TIER_0_DIR: path.join(dataRepos, 'ds-data') });
+    for (const root of ['src/prototypes/brief0003/assets', 'public/proto-assets/brief0003']) {
+      assert.ok(!fs.existsSync(path.join(buildDir, root, 'secret.json')), root + ' has no linked file');
+    }
+  });
+});
+
+test('_protoPublishPairs lists every file of assets/ for BOTH destinations, sub-folders included', () => {
+  withTemp((tmp) => {
+    const dataRepos = path.join(tmp, 'repos');
+    const protoDir = path.join(dataRepos, 'ds-data', 'prototypes', 'proto-pair000001');
+    fs.mkdirSync(path.join(protoDir, 'assets', 'frames'), { recursive: true });
+    fs.writeFileSync(path.join(protoDir, 'index.tsx'), 'x');
+    fs.writeFileSync(path.join(protoDir, 'assets', 'top.png'), 'p');
+    fs.writeFileSync(path.join(protoDir, 'assets', 'frames', 'x.jpg'), 'j');
+    const pairs = runInIsolatedShell(path.join(tmp, 'shell'), dataRepos, `
+      return srv._protoPublishPairs('proto-pair000001', 'pair000001');
+    `, { DATA_TIER_0_DIR: path.join(dataRepos, 'ds-data') });
+    const frames = pairs.filter((p) => p.relPath === 'prototypes/proto-pair000001/assets/frames/x.jpg').map((p) => p.shellPath).sort();
+    assert.deepStrictEqual(frames, ['public/proto-assets/pair000001/frames/x.jpg', 'src/prototypes/pair000001/assets/frames/x.jpg']);
+    const top = pairs.filter((p) => p.relPath === 'prototypes/proto-pair000001/assets/top.png').map((p) => p.shellPath).sort();
+    assert.deepStrictEqual(top, ['public/proto-assets/pair000001/top.png', 'src/prototypes/pair000001/assets/top.png']);
+  });
+});
+
+test('_protoPublishAddPaths carries the icons, the upgraded viewer files and the recorder, plus the shell manifests', () => {
+  withTemp((tmp) => {
+    const buildDir = path.join(tmp, 'shell');
+    for (const rel of ['public/ds-icons/x.svg', 'src/BreakpointViewer.tsx', 'src/BreakpointViewer.css', 'src/App.tsx', 'src/recorder.ts', 'package.json', 'src/ds/index.ts']) {
+      fs.mkdirSync(path.dirname(path.join(buildDir, rel)), { recursive: true });
+      fs.writeFileSync(path.join(buildDir, rel), '');
+    }
+    const paths = runInIsolatedShell(buildDir, path.join(tmp, 'repos'), "return srv._protoPublishAddPaths('demo');");
+    for (const p of ['public/ds-icons/', 'src/BreakpointViewer.tsx', 'src/BreakpointViewer.css', 'src/App.tsx', 'src/recorder.ts', 'package.json', 'src/ds/']) {
+      assert.ok(paths.includes(p), p + ' is in the publish commit');
+    }
+  });
+});
+
+// -- the seed's shared layer in a shell that already exists -----------------
+
+const SEED_V1 = JSON.parse(fs.readFileSync(path.join(ROOT, 'tests', 'fixtures', 'proto-seed-v1', 'seed-v1.json'), 'utf8')).files;
+
+function plantOldShell(buildDir, { lock = false, pkg } = {}) {
+  for (const [rel, b64] of Object.entries(SEED_V1)) {
+    fs.mkdirSync(path.dirname(path.join(buildDir, rel)), { recursive: true });
+    fs.writeFileSync(path.join(buildDir, rel), Buffer.from(b64, 'base64'));
+  }
+  const base = pkg || { name: 'clone', private: true, scripts: { build: 'x' }, dependencies: { react: '^18.3.1' }, devDependencies: { vite: '^5.4.10' } };
+  fs.writeFileSync(path.join(buildDir, 'package.json'), JSON.stringify(base, null, 2) + '\n');
+  if (lock) fs.writeFileSync(path.join(buildDir, 'package-lock.json'), '{}\n');
+}
+
+test('PROTO_SEED_UPGRADES: the planted old files are exactly the versions the map names', () => {
+  for (const [rel, b64] of Object.entries(SEED_V1)) {
+    const digest = require('node:crypto').createHash('sha256').update(Buffer.from(b64, 'base64')).digest('hex');
+    assert.ok(srv.PROTO_SEED_UPGRADES[rel].includes(digest), rel);
+    assert.notStrictEqual(digest, sha(path.join(SEED, rel)), rel + ': the current seed is a newer version');
+  }
+});
+
+test('shell upkeep: an untouched old shell is upgraded, missing shared files are copied, package.json gains only playwright', () => {
+  withTemp((tmp) => {
+    plantOldShell(tmp);
+    const before = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'), 'utf8'));
+    const r = srv._protoEnsureShellSharedSeed(tmp);
+    assert.deepStrictEqual([...r.upgraded].sort(), Object.keys(SEED_V1).sort());
+    assert.deepStrictEqual(r.kept, []);
+    for (const rel of Object.keys(SEED_V1)) assert.strictEqual(sha(path.join(tmp, rel)), sha(path.join(SEED, rel)), rel);
+    for (const rel of ['src/ds/index.ts', 'src/ds/components.tsx', 'src/components/AppFrame.tsx', 'src/prototypes/_shared/analytics.ts', 'src/recorder.ts']) {
+      assert.ok(fs.existsSync(path.join(tmp, rel)), rel + ' was copied');
+    }
+    assert.ok(r.icons > 0 && fs.existsSync(path.join(tmp, 'public/ds-icons/24-ic-turbine.svg')), 'the icon set arrived');
+    const after = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'), 'utf8'));
+    const seedPin = JSON.parse(fs.readFileSync(path.join(SEED, 'package.json'), 'utf8')).devDependencies.playwright;
+    assert.strictEqual(after.devDependencies.playwright, seedPin);
+    delete after.devDependencies.playwright;
+    assert.deepStrictEqual(after, before, 'nothing else in package.json changed');
+    assert.strictEqual(r.packageJsonUpdated, true);
+    // A second run changes nothing.
+    const again = srv._protoEnsureShellSharedSeed(tmp);
+    assert.deepStrictEqual([again.copied, again.upgraded, again.kept, again.icons, again.packageJsonUpdated], [[], [], [], 0, false]);
+  });
+});
+
+test('shell upkeep: a team-edited old file is kept byte for byte and named, never overwritten', () => {
+  withTemp((tmp) => {
+    plantOldShell(tmp);
+    const edited = '// our own demo-state, hands off\nexport const x = 1;\n';
+    fs.writeFileSync(path.join(tmp, 'src/prototypes/_shared/demo-state.ts'), edited);
+    const r = srv._protoEnsureShellSharedSeed(tmp);
+    assert.strictEqual(fs.readFileSync(path.join(tmp, 'src/prototypes/_shared/demo-state.ts'), 'utf8'), edited);
+    assert.deepStrictEqual(r.kept.map((k) => k.path), ['src/prototypes/_shared/demo-state.ts']);
+    assert.match(r.kept[0].effect, /hasDemoStateParam/);
+    assert.ok(!r.upgraded.includes('src/prototypes/_shared/demo-state.ts'));
+    assert.ok(r.upgraded.includes('src/BreakpointViewer.tsx'), 'the untouched ones are still upgraded');
+  });
+});
+
+test('shell upkeep: a team\'s own shared file is never touched, and nothing is deleted', () => {
+  withTemp((tmp) => {
+    plantOldShell(tmp);
+    fs.mkdirSync(path.join(tmp, 'src/ds'), { recursive: true });
+    fs.writeFileSync(path.join(tmp, 'src/ds/components.tsx'), '// the team\'s own adapters\n');
+    fs.mkdirSync(path.join(tmp, 'src/components'), { recursive: true });
+    fs.writeFileSync(path.join(tmp, 'src/components/Only.tsx'), '// only here\n');
+    const r = srv._protoEnsureShellSharedSeed(tmp);
+    assert.strictEqual(fs.readFileSync(path.join(tmp, 'src/ds/components.tsx'), 'utf8'), '// the team\'s own adapters\n');
+    assert.strictEqual(fs.readFileSync(path.join(tmp, 'src/components/Only.tsx'), 'utf8'), '// only here\n');
+    assert.ok(!r.copied.includes('src/ds/components.tsx') && !r.upgraded.includes('src/ds/components.tsx'));
+    assert.ok(r.copied.includes('src/ds/index.ts'), 'a seed file that is ABSENT is still added');
+  });
+});
+
+test('shell upkeep: a folder the team owns is skipped as a whole unit, and components/ follows ds/', () => {
+  withTemp((tmp) => {
+    plantOldShell(tmp);
+    const team = path.join(tmp, '_team');
+    fs.mkdirSync(path.join(team, 'ds'), { recursive: true });
+    fs.writeFileSync(path.join(team, 'ds', 'index.ts'), 'export const Only = 1;\n');
+    const roots = [
+      { shellRel: 'src/ds', srcDir: path.join(team, 'ds') },
+      { shellRel: 'src/components', srcDir: path.join(team, 'components') },
+      { shellRel: 'src/prototypes/_shared', srcDir: path.join(team, '_shared') },
+    ];
+    const r = srv._protoEnsureShellSharedSeed(tmp, { sharedRoots: roots });
+    assert.deepStrictEqual(r.skippedDirs, ['src/ds', 'src/components']);
+    assert.ok(!fs.existsSync(path.join(tmp, 'src/ds/index.ts')), 'the team-owned ds/ got no seed file');
+    assert.ok(!fs.existsSync(path.join(tmp, 'src/components/AppFrame.tsx')), 'components/ is not seeded on top of a foreign ds/');
+    assert.ok(r.seedPaths.every((p) => !p.startsWith('src/ds/') && !p.startsWith('src/components/')));
+    assert.ok(fs.existsSync(path.join(tmp, 'src/prototypes/_shared/analytics.ts')), 'an untouched folder is still seeded');
+  });
+});
+
+test('shell upkeep: a folder holding a file the seed did not put there is left alone; an untouched shell is still seeded', () => {
+  withTemp((tmp) => {
+    plantOldShell(tmp);
+    fs.mkdirSync(path.join(tmp, 'src/components'), { recursive: true });
+    fs.writeFileSync(path.join(tmp, 'src/components/Only.tsx'), '// only here\n');
+    const none = [{ shellRel: 'src/ds', srcDir: path.join(tmp, '_none') }];
+    const r = srv._protoEnsureShellSharedSeed(tmp, { sharedRoots: none });
+    assert.deepStrictEqual(r.skippedDirs, ['src/components']);
+    assert.ok(!fs.existsSync(path.join(tmp, 'src/components/AppFrame.tsx')));
+    assert.ok(fs.existsSync(path.join(tmp, 'src/ds/index.ts')), 'ds/ held nothing foreign and is seeded');
+  });
+});
+
+test('shell upkeep: prototypes/_shared is seeded file by file, even next to a file the seed did not put there or a team-owned copy', () => {
+  withTemp((tmp) => {
+    plantOldShell(tmp);
+    fs.rmSync(path.join(tmp, 'src/prototypes/_shared/analytics.ts'), { force: true });
+    fs.writeFileSync(path.join(tmp, 'src/prototypes/_shared/team-helper.ts'), 'export const x = 1;\n');
+    const team = path.join(tmp, '_team');
+    fs.mkdirSync(path.join(team, '_shared'), { recursive: true });
+    fs.writeFileSync(path.join(team, '_shared', 'team-helper.ts'), 'export const x = 1;\n');
+    const roots = [{ shellRel: 'src/prototypes/_shared', srcDir: path.join(team, '_shared') }];
+    const r = srv._protoEnsureShellSharedSeed(tmp, { sharedRoots: roots });
+    assert.ok(!r.skippedDirs.includes('src/prototypes/_shared'));
+    assert.ok(fs.existsSync(path.join(tmp, 'src/prototypes/_shared/analytics.ts')), 'the starters\' analytics helper is added');
+    assert.strictEqual(fs.readFileSync(path.join(tmp, 'src/prototypes/_shared/team-helper.ts'), 'utf8'), 'export const x = 1;\n');
+  });
+});
+
+test('shell upkeep: an untouched seed file checked out with CRLF line endings is still recognised and upgraded', () => {
+  withTemp((tmp) => {
+    plantOldShell(tmp);
+    const rel = 'src/App.tsx';
+    const abs = path.join(tmp, rel);
+    fs.writeFileSync(abs, fs.readFileSync(abs, 'utf8').replace(/\r?\n/g, '\r\n'));
+    const r = srv._protoEnsureShellSharedSeed(tmp);
+    assert.ok(r.upgraded.includes(rel), JSON.stringify(r.kept));
+  });
+});
+
+test('_protoPublishAddPaths leaves out an upgrade file the upkeep kept because somebody edited it', () => {
+  withTemp((tmp) => {
+    const buildDir = path.join(tmp, 'shell');
+    for (const rel of ['src/App.tsx', 'src/BreakpointViewer.tsx']) {
+      fs.mkdirSync(path.dirname(path.join(buildDir, rel)), { recursive: true });
+      fs.writeFileSync(path.join(buildDir, rel), '');
+    }
+    const paths = runInIsolatedShell(buildDir, path.join(tmp, 'repos'), "return srv._protoPublishAddPaths('demo', { keptPaths: ['src/App.tsx'] });");
+    assert.ok(!paths.includes('src/App.tsx'));
+    assert.ok(paths.includes('src/BreakpointViewer.tsx'));
+  });
+});
+
+test('recorder: an existing window.analytics is kept, forwarded to and restored on cleanup', () => {
+  const src = fs.readFileSync(path.join(SEED, 'src', 'recorder.ts'), 'utf8');
+  assert.match(src, /const previous = window\.analytics;/);
+  assert.match(src, /previous\?\.track\?\.\(event, props\)/);
+  assert.match(src, /if \(previous\) window\.analytics = previous;\s*else delete window\.analytics;/);
+});
+
+test('shell upkeep: with a lock file the playwright devDependency is NOT added (the lock would go stale)', () => {
+  withTemp((tmp) => {
+    plantOldShell(tmp, { lock: true });
+    const before = fs.readFileSync(path.join(tmp, 'package.json'), 'utf8');
+    const r = srv._protoEnsureShellSharedSeed(tmp);
+    assert.strictEqual(fs.readFileSync(path.join(tmp, 'package.json'), 'utf8'), before);
+    assert.strictEqual(r.playwrightSkipped, true);
+    assert.strictEqual(r.packageJsonUpdated, false);
+  });
+});
+
+test('shell upkeep: a package.json that already declares playwright is left byte for byte', () => {
+  withTemp((tmp) => {
+    plantOldShell(tmp, { pkg: { name: 'c', devDependencies: { playwright: '^1.50.0' } } });
+    const before = fs.readFileSync(path.join(tmp, 'package.json'), 'utf8');
+    srv._protoEnsureShellSharedSeed(tmp);
+    assert.strictEqual(fs.readFileSync(path.join(tmp, 'package.json'), 'utf8'), before);
+  });
+});
+
+test('the seed itself and the shell upkeep agree: a fresh seed copy needs nothing', () => {
+  withTemp((tmp) => {
+    fs.cpSync(SEED, tmp, { recursive: true });
+    const r = srv._protoEnsureShellSharedSeed(tmp);
+    assert.deepStrictEqual([r.copied, r.upgraded, r.kept], [[], [], []]);
+    assert.deepStrictEqual(srv._protoSeedSharedPaths().filter((p) => p.startsWith('src/ds/')).length > 0, true);
+  });
+});
+
+// -- the viewer's address switches and the pinned Playwright ---------------
+
+test('the viewer reads state, w and chrome from ONE parser, keeps data-proto-canvas in both modes and makes no claim about a host', () => {
+  const src = fs.readFileSync(path.join(SEED, 'src', 'BreakpointViewer.tsx'), 'utf8');
+  assert.match(src, /function readViewerParams\(\)/);
+  assert.strictEqual((src.match(/new URLSearchParams\(/g) || []).length, 1, 'one parser of the address');
+  assert.match(src, /p\.get\('chrome'\) !== '0'/);
+  assert.match(src, /p\.get\('w'\)/);
+  assert.match(src, /if \(!viewerParams\.chrome\)/);
+  assert.strictEqual((src.match(/data-proto-canvas/g) || []).length >= 2, true, 'bare and framed canvas both carry the marker');
+  assert.match(src, /writeViewerParam\('w', String\(nextBp\)\)/, 'a preset click writes w');
+  assert.match(src, /Local only - these clicks stay in this preview\./);
+  assert.doesNotMatch(src, /published host/);
+  const app = fs.readFileSync(path.join(SEED, 'src', 'App.tsx'), 'utf8');
+  assert.match(app, /installRecorder\(\)/);
+});
+
+test('the seed pins the same Playwright version as the browser bootstrap', () => {
+  const pin = JSON.parse(fs.readFileSync(path.join(SEED, 'package.json'), 'utf8')).devDependencies.playwright;
+  const boot = fs.readFileSync(path.join(ROOT, 'scripts', 'bootstrap-playwright.js'), 'utf8');
+  assert.match(boot, new RegExp("PLAYWRIGHT_VERSION = '" + pin.replace(/\./g, '\\.') + "'"));
+});
+

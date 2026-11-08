@@ -1,0 +1,88 @@
+{
+  "note": "Fictional demo data. Every name, site and number is invented.",
+  "today": "Tue 14 Oct",
+  "sites": ["Kestrel Ridge", "Saltmarsh Bay", "Heron Flats", "Gull Point"],
+  "workOrders": [
+    {
+      "id": "WO-1042", "turbine": "KR-07", "site": "Kestrel Ridge", "title": "Pitch system fault on blade B",
+      "code": "PS-221", "type": "Corrective", "priority": "critical", "status": "open", "due": "Today 14:00",
+      "reported": "06:12 by SCADA alarm", "estimateH": 3, "assignee": null,
+      "skills": ["Pitch systems", "High voltage"],
+      "lostMWh": 18.4,
+      "readings": [
+        { "label": "Blade B pitch deviation", "value": 7.8, "max": 10, "unit": " deg", "level": "danger" },
+        { "label": "Hydraulic pressure", "value": 142, "max": 220, "unit": "bar", "level": "warning" },
+        { "label": "Nacelle temperature", "value": 41, "max": 80, "unit": " deg C", "level": "success" }
+      ],
+      "history": [
+        { "when": "06:12", "text": "Turbine stopped itself after pitch deviation above 7 deg." },
+        { "when": "06:20", "text": "Remote reset tried once - fault returned within 4 minutes." },
+        { "when": "Last month", "text": "Pitch accumulator replaced on blade B." }
+      ]
+    },
+    {
+      "id": "WO-1043", "turbine": "SB-12", "site": "Saltmarsh Bay", "title": "Gearbox oil temperature high",
+      "code": "GB-104", "type": "Corrective", "priority": "high", "status": "open", "due": "Today 18:00",
+      "reported": "07:40 by SCADA alarm", "estimateH": 2, "assignee": null,
+      "skills": ["Gearbox"],
+      "lostMWh": 6.1,
+      "readings": [
+        { "label": "Gearbox oil temperature", "value": 78, "max": 90, "unit": " deg C", "level": "warning" },
+        { "label": "Oil filter pressure drop", "value": 2.1, "max": 4, "unit": "bar", "level": "success" }
+      ],
+      "history": [{ "when": "07:40", "text": "Output limited to 60% to protect the gearbox." }]
+    },
+    {
+      "id": "WO-1038", "turbine": "HF-03", "site": "Heron Flats", "title": "Annual service - 12 000 h",
+      "code": "SV-12K", "type": "Preventive", "priority": "medium", "status": "scheduled", "due": "Wed 15 Oct",
+      "reported": "Planned", "estimateH": 8, "assignee": "t2",
+      "skills": ["Climbing", "Gearbox"],
+      "lostMWh": 0,
+      "readings": [],
+      "history": [{ "when": "Planned", "text": "Service window agreed with the grid operator." }]
+    },
+    {
+      "id": "WO-1044", "turbine": "GP-09", "site": "Gull Point", "title": "Yaw motor noise reported",
+      "code": "YW-310", "type": "Inspection", "priority": "low", "status": "open", "due": "Fri 17 Oct",
+      "reported": "Yesterday by technician", "estimateH": 1.5, "assignee": null,
+      "skills": ["Yaw systems"],
+      "lostMWh": 0,
+      "readings": [{ "label": "Yaw motor current", "value": 11, "max": 20, "unit": "A", "level": "success" }],
+      "history": [{ "when": "Yesterday", "text": "Grinding noise heard during yaw at high wind." }]
+    },
+    {
+      "id": "WO-1036", "turbine": "KR-02", "site": "Kestrel Ridge", "title": "Tower door seal replacement",
+      "code": "ST-015", "type": "Preventive", "priority": "low", "status": "in-progress", "due": "Today 12:00",
+      "reported": "Planned", "estimateH": 1, "assignee": "t1",
+      "skills": ["General"],
+      "lostMWh": 0,
+      "readings": [],
+      "history": [{ "when": "08:05", "text": "Technician on site, work started." }]
+    },
+    {
+      "id": "WO-1045", "turbine": "SB-04", "site": "Saltmarsh Bay", "title": "Converter cooling fan failure",
+      "code": "CV-077", "type": "Corrective", "priority": "high", "status": "open", "due": "Tomorrow 10:00",
+      "reported": "09:02 by SCADA alarm", "estimateH": 2.5, "assignee": null,
+      "skills": ["High voltage", "Converters"],
+      "lostMWh": 3.2,
+      "readings": [{ "label": "Converter cabinet temperature", "value": 63, "max": 75, "unit": " deg C", "level": "warning" }],
+      "history": [{ "when": "09:02", "text": "Fan 2 of 3 not spinning; output limited to 80%." }]
+    },
+    {
+      "id": "WO-1031", "turbine": "HF-06", "site": "Heron Flats", "title": "Blade inspection after storm",
+      "code": "BL-002", "type": "Inspection", "priority": "medium", "status": "done", "due": "Mon 13 Oct",
+      "reported": "Planned", "estimateH": 3, "assignee": "t3",
+      "skills": ["Climbing", "Blades"],
+      "lostMWh": 0,
+      "readings": [],
+      "history": [{ "when": "Mon", "text": "No damage found. Photos attached." }]
+    }
+  ],
+  "technicians": [
+    { "id": "t1", "name": "Jonas Berg", "base": "Kestrel Ridge", "skills": ["General", "Pitch systems", "High voltage"], "status": "on-job", "loadH": 5, "distanceKm": 2, "jobs": ["WO-1036"] },
+    { "id": "t2", "name": "Amara Okafor", "base": "Heron Flats", "skills": ["Climbing", "Gearbox", "Blades"], "status": "available", "loadH": 8, "distanceKm": 31, "jobs": ["WO-1038"] },
+    { "id": "t3", "name": "Lena Fischer", "base": "Kestrel Ridge", "skills": ["Pitch systems", "High voltage", "Climbing"], "status": "available", "loadH": 2, "distanceKm": 6, "jobs": [] },
+    { "id": "t4", "name": "Diego Ramos", "base": "Saltmarsh Bay", "skills": ["Gearbox", "Converters", "High voltage"], "status": "available", "loadH": 3, "distanceKm": 44, "jobs": [] },
+    { "id": "t5", "name": "Sam Whitaker", "base": "Gull Point", "skills": ["Yaw systems", "General"], "status": "off", "loadH": 0, "distanceKm": 58, "jobs": [] }
+  ]
+}

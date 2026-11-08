@@ -1,0 +1,104 @@
+/* ============================================================
+   Alias layer between the prototype kit's token names and the build
+   shell's own tokens (../tokens.css).
+
+   The kit adapters (./components.tsx), the app frame and the starters
+   use these names. Every one is defined here as var(--<shell token>), so
+   retuning ../tokens.css retunes the whole kit and this file holds no
+   colour literal.
+
+   Names the shell already defines with the same value (the --space-*
+   grid, --radius-s, --radius-m, --text-xs, --text-xl) are not repeated:
+   the shell's definition serves. Nine names exist in the shell with a
+   DIFFERENT value (--radius-l, --text-base, --text-2xl, --text-3xl,
+   --lh-xs, --lh-base, --lh-xl, --lh-2xl, --lh-3xl). Redefining them would
+   enlarge every shell layout, and `--text-base: var(--text-base)` would
+   be a cycle, so the kit's values live under --proto-<name> instead.
+   ============================================================ */
+:root {
+  /* Surfaces */
+  --surface-page:           var(--body-secondary-bg);
+  --surface-card:           var(--body-primary-bg);
+  --surface-sunken:         var(--body-tertiary-bg);
+  --surface-hover:          var(--body-quaternary-bg);
+  --surface-selected:       var(--clickable-secondary-hover-bg);
+  --surface-inverse:        var(--body-primary-text);
+  --surface-inverse-raised: var(--body-secondary-text);
+  --surface-overlay:        var(--transparents-dark);
+
+  /* Text */
+  --text-primary:       var(--body-primary-text);
+  --text-secondary:     var(--body-secondary-text);
+  --text-tertiary:      var(--body-tertiary-text);
+  --text-inverse:       var(--body-invert-text);
+  --text-inverse-muted: var(--body-tertiary-border);
+  --text-link:          var(--body-brand-text);
+
+  /* Borders */
+  --border-subtle:  var(--body-tertiary-border);
+  --border-default: var(--body-secondary-border);
+  --border-strong:  var(--body-primary-border);
+
+  /* Accent (primary action) */
+  --accent:         var(--clickable-primary-default-bg);
+  --accent-hover:   var(--clickable-primary-hover-bg);
+  --accent-pressed: var(--clickable-primary-hover-bg);
+  --accent-soft:    var(--clickable-secondary-hover-bg);
+  --accent-on:      var(--clickable-primary-default-text);
+
+  /* Status */
+  --success:      var(--state-success-text);
+  --success-soft: var(--state-success-bg);
+  --warning:      var(--state-warning-text);
+  --warning-soft: var(--state-warning-bg);
+  --danger:       var(--state-danger-text);
+  --danger-soft:  var(--state-danger-bg);
+  --info:         var(--state-info-text);
+  --info-soft:    var(--state-info-bg);
+
+  /* Briefing (presentation) surfaces */
+  --briefing-card-bg:     var(--body-secondary-text);
+  --briefing-card-accent: var(--legend-2nd-secondary);
+  --briefing-stage-bg:    var(--body-primary-text);
+
+  /* Focus */
+  --focus-ring: 0 0 0 3px var(--clickable-primary-default-border);
+
+  /* Radius (--radius-s, --radius-m come from the shell) */
+  --radius-xl:   20px;
+  --radius-pill: var(--radius-max);
+
+  /* Typography */
+  --font-sans:      var(--font-main);
+  --font-mono:      ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --text-s:         13px;
+  --text-m:         var(--text-base);
+  --text-l:         var(--text-lg);
+  --lh-s:           var(--lh-xs);
+  --lh-m:           var(--lh-base);
+  --lh-l:           26px;
+  --weight-regular: var(--font-weight-normal);
+  --weight-medium:  var(--font-weight-medium);
+  --weight-bold:    var(--font-weight-bold);
+
+  /* Elevation */
+  --shadow-1: var(--shadow-s);
+  --shadow-2: var(--shadow-m);
+  --shadow-3: var(--shadow-l);
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+
+  /* The nine names the shell defines with another value: the kit's own */
+  --proto-radius-l:   12px;
+  --proto-text-base:  14px;
+  --proto-text-2xl:   28px;
+  --proto-text-3xl:   40px;
+  --proto-lh-xs:      16px;
+  --proto-lh-base:    20px;
+  --proto-lh-xl:      30px;
+  --proto-lh-2xl:     36px;
+  --proto-lh-3xl:     48px;
+}

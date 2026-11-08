@@ -122,6 +122,25 @@ editor to a published module, and checks each step for you.
 
 ![The Academy](docs/images/academy.png)
 
+## Prototypes: show the idea before anybody builds it
+
+A prototype is a clickable screen made from the real design system, inside the
+real app frame and with realistic data, so a test session measures the idea and
+not the mock-up. Open **Design > Prototypes**. With sample data on, three examples
+tell one story: a turbine alarm at a wind farm becomes work order WO-1042. The
+dispatcher assigns it on a desktop console, the technician takes it on the phone,
+and the shift leads are briefed on the new flow.
+
+![Design > Prototypes with the three sample prototypes, each with its kind](docs/images/prototypes.png)
+
+| | | |
+|---|---|---|
+| [![Add prototype with the kind picker](docs/images/prototypes-add.png)](docs/images/prototypes-add.png) **Start from a kind.** Desktop, Mobile, Briefing or Blank. The starter already passes every check. | [![The dispatch console prototype](examples/prototypes/proto-e15c0a7d3b96/assets/frames/console-crew-01.jpg)](examples/prototypes/proto-e15c0a7d3b96/assets/frames/console-crew-01.jpg) **Try every case.** Switch screen widths and demo states, and count clicks per screen in the Analytics menu during a test session. | [![A briefing step: why the change and what the shift gains](docs/images/prototypes-briefing.jpg)](docs/images/prototypes-briefing.jpg) **Brief the shift.** `/briefing` records the real prototypes and plays them with a camera, a cursor and captions read aloud. |
+
+The assistant builds them with `/prototype`. Agents plan, build and check; you
+accept the plan. The way of working, step by step, is in
+[docs/guides/prototypes.md](docs/guides/prototypes.md).
+
 ## Mini Deck
 
 <img src="apps/mini-deck/public/icons/icon-192.png" width="64" height="64" alt="The Mini Deck app icon" align="left">

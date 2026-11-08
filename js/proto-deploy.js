@@ -150,6 +150,9 @@ export async function runLocalPreview(item, btn, openedTab) {
     else window.open(data.url, '_blank', 'noopener');
     closeDsModal(overlay);
     showToast('success', 'Local preview ready', data.url);
+    if (Array.isArray(data.warnings) && data.warnings.length) {
+      showToast('warning', 'Build shell needs attention', data.warnings.join(' '));
+    }
   } catch (e) {
     settled = true;
     stopPolling();

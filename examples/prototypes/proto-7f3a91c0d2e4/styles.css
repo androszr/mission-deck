@@ -1,0 +1,91 @@
+/* Dispatch console - own styles. Prefix .dsp-*. Tokens only, @container proto only. */
+
+.dsp-root { height: 100%; }
+
+.dsp-wo { display: grid; grid-template-columns: minmax(0, 1fr); height: 100%; min-height: 0; }
+.dsp-wo--with-panel { grid-template-columns: minmax(0, 1fr) 380px; }
+.dsp-wo__main { display: flex; flex-direction: column; gap: var(--space-16); padding: var(--space-24); min-width: 0; overflow-y: auto; }
+
+.dsp-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-16); }
+.dsp-head__title { margin: 0; font-size: var(--proto-text-2xl); line-height: var(--proto-lh-2xl); font-weight: var(--weight-bold); }
+.dsp-head__sub { color: var(--text-secondary); }
+
+.dsp-kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-12); }
+.dsp-kpi { display: flex; align-items: center; gap: var(--space-12); }
+.dsp-kpi__icon { width: 40px; height: 40px; border-radius: var(--radius-m); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.dsp-kpi__icon--danger { background: var(--danger-soft); color: var(--danger); }
+.dsp-kpi__icon--warning { background: var(--warning-soft); color: var(--warning); }
+.dsp-kpi__icon--success { background: var(--success-soft); color: var(--success); }
+.dsp-kpi__value { font-size: var(--text-xl); line-height: var(--proto-lh-xl); font-weight: var(--weight-bold); font-variant-numeric: tabular-nums; }
+.dsp-kpi__label { color: var(--text-secondary); font-size: var(--text-s); }
+
+.dsp-filters { display: flex; gap: var(--space-12); align-items: flex-end; }
+.dsp-filters__search { flex: 1; min-width: 0; }
+.dsp-filters .ds-field { width: 180px; }
+.dsp-filters__search .ds-field { width: auto; }
+
+.dsp-table-card { overflow: hidden; }
+.dsp-error { padding: var(--space-16); }
+.dsp-row { cursor: pointer; transition: background var(--duration-fast); }
+.dsp-row:hover { background: var(--surface-hover); }
+.dsp-row:focus-visible { outline: none; box-shadow: inset var(--focus-ring); }
+.dsp-row--selected, .dsp-row--selected:hover { background: var(--surface-selected); }
+.dsp-row--selected td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+.dsp-cell-strong { font-weight: var(--weight-bold); }
+.dsp-cell-sub { color: var(--text-secondary); font-size: var(--text-s); line-height: var(--lh-s); }
+.dsp-cell-fault { overflow: hidden; }
+.dsp-ellipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.dsp-nowrap { white-space: nowrap; }
+.dsp-assignee { display: flex; align-items: center; gap: var(--space-8); min-width: 0; }
+.dsp-unassigned { color: var(--text-tertiary); font-style: italic; }
+
+/* ---- Detail panel ---- */
+.dsp-panel {
+  display: flex; flex-direction: column; gap: var(--space-16); padding: var(--space-16) var(--space-20) var(--space-24);
+  background: var(--surface-card); border-left: 1px solid var(--border-subtle); overflow-y: auto; min-height: 0;
+}
+.dsp-panel__head { display: flex; justify-content: space-between; align-items: center; }
+.dsp-panel__badges { display: flex; gap: var(--space-8); }
+.dsp-panel__title { margin: 0; font-size: var(--text-xl); line-height: var(--proto-lh-xl); }
+.dsp-panel__meta { display: flex; flex-wrap: wrap; gap: var(--space-8) var(--space-16); color: var(--text-secondary); font-size: var(--text-s); }
+.dsp-panel__meta span { display: inline-flex; align-items: center; gap: var(--space-4); }
+.dsp-panel__section h3 { margin: 0 0 var(--space-8); font-size: var(--text-s); text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-tertiary); }
+.dsp-reading { display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-12); }
+.dsp-reading__row { display: flex; justify-content: space-between; gap: var(--space-8); font-size: var(--text-s); }
+.dsp-chips { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+.dsp-history { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--space-8); font-size: var(--text-s); }
+.dsp-history li { display: grid; grid-template-columns: 84px 1fr; gap: var(--space-8); }
+.dsp-history__when { color: var(--text-tertiary); }
+.dsp-panel__actions { margin-top: auto; padding-top: var(--space-8); }
+.dsp-assigned { display: flex; align-items: center; gap: var(--space-12); padding: var(--space-12); border-radius: var(--radius-m); background: var(--success-soft); }
+
+/* ---- Assign window ---- */
+.dsp-assign { display: flex; flex-direction: column; gap: var(--space-8); }
+.dsp-assign__need { padding-bottom: var(--space-8); color: var(--text-secondary); }
+.dsp-tech { display: flex; align-items: center; gap: var(--space-12); }
+.dsp-tech--off { opacity: 0.55; }
+.dsp-tech__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--space-4); }
+.dsp-tech__name { display: flex; align-items: center; gap: var(--space-8); font-weight: var(--weight-bold); flex-wrap: wrap; }
+.dsp-tech__check { color: var(--accent); }
+
+/* ---- Crew board ---- */
+.dsp-crew { display: flex; flex-direction: column; gap: var(--space-16); padding: var(--space-24); }
+.dsp-crew__grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-12); align-items: start; }
+.dsp-crew__col { display: flex; flex-direction: column; gap: var(--space-8); }
+.dsp-crew__who { display: flex; align-items: center; gap: var(--space-8); min-width: 0; }
+.dsp-crew__whotext { flex: 1; min-width: 0; }
+.dsp-crew__jobs { display: flex; flex-direction: column; gap: var(--space-8); margin-top: var(--space-8); }
+.dsp-crew__job { display: flex; flex-direction: column; gap: var(--space-4); align-items: flex-start; min-width: 0; }
+.dsp-crew__job > div { max-width: 100%; }
+.dsp-crew__none { color: var(--text-tertiary); font-size: var(--text-s); padding: var(--space-8) 0; }
+
+/* The canvas, not the window, decides the layout. */
+@container proto (max-width: 1400px) {
+  .dsp-col-type { display: none; }
+  .dsp-wo--with-panel { grid-template-columns: minmax(0, 1fr) 340px; }
+  .dsp-crew__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .dsp-crew__who .ds-badge { display: none; }
+}
+@container proto (max-width: 1300px) {
+  .dsp-filters .ds-field { width: 150px; }
+}

@@ -298,8 +298,8 @@ function jsImportRefs(src) {
   const mask = jsMask(src);
   const view = _blank(src, mask, [K_COMMENT, K_TEMPLATE, K_REGEX]);
   const out = [];
-  for (const { spec, index } of protoImportSpecifiers(view)) {
-    if (mask[index] !== K_CODE) continue;
+  for (const { spec, index, glob } of protoImportSpecifiers(view)) {
+    if (glob || mask[index] !== K_CODE) continue; // a glob pattern is not a file reference
     let pos = -1;
     for (const q of ["'", '"']) {
       const p = view.indexOf(q + spec + q, index);

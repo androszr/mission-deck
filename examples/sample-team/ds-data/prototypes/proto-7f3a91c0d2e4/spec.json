@@ -1,0 +1,68 @@
+{
+  "id": "proto-7f3a91c0d2e4",
+  "title": "Dispatch console - morning triage",
+  "summary": "Desktop prototype for dispatchers: triage the morning's turbine alarms, open a work order, see live readings and history, and assign the best-matching technician in one window. Tested question: can a dispatcher assign a critical fault in under a minute without phoning around?",
+  "updated": "2026-09-24",
+  "frame": "app",
+  "scope": [
+    {
+      "group": "Work orders",
+      "items": [
+        "Status tabs with counts",
+        "Search, priority and site filters",
+        "Sortable-by-priority list with assignee",
+        "Detail panel: readings, required skills, history"
+      ]
+    },
+    {
+      "group": "Assign technician",
+      "items": [
+        "Ranked list (skills, availability, distance, workload)",
+        "Best-match badge",
+        "Assign and notify, confirmation toast"
+      ]
+    },
+    {
+      "group": "Crew board",
+      "items": [
+        "One column per technician",
+        "Workload bar",
+        "Job cards open the work order"
+      ]
+    },
+    {
+      "group": "Edge states",
+      "items": [
+        "Empty search",
+        "Loading",
+        "Error with retry"
+      ]
+    }
+  ],
+  "releases": [
+    {
+      "date": "2026-09-18",
+      "items": [
+        "First version: list, filters and detail panel."
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "items": [
+        "Assign window with best match, crew board, edge states."
+      ]
+    }
+  ],
+  "customElements": [],
+  "figmaSource": null,
+  "figmaDeviations": [
+    {
+      "frameId": "12:340",
+      "screen": "Assign technician",
+      "what": "Workload shown as a bar instead of a number only",
+      "why": "Dispatchers in the first session compared numbers slowly; the bar made overload visible at a glance.",
+      "decidedBy": "user",
+      "date": "2026-09-23"
+    }
+  ]
+}

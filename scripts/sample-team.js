@@ -1352,6 +1352,39 @@ function writeAcademy(w, people) {
   }
 }
 
+// -- Prototypes ------------------------------------------------------------------
+// Three fictional example prototypes (a dispatch console, a technician phone
+// app and a self-playing operations briefing). examples/prototypes/<id>/ is
+// the committed source of truth; this copies each folder byte for byte (the
+// briefing's recorded JPEG frames must never be re-encoded) into
+// ds-data/prototypes/<id>/ and writes the registry with fixed dates.
+const PROTOTYPE_EXAMPLES = [
+  { id: 'proto-7f3a91c0d2e4', kind: 'desktop', area: 'Field operations', created: '2026-09-08T09:30:00.000Z', updated: '2026-09-24T14:10:00.000Z', owners: [0, 1] },
+  { id: 'proto-2b8e64f1a9c7', kind: 'mobile', area: 'Field operations', created: '2026-09-10T10:00:00.000Z', updated: '2026-09-24T11:45:00.000Z', owners: [1, 2] },
+  { id: 'proto-e15c0a7d3b96', kind: 'briefing', area: 'Field operations', created: '2026-09-15T08:20:00.000Z', updated: '2026-09-29T16:00:00.000Z', owners: [0, 2] },
+];
+
+function writePrototypes(w, people) {
+  const src = path.join(ROOT, 'examples', 'prototypes');
+  const items = [];
+  for (const ex of PROTOTYPE_EXAMPLES) {
+    const from = path.join(src, ex.id);
+    if (!fs.existsSync(path.join(from, 'index.tsx'))) throw new Error('sample-team: the example prototype ' + ex.id + ' is missing from examples/prototypes/');
+    const spec = JSON.parse(fs.readFileSync(path.join(from, 'spec.json'), 'utf8'));
+    fs.cpSync(from, path.join(w.root, 'prototypes', ex.id), { recursive: true });
+    items.push({
+      id: ex.id,
+      name: spec.title,
+      area: ex.area,
+      owners: ex.owners.map((i) => people[i % people.length].id),
+      created_at: ex.created,
+      updated_at: ex.updated,
+      kind: ex.kind,
+    });
+  }
+  w.json('prototypes/prototypes.json', { items });
+}
+
 function generate(outDir) {
   const out = path.resolve(outDir || DEFAULT_OUT);
   const target = path.join(out, 'ds-data');
@@ -1389,6 +1422,7 @@ function generate(outDir) {
   writeUsageAnalytics(w, people);
   writeDemoHub(w);
   writeAcademy(w, people);
+  writePrototypes(w, people);
   return { out: w.root, people: people.length };
 }
 

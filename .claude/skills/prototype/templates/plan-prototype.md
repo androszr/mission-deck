@@ -34,6 +34,7 @@ Two modes (frontmatter "Prototype mode"):
 **Prototype id:** {{proto-id}}
 **Prototype dir:** `data-sub-repositories/ds-data/prototypes/{{proto-id}}/`
 **Prototype format:** {{react | vanilla}}
+**Prototype kind:** {{desktop | mobile | briefing | blank}}
 **Prototype mode:** {{requirements-driven | spec-driven}}
 **Breakpoints:** {{e.g. [375, 768, 960, 1280, 1536, 1920]}}
 
@@ -118,9 +119,11 @@ Two modes (frontmatter "Prototype mode"):
 
 - [ ] 1. **Demo states (`index.tsx`).** {{extend `demoStates` with one `{ id, label, group }` entry
       per new screen / empty / loading / error / open layer; add the matching `case '<id>':` in the
-      one-shot reset+apply effect driven by `useDemoState(demoStates, '<defaultId>')`}}
+      function that returns the state a scenario starts from, and key the screen on the id read by
+      `useDemoState(demoStates, '<defaultId>')` (`<Screen key={demoState} />`) - never an effect that sets state}}
 - [ ] 2. **Screen.** {{add the screen's JSX in `index.tsx`, composed from `../../ds` adapters and
       `../../components` shells}}
+- [ ] 2b. **Screen names for analytics.** {{every screen, step and window root carries `data-track-screen="Area > Screen"`, every `DSModal` / `DSBottomSheet` a `trackScreen="Area > Layer"`; each meaningful action calls `track('Event Name', { prototype })` from `../_shared/analytics`}}
 - [ ] 3. **Handlers.** {{event handlers as component state; no full remount that would drop focus mid-input}}
 - [ ] 3b. **Interaction affordances and URL state.** {{per clickable row/card/list item: `cursor: pointer` + hover background from a real token (e.g. `--table-primary-hover-bg`); per checkbox/radio: label-click toggles (forward a `DSRadio` label click to the preceding `[role="radio"]`) and a nested control toggles once; for more than one screen: the active screen in the hash (never `?state=`), scroll reset on screen change}}
 - [ ] 4. **DS.** Build from `../../ds` adapters (`DSButton`, `DSCard`, ...); icons via `<DSIcon name="<slug>">` (slug checked against the icon catalog, tinted via `color:` on the wrapper); floating layers via `DSPopover` / `DSDropdown`; custom markup only where no catalog component covers it, registered in `spec.json` `customElements[]` (`{ name, reason, note, lead_confirmed, owns? }`) with a `/* CUSTOM: <reason> */` marker in `styles.css`.

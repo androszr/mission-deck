@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "id": "proto-7f3a91c0d2e4",
+      "name": "Dispatch console - morning triage",
+      "area": "Field operations",
+      "owners": [
+        "tm-a53436ba",
+        "tm-ff8edb7a"
+      ],
+      "created_at": "2026-09-08T09:30:00.000Z",
+      "updated_at": "2026-09-24T14:10:00.000Z",
+      "kind": "desktop"
+    },
+    {
+      "id": "proto-2b8e64f1a9c7",
+      "name": "Technician app - from new job to closed job",
+      "area": "Field operations",
+      "owners": [
+        "tm-ff8edb7a",
+        "tm-a5b6edeb"
+      ],
+      "created_at": "2026-09-10T10:00:00.000Z",
+      "updated_at": "2026-09-24T11:45:00.000Z",
+      "kind": "mobile"
+    },
+    {
+      "id": "proto-e15c0a7d3b96",
+      "name": "Operations briefing - from alarm to repair, faster",
+      "area": "Field operations",
+      "owners": [
+        "tm-a53436ba",
+        "tm-a5b6edeb"
+      ],
+      "created_at": "2026-09-15T08:20:00.000Z",
+      "updated_at": "2026-09-29T16:00:00.000Z",
+      "kind": "briefing"
+    }
+  ]
+}

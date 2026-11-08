@@ -38,12 +38,13 @@ Summary:
 
 | File | Role |
 |---|---|
-| `index.tsx` | React 18 function component, `export default`, `export const breakpoints: number[]` (built widths from `[375, 768, 960, 1280, 1536, 1920]`), `export const demoStates: DemoStateDef[]`. Imports only from `react`, `./styles.css`, `../_shared/*` (`demo-state` ships with the build shell), the optional team layers `../../ds` (component adapters) and `../../components`, plus the named library exception - schedulers = `@bryntum/scheduler` (`-react`, `-trial`), export = `write-excel-file`, `jspdf`, `html2canvas`. The ONE list is `scripts/_proto-imports.js` (read by both `_protoValidateTsx` in `server.js` and `scripts/check-proto-ds.js`); do not restate it elsewhere. No sibling `.ts`/`.tsx` file - the pipeline copies only `index.tsx` + `styles.css`. |
+| `index.tsx` | React 18 function component, `export default`, `export const breakpoints: number[]` (built widths from `[375, 768, 960, 1280, 1536, 1920]`), `export const demoStates: DemoStateDef[]`. Imports only from `react`, `./styles.css`, `../_shared/*` (`demo-state` and `analytics` ship with the build shell), `../../ds` (component adapters) and `../../components` (the neutral `AppFrame` / `PhoneFrame`) - both ship in the shell seed and a team's own copy in the team data wins - plus `import.meta.glob('./assets/...')` for the prototype's own pictures, plus the named library exception - schedulers = `@bryntum/scheduler` (`-react`, `-trial`), export = `write-excel-file`, `jspdf`, `html2canvas`. The ONE list is `scripts/_proto-imports.js` (read by both `_protoValidateTsx` in `server.js` and `scripts/check-proto-ds.js`); do not restate it elsewhere. No sibling `.ts`/`.tsx` file - the pipeline copies only `index.tsx` + `styles.css`. |
 | `styles.css` | Own `.<id>-*` rules. Tokens from the build shell (`templates/prototype-build-shell/src/tokens.css`) and the app tokens it receives (`css/ds-tokens.css`), zero hex. `@container proto (min-width: ...)` - NEVER `@media`, the canvas can be narrower than the browser window. |
-| `spec.json` | Scope source of truth: `{ id, title, summary, updated, scope: [{ title, items[] }], releases: [{ date, note }], customElements: [{ name, reason, note, lead_confirmed, owns? }], figmaSource?, figmaDeviations? }`. `figmaDeviations[]` = `{ frameId, screen, what, why, decidedBy: "user", date }`, one per user-approved departure from the Figma. Mandatory both modes. |
+| `spec.json` | Scope source of truth: `{ id?, title, summary, updated, frame?, scope: [{ group, items[] }], releases: [{ date, items[] }], customElements: [{ name, reason, note, lead_confirmed, owns? }], figmaSource?, figmaDeviations? }`; `id`, when present, equals the folder name and `frame` is `app` / `phone` / `none` (rule `spec-id`). `figmaDeviations[]` = `{ frameId, screen, what, why, decidedBy: "user", date }`, one per user-approved departure from the Figma. Mandatory both modes. |
 | `compliance.json` | Only for requirements-driven prototypes: `{ source, groups: [{ title, requirements: [{ id, text, status, coverage, gap, shots[] }] }] }`. |
-| `assets/*.png` | Screenshots captured in Phase 6g, copied from `user-data/screenshots/`. |
-| `../prototypes.json` | Registry `{ items: [{ id, name, area, owners, created_at, updated_at, discoveryTaskId? }] }` - the SAME file and shape `POST /api/prototypes` writes; `id` always comes from that endpoint, never invented locally. |
+| `assets/**` | Screenshots captured in Phase 6g (`assets/*.png`, copied from `user-data/screenshots/`) and any picture the prototype ships, sub-folders included (a briefing's `assets/frames/*.jpg`); copied recursively to `src/prototypes/<slug>/assets/` and `public/proto-assets/<slug>/`. |
+| `content.json`, `recording.json` | Briefing kind only: the story (chapters, steps, captions) and the list of pictures to record from the real prototypes - see `/briefing`. Staged like any top-level `*.json`. |
+| `../prototypes.json` | Registry `{ items: [{ id, name, area, owners, created_at, updated_at, discoveryTaskId?, kind? }] }` (`kind` only when one was named at creation; a missing kind reads as `desktop`) - the SAME file and shape `POST /api/prototypes` writes; `id` always comes from that endpoint, never invented locally. |
 
 The older `index.html` + `render.js` + `styles.css` contract (no React, tokens from
 `css/ds-tokens.css`/`css/ds.css` host DS) is still supported, but no prototype in the data uses it
@@ -63,7 +64,8 @@ Preview and local build: the `local-preview` and `deploy-stream` endpoints in `s
 
 | Step | Command |
 |---|---|
-| Plan preflight (4.5) | `node scripts/proto-preflight.js <plan> --json` (the 20 generic rules plus P1-P17) |
+| Plan preflight (4.5) | `node scripts/proto-preflight.js <plan> --json` (the 20 generic rules plus P1-P19) |
+| Clean build check (6g, optional) | `node scripts/proto-shell-check.js --prototypes <dir,dir> --out <tmp>` builds, lints and type-checks the prototype in a throwaway shell, without the cockpit server |
 | Plan render (4.6, 7) | `node scripts/plan-to-html.js <plan>` |
 | DS baseline (before 6, existing prototype only) | `node scripts/check-proto-ds.js <prototype_dir> --json > user-data/proto-baselines/<id>.json`, plus a copy of `index.tsx` + `styles.css` into `user-data/proto-baselines/<id>/` |
 | DS linter (6e, hard gate) | new prototype: `node scripts/check-proto-ds.js <prototype_dir> --json`; existing: `node scripts/check-proto-ds.js <prototype_dir> --baseline user-data/proto-baselines/<id>.json --json` (blocks only NEW findings) |
@@ -107,11 +109,14 @@ render and paste is `intro` in Phase 0: it precedes no agent, so no hook fires f
 
 1. Capture the idea. Resolve `prototype_id` from the idea or from
    `ls data-sub-repositories/ds-data/prototypes/`; ambiguous with several existing -> ask
-   which. **A brand-new prototype is created NOW, not planned as a future step:** call
-   `POST http://localhost:3001/api/prototypes` with `{ "name": "<short name>" }` (server
+   which. **A brand-new prototype is created NOW, not planned as a future step:** ask the **kind** once (`desktop` - application frame with a side menu, the default;
+   `mobile` - phone frame with tabs; `briefing` - a self-playing presentation, then continue with
+   `/briefing`; `blank` - one empty screen, no frame) and call
+   `POST http://localhost:3001/api/prototypes` with `{ "name": "<short name>", "kind": "<kind>" }` (server
    must be reachable - Phase 6g's restart recipe applies here too if it is not). The response's
    `item.id` is the canonical `prototype_id` from this point on; the server already staged the
-   React starter (`index.tsx`, `styles.css`, `spec.json`) into
+   React starter of that kind (`index.tsx`, `styles.css`, `spec.json`; a briefing also `content.json`
+   and `recording.json`) into
    `data-sub-repositories/ds-data/prototypes/<id>/` atomically - if `starter` comes back
    `missing-template`, stop and tell the user the starter template is not deployed yet (do not
    hand-write one). The rest of this skill plans and builds the REAL scope on top of that starter,
@@ -186,8 +191,11 @@ render and paste is `intro` in Phase 0: it precedes no agent, so no hook fires f
    `{ frameId, screen, what, why, decidedBy: "user", date }`. These are USER-approved product
    decisions: no plan, build or audit re-flags them or silently "fixes" them back to the Figma. A
    NEW deviation is added only in Phase 6g after `AskUserQuestion`.
-8. **Shared-component boundary.** If the idea needs a change in `../../ds`, `../../components`,
-   `prototypes/_shared/`, `css/ds*.css`, `js/`, `index.html`, `server.js` or the catalog, it is not
+8. **Shared-component boundary.** The building blocks (`ds/`), the app and phone frames
+   (`components/`), `prototypes/_shared/` (demo state, analytics) and the viewer are the build shell
+   seed's shared layer: every prototype, and the published site, uses them. If the idea needs a
+   change in `../../ds`, `../../components`, `prototypes/_shared/`, `templates/prototype-build-shell/`,
+   `css/ds*.css`, `js/`, `index.html`, `server.js` or the catalog, it is not
    prototype work - it affects the whole cockpit or every prototype. `AskUserQuestion`: route to
    `/new-idea` (recommended) or re-scope to a prototype-local approximation (own markup + own
    `styles.css`, shared files untouched).
@@ -280,6 +288,8 @@ existing legacy prototype and must be written out explicitly.
 | P15 | custom element with no `ds/<file>:<line>` citation of the DS* props it mirrors | WARN |
 | P16 | helper source file next to `index.tsx` (the shell stages only `index.tsx`, `styles.css`, `*.json`, `assets/`) | BLOCK |
 | P17 | own demo-state switcher, `replaceState` or `PopStateEvent` (the shell owns the "Stany demo" selector) | WARN |
+| P18 | react format: `**Prototype kind:**` (desktop, mobile, briefing or blank) named in the plan header | WARN |
+| P19 | `## Steps` name the screens for analytics (`data-track-screen` / `trackScreen`) | WARN |
 
 Any BLOCK -> show the abstract plus the BLOCK lines, prompt `iterate` / `stop`. WARN only -> one
 line and continue. Re-run after every `iterate`.
@@ -508,6 +518,16 @@ Append these lines when they apply (omit a line whose subject did not happen):
   the click to the preceding `[role="radio"]`); a control nested in a clickable row toggles exactly
   once. Precedent 2026-09-11: every defect the user reported after all automated gates passed was
   an interaction state.
+- **Every screen is named, every meaningful action tracked.** Screen, step and window roots carry
+  `data-track-screen="Area > Screen"`, every `DSModal` / `DSBottomSheet` a `trackScreen`, and
+  meaningful actions call `track('Event Name', { prototype })` from `../_shared/analytics`; the
+  viewer's "Analytics" menu counts clicks per screen name, and a click outside a named screen lands in
+  "unknown screen". Rule `screen-marker` blocks several screens with no name; `analytics-missing`,
+  `screen-deep-link` and `own-switcher` warn.
+- **Apply a demo state by remounting, not by an effect.** Key the screen on the id from
+  `useDemoState` (`<Screen key={demoState} />`) and start from the state a scenario names in
+  `useState` initialisers; hooks 7 lints a `setState` inside an effect body and the publish gate
+  blocks on it. Never write `?state=` or fire `popstate` (rule `own-switcher`).
 - **Screen state belongs in the URL.** A prototype with more than one screen keeps the active
   screen (and selected record) in the hash (`parseHash` / `hashForState`); `?state=` belongs to
   `useDemoState`, so a demo state wins when present.
@@ -544,6 +564,9 @@ Append these lines when they apply (omit a line whose subject did not happen):
 ## Notes
 
 - `/new-idea` redirects here when someone aims it at a prototype.
+- A **briefing** (self-playing presentation with pictures recorded from the real prototypes) is
+  planned and built here like any prototype, then recorded with `/briefing`
+  (`scripts/proto-record.mjs`, `scripts/proto-build-content.mjs`).
 - The shared agents (`idea-planner`, `frontend-implementer`, `ac-verifier`, `playwright-specialist`)
   carry a short prototype section each; this skill is only the orchestrator.
 - Models: defaults from `.claude/default-models.json` (`proto-ds-guardian` on Sonnet).

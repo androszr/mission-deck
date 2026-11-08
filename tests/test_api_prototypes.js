@@ -269,6 +269,78 @@ test('POST /api/prototypes copies the React starter atomically: index.tsx, style
   assert.strictEqual(stored.format, undefined);
 });
 
+// -- Kinds: desktop (the default), mobile, briefing, blank ------------------------
+// A kind picks the starter and the frame written into spec.json. The registry
+// stores `kind` ONLY when the request named one.
+
+const STD = ['index.tsx', 'spec.json', 'styles.css'];
+const KIND_ROWS = [
+  { kind: 'desktop', files: STD, frame: 'app' },
+  { kind: 'mobile', files: STD, frame: 'phone' },
+  { kind: 'briefing', files: ['content.json', 'index.tsx', 'recording.json', 'spec.json', 'styles.css'], frame: 'none' },
+  { kind: 'blank', files: STD, frame: 'none' },
+];
+
+for (const row of KIND_ROWS) {
+  const kind = row.kind;
+  test(`POST /api/prototypes with kind '${kind}' stages that starter, writes its frame and stores the kind`, async () => {
+    const payload = { name: 'Kind ' + kind, kind: kind };
+    const { status, body } = await postJson(PORT, '/api/prototypes', payload);
+    assert.strictEqual(status, 200);
+    assert.strictEqual(body.item.kind, kind);
+    assert.strictEqual(body.item.format, 'react');
+    const dir = path.join(PROTOTYPES_DIR, body.item.id);
+    assert.deepStrictEqual(fs.readdirSync(dir).sort(), row.files);
+    const spec = JSON.parse(fs.readFileSync(path.join(dir, 'spec.json'), 'utf8'));
+    assert.strictEqual(spec.frame, row.frame);
+    assert.ok(!fs.readFileSync(path.join(dir, 'index.tsx'), 'utf8').includes('{{'), 'no token left behind');
+    assert.strictEqual(_rawPrototypesJson().items.find((it) => it.id === body.item.id).kind, kind);
+    if (kind === 'briefing') {
+      assert.deepStrictEqual(JSON.parse(fs.readFileSync(path.join(dir, 'recording.json'), 'utf8')), { steps: [] });
+      assert.ok(JSON.parse(fs.readFileSync(path.join(dir, 'content.json'), 'utf8')).chapters.length >= 1);
+    }
+  });
+}
+
+test('POST /api/prototypes without a kind stages the desktop starter and stores NO kind', async () => {
+  const { status, body } = await postJson(PORT, '/api/prototypes', { name: 'No kind named' });
+  assert.strictEqual(status, 200);
+  assert.ok(!('kind' in body.item), 'the answer carries no kind');
+  const dir = path.join(PROTOTYPES_DIR, body.item.id);
+  assert.deepStrictEqual(fs.readdirSync(dir).sort(), STD);
+  assert.strictEqual(JSON.parse(fs.readFileSync(path.join(dir, 'spec.json'), 'utf8')).frame, 'app');
+  assert.ok(!('kind' in _rawPrototypesJson().items.find((it) => it.id === body.item.id)), 'the registry entry has no kind');
+  // GET does not compute one either.
+  const listed = (await getJson(PORT, '/api/prototypes')).body.items.find((it) => it.id === body.item.id);
+  assert.ok(!('kind' in listed));
+});
+
+test('POST /api/prototypes with an unknown kind answers 400 invalid-kind and creates nothing', async () => {
+  const before = fs.readdirSync(PROTOTYPES_DIR).length;
+  for (const kind of ['x', 'Desktop', '', 7, null]) {
+    const { status, body } = await postJson(PORT, '/api/prototypes', { name: 'Bad kind', kind });
+    assert.strictEqual(status, 400, JSON.stringify(kind));
+    assert.strictEqual(body.error, 'invalid-kind');
+  }
+  assert.strictEqual(fs.readdirSync(PROTOTYPES_DIR).length, before, 'no directory and no registry change');
+});
+
+test('PUT /api/prototypes/<id> never changes the kind: a body that names one is ignored, an entry without one stays without', async () => {
+  const made = await postJson(PORT, '/api/prototypes', { name: 'Kind stays', kind: 'mobile' });
+  const put = await putJson(PORT, '/api/prototypes/' + made.body.item.id, { name: 'Renamed', kind: 'blank' });
+  assert.strictEqual(put.status, 200);
+  assert.strictEqual(put.body.item.kind, 'mobile');
+  assert.strictEqual(put.body.item.name, 'Renamed');
+  // An entry written before kinds existed round-trips through the update route without gaining one.
+  const old = await postJson(PORT, '/api/prototypes', { name: 'Older entry' });
+  const reg = _rawPrototypesJson();
+  const stored = reg.items.find((it) => it.id === old.body.item.id);
+  assert.ok(!('kind' in stored));
+  const put2 = await putJson(PORT, '/api/prototypes/' + old.body.item.id, { name: 'Older entry renamed', kind: 'briefing' });
+  assert.strictEqual(put2.status, 200);
+  assert.ok(!('kind' in _rawPrototypesJson().items.find((it) => it.id === old.body.item.id)));
+});
+
 test('POST /api/prototypes embeds an apostrophe/quote/newline/accented name safely via JSON.stringify, never raw substitution', async () => {
   const cases = [
     "Till with an apostrophe O'Brien",
@@ -465,9 +537,11 @@ test('POST /api/prototypes without a starter template refuses 500 starter-copy-f
 });
 
 test('POST /api/prototypes with a starter template missing only styles.css also refuses 500, not a silent empty CSS', async () => {
+  // PROTOTYPE_STARTER_DIR names the PARENT of the per-kind starters; a request
+  // without a kind stages the default one (desktop).
   const noCssDir = path.join(TMP_NO_STARTER_DIR, 'no-css-starter-template');
-  fs.mkdirSync(noCssDir, { recursive: true });
-  fs.writeFileSync(path.join(noCssDir, 'index.tsx'), 'export default function P() { return null }\n');
+  fs.mkdirSync(path.join(noCssDir, 'desktop'), { recursive: true });
+  fs.writeFileSync(path.join(noCssDir, 'desktop', 'index.tsx'), 'export default function P() { return null }\n');
   // Deliberately NO styles.css.
   const port = 3564;
   const child = startServer(port, {
@@ -524,13 +598,13 @@ const BAD_STARTER_TEMPLATE_DIR = path.join(TMP_BAD_STARTER_DIR, 'bad-starter-tem
 
 test.before(async () => {
   fs.mkdirSync(BAD_STARTER_PROTOTYPES_DIR, { recursive: true });
-  fs.mkdirSync(BAD_STARTER_TEMPLATE_DIR, { recursive: true });
+  fs.mkdirSync(path.join(BAD_STARTER_TEMPLATE_DIR, 'desktop'), { recursive: true });
   // An import outside the allowlist (_protoValidateTsx) - the copy must refuse.
   fs.writeFileSync(
-    path.join(BAD_STARTER_TEMPLATE_DIR, 'index.tsx'),
+    path.join(BAD_STARTER_TEMPLATE_DIR, 'desktop', 'index.tsx'),
     "import lodash from 'lodash';\nconst PROTOTYPE_NAME = {{PROTO_NAME_JSON}};\nexport default function P() { return null }\n",
   );
-  fs.writeFileSync(path.join(BAD_STARTER_TEMPLATE_DIR, 'styles.css'), '.x { color: red; }');
+  fs.writeFileSync(path.join(BAD_STARTER_TEMPLATE_DIR, 'desktop', 'styles.css'), '.x { color: red; }');
   childBadStarter = startServer(PORT_BAD_STARTER, {
     DATA_SUB_REPOS_DIR: TMP_BAD_STARTER_DIR,
     DATA_TIER_0_DIR: path.join(TMP_BAD_STARTER_DIR, 'ds-data'),
@@ -619,4 +693,53 @@ test('DELETE /api/prototypes/<id> on a malformed registry also refuses', async (
   const { status, body } = await deleteJson(PORT_BAD_REGISTRY, '/api/prototypes/proto-whatever000');
   assert.strictEqual(status, 409);
   assert.strictEqual(body.error, 'registry-unreadable');
+});
+
+// -- Sample mode: the three example prototypes are listed ---------------------
+// A server started with SAMPLE_DATA_DIR holding a copy of the sample team and
+// the mode marker reads its prototypes from that copy (PROTOTYPES_DIR derives
+// from DATA_TIER_0_DIR at boot). Nothing here touches the real data/ folder.
+
+const PORT_SAMPLE = 3565;
+const SAMPLE_EXAMPLE_IDS = ['proto-2b8e64f1a9c7', 'proto-7f3a91c0d2e4', 'proto-e15c0a7d3b96'];
+
+test('in sample mode GET /api/prototypes lists the three example prototypes with their kinds, and the briefing carries its 25 frames', async () => {
+  const work = fs.mkdtempSync(path.join(os.tmpdir(), `cockpit-test-proto-sample-${process.pid}-`));
+  const dataDir = path.join(work, 'data');
+  fs.mkdirSync(path.join(dataDir, 'sample-team'), { recursive: true });
+  fs.cpSync(path.join(__dirname, '..', 'examples', 'sample-team', 'ds-data'), path.join(dataDir, 'sample-team', 'ds-data'), { recursive: true });
+  fs.writeFileSync(path.join(dataDir, 'sample-mode.json'), JSON.stringify({ active: true, since: '2026-09-30T16:00:00.000Z' }));
+  const sampleChild = startServer(PORT_SAMPLE, {
+    SAMPLE_DATA_DIR: dataDir,
+    MODULES_DIR: path.join(work, 'modules'),
+    MODULES_DATA_DIR: path.join(work, 'modules-data'),
+    MODULES_ORIGIN_FILE: path.join(work, 'modules-origin.json'),
+    MODULES_REGISTRY_FILE: path.join(work, 'modules-registry.json'),
+    MODULES_CATALOG_REPO_URL: '',
+    COCKPIT_MODULES_TOKEN: '',
+    COCKPIT_APP_TOKEN: '',
+    GITLAB_API_BASE_URL: 'http://127.0.0.1:9/api/v4',
+    AUTO_SYNC_ENABLED: '0',
+    PROTO_BUILD_REPO_URL: '',
+    DATA_TIER_0_DIR: '',
+    DATA_SUB_REPOS_DIR: '',
+  });
+  try {
+    await waitForServer(PORT_SAMPLE);
+    const mode = await getJson(PORT_SAMPLE, '/api/sample-mode');
+    assert.strictEqual(mode.body.active, true, 'the server really runs in sample mode');
+    const { status, body } = await getJson(PORT_SAMPLE, '/api/prototypes');
+    assert.strictEqual(status, 200);
+    assert.deepStrictEqual(body.items.map((it) => it.id).sort(), SAMPLE_EXAMPLE_IDS);
+    const kinds = Object.fromEntries(body.items.map((it) => [it.id, it.kind]));
+    assert.deepStrictEqual(kinds, { 'proto-7f3a91c0d2e4': 'desktop', 'proto-2b8e64f1a9c7': 'mobile', 'proto-e15c0a7d3b96': 'briefing' });
+    assert.ok(body.items.every((it) => it.format === 'react'));
+    const frames = fs.readdirSync(path.join(dataDir, 'sample-team', 'ds-data', 'prototypes', 'proto-e15c0a7d3b96', 'assets', 'frames'));
+    assert.strictEqual(frames.length, 25);
+    const spec = await getJson(PORT_SAMPLE, '/api/prototypes/spec/proto-e15c0a7d3b96');
+    assert.strictEqual(spec.status, 200);
+  } finally {
+    await stopServer(sampleChild);
+    fs.rmSync(work, { recursive: true, force: true });
+  }
 });

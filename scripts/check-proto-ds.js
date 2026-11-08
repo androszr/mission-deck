@@ -24,6 +24,10 @@
 //   react-import          an import outside scripts/_proto-imports.js (React)
 //   raw-control           raw button/input/select/textarea/table outside a
 //                         registered custom element (React)
+//   screen-marker         several screens or windows (hash routing, a DS
+//                         modal or sheet) and no data-track-screen (React)
+//   spec-id               spec.json `id` differs from the directory name, or
+//                         `frame` is not app / phone / none (React)
 // WARN categories:
 //   suspect-registration  a custom element whose name hints at a catalog component
 //   inline-svg            <svg> in render.js where a catalog icon route belongs
@@ -31,6 +35,10 @@
 //   dsicon-svg-paint      an `svg` rule setting color/fill/stroke (React)
 //   outline-none          `outline: none` with no focus replacement (React)
 //   hashed-class          a selector on a hashed CSS-module class (React)
+//   screen-marker         a DSModal / DSBottomSheet without trackScreen (React)
+//   screen-deep-link      more than three demo states and no hash routing (React)
+//   own-switcher          the prototype writes ?state= or fires popstate (React)
+//   analytics-missing     no track(...) call anywhere (React)
 // NOTE categories:
 //   raw-control-scoped    a raw control inside a spec.json customElements[] /
 //                         owns[] function body (React)
@@ -74,6 +82,9 @@ const TOKEN_FILES = [
   path.join('css', 'ds.css'),
 ];
 const ICONS_JSON = path.join('assets', 'icons', 'ds', 'manifest.json');
+// The build shell's DS adapters name icons by ICONS keys (adapter name -> slug).
+const SEED_ICONS_TS = path.join('templates', 'prototype-build-shell', 'src', 'ds', 'icons.ts');
+const SEED_TOKENS_CSS = path.join('templates', 'prototype-build-shell', 'src', 'ds', 'tokens.css');
 const ILLUS_JSON = path.join('assets', 'mascot', 'manifest.json');
 
 const TOKEN_DEF_RE = /(^|[;{\s])(--[a-z0-9-]+)\s*:/gi;
@@ -124,6 +135,17 @@ function loadTokens(root) {
   }
   if (!found) throw new Error('no token file found under ' + root + '/css/');
   return tokens;
+}
+
+/** Adapter icon names: the keys of ICONS in the seed's src/ds/icons.ts. */
+function seedIconNames(root) {
+  const text = readSafe(path.join(root, SEED_ICONS_TS));
+  const out = new Set();
+  if (text === null) return out;
+  const at = text.indexOf('export const ICONS');
+  if (at === -1) return out;
+  for (const m of text.slice(at).matchAll(/^\s*'?([a-z0-9-]+)'?\s*:\s*'/gm)) out.add(m[1]);
+  return out;
 }
 
 function loadSlugs(root, rel) {
@@ -182,6 +204,7 @@ function reactTokens(root) {
   // (server.js _protoCopyAppTokens) - exactly what a prototype can resolve.
   const files = [
     path.join(root, 'templates/prototype-build-shell/src/tokens.css'),
+    path.join(root, SEED_TOKENS_CSS),
     ...TOKEN_FILES.map((f) => path.join(root, f)),
   ];
   const tokens = new Set();
@@ -307,6 +330,32 @@ function checkReactCss(rep, rel, css) {
   }
 }
 
+// Screens named for analytics and reachable by address, the demo-state channel
+// left to the viewer, and the tracking contract (prototypes/_shared/analytics.ts).
+// Every finding is line-free on purpose: --baseline excuses prototypes that
+// already existed when the rule arrived.
+function checkReactScreens(rep, rel, source, js) {
+  const file = rel + '/index.tsx';
+  const multiScreen = /hashchange|location\.hash/.test(source) || /\bDS(?:Modal|BottomSheet)\b/.test(source);
+  const named = /data-track-screen|trackScreen=/.test(source);
+  if (multiScreen && !named) {
+    rep.block({ rule: 'screen-marker', file, line: null, message: 'several screens or windows but no data-track-screen - clicks would land in "unknown screen" on the heatmap', fix: 'put data-track-screen="Area > Screen" on each screen root (trackScreen on a DS layer)' });
+  }
+  if (/\bDS(?:Modal|BottomSheet)\b/.test(source) && !/trackScreen=/.test(source)) {
+    rep.warn({ rule: 'screen-marker', file, line: null, message: 'a DS layer without trackScreen - layers render outside the screen subtree', fix: 'pass trackScreen="Area > Layer" to DSModal / DSBottomSheet' });
+  }
+  const stateCount = (source.match(/\{\s*id:\s*['"][a-z0-9-]+['"],\s*label:/g) || []).length;
+  if (stateCount > 3 && !/hashchange/.test(source)) {
+    rep.warn({ rule: 'screen-deep-link', file, line: null, message: 'several screens but no hash routing - a screen cannot be opened by address', fix: 'route the screens through location.hash and listen to hashchange' });
+  }
+  if (/new\s+PopStateEvent|searchParams\.set\(\s*['"]state['"]/.test(source)) {
+    rep.warn({ rule: 'own-switcher', file, line: null, message: 'the prototype writes ?state= or fires popstate - the viewer owns the demo-state switcher', fix: 'only read the state with useDemoState; never write the URL' });
+  }
+  if (!/\btrack\(/.test(source) && js) {
+    rep.warn({ rule: 'analytics-missing', file, line: null, message: 'no track(...) call - meaningful actions should be tracked', fix: "import { track } from '../_shared/analytics' and track the actions a product team would measure" });
+  }
+}
+
 function checkReact(rep, rel, js, css, dir, icons) {
   const source = stripComments(js);
   // A finding with no source site (a missing export, an unimplemented
@@ -396,6 +445,7 @@ function checkReact(rep, rel, js, css, dir, icons) {
     }
   }
   if (css) checkReactCss(rep, rel, css);
+  checkReactScreens(rep, rel, source, js);
   // One finding per query, with its line, so --baseline can tell an existing
   // @media from a new one. Comments are blanked first (length kept): a
   // comment explaining why a query exists is not a query.
@@ -420,6 +470,8 @@ function run(dirArg, options = {}) {
   let tokens;
   try { tokens = react ? reactTokens(root) : loadTokens(root); } catch (e) { R.usageError(e.message); }
   const icons = loadSlugs(root, ICONS_JSON);
+  // <DSIcon name="x"> passes for a manifest slug OR an adapter name of the seed's ICONS.
+  if (react && icons) for (const n of seedIconNames(root)) icons.add(n);
   const illus = loadSlugs(root, ILLUS_JSON);
 
   const cssPath = path.join(dir, 'styles.css');
@@ -524,6 +576,14 @@ function run(dirArg, options = {}) {
   }
   if (react && specText !== null && (!spec || typeof spec !== 'object' || Array.isArray(spec) || !Array.isArray(spec.customElements))) {
     rep.block({ rule: 'registry-mismatch', file: rel + '/spec.json', message: 'React spec must be an object with a customElements array', fix: 'keep the complete starter spec contract' });
+  }
+  if (react && spec && typeof spec === 'object' && !Array.isArray(spec)) {
+    if (typeof spec.id === 'string' && spec.id !== path.basename(dir)) {
+      rep.block({ rule: 'spec-id', file: rel + '/spec.json', message: 'spec.json id `' + spec.id + '` differs from the directory name `' + path.basename(dir) + '`', fix: 'the scope file belongs to its folder: fix or remove `id`' });
+    }
+    if (spec.frame !== undefined && !['app', 'phone', 'none'].includes(spec.frame)) {
+      rep.block({ rule: 'spec-id', file: rel + '/spec.json', message: 'spec.json frame must be app, phone or none', fix: 'use one of the three frame values' });
+    }
   }
   if (spec) {
     const entries = Array.isArray(spec.customElements) ? spec.customElements : [];
